@@ -10,5 +10,6 @@ public class PackageRegistrationTest {
 
     @Test
     public void helloWorld() {
+        new PackageRegistration().HelloWorld();
     }
 }

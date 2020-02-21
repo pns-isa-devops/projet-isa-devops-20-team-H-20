@@ -10,5 +10,6 @@ public class DeliveryManagementTest {
 
     @Test
     public void helloWorld() {
+        new DeliveryManagement().HelloWorld();
     }
 }

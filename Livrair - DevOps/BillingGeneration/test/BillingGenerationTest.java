@@ -11,5 +11,6 @@ public class BillingGenerationTest {
 
     @Test
     public void helloWorld() {
+        new BillingGeneration().HelloWorld();
     }
 }
