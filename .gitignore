@@ -1,6 +1,4 @@
-Livrair - DevOps/.idea/*
-Livrair - DevOps/out/*
-Livrair - DevOps/BillingGeneration/target/*
-Livrair - DevOps/DeliveryManagement/target/*
-Livrair - DevOps/PackageRegistration/target/*
+.idea/
+target/
+out/
 *.iml

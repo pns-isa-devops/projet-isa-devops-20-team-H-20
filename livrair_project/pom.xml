@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>fr.polytech.team.h</groupId>
+  <artifactId>DroneDelivery</artifactId>
+  <version>1.0</version>
+
+    <properties>
+        <versions.java>1.8</versions.java>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+    	<sourceDirectory>src/main/java</sourceDirectory>
+   		<testSourceDirectory>src/test</testSourceDirectory>
+        <plugins>
+            <plugin> <!-- used to define level language 8 to use LocalDateTime -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
