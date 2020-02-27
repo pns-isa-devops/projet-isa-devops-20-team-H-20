@@ -6,7 +6,6 @@ import fr.unice.polytech.isa.dd.teamH.entities.drone.Drone;
 import java.time.LocalDateTime;
 
 public class Delivery {
-    private int id;
     private LocalDateTime dateTimeToShip;
     private float flightTime;
     private float distance;
@@ -14,8 +13,7 @@ public class Delivery {
     private Drone drone;
     private DeliveryState state;
 
-    public Delivery(int id, LocalDateTime dateTimeToShip, float flightTime, float distance, Package aPackage, Drone drone) {
-        this.id = id;
+    public Delivery(LocalDateTime dateTimeToShip, float flightTime, float distance, Package aPackage, Drone drone) {
         this.dateTimeToShip = dateTimeToShip;
         this.flightTime = flightTime;
         this.distance = distance;
@@ -28,10 +26,6 @@ public class Delivery {
         this.state = state;
     }
 
-    public int getId() {
-        return id;
-    }
-
     public LocalDateTime getDateTimeToShip() {
         return dateTimeToShip;
     }
@@ -39,7 +33,6 @@ public class Delivery {
     public float getFlightTime() {
         return flightTime;
     }
-
     public void setFlightTime(float flightTime) {
         this.flightTime = flightTime;
     }
@@ -47,7 +40,6 @@ public class Delivery {
     public float getDistance() {
         return distance;
     }
-
     public void setDistance(float distance) {
         this.distance = distance;
     }
