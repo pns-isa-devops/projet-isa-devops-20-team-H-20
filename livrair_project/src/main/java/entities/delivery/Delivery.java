@@ -1,32 +1,39 @@
-package entities;
+package entities.delivery;
 
+import entities.Package;
 import entities.drone.Drone;
 
 import java.time.LocalDateTime;
 
 public class Delivery {
     private int id;
-    private LocalDateTime dateTime;
+    private LocalDateTime dateTimeToShip;
     private float flightTime;
     private float distance;
     private Package aPackage;
     private Drone drone;
+    private DeliveryState state;
 
-    public Delivery(int id, LocalDateTime dateTime, float flightTime, float distance, Package aPackage, Drone drone) {
+    public Delivery(int id, LocalDateTime dateTimeToShip, float flightTime, float distance, Package aPackage, Drone drone) {
         this.id = id;
-        this.dateTime = dateTime;
+        this.dateTimeToShip = dateTimeToShip;
         this.flightTime = flightTime;
         this.distance = distance;
         this.aPackage = aPackage;
         this.drone = drone;
+        this.state = new NoSentDelivery();
+    }
+
+    public void setState(DeliveryState state) {
+        this.state = state;
     }
 
     public int getId() {
         return id;
     }
 
-    public LocalDateTime getDateTime() {
-        return dateTime;
+    public LocalDateTime getDateTimeToShip() {
+        return dateTimeToShip;
     }
 
     public float getFlightTime() {
