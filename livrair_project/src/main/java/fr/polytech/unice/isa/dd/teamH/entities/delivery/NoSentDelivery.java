@@ -1,4 +1,4 @@
-package entities.delivery;
+package fr.polytech.unice.isa.dd.teamH.entities.delivery;
 
 public class NoSentDelivery extends DeliveryState {
     @Override

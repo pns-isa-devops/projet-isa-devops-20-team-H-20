@@ -1,4 +1,4 @@
-package exceptions;
+package fr.polytech.unice.isa.dd.teamH.exceptions;
 
 public class DeliveryNotExistsException extends Exception {
     private int id;

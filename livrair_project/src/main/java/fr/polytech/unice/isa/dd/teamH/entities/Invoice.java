@@ -1,4 +1,4 @@
-package entities;
+package fr.polytech.unice.isa.dd.teamH.entities;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;

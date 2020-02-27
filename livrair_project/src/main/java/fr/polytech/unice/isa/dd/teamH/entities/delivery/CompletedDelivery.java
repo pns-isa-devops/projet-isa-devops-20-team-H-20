@@ -1,4 +1,4 @@
-package entities.delivery;
+package fr.polytech.unice.isa.dd.teamH.entities.delivery;
 
 import java.time.LocalDateTime;
 

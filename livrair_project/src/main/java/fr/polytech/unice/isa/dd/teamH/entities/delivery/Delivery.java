@@ -1,7 +1,7 @@
-package entities.delivery;
+package fr.polytech.unice.isa.dd.teamH.entities.delivery;
 
-import entities.Package;
-import entities.drone.Drone;
+import fr.polytech.unice.isa.dd.teamH.entities.Package;
+import fr.polytech.unice.isa.dd.teamH.entities.drone.Drone;
 
 import java.time.LocalDateTime;
 

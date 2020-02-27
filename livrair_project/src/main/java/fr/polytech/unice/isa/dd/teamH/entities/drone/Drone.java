@@ -1,6 +1,8 @@
-package entities.drone;
+package fr.polytech.unice.isa.dd.teamH.entities.drone;
 
-public class Drone {
+import java.io.Serializable;
+
+public class Drone implements Serializable {
     private int id;
     private float currentFlightTime;
     private int battery;

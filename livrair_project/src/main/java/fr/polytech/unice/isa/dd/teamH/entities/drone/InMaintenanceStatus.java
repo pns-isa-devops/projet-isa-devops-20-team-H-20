@@ -1,4 +1,4 @@
-package entities.drone;
+package fr.polytech.unice.isa.dd.teamH.entities.drone;
 
 public class InMaintenanceStatus extends DroneStatusState {
     public int getRemainingTime() {
