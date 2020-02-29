@@ -4,7 +4,6 @@ import fr.unice.polytech.isa.dd.teamH.interfaces.DroneFinder;
 import fr.unice.polytech.isa.dd.teamH.entities.drone.Drone;
 
 import java.util.List;
-import java.util.Optional;
 
 public class DroneFleetBean implements DroneFinder {
     @Override
