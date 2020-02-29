@@ -2,25 +2,25 @@ package fr.unice.polytech.isa.dd.teamH.entities;
 
 public class Supplier {
     private String name;
-    private String email;
+    private String contact;
 
     public Supplier() {
     }
 
-    public Supplier(String name, String email) {
+    public Supplier(String name, String contact) {
         this.name = name;
-        this.email = email;
+        this.contact = contact;
     }
 
     public String getName() {
         return name;
     }
 
-    public String getEmail() {
-        return email;
+    public String getContact() {
+        return contact;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setContact(String contact) {
+        this.contact = contact;
     }
 }
