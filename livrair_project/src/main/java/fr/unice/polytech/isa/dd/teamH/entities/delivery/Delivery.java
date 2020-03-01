@@ -12,7 +12,7 @@ public class Delivery {
     private Package aPackage;
     private DeliveryState state;
 
-    public Delivery(LocalDateTime dateTimeToShip, float flightTime, float distance, Package aPackage, Drone drone) {
+    public Delivery(LocalDateTime dateTimeToShip, float flightTime, float distance, Package aPackage) {
         this.dateTimeToShip = dateTimeToShip;
         this.flightTime = flightTime;
         this.distance = distance;
@@ -20,6 +20,7 @@ public class Delivery {
         this.state = new NotSentDelivery();
     }
 
+    public DeliveryState getState() {return this.state;}
     public void setState(DeliveryState state) {
         this.state = state;
     }

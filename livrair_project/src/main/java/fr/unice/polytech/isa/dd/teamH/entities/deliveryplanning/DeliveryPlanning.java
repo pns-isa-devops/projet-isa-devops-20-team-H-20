@@ -5,13 +5,17 @@ import java.util.List;
 
 // TODO: Singleton ?
 public class DeliveryPlanning {
-    private List<PlanningEntry> entries = new ArrayList<>();
+    private ArrayList<PlanningEntry> entries = new ArrayList<>();
 
     public DeliveryPlanning(){
 
     }
 
-    public List<PlanningEntry> getEntries() {
+    public ArrayList<PlanningEntry> getEntries() {
         return entries;
     }
+    public void addEntry(PlanningEntry pl) {
+        entries.add(pl);
+    }
+
 }
