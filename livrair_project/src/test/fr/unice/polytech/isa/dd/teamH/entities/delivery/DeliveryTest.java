@@ -19,7 +19,8 @@ public class DeliveryTest {
 
     @Before
     public void setUp() throws Exception {
-        supplier =  new Supplier("PolyColis", "150 rue d'Angleterre");
+        supplier =  new Supplier("PolyColis");
+        supplier.addContact("150 rue d'Angleterre");
         aPackage = new Package("0123456789", 6, "123 Promenade Anglais", supplier);
         delivery = new Delivery(LocalDateTime.now().plusDays(20), (float)0.4, 2, aPackage);
     }

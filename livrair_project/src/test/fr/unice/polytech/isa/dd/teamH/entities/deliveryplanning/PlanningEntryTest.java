@@ -21,7 +21,8 @@ public class PlanningEntryTest {
 
     @Before
     public void setUp() {
-        supplier = new Supplier("PolyColis", "150 rue d'Angleterre");
+        supplier =  new Supplier("PolyColis");
+        supplier.addContact("150 rue d'Angleterre");
         aPackage = new Package("0123456789", 6, "123 Promenade Anglais", supplier);
         drone = new Drone(0, 6);
         delivery = new Delivery(LocalDateTime.now(), (float)0.4, 2, aPackage);

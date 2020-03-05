@@ -1,20 +1,39 @@
 package fr.unice.polytech.isa.dd.teamH.entities;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+
+@Entity
+@Table(name="packages")
 public class Package {
-    private String tackingNumber;
+
+    @Id
+    @NotNull
+    private String trackingNumber;
+
+    @NotNull
     private float weight;
+
+    @NotNull
     private String destination;
+
+    @NotNull
+    @ManyToOne(cascade= CascadeType.REFRESH)
     private Supplier supplier;
 
-    public Package(String tackingNumber, float weight, String destination, Supplier supplier) {
-        this.tackingNumber = tackingNumber;
+    public Package(){
+
+    }
+
+    public Package(String trackingNumber, float weight, String destination, Supplier supplier) {
+        this.trackingNumber = trackingNumber;
         this.weight = weight;
         this.destination = destination;
         this.supplier = supplier;
     }
 
-    public String getTackingNumber() {
-        return tackingNumber;
+    public String getTrackingNumber() {
+        return trackingNumber;
     }
 
     public float getWeight() {

@@ -17,14 +17,17 @@ public class DeliveryPlanningTest {
     Drone drone;
     PlanningEntry planningEntry;
     DeliveryPlanning deliveryPlanning;
+    Supplier supplier;
 
     @Before
     public void setUp(){
+        supplier =  new Supplier("PolyColis");
+        supplier.addContact("150 rue d'Angleterre");
         drone = new Drone(0, 6);
-        d1 = new Delivery(LocalDateTime.now(), (float)0.4, 2, new Package("0123456789", 6, "123 Promenade Anglais", new Supplier("PolyColis", "150 rue d'Angleterre")));
-        d2 = new Delivery(LocalDateTime.now().plusDays(20), (float)0.4, 2, new Package("0133456789", 6, "123 Promenade Anglais", new Supplier("PolyColis", "150 rue d'Angleterre")));
-        d3 = new Delivery(LocalDateTime.now().plusMinutes(56), (float)0.4, 2, new Package("0134456789", 6, "123 Promenade Anglais", new Supplier("PolyColis", "150 rue d'Angleterre")));
-        d4 = new Delivery(LocalDateTime.now().plusMinutes(20), (float)0.4, 2, new Package("0136456789", 6, "123 Promenade Anglais", new Supplier("PolyColis", "150 rue d'Angleterre")));
+        d1 = new Delivery(LocalDateTime.now(), (float)0.4, 2, new Package("0123456789", 6, "123 Promenade Anglais", supplier));
+        d2 = new Delivery(LocalDateTime.now().plusDays(20), (float)0.4, 2, new Package("0133456789", 6, "123 Promenade Anglais", supplier));
+        d3 = new Delivery(LocalDateTime.now().plusMinutes(56), (float)0.4, 2, new Package("0134456789", 6, "123 Promenade Anglais", supplier));
+        d4 = new Delivery(LocalDateTime.now().plusMinutes(20), (float)0.4, 2, new Package("0136456789", 6, "123 Promenade Anglais", supplier));
         planningEntry = new PlanningEntry(drone);
         planningEntry.addDelivery(d1);
         planningEntry.addDelivery(d2);
@@ -49,7 +52,7 @@ public class DeliveryPlanningTest {
     @Test
     public void addEntry() {
         assertEquals(1, deliveryPlanning.getEntries().size());
-        Delivery d5 = new Delivery(LocalDateTime.now().plusMinutes(20), (float)0.4, 2, new Package("012346698", 6, "123 Promenade Anglais", new Supplier("PolyColis", "150 rue d'Angleterre")));
+        Delivery d5 = new Delivery(LocalDateTime.now().plusMinutes(20), (float)0.4, 2, new Package("012346698", 6, "123 Promenade Anglais", supplier));
         PlanningEntry pl = new PlanningEntry(new Drone(1, 6));
         pl.addDelivery(d5);
         deliveryPlanning.addEntry(pl);

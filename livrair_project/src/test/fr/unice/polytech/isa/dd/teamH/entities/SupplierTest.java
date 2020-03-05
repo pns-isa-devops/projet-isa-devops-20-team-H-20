@@ -11,7 +11,8 @@ public class SupplierTest {
 
     @Before
     public void setUp() {
-        supplier =  new Supplier("PolyColis", "150 rue d'Angleterre");
+        supplier =  new Supplier("PolyColis");
+        supplier.addContact("150 rue d'Angleterre");
     }
 
     @After
@@ -25,14 +26,14 @@ public class SupplierTest {
     }
 
     @Test
-    public void getContact() {
-        assertEquals("150 rue d'Angleterre", supplier.getContact());
+    public void getContacts() {
+        assertTrue(supplier.getContacts().contains("150 rue d'Angleterre"));
     }
 
     @Test
     public void setContact() {
-        assertEquals("150 rue d'Angleterre", supplier.getContact());
-        supplier.setContact("123 rue d'Angleterre");
-        assertEquals("123 rue d'Angleterre", supplier.getContact());
+        assertTrue(supplier.getContacts().contains("150 rue d'Angleterre"));
+        supplier.addContact("123 rue d'Angleterre");
+        assertTrue(supplier.getContacts().contains("123 rue d'Angleterre"));
     }
 }

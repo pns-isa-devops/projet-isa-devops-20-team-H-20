@@ -1,8 +1,12 @@
 package fr.unice.polytech.isa.dd.teamH.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
+@Entity
+@Table(name = "invoices")
 public class Invoice {
     private boolean paid;
     private float amount;

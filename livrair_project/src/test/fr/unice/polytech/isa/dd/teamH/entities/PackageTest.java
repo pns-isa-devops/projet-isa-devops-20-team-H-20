@@ -12,7 +12,8 @@ public class PackageTest {
 
     @Before
     public void setUp() {
-        supplier =  new Supplier("PolyColis", "150 rue d'Angleterre");
+        supplier =  new Supplier("PolyColis");
+        supplier.addContact("150 rue d'Angleterre");
         aPackage = new Package("0123456789", 6, "123 Promenade Anglais", supplier);
     }
 
@@ -24,7 +25,7 @@ public class PackageTest {
 
     @Test
     public void getTackingNumber() {
-        assertEquals("0123456789", aPackage.getTackingNumber());
+        assertEquals("0123456789", aPackage.getTrackingNumber());
     }
 
     @Test
