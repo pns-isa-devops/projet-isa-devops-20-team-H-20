@@ -65,13 +65,13 @@ public class DroneStatsEntry implements Serializable {
     public String toString() {
         StringBuilder result = new StringBuilder("DroneEntry {\nentryTime=")
                 .append(entryTime.toString())
-                .append("\n, usedDronesAtCurrentTime: {");
+                .append("\n, usedDronesAtCurrentTime: [");
         if(usedDronesAtCurrentTime != null){
             for(Drone d : usedDronesAtCurrentTime){
-                result.append("\n    ").append(d.toString());
+                result.append("\n\t\t\t\t\t\t\t\t").append(d.toString());
             }
         }
-        result.append("\n }\n}");
+        result.append("\n ]\n}");
         return result.toString();
     }
 }

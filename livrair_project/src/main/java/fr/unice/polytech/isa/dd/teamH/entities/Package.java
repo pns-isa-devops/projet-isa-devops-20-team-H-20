@@ -2,10 +2,12 @@ package fr.unice.polytech.isa.dd.teamH.entities;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
+import java.util.Objects;
 
 @Entity
 @Table(name="packages")
-public class Package {
+public class Package implements Serializable {
 
     @Id
     @NotNull
@@ -50,5 +52,31 @@ public class Package {
 
     public Supplier getSupplier() {
         return supplier;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Package aPackage = (Package) o;
+        return Float.compare(aPackage.getWeight(), getWeight()) == 0 &&
+                getTrackingNumber().equals(aPackage.getTrackingNumber()) &&
+                getDestination().equals(aPackage.getDestination()) &&
+                getSupplier().equals(aPackage.getSupplier());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getTrackingNumber(), getWeight(), getDestination(), getSupplier());
+    }
+
+    @Override
+    public String toString() {
+        return "Package{" +
+                "trackingNumber='" + trackingNumber + '\'' +
+                ", weight=" + weight +
+                ", destination='" + destination + '\'' +
+                ", supplier=" + supplier.toString() +
+                '}';
     }
 }
