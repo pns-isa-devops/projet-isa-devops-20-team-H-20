@@ -6,6 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.Objects;
 
 @Entity
 @Table
@@ -38,24 +39,24 @@ public class Comment implements Serializable {
     }
 
     @Override
-    public int hashCode() {
-        int result = getContent().hashCode();
-        result = 31*result+getRating();
-        return result;
-    }
-
-    @Override
     public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (!(o instanceof Comment))
-            return false;
-        Comment item = (Comment) o;
-        if (getRating() != item.getRating())
-            return false;
-        return getContent().equals(item.getContent());
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Comment comment = (Comment) o;
+        return getRating() == comment.getRating() &&
+                Objects.equals(getContent(), comment.getContent());
     }
 
     @Override
-    public String toString() { return rating + " stars - " + content; }
+    public int hashCode() {
+        return Objects.hash(getRating(), getContent());
+    }
+
+    @Override
+    public String toString() {
+        return "Comment{" +
+                "rating=" + rating +
+                ", content='" + content + '\'' +
+                '}';
+    }
 }

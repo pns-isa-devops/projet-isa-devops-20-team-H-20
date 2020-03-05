@@ -1,7 +1,5 @@
 package fr.unice.polytech.isa.dd.teamH.entities;
 
-import fr.unice.polytech.isa.dd.teamH.entities.drone.Drone;
-
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -10,6 +8,7 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "suppliers")
@@ -43,18 +42,17 @@ public class Supplier implements Serializable {
     }
 
     @Override
-    public int hashCode() {
-        return name.hashCode();
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Supplier supplier = (Supplier) o;
+        return getName().equals(supplier.getName()) &&
+                Objects.equals(getContacts(), supplier.getContacts());
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (!(o instanceof Supplier))
-            return false;
-        Supplier item = (Supplier) o;
-        return getName().equals(item.getName());
+    public int hashCode() {
+        return Objects.hash(getName(), getContacts());
     }
 
     @Override

@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "drone_stats_entries")
@@ -47,33 +48,30 @@ public class DroneStatsEntry implements Serializable {
     }
 
     @Override
-    public int hashCode() {
-        int result = getEntryTime().hashCode();
-        result = 31 * result + (getUsedDronesAtCurrentTime() != null ? getUsedDronesAtCurrentTime().hashCode() : 0);
-        return result;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        DroneStatsEntry that = (DroneStatsEntry) o;
+        return getEntryTime().equals(that.getEntryTime()) &&
+                Objects.equals(getUsedDronesAtCurrentTime(), that.getUsedDronesAtCurrentTime());
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (!(o instanceof DroneStatsEntry))
-            return false;
-        DroneStatsEntry item = (DroneStatsEntry) o;
-        if (getUsedDronesAtCurrentTime() != null ? !getUsedDronesAtCurrentTime().equals(item.getUsedDronesAtCurrentTime()) : item.getUsedDronesAtCurrentTime() != null)
-            return false;
-        return getEntryTime().equals(item.getEntryTime());
+    public int hashCode() {
+        return Objects.hash(getEntryTime(), getUsedDronesAtCurrentTime());
     }
 
     @Override
     public String toString() {
-        StringBuilder result = new StringBuilder("Drones entry - Time: ").append(entryTime.toString())
-                .append("\nActive drones: \n");
+        StringBuilder result = new StringBuilder("DroneEntry {\nentryTime=")
+                .append(entryTime.toString())
+                .append("\n, usedDronesAtCurrentTime: {");
         if(usedDronesAtCurrentTime != null){
             for(Drone d : usedDronesAtCurrentTime){
-                result.append(d.toString()).append("\n");
+                result.append("\n    ").append(d.toString());
             }
         }
+        result.append("\n }\n}");
         return result.toString();
     }
 }
