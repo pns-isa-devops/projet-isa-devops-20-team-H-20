@@ -8,7 +8,7 @@ import fr.unice.polytech.isa.dd.teamH.interfaces.InvoiceGeneration;
 
 import java.util.List;
 
-public class AccountBean implements InvoiceFinder, InvoiceGeneration
+public class AccountingBean implements InvoiceFinder, InvoiceGeneration
 {
     private DeliveryFinder deliveryFinder;
 
