@@ -10,9 +10,6 @@ public class Invoice {
     private int id;
     private LocalDate paymentDate;
 
-    public Invoice() {
-    }
-
     public Invoice(float amount, LocalDate creationDate, int id) {
         this.paid = false;
         this.paymentDate = null;

@@ -5,10 +5,6 @@ public class Comment {
     int rating;
     String content;
 
-    public Comment(){
-
-    }
-
     public Comment(int rating, String content){
         this.rating = rating;
         this.content = content;

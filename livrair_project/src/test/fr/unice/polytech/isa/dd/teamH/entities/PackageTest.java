@@ -11,17 +11,15 @@ public class PackageTest {
     Supplier supplier;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         supplier =  new Supplier("PolyColis", "150 rue d'Angleterre");
         aPackage = new Package("0123456789", 6, "123 Promenade Anglais", supplier);
     }
 
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() {
         aPackage = null;
         supplier = null;
-        assertNull(aPackage);
-        assertNull(supplier);
     }
 
     @Test

@@ -10,14 +10,13 @@ public class SupplierTest {
     Supplier supplier;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         supplier =  new Supplier("PolyColis", "150 rue d'Angleterre");
     }
 
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() {
         supplier = null;
-        assertNull(supplier);
     }
 
     @Test

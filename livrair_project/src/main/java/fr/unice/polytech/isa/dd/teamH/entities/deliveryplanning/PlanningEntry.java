@@ -3,21 +3,13 @@ package fr.unice.polytech.isa.dd.teamH.entities.deliveryplanning;
 import fr.unice.polytech.isa.dd.teamH.entities.delivery.Delivery;
 import fr.unice.polytech.isa.dd.teamH.entities.drone.Drone;
 
-import javax.swing.*;
-import java.awt.image.AreaAveragingScaleFilter;
 import java.time.Duration;
-import java.time.Period;
 import java.util.ArrayList;
-import java.util.List;
 
 public class PlanningEntry {
 
     private Drone drone;
     private ArrayList<Delivery> deliveries = new ArrayList<>();
-
-    public PlanningEntry(){
-
-    }
 
     public PlanningEntry(Drone drone){
         this.drone = drone;
@@ -38,9 +30,9 @@ public class PlanningEntry {
             }
         }
 
-        if(isCoincidence == false){
+        if(!isCoincidence){
             if(drone.getCurrentFlightTime() < 20){  //Check Flight Time to give to Garfield
-                if(drone.getState().isReadyToFly() == true) {    //Check if drone ready to flight
+                if(drone.getState().isReadyToFly()) {    //Check if drone ready to flight
                     deliveries.add(d);
                     return true;
                 }

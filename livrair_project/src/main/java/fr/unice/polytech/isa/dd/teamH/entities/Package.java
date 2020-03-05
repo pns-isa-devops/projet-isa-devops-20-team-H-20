@@ -6,9 +6,6 @@ public class Package {
     private String destination;
     private Supplier supplier;
 
-    public Package() {
-    }
-
     public Package(String tackingNumber, float weight, String destination, Supplier supplier) {
         this.tackingNumber = tackingNumber;
         this.weight = weight;

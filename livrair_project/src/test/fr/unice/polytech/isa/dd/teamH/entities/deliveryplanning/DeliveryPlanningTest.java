@@ -9,20 +9,17 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.concurrent.atomic.AtomicReferenceArray;
 
 import static org.junit.Assert.*;
 
 public class DeliveryPlanningTest {
-    ArrayList<PlanningEntry> planningEntries;
     Delivery d1, d2, d3, d4;
     Drone drone;
     PlanningEntry planningEntry;
     DeliveryPlanning deliveryPlanning;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp(){
         drone = new Drone(0, 6);
         d1 = new Delivery(LocalDateTime.now(), (float)0.4, 2, new Package("0123456789", 6, "123 Promenade Anglais", new Supplier("PolyColis", "150 rue d'Angleterre")));
         d2 = new Delivery(LocalDateTime.now().plusDays(20), (float)0.4, 2, new Package("0133456789", 6, "123 Promenade Anglais", new Supplier("PolyColis", "150 rue d'Angleterre")));
@@ -38,7 +35,7 @@ public class DeliveryPlanningTest {
     }
 
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() {
         d1 = d2 = d3 = d4 = null;
         drone = null;
         planningEntry = null;

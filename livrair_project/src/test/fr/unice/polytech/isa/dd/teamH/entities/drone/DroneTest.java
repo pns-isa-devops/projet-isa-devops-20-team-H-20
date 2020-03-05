@@ -10,14 +10,13 @@ public class DroneTest {
     Drone drone;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         drone = new Drone(0, 6);
     }
 
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() {
         drone = null;
-        assertNull(drone);
     }
 
     @Test

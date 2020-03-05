@@ -10,14 +10,13 @@ public class CommentTest {
     Comment comment;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         comment = new Comment(5, "Good delivery, I recommend this service!");
     }
 
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() {
         comment = null;
-        assertNull(comment);
     }
 
     @Test

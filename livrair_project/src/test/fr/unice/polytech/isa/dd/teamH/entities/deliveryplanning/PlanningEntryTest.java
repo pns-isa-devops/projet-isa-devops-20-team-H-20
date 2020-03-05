@@ -1,6 +1,5 @@
 package fr.unice.polytech.isa.dd.teamH.entities.deliveryplanning;
 
-import com.sun.xml.internal.bind.v2.runtime.reflect.Lister;
 import fr.unice.polytech.isa.dd.teamH.entities.Package;
 import fr.unice.polytech.isa.dd.teamH.entities.Supplier;
 import fr.unice.polytech.isa.dd.teamH.entities.delivery.Delivery;
@@ -8,7 +7,6 @@ import fr.unice.polytech.isa.dd.teamH.entities.drone.Drone;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import sun.text.resources.pl.JavaTimeSupplementary_pl;
 
 import java.time.LocalDateTime;
 
@@ -22,7 +20,7 @@ public class PlanningEntryTest {
     Delivery delivery;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         supplier = new Supplier("PolyColis", "150 rue d'Angleterre");
         aPackage = new Package("0123456789", 6, "123 Promenade Anglais", supplier);
         drone = new Drone(0, 6);
@@ -32,17 +30,12 @@ public class PlanningEntryTest {
     }
 
     @After
-    public void tearDown() throws Exception {
+    public void tearDown(){
         planningEntry = null;
         drone = null;
         aPackage = null;
         supplier = null;
         delivery = null;
-        assertNull(planningEntry);
-        assertNull(drone);
-        assertNull(aPackage);
-        assertNull(supplier);
-        assertNull(delivery);
     }
 
     @Test
@@ -53,9 +46,9 @@ public class PlanningEntryTest {
     @Test
     public void addDelivery() {
         Package anotherPackage = new Package("9876543210", 6, "132 Promenade Anglais", supplier);
-        assertEquals(false, planningEntry.addDelivery(new Delivery(delivery.getDateTimeToShip().plusMinutes(45),(float)0.4, 2, anotherPackage)));
-        assertEquals(false, planningEntry.addDelivery(new Delivery(delivery.getDateTimeToShip().plusMinutes(20),(float)0.4, 2, anotherPackage)));
-        assertEquals(true, planningEntry.addDelivery(new Delivery(delivery.getDateTimeToShip().plusMinutes(116),(float)0.4, 2, anotherPackage)));
-        assertEquals(true, planningEntry.addDelivery(new Delivery(delivery.getDateTimeToShip().plusDays(20),(float)0.4, 2, anotherPackage)));
+        assertFalse(planningEntry.addDelivery(new Delivery(delivery.getDateTimeToShip().plusMinutes(45), (float) 0.4, 2, anotherPackage)));
+        assertFalse(planningEntry.addDelivery(new Delivery(delivery.getDateTimeToShip().plusMinutes(20), (float) 0.4, 2, anotherPackage)));
+        assertTrue(planningEntry.addDelivery(new Delivery(delivery.getDateTimeToShip().plusMinutes(116), (float) 0.4, 2, anotherPackage)));
+        assertTrue(planningEntry.addDelivery(new Delivery(delivery.getDateTimeToShip().plusDays(20), (float) 0.4, 2, anotherPackage)));
     }
 }

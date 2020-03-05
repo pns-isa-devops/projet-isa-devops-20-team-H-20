@@ -12,30 +12,29 @@ public class InvoiceTest {
     Invoice invoice;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         invoice = new Invoice(150, LocalDate.now(), 0);
     }
 
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() {
         invoice = null;
-        assertNull(invoice);
     }
 
     @Test
     public void pay() {
-        assertEquals(false, invoice.isPaid());
-        assertEquals(null, invoice.getPaymentDate());
+        assertFalse(invoice.isPaid());
+        assertNull(invoice.getPaymentDate());
         invoice.pay(LocalDate.now());
-        assertEquals(true, invoice.isPaid());
+        assertTrue(invoice.isPaid());
         assertEquals(LocalDate.now(), invoice.getPaymentDate());
     }
 
     @Test
     public void isPaid() {
-        assertEquals(false, invoice.isPaid());
+        assertFalse(invoice.isPaid());
         invoice.pay(LocalDate.now());
-        assertEquals(true, invoice.isPaid());
+        assertTrue(invoice.isPaid());
     }
 
     @Test
