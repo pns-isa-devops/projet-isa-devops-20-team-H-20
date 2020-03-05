@@ -10,10 +10,12 @@ import static org.junit.Assert.*;
 
 public class InvoiceTest {
     Invoice invoice;
+    Supplier supplier;
 
     @Before
     public void setUp() {
-        invoice = new Invoice(150, LocalDate.now(), 0);
+        supplier =  new Supplier("PolyColis");
+        invoice = new Invoice(150, LocalDate.now(), supplier);
     }
 
     @After
@@ -60,19 +62,19 @@ public class InvoiceTest {
 
     @Test
     public void getRemainingDaysLate(){
-        Invoice invoice = new Invoice(150, LocalDate.now().minusDays(35), 1);
+        Invoice invoice = new Invoice(150, LocalDate.now().minusDays(35), supplier);
         assertEquals(-1, invoice.getRemainingDays());
     }
 
     @Test
     public void getRemainingDays(){
-        Invoice invoice = new Invoice(150, LocalDate.now().minusDays(5), 1);
+        Invoice invoice = new Invoice(150, LocalDate.now().minusDays(5), supplier);
         assertEquals(5, invoice.getRemainingDays());
     }
 
     @Test
     public void getRemainingDaysPaid(){
-        Invoice invoice = new Invoice(150, LocalDate.now(), 1);
+        Invoice invoice = new Invoice(150, LocalDate.now(), supplier);
         invoice.pay(LocalDate.now().plusDays(5));
         assertEquals(-2, invoice.getRemainingDays());
     }

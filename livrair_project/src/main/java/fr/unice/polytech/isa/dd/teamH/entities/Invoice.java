@@ -1,25 +1,42 @@
 package fr.unice.polytech.isa.dd.teamH.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
 @Entity
 @Table(name = "invoices")
-public class Invoice {
-    private boolean paid;
-    private float amount;
-    private LocalDate creationDate;
+public class Invoice implements Serializable {
+
+    @Id
+    @GeneratedValue
     private int id;
+
+    @NotNull
+    private boolean paid;
+
+    @NotNull
+    private float amount;
+
+    @NotNull
+    private LocalDate creationDate;
+
     private LocalDate paymentDate;
 
-    public Invoice(float amount, LocalDate creationDate, int id) {
+    @NotNull
+    @ManyToOne(cascade= CascadeType.REFRESH)
+    private Supplier supplier;
+
+    public Invoice(){
+    }
+
+    public Invoice(float amount, LocalDate creationDate, Supplier supplier) {
         this.paid = false;
         this.paymentDate = null;
         this.amount = amount;
         this.creationDate = creationDate;
-        this.id = id;
     }
 
     public void pay(LocalDate paymentDate){
