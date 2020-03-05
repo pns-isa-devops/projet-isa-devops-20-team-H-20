@@ -4,8 +4,14 @@ import fr.unice.polytech.isa.dd.teamH.interfaces.CommentFinder;
 import fr.unice.polytech.isa.dd.teamH.interfaces.DeliveryFinder;
 import fr.unice.polytech.isa.dd.teamH.interfaces.StatisticsGenerator;
 
+import javax.ejb.EJB;
+
 public class StatisticsBean implements StatisticsGenerator {
+
+    @EJB
     private CommentFinder commentFinder;
+
+    @EJB
     private DeliveryFinder deliveryFinder;
 
     @Override

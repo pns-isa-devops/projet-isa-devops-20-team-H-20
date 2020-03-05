@@ -6,10 +6,12 @@ import fr.unice.polytech.isa.dd.teamH.interfaces.DeliveryFinder;
 import fr.unice.polytech.isa.dd.teamH.interfaces.InvoiceFinder;
 import fr.unice.polytech.isa.dd.teamH.interfaces.InvoiceGeneration;
 
+import javax.ejb.EJB;
 import java.util.List;
 
 public class AccountingBean implements InvoiceFinder, InvoiceGeneration
 {
+    @EJB
     private DeliveryFinder deliveryFinder;
 
     @Override
