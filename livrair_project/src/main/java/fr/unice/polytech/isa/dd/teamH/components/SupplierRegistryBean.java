@@ -4,6 +4,9 @@ import fr.unice.polytech.isa.dd.teamH.entities.Supplier;
 import fr.unice.polytech.isa.dd.teamH.interfaces.SupplierFinder;
 import fr.unice.polytech.isa.dd.teamH.interfaces.SupplierRegistration;
 
+import javax.ejb.Stateless;
+
+@Stateless
 public class SupplierRegistryBean implements SupplierFinder, SupplierRegistration
 {
     @Override

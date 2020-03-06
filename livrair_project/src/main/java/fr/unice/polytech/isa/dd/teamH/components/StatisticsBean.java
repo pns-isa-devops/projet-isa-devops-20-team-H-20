@@ -6,8 +6,10 @@ import fr.unice.polytech.isa.dd.teamH.interfaces.DeliveryFinder;
 import fr.unice.polytech.isa.dd.teamH.interfaces.StatisticsGenerator;
 
 import javax.ejb.EJB;
+import javax.ejb.Stateless;
 import java.time.LocalDateTime;
 
+@Stateless
 public class StatisticsBean implements StatisticsGenerator {
 
     @EJB

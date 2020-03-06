@@ -1,7 +1,5 @@
 package fr.unice.polytech.isa.dd.teamH.entities;
 
-import fr.unice.polytech.isa.dd.teamH.entities.drone.Drone;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
