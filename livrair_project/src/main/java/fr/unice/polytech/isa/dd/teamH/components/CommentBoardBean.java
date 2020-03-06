@@ -6,10 +6,18 @@ import fr.unice.polytech.isa.dd.teamH.entities.delivery.Delivery;
 import fr.unice.polytech.isa.dd.teamH.interfaces.CommentFinder;
 import fr.unice.polytech.isa.dd.teamH.interfaces.CommentPoster;
 
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 
+@Stateless
 public class CommentBoardBean implements CommentFinder, CommentPoster
 {
+
+    @PersistenceContext
+    private EntityManager entityManager;
+
     @Override
     public Comment findCommentForPackage(String packageId)
     {

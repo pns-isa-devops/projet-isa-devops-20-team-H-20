@@ -7,8 +7,10 @@ import fr.unice.polytech.isa.dd.teamH.interfaces.InvoiceFinder;
 import fr.unice.polytech.isa.dd.teamH.interfaces.InvoiceGeneration;
 
 import javax.ejb.EJB;
+import javax.ejb.Stateless;
 import java.util.List;
 
+@Stateless
 public class AccountingBean implements InvoiceFinder, InvoiceGeneration
 {
     @EJB
