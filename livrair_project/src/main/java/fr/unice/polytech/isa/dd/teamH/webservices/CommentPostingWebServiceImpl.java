@@ -9,7 +9,7 @@ import javax.jws.WebService;
 
 @WebService(targetNamespace = "http://www.polytech.unice.fr/si/4a/isa/dd/team-h/rating")
 @Stateless(name = "RatingWS")
-public class RatingWebServiceImpl implements RatingWebService {
+public class CommentPostingWebServiceImpl implements CommentPostingWebService {
 
     @EJB
     private DeliveryFinder finder;
