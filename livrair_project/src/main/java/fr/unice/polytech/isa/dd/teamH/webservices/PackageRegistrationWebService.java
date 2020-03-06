@@ -11,7 +11,7 @@ import javax.jws.WebService;
 @WebService(targetNamespace = "http://www.polytech.unice.fr/si/4a/isa/dd/team-h/package")
 public interface PackageRegistrationWebService {
     @WebMethod
-    void addPackage(@WebParam(name="packageTrackingNumber") String packageTrackingNumber,
+    void registerPackage(@WebParam(name="packageTrackingNumber") String packageTrackingNumber,
                        @WebParam(name="supplierName") String supplierName,
                        @WebParam(name="weight") float weight,
                         @WebParam(name="destination") String destination)

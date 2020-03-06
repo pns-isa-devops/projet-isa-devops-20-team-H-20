@@ -20,11 +20,10 @@ import java.util.logging.Logger;
 @Stateless
 public class SupplierRegistryBean implements SupplierFinder, SupplierRegistration
 {
-    private static final Logger log = Logger.getLogger(Logger.class.getName());
-
     @PersistenceContext
     private EntityManager manager;
 
+    private static final Logger log = Logger.getLogger(CommentBoardBean.class.getName());
 
     @Override
     public Optional<Supplier> findByName(String name)

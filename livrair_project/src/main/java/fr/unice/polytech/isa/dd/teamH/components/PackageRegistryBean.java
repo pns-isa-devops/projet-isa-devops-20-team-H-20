@@ -1,40 +1,64 @@
 package fr.unice.polytech.isa.dd.teamH.components;
 
+import fr.unice.polytech.isa.dd.teamH.entities.Package;
 import fr.unice.polytech.isa.dd.teamH.entities.Supplier;
-import fr.unice.polytech.isa.dd.teamH.exceptions.PackageAlreadyExistException;
-import fr.unice.polytech.isa.dd.teamH.exceptions.PackageNotExistsException;
-import fr.unice.polytech.isa.dd.teamH.exceptions.SupplierNotExistsException;
 import fr.unice.polytech.isa.dd.teamH.interfaces.PackageFinder;
 import fr.unice.polytech.isa.dd.teamH.interfaces.PackageRegistration;
 
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.util.List;
+import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @Stateless
 public class PackageRegistryBean implements PackageRegistration, PackageFinder {
-    @Override
-    public void register(String trackingId, Supplier s, float weight, String destinationAddress) throws SupplierNotExistsException, PackageAlreadyExistException {
+    private static final Logger log = Logger.getLogger(PackageRegistryBean.class.getName());
+    @PersistenceContext
+    private EntityManager manager;
 
+    @Override
+    public void register(String trackingId, Supplier supplier, float weight, String destinationAddress){
+        Package aPackage = new Package(trackingId, weight, destinationAddress, supplier);
+        manager.merge(aPackage);
     }
 
     @Override
-    public void edit(String trackingId, Supplier s, float weight, String destinationAddress)  throws SupplierNotExistsException, PackageNotExistsException{
-
+    public void edit(Package aPackage, Supplier s, float weight, String destinationAddress){
+        Package aPackageEdit = new Package(aPackage.getTrackingNumber(), weight, destinationAddress, s);
+        manager.remove(aPackage);
+        manager.merge(aPackageEdit);
     }
 
     @Override
-    public void delete(String trackingId) throws PackageNotExistsException {
-
+    public void delete(Package aPackage) {
+        manager.remove(aPackage);
     }
 
     @Override
-    public Package findPackageById(String trackingId) throws PackageNotExistsException
-    {
-        return null;
+    public Optional<Package> findPackageById(String trackingId) {
+        CriteriaBuilder builder = manager.getCriteriaBuilder();
+        CriteriaQuery<Package> criteria = builder.createQuery(Package.class);
+        Root<Package> root =  criteria.from(Package.class);
+        criteria.select(root).where(builder.equal(root.get("trackingNumber"), trackingId));
+        TypedQuery<Package> query = manager.createQuery(criteria);
+        try {
+            return Optional.of(query.getSingleResult());
+        } catch (NoResultException nre){
+            log.log(Level.FINEST, "No result for ["+trackingId+"]", nre);
+            return Optional.empty();
+        }
     }
 
     @Override
-    public List<Package> findPackagesBySupplier(Supplier s) throws SupplierNotExistsException
+    public List<Package> findPackagesBySupplier(Supplier s)
     {
         return null;
     }
