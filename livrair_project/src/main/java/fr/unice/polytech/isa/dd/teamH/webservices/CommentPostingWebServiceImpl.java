@@ -1,6 +1,7 @@
 package fr.unice.polytech.isa.dd.teamH.webservices;
 
 import fr.unice.polytech.isa.dd.teamH.exceptions.DeliveryNotExistsException;
+import fr.unice.polytech.isa.dd.teamH.interfaces.CommentPoster;
 import fr.unice.polytech.isa.dd.teamH.interfaces.DeliveryFinder;
 
 import javax.ejb.EJB;
@@ -13,6 +14,9 @@ public class CommentPostingWebServiceImpl implements CommentPostingWebService {
 
     @EJB
     private DeliveryFinder finder;
+
+    @EJB
+    private CommentPoster poster;
 
     @Override
     public void createComment(String packageTrackingNumber, int rating, String content)
