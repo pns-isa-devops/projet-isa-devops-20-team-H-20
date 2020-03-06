@@ -29,6 +29,10 @@ public class Supplier implements Serializable {
         contacts = new ArrayList<>();
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getName() {
         return name;
     }
