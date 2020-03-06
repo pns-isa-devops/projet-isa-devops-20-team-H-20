@@ -5,14 +5,15 @@ import fr.unice.polytech.isa.dd.teamH.interfaces.SupplierFinder;
 import fr.unice.polytech.isa.dd.teamH.interfaces.SupplierRegistration;
 
 import javax.ejb.Stateless;
+import java.util.Optional;
 
 @Stateless
 public class SupplierRegistryBean implements SupplierFinder, SupplierRegistration
 {
     @Override
-    public Supplier findByName(String name)
+    public Optional<Supplier> findByName(String name)
     {
-        return null;
+        return Optional.empty();
     }
 
     @Override
