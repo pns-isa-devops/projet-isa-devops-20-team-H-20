@@ -14,14 +14,16 @@ import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @Stateless
 public class PackageRegistryBean implements PackageRegistration, PackageFinder {
+
     private static final Logger log = Logger.getLogger(PackageRegistryBean.class.getName());
+
     @PersistenceContext
     private EntityManager manager;
 
@@ -56,7 +58,7 @@ public class PackageRegistryBean implements PackageRegistration, PackageFinder {
     }
 
     @Override
-    public List<Package> findPackagesBySupplier(Supplier s)
+    public Set<Package> findPackagesBySupplier(Supplier s)
     {
         return null;
     }
