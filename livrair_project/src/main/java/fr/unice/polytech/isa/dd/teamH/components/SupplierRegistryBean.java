@@ -1,6 +1,7 @@
 package fr.unice.polytech.isa.dd.teamH.components;
 
 import fr.unice.polytech.isa.dd.teamH.entities.Supplier;
+import fr.unice.polytech.isa.dd.teamH.exceptions.SupplierAlreadyExistsException;
 import fr.unice.polytech.isa.dd.teamH.interfaces.SupplierFinder;
 import fr.unice.polytech.isa.dd.teamH.interfaces.SupplierRegistration;
 
@@ -24,7 +25,6 @@ public class SupplierRegistryBean implements SupplierFinder, SupplierRegistratio
 
     private static final Logger log = Logger.getLogger(CommentBoardBean.class.getName());
 
-
     @Override
     public Optional<Supplier> findByName(String name)
     {
@@ -41,9 +41,21 @@ public class SupplierRegistryBean implements SupplierFinder, SupplierRegistratio
         }
     }
 
-    @Override
-    public void register(String name, String contact)
-    {
+    /******************************************
+     ** Customer Registration implementation **
+     ******************************************/
 
+    @Override
+    public void register(String name, String contact) throws SupplierAlreadyExistsException
+
+    {
+        if(findByName(name).isPresent())
+            throw new SupplierAlreadyExistsException(name);
+
+        Supplier s = new Supplier();
+        s.setName(name);
+        s.addContact(contact);
+
+        manager.persist(s);
     }
 }

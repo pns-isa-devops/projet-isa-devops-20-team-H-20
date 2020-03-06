@@ -2,7 +2,6 @@ package fr.unice.polytech.isa.dd.teamH.components;
 
 import fr.unice.polytech.isa.dd.teamH.entities.Package;
 import fr.unice.polytech.isa.dd.teamH.entities.Supplier;
-import fr.unice.polytech.isa.dd.teamH.exceptions.PackageAlreadyExistException;
 import fr.unice.polytech.isa.dd.teamH.interfaces.PackageFinder;
 import fr.unice.polytech.isa.dd.teamH.interfaces.PackageRegistration;
 
@@ -28,18 +27,21 @@ public class PackageRegistryBean implements PackageRegistration, PackageFinder {
     private EntityManager manager;
 
     @Override
-    public void register(String trackingId, Supplier s, float weight, String destinationAddress) throws PackageAlreadyExistException{
-
+    public void register(String trackingId, Supplier supplier, float weight, String destinationAddress){
+        Package aPackage = new Package(trackingId, weight, destinationAddress, supplier);
+        manager.merge(aPackage);
     }
 
     @Override
     public void edit(Package aPackage, Supplier s, float weight, String destinationAddress){
-
+        Package aPackageEdit = new Package(aPackage.getTrackingNumber(), weight, destinationAddress, s);
+        manager.remove(aPackage);
+        manager.merge(aPackageEdit);
     }
 
     @Override
     public void delete(Package aPackage) {
-
+        manager.remove(aPackage);
     }
 
     @Override

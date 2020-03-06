@@ -28,16 +28,16 @@ public class DroneFleetBean implements DroneFinder, DroneFleetManagement
     private EntityManager manager;
 
     @Override
-    public Optional<Drone> findByName(int id) {
+    public Optional<Drone> findById(int id) {
         CriteriaBuilder builder = manager.getCriteriaBuilder();
         CriteriaQuery<Drone> criteria = builder.createQuery(Drone.class);
         Root<Drone> root =  criteria.from(Drone.class);
-        criteria.select(root).where(builder.equal(root.get("trackingNumber"), trackingId));
+        criteria.select(root).where(builder.equal(root.get("id"), id));
         TypedQuery<Drone> query = manager.createQuery(criteria);
         try {
             return Optional.of(query.getSingleResult());
         } catch (NoResultException nre){
-            log.log(Level.FINEST, "No result for ["+trackingId+"]", nre);
+            log.log(Level.FINEST, "No result for ["+id+"]", nre);
             return Optional.empty();
         }
     }

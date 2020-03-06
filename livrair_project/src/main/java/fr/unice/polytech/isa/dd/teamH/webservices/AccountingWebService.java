@@ -3,6 +3,7 @@ package fr.unice.polytech.isa.dd.teamH.webservices;
 import fr.unice.polytech.isa.dd.teamH.entities.Invoice;
 import fr.unice.polytech.isa.dd.teamH.entities.Supplier;
 import fr.unice.polytech.isa.dd.teamH.exceptions.InvoiceNotExistsException;
+import fr.unice.polytech.isa.dd.teamH.exceptions.SupplierAlreadyExistsException;
 import fr.unice.polytech.isa.dd.teamH.exceptions.SupplierNotExistsException;
 
 import javax.jws.WebMethod;
@@ -20,7 +21,7 @@ public interface AccountingWebService {
 
     @WebMethod
     void register(@WebParam(name="name") String name,
-                  @WebParam(name="contact") String contact);
+                  @WebParam(name="contact") String contact) throws SupplierAlreadyExistsException;
 
     @WebMethod
     @WebResult(name = "unpaid_list")
