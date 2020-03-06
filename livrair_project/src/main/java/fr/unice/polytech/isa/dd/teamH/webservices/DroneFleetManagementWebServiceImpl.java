@@ -15,11 +15,11 @@ public class DroneFleetManagementWebServiceImpl implements DroneFleetManagementW
 
     @Override
     public void addDrone(int id, float weightCapacity) {
-
+        fleet.addDrone(id, weightCapacity);
     }
 
     @Override
     public void removeDrone(int id) throws DroneNotExistsException {
-
+        fleet.removeDrone(id);
     }
 }

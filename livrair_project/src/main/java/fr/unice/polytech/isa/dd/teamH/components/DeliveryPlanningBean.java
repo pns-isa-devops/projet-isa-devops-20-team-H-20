@@ -6,9 +6,11 @@ import fr.unice.polytech.isa.dd.teamH.entities.drone.Drone;
 import fr.unice.polytech.isa.dd.teamH.interfaces.DeliveryFinder;
 import fr.unice.polytech.isa.dd.teamH.interfaces.DeliveryPlanner;
 
+import javax.ejb.Stateless;
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Stateless
 public class DeliveryPlanningBean implements DeliveryFinder, DeliveryPlanner
 {
     @Override

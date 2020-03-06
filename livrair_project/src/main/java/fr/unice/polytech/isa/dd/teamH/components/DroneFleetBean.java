@@ -4,8 +4,10 @@ import fr.unice.polytech.isa.dd.teamH.interfaces.DroneFinder;
 import fr.unice.polytech.isa.dd.teamH.entities.drone.Drone;
 import fr.unice.polytech.isa.dd.teamH.interfaces.DroneFleetManagement;
 
+import javax.ejb.Stateless;
 import java.util.List;
 
+@Stateless
 public class DroneFleetBean implements DroneFinder, DroneFleetManagement
 {
     @Override
