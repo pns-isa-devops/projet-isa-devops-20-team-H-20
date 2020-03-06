@@ -8,7 +8,7 @@ import fr.unice.polytech.isa.dd.teamH.interfaces.InvoiceGeneration;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import java.util.List;
+import java.util.Set;
 
 @Stateless
 public class AccountingBean implements InvoiceFinder, InvoiceGeneration
@@ -17,13 +17,13 @@ public class AccountingBean implements InvoiceFinder, InvoiceGeneration
     private DeliveryFinder deliveryFinder;
 
     @Override
-    public List<Invoice> findAllUnpaidInvoices()
+    public Set<Invoice> findAllUnpaidInvoices()
     {
         return null;
     }
 
     @Override
-    public List<Invoice> findInvoicesForSupplier(Supplier s)
+    public Set<Invoice> findInvoicesForSupplier(Supplier s)
     {
         return null;
     }

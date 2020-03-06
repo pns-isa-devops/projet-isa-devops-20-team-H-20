@@ -5,14 +5,40 @@ import fr.unice.polytech.isa.dd.teamH.interfaces.SupplierFinder;
 import fr.unice.polytech.isa.dd.teamH.interfaces.SupplierRegistration;
 
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @Stateless
 public class SupplierRegistryBean implements SupplierFinder, SupplierRegistration
 {
+    @PersistenceContext
+    private EntityManager manager;
+
+    private static final Logger log = Logger.getLogger(CommentBoardBean.class.getName());
+
+
     @Override
-    public Supplier findByName(String name)
+    public Optional<Supplier> findByName(String name)
     {
-        return null;
+        CriteriaBuilder builder = manager.getCriteriaBuilder();
+        CriteriaQuery<Supplier> criteria = builder.createQuery(Supplier.class);
+        Root<Supplier> root =  criteria.from(Supplier.class);
+        criteria.select(root).where(builder.equal(root.get("name"), name));
+        TypedQuery<Supplier> query = manager.createQuery(criteria);
+        try {
+            return Optional.of(query.getSingleResult());
+        } catch (NoResultException nre){
+            log.log(Level.FINEST, "No result for ["+name+"]", nre);
+            return Optional.empty();
+        }
     }
 
     @Override

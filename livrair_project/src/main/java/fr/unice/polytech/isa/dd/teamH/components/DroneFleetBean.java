@@ -5,7 +5,7 @@ import fr.unice.polytech.isa.dd.teamH.entities.drone.Drone;
 import fr.unice.polytech.isa.dd.teamH.interfaces.DroneFleetManagement;
 
 import javax.ejb.Stateless;
-import java.util.List;
+import java.util.Set;
 
 @Stateless
 public class DroneFleetBean implements DroneFinder, DroneFleetManagement
@@ -16,7 +16,7 @@ public class DroneFleetBean implements DroneFinder, DroneFleetManagement
     }
 
     @Override
-    public List<Drone> findReadyDrones() {
+    public Set<Drone> findReadyDrones() {
         return null;
     }
 

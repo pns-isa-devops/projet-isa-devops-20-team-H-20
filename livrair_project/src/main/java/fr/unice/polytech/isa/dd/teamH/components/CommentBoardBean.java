@@ -14,8 +14,8 @@ import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -45,13 +45,13 @@ public class CommentBoardBean implements CommentFinder, CommentPoster
     }
 
     @Override
-    public List<Comment> findAllComments()
+    public Set<Comment> findAllComments()
     {
         return null;
     }
 
     @Override
-    public List<Comment> findCommentsForSupplier(Supplier s)
+    public Set<Comment> findCommentsForSupplier(Supplier s)
     {
         return null;
     }

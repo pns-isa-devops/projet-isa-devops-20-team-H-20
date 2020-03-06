@@ -8,7 +8,7 @@ import fr.unice.polytech.isa.dd.teamH.interfaces.DeliveryPlanner;
 
 import javax.ejb.Stateless;
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.Set;
 
 @Stateless
 public class DeliveryPlanningBean implements DeliveryFinder, DeliveryPlanner
@@ -20,13 +20,13 @@ public class DeliveryPlanningBean implements DeliveryFinder, DeliveryPlanner
     }
 
     @Override
-    public List<Delivery> findAllPlannedDelivery()
+    public Set<Delivery> findAllPlannedDelivery()
     {
         return null;
     }
 
     @Override
-    public List<Delivery> findCompletedDeliveriesSince(LocalDateTime time)
+    public Set<Delivery> findCompletedDeliveriesSince(LocalDateTime time)
     {
         return null;
     }
