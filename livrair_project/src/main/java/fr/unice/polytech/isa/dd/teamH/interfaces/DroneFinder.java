@@ -6,6 +6,6 @@ import java.util.List;
 import java.util.Optional;
 
 public interface DroneFinder {
-    Drone findByName(int id);
+    Drone findById(int id);
     List<Drone> findReadyDrones();
 }

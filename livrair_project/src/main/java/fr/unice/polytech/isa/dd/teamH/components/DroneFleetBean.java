@@ -9,7 +9,7 @@ import java.util.List;
 public class DroneFleetBean implements DroneFinder, DroneFleetManagement
 {
     @Override
-    public Drone findByName(int id) {
+    public Drone findById(int id) {
         return null;
     }
 
