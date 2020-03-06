@@ -29,7 +29,12 @@ public class PackageRegistrationWebServiceImpl implements PackageRegistrationWeb
     @Override
     public void registerPackage(String packageTrackingNumber, String supplierName, float weight, String destination)
             throws SupplierNotExistsException, PackageAlreadyExistException {
-        register.register(packageTrackingNumber, readSupplier(supplierName), weight, destination);
+        try {
+            readPackage(packageTrackingNumber);
+            throw new PackageAlreadyExistException(packageTrackingNumber);
+        }catch (PackageNotExistsException e){
+            register.register(packageTrackingNumber, readSupplier(supplierName), weight, destination);
+        }
     }
 
     @Override
