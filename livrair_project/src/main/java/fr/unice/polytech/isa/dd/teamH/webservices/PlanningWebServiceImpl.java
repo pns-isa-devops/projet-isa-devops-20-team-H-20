@@ -1,5 +1,6 @@
 package fr.unice.polytech.isa.dd.teamH.webservices;
 
+import fr.unice.polytech.isa.dd.teamH.entities.Package;
 import fr.unice.polytech.isa.dd.teamH.entities.deliveryplanning.DeliveryPlanning;
 import fr.unice.polytech.isa.dd.teamH.entities.drone.Drone;
 import fr.unice.polytech.isa.dd.teamH.exceptions.DroneNotExistsException;

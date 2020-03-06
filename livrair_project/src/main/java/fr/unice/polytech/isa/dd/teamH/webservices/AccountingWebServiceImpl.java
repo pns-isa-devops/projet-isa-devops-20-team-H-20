@@ -12,8 +12,8 @@ import fr.unice.polytech.isa.dd.teamH.interfaces.SupplierRegistration;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.jws.WebService;
-import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @WebService(targetNamespace = "http://www.polytech.unice.fr/si/4a/isa/dd/team-h/accounting")
 @Stateless(name = "AccountingWS")
@@ -41,12 +41,12 @@ public class AccountingWebServiceImpl implements AccountingWebService{
     }
 
     @Override
-    public List<Invoice> findAllUnpaidInvoices() {
+    public Set<Invoice> findAllUnpaidInvoices() {
         return invoiceFinder.findAllUnpaidInvoices();
     }
 
     @Override
-    public List<Invoice> findInvoicesForSupplier(Supplier supplier) throws SupplierNotExistsException {
+    public Set<Invoice> findInvoicesForSupplier(Supplier supplier) throws SupplierNotExistsException {
         return invoiceFinder.findInvoicesForSupplier(supplier);
     }
 
