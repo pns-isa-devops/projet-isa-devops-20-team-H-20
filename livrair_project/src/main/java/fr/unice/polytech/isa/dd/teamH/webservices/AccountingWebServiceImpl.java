@@ -9,8 +9,12 @@ import fr.unice.polytech.isa.dd.teamH.interfaces.SupplierFinder;
 import fr.unice.polytech.isa.dd.teamH.interfaces.SupplierRegistration;
 
 import javax.ejb.EJB;
+import javax.ejb.Stateless;
+import javax.jws.WebService;
 import java.util.List;
 
+@WebService(targetNamespace = "http://www.polytech.unice.fr/si/4a/isa/dd/team-h/accounting")
+@Stateless(name = "AccountingWS")
 public class AccountingWebServiceImpl implements AccountingWebService{
     @EJB
     private SupplierRegistration supplierRegistration;
