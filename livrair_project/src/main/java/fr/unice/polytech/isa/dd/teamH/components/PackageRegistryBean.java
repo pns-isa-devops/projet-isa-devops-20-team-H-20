@@ -28,15 +28,22 @@ public class PackageRegistryBean implements PackageRegistration, PackageFinder {
 
     @Override
     public void register(String trackingId, Supplier supplier, float weight, String destinationAddress){
-        Package aPackage = new Package(trackingId, weight, destinationAddress, supplier);
-        manager.merge(aPackage);
+        Package aPackage = new Package();
+
+        aPackage.setDestination(destinationAddress);
+        aPackage.setSupplier(supplier);
+        aPackage.setWeight(weight);
+        aPackage.setTrackingNumber(trackingId);
+
+        manager.persist(aPackage);
     }
 
     @Override
     public void edit(Package aPackage, Supplier s, float weight, String destinationAddress){
-        Package aPackageEdit = new Package(aPackage.getTrackingNumber(), weight, destinationAddress, s);
-        manager.remove(aPackage);
-        manager.merge(aPackageEdit);
+        Package p = manager.merge(aPackage);
+        p.setSupplier(s);
+        p.setWeight(weight);
+        p.setDestination(destinationAddress);
     }
 
     @Override

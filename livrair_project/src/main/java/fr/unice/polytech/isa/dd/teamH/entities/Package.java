@@ -46,12 +46,24 @@ public class Package implements Serializable {
         return destination;
     }
 
+    public Supplier getSupplier() {
+        return supplier;
+    }
+
     public void setDestination(String destination) {
         this.destination = destination;
     }
 
-    public Supplier getSupplier() {
-        return supplier;
+    public void setTrackingNumber(String trackingNumber) {
+        this.trackingNumber = trackingNumber;
+    }
+
+    public void setWeight(float weight) {
+        this.weight = weight;
+    }
+
+    public void setSupplier(Supplier supplier) {
+        this.supplier = supplier;
     }
 
     @Override
