@@ -48,9 +48,11 @@ public class DroneFleetBean implements DroneFinder, DroneFleetManagement
     }
 
     @Override
-    public void addDrone(int id, float weightCapacity)
+    public void addDrone(float weightCapacity)
     {
-
+        Drone drone = new Drone();
+        drone.setWeightCapacity(weightCapacity);
+        manager.persist(drone);
     }
 
     @Override

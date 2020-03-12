@@ -47,7 +47,6 @@ public class SupplierRegistryBean implements SupplierFinder, SupplierRegistratio
 
     @Override
     public void register(String name, String contact) throws SupplierAlreadyExistsException
-
     {
         if(findByName(name).isPresent())
             throw new SupplierAlreadyExistsException(name);
