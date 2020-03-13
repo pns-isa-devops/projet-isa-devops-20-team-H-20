@@ -14,7 +14,7 @@ public interface PlanningWebService
 {
     @WebMethod
     @WebResult(name = "delivery-planning")
-    DeliveryPlanning getDeliveryPlanning();
+    DeliveryPlanning getCompleteDeliveryPlanning();
 
     @WebMethod
     void planDelivery(@WebParam(name="drone-id") int droneId,

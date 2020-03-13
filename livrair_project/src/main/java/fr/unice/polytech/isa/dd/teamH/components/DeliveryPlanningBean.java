@@ -8,12 +8,16 @@ import fr.unice.polytech.isa.dd.teamH.interfaces.DeliveryFinder;
 import fr.unice.polytech.isa.dd.teamH.interfaces.DeliveryPlanner;
 
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.time.LocalDateTime;
-import java.util.Set;
 
 @Stateless
 public class DeliveryPlanningBean implements DeliveryFinder, DeliveryPlanner
 {
+    @PersistenceContext
+    EntityManager manager;
+
     @Override
     public Delivery findDeliveryById(String id)
     {
@@ -21,13 +25,13 @@ public class DeliveryPlanningBean implements DeliveryFinder, DeliveryPlanner
     }
 
     @Override
-    public Set<Delivery> findAllPlannedDelivery()
+    public DeliveryPlanning findAllPlannedDelivery()
     {
         return null;
     }
 
     @Override
-    public Set<Delivery> findCompletedDeliveriesSince(LocalDateTime time)
+    public DeliveryPlanning findCompletedDeliveriesSince(LocalDateTime time)
     {
         return null;
     }
@@ -35,11 +39,13 @@ public class DeliveryPlanningBean implements DeliveryFinder, DeliveryPlanner
     @Override
     public void planDelivery(Drone d, Package p, LocalDateTime shippingTime)
     {
-
+        Delivery de = new Delivery();
+        de.setDistance(10); // TODO: SET DISTANCE WITH EXTERNAL SERVICE
+        de.setFlightTime(10); // TODO: EXTERNAL SERVICE TOO
     }
 
     @Override
-    public DeliveryPlanning getDeliveryPlanning()
+    public DeliveryPlanning getCompleteDeliveryPlanning()
     {
         return null;
     }

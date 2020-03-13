@@ -10,8 +10,9 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Objects;
 
-@Embeddable
-public class PlanningEntry implements Serializable {
+@Entity
+@Table(name="planning_entries")
+public class PlanningRow implements Serializable {
 
     @NotNull
     private Drone drone;
@@ -20,11 +21,11 @@ public class PlanningEntry implements Serializable {
     @OneToMany(cascade = CascadeType.REFRESH)
     private ArrayList<Delivery> deliveries;
 
-    public PlanningEntry(){
+    public PlanningRow(){
 
     }
 
-    public PlanningEntry(Drone drone){
+    public PlanningRow(Drone drone){
         this.drone = drone;
         deliveries = new ArrayList<>();
     }
@@ -34,7 +35,7 @@ public class PlanningEntry implements Serializable {
     }
 
     public boolean addDelivery(Delivery d){
-        // CHECK IF DRONE AVAILABLE AT DELIVERY TIME
+        // check conflicts
         boolean isCoincidence = false;
         for(Delivery de: deliveries){
             long betweenInMin = Math.abs(Duration.between(de.getDateTimeToShip(), d.getDateTimeToShip()).getSeconds())/60;
@@ -45,12 +46,8 @@ public class PlanningEntry implements Serializable {
         }
 
         if(!isCoincidence){
-            if(drone.getCurrentFlightTime() < 20){  //Check Flight Time to give to Garfield
-                if(drone.getState().isReadyToFly()) {    //Check if drone ready to flight
-                    deliveries.add(d);
-                    return true;
-                }
-            }
+            deliveries.add(d);
+            return true;
         }
         return false;
     }
@@ -63,7 +60,7 @@ public class PlanningEntry implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        PlanningEntry that = (PlanningEntry) o;
+        PlanningRow that = (PlanningRow) o;
         return getDrone().equals(that.getDrone()) &&
                 getDeliveries().equals(that.getDeliveries());
     }
@@ -75,7 +72,7 @@ public class PlanningEntry implements Serializable {
 
     @Override
     public String toString() {
-        return "PlanningEntry{" +
+        return "PlanningRow{" +
                 "drone=" + drone +
                 ", deliveries=" + deliveries +
                 '}';

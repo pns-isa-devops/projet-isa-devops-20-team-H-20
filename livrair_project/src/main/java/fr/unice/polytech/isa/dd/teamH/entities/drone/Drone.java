@@ -1,6 +1,7 @@
 package fr.unice.polytech.isa.dd.teamH.entities.drone;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class Drone implements Serializable {
     private int id;
@@ -25,6 +26,9 @@ public class Drone implements Serializable {
 
     public int getId() {
         return id;
+    }
+    public void setId(int id){
+        this.id = id;
     }
 
     public float getCurrentFlightTime() {
@@ -53,5 +57,22 @@ public class Drone implements Serializable {
     }
     public void setState(DroneStatusState state) {
         this.state = state;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Drone drone = (Drone) o;
+        return getId() == drone.getId() &&
+                Float.compare(drone.getCurrentFlightTime(), getCurrentFlightTime()) == 0 &&
+                getBattery() == drone.getBattery() &&
+                Float.compare(drone.getWeightCapacity(), getWeightCapacity()) == 0 &&
+                getState().equals(drone.getState());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getCurrentFlightTime(), getBattery(), getWeightCapacity(), getState());
     }
 }

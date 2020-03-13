@@ -30,9 +30,9 @@ public class PlanningWebServiceImpl implements PlanningWebService
 
 
     @Override
-    public DeliveryPlanning getDeliveryPlanning()
+    public DeliveryPlanning getCompleteDeliveryPlanning()
     {
-        return deliveryPlanner.getDeliveryPlanning();
+        return deliveryPlanner.getCompleteDeliveryPlanning();
     }
 
     @Override

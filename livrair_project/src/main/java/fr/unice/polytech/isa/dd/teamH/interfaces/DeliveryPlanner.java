@@ -9,5 +9,5 @@ import java.time.LocalDateTime;
 public interface DeliveryPlanner {
     void planDelivery(Drone d, Package p, LocalDateTime shippingTime);
 
-    DeliveryPlanning getDeliveryPlanning();
+    DeliveryPlanning getCompleteDeliveryPlanning();
 }

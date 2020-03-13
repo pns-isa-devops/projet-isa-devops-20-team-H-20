@@ -15,7 +15,7 @@ import static org.junit.Assert.*;
 public class DeliveryPlanningTest {
     Delivery d1, d2, d3, d4;
     Drone drone;
-    PlanningEntry planningEntry;
+    PlanningRow planningRow;
     DeliveryPlanning deliveryPlanning;
     Supplier supplier;
 
@@ -28,20 +28,20 @@ public class DeliveryPlanningTest {
         d2 = new Delivery(LocalDateTime.now().plusDays(20), (float)0.4, 2, new Package("0133456789", 6, "123 Promenade Anglais", supplier));
         d3 = new Delivery(LocalDateTime.now().plusMinutes(56), (float)0.4, 2, new Package("0134456789", 6, "123 Promenade Anglais", supplier));
         d4 = new Delivery(LocalDateTime.now().plusMinutes(20), (float)0.4, 2, new Package("0136456789", 6, "123 Promenade Anglais", supplier));
-        planningEntry = new PlanningEntry(drone);
-        planningEntry.addDelivery(d1);
-        planningEntry.addDelivery(d2);
-        planningEntry.addDelivery(d3);
-        planningEntry.addDelivery(d4);  //Delivery time coincidence
+        planningRow = new PlanningRow(drone);
+        planningRow.addDelivery(d1);
+        planningRow.addDelivery(d2);
+        planningRow.addDelivery(d3);
+        planningRow.addDelivery(d4);  //Delivery time coincidence
         deliveryPlanning = new DeliveryPlanning();
-        deliveryPlanning.addEntry(planningEntry);
+        deliveryPlanning.addEntry(planningRow);
     }
 
     @After
     public void tearDown() {
         d1 = d2 = d3 = d4 = null;
         drone = null;
-        planningEntry = null;
+        planningRow = null;
     }
 
     @Test
@@ -53,7 +53,7 @@ public class DeliveryPlanningTest {
     public void addEntry() {
         assertEquals(1, deliveryPlanning.getEntries().size());
         Delivery d5 = new Delivery(LocalDateTime.now().plusMinutes(20), (float)0.4, 2, new Package("012346698", 6, "123 Promenade Anglais", supplier));
-        PlanningEntry pl = new PlanningEntry(new Drone(1, 6));
+        PlanningRow pl = new PlanningRow(new Drone(1, 6));
         pl.addDelivery(d5);
         deliveryPlanning.addEntry(pl);
         assertEquals(2, deliveryPlanning.getEntries().size());
