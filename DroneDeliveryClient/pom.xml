@@ -37,17 +37,38 @@
                             <!--
                             <wsdlOptions>
                                 <wsdlOption>
-                                    <wsdl>${basedir}/src/main/resources/CartWS.wsdl</wsdl>
+                                    <wsdl>${basedir}/src/main/resources/AccountingWebServiceImpl.wsdl</wsdl>
                                     <extraargs>
                                         <extraarg>-p</extraarg>
-                                        <extraarg>http://www.polytech.unice.fr/si/4a/isa/tcf/cart=stubs.cart</extraarg>
+                                        <extraarg>http://webservices.teamH.dd.isa.polytech.unice.fr/accounting=stubs.cart</extraarg>
                                     </extraargs>
                                 </wsdlOption>
                                 <wsdlOption>
-                                    <wsdl>${basedir}/src/main/resources/CustomerCareWS.wsdl</wsdl>
+                                    <wsdl>${basedir}/src/main/resources/CommentPostingWebServiceImpl.wsdl</wsdl>
                                     <extraargs>
                                         <extraarg>-p</extraarg>
-                                        <extraarg>http://www.polytech.unice.fr/si/4a/isa/tcf/customer-care=stubs.customerCare</extraarg>
+                                        <extraarg>http://webservices.teamH.dd.isa.polytech.unice.fr/rating=stubs.cart</extraarg>
+                                    </extraargs>
+                                </wsdlOption>
+                                <wsdlOption>
+                                    <wsdl>${basedir}/src/main/resources/DroneFleetManagementWebServiceImpl.wsdl</wsdl>
+                                    <extraargs>
+                                        <extraarg>-p</extraarg>
+                                        <extraarg>http://webservices.teamH.dd.isa.polytech.unice.fr/drone=stubs.cart</extraarg>
+                                    </extraargs>
+                                </wsdlOption>
+                                <wsdlOption>
+                                    <wsdl>${basedir}/src/main/resources/PackageRegistrationWebServiceImpl.wsdl</wsdl>
+                                    <extraargs>
+                                        <extraarg>-p</extraarg>
+                                        <extraarg>http://webservices.teamH.dd.isa.polytech.unice.fr/package=stubs.cart</extraarg>
+                                    </extraargs>
+                                </wsdlOption>
+                                <wsdlOption>
+                                    <wsdl>${basedir}/src/main/resources/PlanningWebServiceImpl.wsdl</wsdl>
+                                    <extraargs>
+                                        <extraarg>-p</extraarg>
+                                        <extraarg>http://webservices.teamH.dd.isa.polytech.unice.fr/planning=stubs.cart</extraarg>
                                     </extraargs>
                                 </wsdlOption>
                             </wsdlOptions>
