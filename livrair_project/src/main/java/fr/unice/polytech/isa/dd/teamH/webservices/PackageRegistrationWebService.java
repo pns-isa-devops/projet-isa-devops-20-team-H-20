@@ -1,8 +1,8 @@
 package fr.unice.polytech.isa.dd.teamH.webservices;
 
-import fr.unice.polytech.isa.dd.teamH.exceptions.PackageAlreadyExistException;
-import fr.unice.polytech.isa.dd.teamH.exceptions.PackageNotExistsException;
-import fr.unice.polytech.isa.dd.teamH.exceptions.SupplierNotExistsException;
+import fr.unice.polytech.isa.dd.teamH.exceptions.AlreadyExistingPackageException;
+import fr.unice.polytech.isa.dd.teamH.exceptions.UnknownPackageException;
+import fr.unice.polytech.isa.dd.teamH.exceptions.UnknownSupplierException;
 
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
@@ -15,16 +15,16 @@ public interface PackageRegistrationWebService {
                        @WebParam(name="supplierName") String supplierName,
                        @WebParam(name="weight") float weight,
                         @WebParam(name="destination") String destination)
-            throws SupplierNotExistsException, PackageAlreadyExistException;
+            throws UnknownSupplierException, AlreadyExistingPackageException;
 
     @WebMethod
     void editPackage(@WebParam(name="packageTrackingNumber") String packageTrackingNumber,
                     @WebParam(name="supplierName") String supplierName,
                     @WebParam(name="weight") float weight,
                     @WebParam(name="destination") String destination)
-            throws SupplierNotExistsException, PackageNotExistsException;
+            throws UnknownSupplierException, UnknownPackageException;
 
     @WebMethod
     void deletePackage(@WebParam(name="packageTrackingNumber") String packageTrackingNumber)
-            throws PackageNotExistsException;
+            throws UnknownPackageException;
 }

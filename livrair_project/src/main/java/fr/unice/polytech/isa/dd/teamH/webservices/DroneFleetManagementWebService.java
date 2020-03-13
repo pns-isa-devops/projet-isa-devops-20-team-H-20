@@ -1,6 +1,6 @@
 package fr.unice.polytech.isa.dd.teamH.webservices;
 
-import fr.unice.polytech.isa.dd.teamH.exceptions.DroneNotExistsException;
+import fr.unice.polytech.isa.dd.teamH.exceptions.UnknownDroneException;
 
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
@@ -14,5 +14,5 @@ public interface DroneFleetManagementWebService {
                        @WebParam(name="weightCapacity") float weightCapacity);
 
     @WebMethod
-    void removeDrone(@WebParam(name="id") int id) throws DroneNotExistsException;
+    void removeDrone(@WebParam(name="id") int id) throws UnknownDroneException;
 }

@@ -1,6 +1,6 @@
 package fr.unice.polytech.isa.dd.teamH.webservices;
 
-import fr.unice.polytech.isa.dd.teamH.exceptions.DroneNotExistsException;
+import fr.unice.polytech.isa.dd.teamH.exceptions.UnknownDroneException;
 import fr.unice.polytech.isa.dd.teamH.interfaces.DroneFleetManagement;
 
 import javax.ejb.EJB;
@@ -19,7 +19,7 @@ public class DroneFleetManagementWebServiceImpl implements DroneFleetManagementW
     }
 
     @Override
-    public void removeDrone(int id) throws DroneNotExistsException {
+    public void removeDrone(int id) throws UnknownDroneException {
         fleet.removeDrone(id);
     }
 }

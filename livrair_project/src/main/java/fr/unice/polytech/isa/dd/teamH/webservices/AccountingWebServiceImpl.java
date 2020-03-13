@@ -2,8 +2,8 @@ package fr.unice.polytech.isa.dd.teamH.webservices;
 
 import fr.unice.polytech.isa.dd.teamH.entities.Invoice;
 import fr.unice.polytech.isa.dd.teamH.entities.Supplier;
-import fr.unice.polytech.isa.dd.teamH.exceptions.SupplierAlreadyExistsException;
-import fr.unice.polytech.isa.dd.teamH.exceptions.SupplierNotExistsException;
+import fr.unice.polytech.isa.dd.teamH.exceptions.AlreadyExistingSupplierException;
+import fr.unice.polytech.isa.dd.teamH.exceptions.UnknownSupplierException;
 import fr.unice.polytech.isa.dd.teamH.interfaces.InvoiceFinder;
 import fr.unice.polytech.isa.dd.teamH.interfaces.InvoiceGeneration;
 import fr.unice.polytech.isa.dd.teamH.interfaces.SupplierFinder;
@@ -28,15 +28,15 @@ public class AccountingWebServiceImpl implements AccountingWebService{
     private InvoiceGeneration invoiceGeneration;
 
     @Override
-    public Supplier findByName(String name) throws SupplierNotExistsException {
+    public Supplier findByName(String name) throws UnknownSupplierException {
         Optional<Supplier> s = supplierFinder.findByName(name);
         if(!s.isPresent())
-            throw new SupplierNotExistsException(name);
+            throw new UnknownSupplierException(name);
         return s.get();
     }
 
     @Override
-    public void register(String name, String contact) throws SupplierAlreadyExistsException {
+    public void register(String name, String contact) throws AlreadyExistingSupplierException {
         supplierRegistration.register(name, contact);
     }
 
@@ -46,12 +46,12 @@ public class AccountingWebServiceImpl implements AccountingWebService{
     }
 
     @Override
-    public Set<Invoice> findInvoicesForSupplier(Supplier supplier) throws SupplierNotExistsException {
+    public Set<Invoice> findInvoicesForSupplier(Supplier supplier) throws UnknownSupplierException {
         return invoiceFinder.findInvoicesForSupplier(supplier);
     }
 
     @Override
-    public void generateInvoiceFor(Supplier supplier) throws SupplierNotExistsException {
+    public void generateInvoiceFor(Supplier supplier) throws UnknownSupplierException {
         invoiceGeneration.generateInvoiceFor(supplier);
     }
 

@@ -1,6 +1,6 @@
 package fr.unice.polytech.isa.dd.teamH.webservices;
 
-import fr.unice.polytech.isa.dd.teamH.exceptions.DeliveryNotExistsException;
+import fr.unice.polytech.isa.dd.teamH.exceptions.UnknownDeliveryException;
 import fr.unice.polytech.isa.dd.teamH.interfaces.CommentPoster;
 import fr.unice.polytech.isa.dd.teamH.interfaces.DeliveryFinder;
 
@@ -20,7 +20,7 @@ public class CommentPostingWebServiceImpl implements CommentPostingWebService {
 
     @Override
     public void createComment(String packageTrackingNumber, int rating, String content)
-            throws DeliveryNotExistsException {
+            throws UnknownDeliveryException {
 
     }
 }
