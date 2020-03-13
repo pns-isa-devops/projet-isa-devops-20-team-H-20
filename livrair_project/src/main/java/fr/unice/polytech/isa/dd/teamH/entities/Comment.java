@@ -19,6 +19,14 @@ public class Comment implements Serializable {
     @NotNull
     int rating;
 
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
     String content;
 
     public Comment() {

@@ -18,6 +18,10 @@ public class Invoice implements Serializable {
     @NotNull
     private boolean paid;
 
+    public Supplier getSupplier() {
+        return supplier;
+    }
+
     @NotNull
     private float amount;
 

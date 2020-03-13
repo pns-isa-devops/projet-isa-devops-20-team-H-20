@@ -1,6 +1,7 @@
 package fr.unice.polytech.isa.dd.teamH.components;
 
 import fr.unice.polytech.isa.dd.teamH.entities.Comment;
+import fr.unice.polytech.isa.dd.teamH.entities.Package;
 import fr.unice.polytech.isa.dd.teamH.entities.Supplier;
 import fr.unice.polytech.isa.dd.teamH.entities.delivery.Delivery;
 import fr.unice.polytech.isa.dd.teamH.interfaces.CommentFinder;
@@ -18,6 +19,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 @Stateless
 public class CommentBoardBean implements CommentFinder, CommentPoster
@@ -47,18 +49,28 @@ public class CommentBoardBean implements CommentFinder, CommentPoster
     @Override
     public Set<Comment> findAllComments()
     {
-        return null;
+        CriteriaBuilder cb = manager.getCriteriaBuilder();
+        CriteriaQuery<Comment> cq = cb.createQuery(Comment.class);
+        Root<Comment> rootEntry = cq.from(Comment.class);
+        CriteriaQuery<Comment> all = cq.select(rootEntry);
+        TypedQuery<Comment> allQuery = manager.createQuery(all);
+        return allQuery.getResultList().stream().collect(Collectors.toSet());
     }
 
     @Override
     public Set<Comment> findCommentsForSupplier(Supplier s)
     {
+        //TODO
         return null;
     }
 
     @Override
     public void postComment(Delivery d, int rating, String comment)
     {
+        Comment c = new Comment();
+        c.setRating(rating);
+        c.setContent(comment);
 
+        manager.persist(c);
     }
 }

@@ -14,6 +14,14 @@ import java.util.Objects;
 @Table(name = "drone_stats_entries")
 public class DroneStatsEntry implements Serializable {
 
+    public void setEntryTime(LocalDateTime entryTime) {
+        this.entryTime = entryTime;
+    }
+
+    public void setUsedDronesAtCurrentTime(List<Drone> usedDronesAtCurrentTime) {
+        this.usedDronesAtCurrentTime = usedDronesAtCurrentTime;
+    }
+
     @Id
     @NotNull
     private LocalDateTime entryTime;
