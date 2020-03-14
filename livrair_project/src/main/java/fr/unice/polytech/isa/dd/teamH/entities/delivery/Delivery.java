@@ -2,10 +2,6 @@ package fr.unice.polytech.isa.dd.teamH.entities.delivery;
 
 import fr.unice.polytech.isa.dd.teamH.entities.Package;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Embeddable;
-import javax.persistence.OneToOne;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
