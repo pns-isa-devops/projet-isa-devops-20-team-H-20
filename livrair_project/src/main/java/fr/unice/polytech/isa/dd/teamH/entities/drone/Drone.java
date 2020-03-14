@@ -75,4 +75,15 @@ public class Drone implements Serializable {
     public int hashCode() {
         return Objects.hash(getId(), getCurrentFlightTime(), getBattery(), getWeightCapacity(), getState());
     }
+
+    @Override
+    public String toString() {
+        return "Drone{" +
+                "id=" + id +
+                ", currentFlightTime=" + currentFlightTime +
+                ", battery=" + battery +
+                ", weightCapacity=" + weightCapacity +
+                ", state=" + state +
+                '}';
+    }
 }

@@ -1,26 +1,13 @@
 package fr.unice.polytech.isa.dd.teamH.entities;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
 
-@Entity
-@Table(name="packages")
 public class Package implements Serializable {
 
-    @Id
-    @NotNull
     private String trackingNumber;
-
-    @NotNull
     private float weight;
-
-    @NotNull
     private String destination;
-
-    @NotNull
-    @ManyToOne(cascade= CascadeType.REFRESH)
     private Supplier supplier;
 
     public Package(){

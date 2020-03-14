@@ -3,23 +3,15 @@ package fr.unice.polytech.isa.dd.teamH.entities.deliveryplanning;
 import fr.unice.polytech.isa.dd.teamH.entities.delivery.Delivery;
 import fr.unice.polytech.isa.dd.teamH.entities.drone.Drone;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.Duration;
-import java.util.ArrayList;
-import java.util.Objects;
+import java.util.*;
 
-@Entity
-@Table(name="planning_entries")
 public class PlanningEntry implements Serializable {
 
-    @NotNull
     private Drone drone;
 
-    @ElementCollection
-    @OneToMany(cascade = CascadeType.REFRESH)
-    private ArrayList<Delivery> deliveries;
+    private Set<Delivery> deliveries;
 
     public PlanningEntry(){
 
@@ -27,7 +19,7 @@ public class PlanningEntry implements Serializable {
 
     public PlanningEntry(Drone drone){
         this.drone = drone;
-        deliveries = new ArrayList<>();
+        deliveries = new TreeSet<>(Comparator.comparing(Delivery::getDateTimeToShip));
     }
 
     public Drone getDrone(){
@@ -52,8 +44,8 @@ public class PlanningEntry implements Serializable {
         return false;
     }
 
-    public ArrayList<Delivery> getDeliveries(){
-        return deliveries;
+    public Set<Delivery> getDeliveries(){
+        return new HashSet<>(deliveries);
     }
 
     @Override

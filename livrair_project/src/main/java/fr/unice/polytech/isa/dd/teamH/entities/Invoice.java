@@ -1,37 +1,19 @@
 package fr.unice.polytech.isa.dd.teamH.entities;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 
-@Entity
-@Table(name = "invoices")
 public class Invoice implements Serializable {
 
-    @Id
-    @GeneratedValue
     private int id;
-
-    @NotNull
     private boolean paid;
-
-    public Supplier getSupplier() {
-        return supplier;
-    }
-
-    @NotNull
     private float amount;
 
-    @NotNull
     private LocalDate creationDate;
-
     private LocalDate paymentDate;
 
-    @NotNull
-    @ManyToOne(cascade= CascadeType.REFRESH)
     private Supplier supplier;
 
     public Invoice(){
@@ -42,6 +24,7 @@ public class Invoice implements Serializable {
         this.paymentDate = null;
         this.amount = amount;
         this.creationDate = creationDate;
+        this.supplier = supplier;
     }
 
     public void pay(LocalDate paymentDate){
@@ -53,20 +36,48 @@ public class Invoice implements Serializable {
         return paid;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setPaid(boolean paid) {
+        this.paid = paid;
+    }
+
     public float getAmount() {
         return amount;
+    }
+
+    public void setAmount(float amount) {
+        this.amount = amount;
     }
 
     public LocalDate getCreationDate() {
         return creationDate;
     }
 
-    public int getId() {
-        return id;
+    public void setCreationDate(LocalDate creationDate) {
+        this.creationDate = creationDate;
     }
 
     public LocalDate getPaymentDate() {
         return paymentDate;
+    }
+
+    public void setPaymentDate(LocalDate paymentDate) {
+        this.paymentDate = paymentDate;
+    }
+
+    public Supplier getSupplier() {
+        return supplier;
+    }
+
+    public void setSupplier(Supplier supplier) {
+        this.supplier = supplier;
     }
 
     /**

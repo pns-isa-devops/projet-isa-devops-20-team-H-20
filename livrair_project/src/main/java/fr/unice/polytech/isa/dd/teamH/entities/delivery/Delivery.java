@@ -10,23 +10,16 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-@Embeddable
 public class Delivery implements Serializable {
 
-    @NotNull
     private LocalDateTime dateTimeToShip;
 
-    @NotNull
     private float flightTime;
 
-    @NotNull
     private float distance;
 
-    @NotNull
-    @OneToOne(cascade= CascadeType.REFRESH)
     private Package aPackage;
 
-    @NotNull
     private DeliveryState state;
 
     public Delivery(){

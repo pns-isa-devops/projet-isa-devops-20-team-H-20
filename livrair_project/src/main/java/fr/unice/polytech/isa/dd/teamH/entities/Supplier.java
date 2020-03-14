@@ -1,32 +1,20 @@
 package fr.unice.polytech.isa.dd.teamH.entities;
 
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
-@Entity
-@Table(name = "suppliers")
 public class Supplier implements Serializable {
 
-    @Id
-    @NotNull
     private String name;
 
-    @ElementCollection
-    private List<String> contacts;
+    private Set<String> contacts;
 
     public Supplier() {
     }
 
     public Supplier(String name){
         this.name = name;
-        contacts = new ArrayList<>();
+        contacts = new HashSet<>();
     }
 
     public void setName(String name) {
@@ -37,8 +25,8 @@ public class Supplier implements Serializable {
         return name;
     }
 
-    public List<String> getContacts() {
-        return new ArrayList<>(contacts);
+    public Set<String> getContacts() {
+        return new HashSet<>(contacts);
     }
 
     public void addContact(String contact) {
