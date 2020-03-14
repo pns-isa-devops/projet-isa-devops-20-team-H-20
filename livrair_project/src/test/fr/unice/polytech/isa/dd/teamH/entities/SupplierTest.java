@@ -19,21 +19,4 @@ public class SupplierTest {
     public void tearDown() {
         supplier = null;
     }
-
-    @Test
-    public void getName() {
-        assertEquals("PolyColis", supplier.getName());
-    }
-
-    @Test
-    public void getContacts() {
-        assertTrue(supplier.getContacts().contains("150 rue d'Angleterre"));
-    }
-
-    @Test
-    public void setContact() {
-        assertTrue(supplier.getContacts().contains("150 rue d'Angleterre"));
-        supplier.addContact("123 rue d'Angleterre");
-        assertTrue(supplier.getContacts().contains("123 rue d'Angleterre"));
-    }
 }

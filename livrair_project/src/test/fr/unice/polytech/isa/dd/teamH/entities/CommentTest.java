@@ -19,15 +19,5 @@ public class CommentTest {
         comment = null;
     }
 
-    @Test
-    public void getRating() {
-        assertEquals(5, comment.getRating());
-    }
-
-    @Test
-    public void getContent() {
-        assertEquals("Good delivery, I recommend this service!", comment.getContent());
-    }
-
 
 }

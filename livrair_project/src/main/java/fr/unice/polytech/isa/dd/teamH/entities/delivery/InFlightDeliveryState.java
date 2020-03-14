@@ -2,10 +2,10 @@ package fr.unice.polytech.isa.dd.teamH.entities.delivery;
 
 import java.time.LocalDateTime;
 
-public class InFlightDelivery extends DeliveryState {
+public class InFlightDeliveryState extends DeliveryState {
     private LocalDateTime shippedAt;
 
-    public InFlightDelivery(){
+    public InFlightDeliveryState(){
         this.shippedAt = LocalDateTime.now();
     }
 

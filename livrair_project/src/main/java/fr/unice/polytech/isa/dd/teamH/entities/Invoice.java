@@ -79,7 +79,7 @@ public class Invoice implements Serializable {
         LocalDate now = LocalDate.now();
         if(creationDate.plusDays(30).isBefore(now)) //late
             return -1;
-        return (int) ChronoUnit.DAYS.between(creationDate, now);
+        return (int) ChronoUnit.DAYS.between(now, creationDate.plusDays(30));
     }
 
     @Override

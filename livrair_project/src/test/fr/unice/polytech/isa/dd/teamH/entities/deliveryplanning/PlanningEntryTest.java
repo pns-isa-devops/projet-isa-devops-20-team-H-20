@@ -12,8 +12,8 @@ import java.time.LocalDateTime;
 
 import static org.junit.Assert.*;
 
-public class PlanningRowTest {
-    PlanningRow planningRow;
+public class PlanningEntryTest {
+    PlanningEntry planningEntry;
     Drone drone;
     Supplier supplier;
     Package aPackage;
@@ -26,13 +26,13 @@ public class PlanningRowTest {
         aPackage = new Package("0123456789", 6, "123 Promenade Anglais", supplier);
         drone = new Drone(0, 6);
         delivery = new Delivery(LocalDateTime.now(), (float)0.4, 2, aPackage);
-        planningRow = new PlanningRow(drone);
-        planningRow.addDelivery(delivery);
+        planningEntry = new PlanningEntry(drone);
+        planningEntry.addDelivery(delivery);
     }
 
     @After
     public void tearDown(){
-        planningRow = null;
+        planningEntry = null;
         drone = null;
         aPackage = null;
         supplier = null;
@@ -41,15 +41,15 @@ public class PlanningRowTest {
 
     @Test
     public void getDrone() {
-        assertEquals(drone, planningRow.getDrone());
+        assertEquals(drone, planningEntry.getDrone());
     }
 
     @Test
     public void addDelivery() {
         Package anotherPackage = new Package("9876543210", 6, "132 Promenade Anglais", supplier);
-        assertFalse(planningRow.addDelivery(new Delivery(delivery.getDateTimeToShip().plusMinutes(45), (float) 0.4, 2, anotherPackage)));
-        assertFalse(planningRow.addDelivery(new Delivery(delivery.getDateTimeToShip().plusMinutes(20), (float) 0.4, 2, anotherPackage)));
-        assertTrue(planningRow.addDelivery(new Delivery(delivery.getDateTimeToShip().plusMinutes(116), (float) 0.4, 2, anotherPackage)));
-        assertTrue(planningRow.addDelivery(new Delivery(delivery.getDateTimeToShip().plusDays(20), (float) 0.4, 2, anotherPackage)));
+        assertFalse(planningEntry.addDelivery(new Delivery(delivery.getDateTimeToShip().plusMinutes(45), (float) 0.4, 2, anotherPackage)));
+        assertFalse(planningEntry.addDelivery(new Delivery(delivery.getDateTimeToShip().plusMinutes(20), (float) 0.4, 2, anotherPackage)));
+        assertTrue(planningEntry.addDelivery(new Delivery(delivery.getDateTimeToShip().plusMinutes(116), (float) 0.4, 2, anotherPackage)));
+        assertTrue(planningEntry.addDelivery(new Delivery(delivery.getDateTimeToShip().plusDays(20), (float) 0.4, 2, anotherPackage)));
     }
 }

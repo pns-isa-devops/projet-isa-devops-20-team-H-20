@@ -13,32 +13,24 @@ import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @Stateless
 public class SupplierRegistryBean implements SupplierFinder, SupplierRegistration
 {
-    @PersistenceContext
-    private EntityManager manager;
+
+    private Set<Supplier> suppliers = new HashSet<>();
 
     private static final Logger log = Logger.getLogger(CommentBoardBean.class.getName());
 
     @Override
     public Optional<Supplier> findByName(String name)
     {
-        CriteriaBuilder builder = manager.getCriteriaBuilder();
-        CriteriaQuery<Supplier> criteria = builder.createQuery(Supplier.class);
-        Root<Supplier> root =  criteria.from(Supplier.class);
-        criteria.select(root).where(builder.equal(root.get("name"), name));
-        TypedQuery<Supplier> query = manager.createQuery(criteria);
-        try {
-            return Optional.of(query.getSingleResult());
-        } catch (NoResultException nre){
-            log.log(Level.FINEST, "No result for ["+name+"]", nre);
-            return Optional.empty();
-        }
+        return suppliers.stream().findFirst();
     }
 
     /******************************************
@@ -55,6 +47,6 @@ public class SupplierRegistryBean implements SupplierFinder, SupplierRegistratio
         s.setName(name);
         s.addContact(contact);
 
-        manager.persist(s);
+        suppliers.add(s);
     }
 }

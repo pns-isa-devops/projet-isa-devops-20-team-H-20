@@ -1,6 +1,6 @@
 package fr.unice.polytech.isa.dd.teamH.entities.drone;
 
-public abstract class DroneStatusState {
+public abstract class DroneState {
     /**
      * Indicate if the drone is available for a delivery
      * @return a boolean, true if available else false

@@ -1,6 +1,6 @@
 package fr.unice.polytech.isa.dd.teamH.entities.drone;
 
-public class InFlightStatus extends DroneStatusState {
+public class InFlightDroneState extends DroneState {
     public int getRemainingTime() {
         return 40;
     }

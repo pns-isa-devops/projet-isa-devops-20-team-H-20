@@ -1,6 +1,6 @@
 package fr.unice.polytech.isa.dd.teamH.entities.drone;
 
-public class ReadyStatus extends DroneStatusState {
+public class ReadyDroneState extends DroneState {
     @Override
     public boolean isReadyToFly() {
         return true;

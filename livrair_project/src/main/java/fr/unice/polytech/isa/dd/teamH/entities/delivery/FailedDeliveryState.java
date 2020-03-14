@@ -2,10 +2,10 @@ package fr.unice.polytech.isa.dd.teamH.entities.delivery;
 
 import java.time.LocalDateTime;
 
-public class FailedDelivery extends DeliveryState {
+public class FailedDeliveryState extends DeliveryState {
     private LocalDateTime localDateTime;
 
-    public FailedDelivery(){
+    public FailedDeliveryState(){
         this.localDateTime = LocalDateTime.now();
     }
 

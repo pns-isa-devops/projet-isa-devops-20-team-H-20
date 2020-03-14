@@ -12,7 +12,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name="planning_entries")
-public class PlanningRow implements Serializable {
+public class PlanningEntry implements Serializable {
 
     @NotNull
     private Drone drone;
@@ -21,11 +21,11 @@ public class PlanningRow implements Serializable {
     @OneToMany(cascade = CascadeType.REFRESH)
     private ArrayList<Delivery> deliveries;
 
-    public PlanningRow(){
+    public PlanningEntry(){
 
     }
 
-    public PlanningRow(Drone drone){
+    public PlanningEntry(Drone drone){
         this.drone = drone;
         deliveries = new ArrayList<>();
     }
@@ -60,7 +60,7 @@ public class PlanningRow implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        PlanningRow that = (PlanningRow) o;
+        PlanningEntry that = (PlanningEntry) o;
         return getDrone().equals(that.getDrone()) &&
                 getDeliveries().equals(that.getDeliveries());
     }
@@ -72,7 +72,7 @@ public class PlanningRow implements Serializable {
 
     @Override
     public String toString() {
-        return "PlanningRow{" +
+        return "PlanningEntry{" +
                 "drone=" + drone +
                 ", deliveries=" + deliveries +
                 '}';
