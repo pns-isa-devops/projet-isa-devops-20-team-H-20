@@ -10,14 +10,15 @@ import javax.ejb.Stateless;
 import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.Set;
+import java.util.logging.Logger;
 
 @Stateless
 public class AvailabilityProcessorBean implements AvailableDroneFinder {
 
-    @EJB
-    DroneFinder droneFinder;
+    private static final Logger log = Logger.getLogger(Logger.class.getName());
 
-    //MappingService mappingService;
+    @EJB
+    private DroneFinder droneFinder;
 
     @Override
     public Optional<Drone> getAvailableDroneAtTime(Set<PlanningEntry> alreadyPlannedDeliveries, LocalDateTime ldt) {
