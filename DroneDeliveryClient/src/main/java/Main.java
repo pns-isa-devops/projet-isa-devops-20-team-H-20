@@ -1,6 +1,5 @@
 import api.DronePublicAPI;
-import cli.commands.Bye;
-import cli.commands.RegisterPackage;
+import cli.commands.*;
 import cli.framework.Shell;
 
 /**
@@ -13,7 +12,11 @@ public class Main extends Shell<DronePublicAPI> {
         this.invite  = "DD";
         register(
                 Bye.class,
-                RegisterPackage.class
+                AddPackage.class,
+                EditPackage.class,
+                RemovePackage.class,
+                AddDrone.class,
+                RemoveDrone.class
         );
     }
 

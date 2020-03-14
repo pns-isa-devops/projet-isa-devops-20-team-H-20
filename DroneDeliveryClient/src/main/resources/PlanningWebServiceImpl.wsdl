@@ -128,7 +128,7 @@
   </wsdl:binding>
   <wsdl:service name="PlanningWebServiceImplService">
     <wsdl:port name="PlanningWebServiceImplPort" binding="tns:PlanningWebServiceImplServiceSoapBinding">
-      <soap:address location="http://localhost:9090/PlanningWebServiceImplPort"/>
+      <soap:address location="http://localhost:8080/PlanningWebServiceImplPort"/>
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

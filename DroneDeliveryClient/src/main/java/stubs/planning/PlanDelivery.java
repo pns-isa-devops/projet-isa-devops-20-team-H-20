@@ -8,9 +8,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Classe Java pour planDelivery complex type.
+ * <p>Java class for planDelivery complex type.
  * 
- * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="planDelivery"&gt;
@@ -44,7 +44,7 @@ public class PlanDelivery {
     protected String shippingTime;
 
     /**
-     * Obtient la valeur de la propriété droneId.
+     * Gets the value of the droneId property.
      * 
      */
     public int getDroneId() {
@@ -52,7 +52,7 @@ public class PlanDelivery {
     }
 
     /**
-     * Définit la valeur de la propriété droneId.
+     * Sets the value of the droneId property.
      * 
      */
     public void setDroneId(int value) {
@@ -60,7 +60,7 @@ public class PlanDelivery {
     }
 
     /**
-     * Obtient la valeur de la propriété trackingNumber.
+     * Gets the value of the trackingNumber property.
      * 
      * @return
      *     possible object is
@@ -72,7 +72,7 @@ public class PlanDelivery {
     }
 
     /**
-     * Définit la valeur de la propriété trackingNumber.
+     * Sets the value of the trackingNumber property.
      * 
      * @param value
      *     allowed object is
@@ -84,7 +84,7 @@ public class PlanDelivery {
     }
 
     /**
-     * Obtient la valeur de la propriété shippingTime.
+     * Gets the value of the shippingTime property.
      * 
      * @return
      *     possible object is
@@ -96,7 +96,7 @@ public class PlanDelivery {
     }
 
     /**
-     * Définit la valeur de la propriété shippingTime.
+     * Sets the value of the shippingTime property.
      * 
      * @param value
      *     allowed object is
