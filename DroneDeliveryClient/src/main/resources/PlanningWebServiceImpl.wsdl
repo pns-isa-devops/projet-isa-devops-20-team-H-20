@@ -11,13 +11,10 @@
   </xs:complexType>
   <xs:complexType name="getCompleteDeliveryPlanningResponse">
     <xs:sequence>
-      <xs:element minOccurs="0" name="delivery-planning" type="tns:deliveryPlanning"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="delivery-planning" type="tns:planningEntry"/>
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="deliveryPlanning">
-    <xs:sequence/>
-  </xs:complexType>
-  <xs:complexType name="planningRow">
+  <xs:complexType name="planningEntry">
     <xs:sequence/>
   </xs:complexType>
   <xs:complexType name="delivery">

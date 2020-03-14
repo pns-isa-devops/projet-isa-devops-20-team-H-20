@@ -13,7 +13,7 @@ public class Bye extends Command<DronePublicAPI> {
 
     @Override
     public String describe() {
-        return "Exit Cookie on Demand";
+        return "Exit Drone Delivery";
     }
 
     @Override
