@@ -5,6 +5,8 @@ import fr.unice.polytech.isa.dd.teamH.entities.delivery.Delivery;
 import fr.unice.polytech.isa.dd.teamH.entities.delivery.NotSentDeliveryState;
 import fr.unice.polytech.isa.dd.teamH.entities.deliveryplanning.PlanningEntry;
 import fr.unice.polytech.isa.dd.teamH.entities.drone.Drone;
+import fr.unice.polytech.isa.dd.teamH.exceptions.DeliveryDistanceException;
+import fr.unice.polytech.isa.dd.teamH.exceptions.ExternalPartnerException;
 import fr.unice.polytech.isa.dd.teamH.exceptions.UncheckedException;
 import fr.unice.polytech.isa.dd.teamH.interfaces.DeliveryFinder;
 import fr.unice.polytech.isa.dd.teamH.interfaces.DeliveryPlanner;
@@ -54,14 +56,19 @@ public class DeliveryPlanningBean implements DeliveryFinder, DeliveryPlanner
     }
 
     @Override
-    public boolean planDelivery(Package p, LocalDateTime shippingTime)
-    {
+    public boolean planDelivery(Package p, LocalDateTime shippingTime) throws DeliveryDistanceException {
         Optional<Drone> od = availabilityProcessor.getAvailableDroneAtTime(findAllPlannedDeliveries(), shippingTime);
         if(od.isPresent()){
             Delivery de = new Delivery();
 
-            de.setDistance(mapService.getDistanceTo(p.getDestination()));
-            de.setFlightTime(mapService.getFlightTimeTo(p.getDestination()));
+            try {
+                de.setDistance(mapService.getDistanceTo(p.getDestination()));
+            } catch (ExternalPartnerException e) {
+                log.log(Level.INFO, "Error while exchanging with external partner", e);
+                throw new DeliveryDistanceException(p.getTrackingNumber(), p.getDestination(), e);
+            }
+
+            de.setFlightTime(de.getDistance() / od.get().getSpeed());
             de.setState(new NotSentDeliveryState());
             de.setPackage(p);
             de.setDateTimeToShip(shippingTime);
@@ -86,7 +93,7 @@ public class DeliveryPlanningBean implements DeliveryFinder, DeliveryPlanner
             mapService = new MapAPI(prop.getProperty("mapHostName"),
                     prop.getProperty("mapPortNumber"));
         } catch(IOException e) {
-            log.log(Level.INFO, "Cannot read bank.properties file", e);
+            log.log(Level.INFO, "Cannot read map.properties file", e);
             throw new UncheckedException(e);
         }
     }

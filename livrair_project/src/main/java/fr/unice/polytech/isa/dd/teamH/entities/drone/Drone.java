@@ -9,6 +9,7 @@ public class Drone implements Serializable {
     private int battery;
     private float weightCapacity;
     private DroneState state;
+    private final float DRONE_SPEED = (float)(10.0/60.0);
 
     public Drone() {
         this.currentFlightTime = 0;
@@ -85,5 +86,9 @@ public class Drone implements Serializable {
                 ", weightCapacity=" + weightCapacity +
                 ", state=" + state +
                 '}';
+    }
+
+    public float getSpeed() {
+        return DRONE_SPEED;
     }
 }
