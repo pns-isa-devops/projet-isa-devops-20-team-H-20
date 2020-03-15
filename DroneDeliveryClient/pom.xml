@@ -34,45 +34,43 @@
                         <configuration>
                             <sourceRoot>${basedir}/src/main/java/</sourceRoot>
                             <!-- ADD WSDL FILES TO THE CONFIG BELOW -->
-                            <!--
                             <wsdlOptions>
                                 <wsdlOption>
                                     <wsdl>${basedir}/src/main/resources/AccountingWebServiceImpl.wsdl</wsdl>
                                     <extraargs>
                                         <extraarg>-p</extraarg>
-                                        <extraarg>http://webservices.teamH.dd.isa.polytech.unice.fr/accounting=stubs.cart</extraarg>
+                                        <extraarg>http://webservices.teamH.dd.isa.polytech.unice.fr/accounting=stubs.account</extraarg>
                                     </extraargs>
                                 </wsdlOption>
                                 <wsdlOption>
                                     <wsdl>${basedir}/src/main/resources/CommentPostingWebServiceImpl.wsdl</wsdl>
                                     <extraargs>
                                         <extraarg>-p</extraarg>
-                                        <extraarg>http://webservices.teamH.dd.isa.polytech.unice.fr/rating=stubs.cart</extraarg>
+                                        <extraarg>http://webservices.teamH.dd.isa.polytech.unice.fr/rating=stubs.rating</extraarg>
                                     </extraargs>
                                 </wsdlOption>
                                 <wsdlOption>
                                     <wsdl>${basedir}/src/main/resources/DroneFleetManagementWebServiceImpl.wsdl</wsdl>
                                     <extraargs>
                                         <extraarg>-p</extraarg>
-                                        <extraarg>http://webservices.teamH.dd.isa.polytech.unice.fr/drone=stubs.cart</extraarg>
+                                        <extraarg>http://webservices.teamH.dd.isa.polytech.unice.fr/drone=stubs.drones</extraarg>
                                     </extraargs>
                                 </wsdlOption>
                                 <wsdlOption>
                                     <wsdl>${basedir}/src/main/resources/PackageRegistrationWebServiceImpl.wsdl</wsdl>
                                     <extraargs>
                                         <extraarg>-p</extraarg>
-                                        <extraarg>http://webservices.teamH.dd.isa.polytech.unice.fr/package=stubs.cart</extraarg>
+                                        <extraarg>http://webservices.teamH.dd.isa.polytech.unice.fr/package=stubs.packages</extraarg>
                                     </extraargs>
                                 </wsdlOption>
                                 <wsdlOption>
                                     <wsdl>${basedir}/src/main/resources/PlanningWebServiceImpl.wsdl</wsdl>
                                     <extraargs>
                                         <extraarg>-p</extraarg>
-                                        <extraarg>http://webservices.teamH.dd.isa.polytech.unice.fr/planning=stubs.cart</extraarg>
+                                        <extraarg>http://webservices.teamH.dd.isa.polytech.unice.fr/planning=stubs.planning</extraarg>
                                     </extraargs>
                                 </wsdlOption>
                             </wsdlOptions>
-                            -->
                         </configuration>
                         <goals>
                             <goal>wsdl2java</goal>
