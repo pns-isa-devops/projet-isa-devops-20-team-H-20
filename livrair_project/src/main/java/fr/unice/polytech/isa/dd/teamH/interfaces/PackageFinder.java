@@ -7,6 +7,6 @@ import java.util.Optional;
 import java.util.Set;
 
 public interface PackageFinder {
-    Optional<Package> findPackageById(String trackingId);
+    Optional<Package> findPackageByTrackingNumber(String trackingId);
     Set<Package> findPackagesBySupplier(Supplier s);
 }

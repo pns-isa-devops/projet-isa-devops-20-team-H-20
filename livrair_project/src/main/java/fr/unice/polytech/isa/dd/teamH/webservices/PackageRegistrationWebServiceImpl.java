@@ -57,7 +57,7 @@ public class PackageRegistrationWebServiceImpl implements PackageRegistrationWeb
 
     private Package readPackage(String trackingNumber)
             throws UnknownPackageException {
-        Optional<Package> c = packageFinder.findPackageById(trackingNumber);
+        Optional<Package> c = packageFinder.findPackageByTrackingNumber(trackingNumber);
         if(!c.isPresent())
             throw new UnknownPackageException(trackingNumber);
         return c.get();

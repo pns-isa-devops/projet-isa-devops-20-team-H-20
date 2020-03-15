@@ -22,32 +22,4 @@ public class PackageTest {
         aPackage = null;
         supplier = null;
     }
-
-    @Test
-    public void getTackingNumber() {
-        assertEquals("0123456789", aPackage.getTrackingNumber());
-    }
-
-    @Test
-    public void getWeight() {
-        assertEquals(6, aPackage.getWeight(), 0);
-    }
-
-    @Test
-    public void getDestination() {
-        assertEquals("123 Promenade Anglais", aPackage.getDestination());
-    }
-
-    @Test
-    public void setDestination() {
-        assertEquals("123 Promenade Anglais", aPackage.getDestination());
-        aPackage.setDestination("132 Promenade Anglais");
-        assertEquals("132 Promenade Anglais", aPackage.getDestination());
-
-    }
-
-    @Test
-    public void getSupplier() {
-        assertEquals(supplier, aPackage.getSupplier());
-    }
 }

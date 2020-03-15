@@ -1,7 +1,7 @@
 package fr.unice.polytech.isa.dd.teamH.webservices;
 
 import fr.unice.polytech.isa.dd.teamH.entities.Package;
-import fr.unice.polytech.isa.dd.teamH.entities.deliveryplanning.DeliveryPlanning;
+import fr.unice.polytech.isa.dd.teamH.entities.deliveryplanning.PlanningEntry;
 import fr.unice.polytech.isa.dd.teamH.entities.drone.Drone;
 import fr.unice.polytech.isa.dd.teamH.exceptions.UnknownDroneException;
 import fr.unice.polytech.isa.dd.teamH.exceptions.UnknownPackageException;
@@ -14,6 +14,7 @@ import javax.ejb.Stateless;
 import javax.jws.WebService;
 import java.time.LocalDateTime;
 import java.util.Optional;
+import java.util.Set;
 
 @WebService(targetNamespace = "http://www.polytech.unice.fr/si/4a/isa/dd/team-h/planning")
 @Stateless(name = "PlanningWS")
@@ -30,7 +31,7 @@ public class PlanningWebServiceImpl implements PlanningWebService
 
 
     @Override
-    public DeliveryPlanning getCompleteDeliveryPlanning()
+    public Set<PlanningEntry> getCompleteDeliveryPlanning()
     {
         return deliveryPlanner.getCompleteDeliveryPlanning();
     }
@@ -42,12 +43,12 @@ public class PlanningWebServiceImpl implements PlanningWebService
         if (!d.isPresent())
             throw new UnknownDroneException(Integer.toString(droneID));
 
-        Optional<Package> p = packageFinder.findPackageById(trackingNumber);
+        Optional<Package> p = packageFinder.findPackageByTrackingNumber(trackingNumber);
         if(!p.isPresent())
             throw new UnknownPackageException(trackingNumber);
 
         LocalDateTime t = LocalDateTime.parse(shippingTime);
 
-        deliveryPlanner.planDelivery(d.get(), p.get(), t);
+        deliveryPlanner.planDelivery(p.get(), t);
     }
 }

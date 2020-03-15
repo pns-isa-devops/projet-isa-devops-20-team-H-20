@@ -1,40 +1,25 @@
 package fr.unice.polytech.isa.dd.teamH.entities.delivery;
 
 import fr.unice.polytech.isa.dd.teamH.entities.Package;
-import fr.unice.polytech.isa.dd.teamH.entities.drone.Drone;
 
-import javax.ejb.Local;
-import javax.persistence.CascadeType;
-import javax.persistence.Embeddable;
-import javax.persistence.Entity;
-import javax.persistence.OneToOne;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-@Embeddable
 public class Delivery implements Serializable {
 
-    @NotNull
     private LocalDateTime dateTimeToShip;
 
-    @NotNull
     private float flightTime;
 
-    @NotNull
     private float distance;
 
-    @NotNull
-    @OneToOne(cascade= CascadeType.REFRESH)
     private Package aPackage;
 
-    @NotNull
     private DeliveryState state;
 
     public Delivery(){
-        setState(new NotSentDelivery());
+        setState(new NotSentDeliveryState());
     }
 
     public Delivery(LocalDateTime dateTimeToShip, float flightTime, float distance, Package aPackage) {
@@ -42,7 +27,7 @@ public class Delivery implements Serializable {
         this.flightTime = flightTime;
         this.distance = distance;
         this.aPackage = aPackage;
-        this.state = new NotSentDelivery();
+        this.state = new NotSentDeliveryState();
     }
 
     public DeliveryState getState() {return this.state;}

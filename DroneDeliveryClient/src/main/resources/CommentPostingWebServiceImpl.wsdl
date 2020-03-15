@@ -69,7 +69,7 @@
   </wsdl:binding>
   <wsdl:service name="CommentPostingWebServiceImplService">
     <wsdl:port name="CommentPostingWebServiceImplPort" binding="ns1:CommentPostingWebServiceImplServiceSoapBinding">
-      <soap:address location="http://localhost:9090/CommentPostingWebServiceImplPort"/>
+      <soap:address location="http://localhost:8080/CommentPostingWebServiceImplPort"/>
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

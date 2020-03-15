@@ -36,38 +36,24 @@
                             <!-- ADD WSDL FILES TO THE CONFIG BELOW -->
                             <wsdlOptions>
                                 <wsdlOption>
-                                    <wsdl>${basedir}/src/main/resources/AccountingWebServiceImpl.wsdl</wsdl>
+                                    <wsdl>${basedir}/src/main/resources/PlanningWebServiceImpl.wsdl</wsdl>
                                     <extraargs>
                                         <extraarg>-p</extraarg>
-                                        <extraarg>http://webservices.teamH.dd.isa.polytech.unice.fr/accounting=stubs.account</extraarg>
-                                    </extraargs>
-                                </wsdlOption>
-                                <wsdlOption>
-                                    <wsdl>${basedir}/src/main/resources/CommentPostingWebServiceImpl.wsdl</wsdl>
-                                    <extraargs>
-                                        <extraarg>-p</extraarg>
-                                        <extraarg>http://webservices.teamH.dd.isa.polytech.unice.fr/rating=stubs.rating</extraarg>
-                                    </extraargs>
-                                </wsdlOption>
-                                <wsdlOption>
-                                    <wsdl>${basedir}/src/main/resources/DroneFleetManagementWebServiceImpl.wsdl</wsdl>
-                                    <extraargs>
-                                        <extraarg>-p</extraarg>
-                                        <extraarg>http://webservices.teamH.dd.isa.polytech.unice.fr/drone=stubs.drones</extraarg>
+                                        <extraarg>http://www.polytech.unice.fr/si/4a/isa/dd/team-h/planning=stubs.planning</extraarg>
                                     </extraargs>
                                 </wsdlOption>
                                 <wsdlOption>
                                     <wsdl>${basedir}/src/main/resources/PackageRegistrationWebServiceImpl.wsdl</wsdl>
                                     <extraargs>
                                         <extraarg>-p</extraarg>
-                                        <extraarg>http://webservices.teamH.dd.isa.polytech.unice.fr/package=stubs.packages</extraarg>
+                                        <extraarg>http://www.polytech.unice.fr/si/4a/isa/dd/team-h/package=stubs.packages</extraarg>
                                     </extraargs>
                                 </wsdlOption>
                                 <wsdlOption>
-                                    <wsdl>${basedir}/src/main/resources/PlanningWebServiceImpl.wsdl</wsdl>
+                                    <wsdl>${basedir}/src/main/resources/DroneFleetManagementWebServiceImpl.wsdl</wsdl>
                                     <extraargs>
                                         <extraarg>-p</extraarg>
-                                        <extraarg>http://webservices.teamH.dd.isa.polytech.unice.fr/planning=stubs.planning</extraarg>
+                                        <extraarg>http://www.polytech.unice.fr/si/4a/isa/dd/team-h/drone=stubs.drone</extraarg>
                                     </extraargs>
                                 </wsdlOption>
                             </wsdlOptions>

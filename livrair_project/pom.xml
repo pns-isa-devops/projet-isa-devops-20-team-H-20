@@ -7,6 +7,7 @@
 
     <properties>
         <versions.java>1.8</versions.java>
+        <versions.maven-compiler>3.8.0</versions.maven-compiler>
         <!-- J2E 7.x technological stack -->
         <versions.javaee>7.0-1</versions.javaee>
         <versions.openejb>7.0.2</versions.openejb>
@@ -70,6 +71,7 @@
             <plugin> <!-- used to define level language 8 to use LocalDateTime -->
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>${versions.maven-compiler}</version>
                 <configuration>
                     <source>8</source>
                     <target>8</target>
