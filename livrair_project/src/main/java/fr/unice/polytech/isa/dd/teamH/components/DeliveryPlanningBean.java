@@ -17,12 +17,10 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Properties;
-import java.util.Set;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 @Stateless
 public class DeliveryPlanningBean implements DeliveryFinder, DeliveryPlanner
@@ -52,13 +50,33 @@ public class DeliveryPlanningBean implements DeliveryFinder, DeliveryPlanner
     @Override
     public Set<PlanningEntry> findAllPlannedDeliveries()
     {
-        return new HashSet<>();
+        Set<PlanningEntry> result = new HashSet<>();
+
+        for(PlanningEntry pe : planningEntries){
+            PlanningEntry newPE = new PlanningEntry(pe.getDrone());
+            for(Delivery d : pe.getDeliveries().stream().filter(e -> e.getDateTimeToShip().isAfter(LocalDateTime.now())).collect(Collectors.toSet())){
+                newPE.addDelivery(d);
+            }
+            result.add(newPE);
+        }
+
+        return result;
     }
 
     @Override
     public Set<PlanningEntry> findCompletedDeliveriesSince(LocalDateTime time)
     {
-        return new HashSet<>();
+        Set<PlanningEntry> result = new HashSet<>();
+
+        for(PlanningEntry pe : planningEntries){
+            PlanningEntry newPE = new PlanningEntry(pe.getDrone());
+            for(Delivery d : pe.getDeliveries().stream().filter(e -> e.getDateTimeToShip().isAfter(time) && e.isCompleted()).collect(Collectors.toSet())){
+                newPE.addDelivery(d);
+            }
+            result.add(newPE);
+        }
+
+        return result;
     }
 
     @Override
@@ -79,6 +97,14 @@ public class DeliveryPlanningBean implements DeliveryFinder, DeliveryPlanner
             de.setPackage(p);
             de.setDateTimeToShip(shippingTime);
 
+            Optional<PlanningEntry> ope = getPlanningEntryForDrone(od.get());
+            if(ope.isPresent()){
+                ope.get().addDelivery(de);
+            }else{
+                PlanningEntry newPE = new PlanningEntry(od.get());
+                newPE.addDelivery(de);
+                planningEntries.add(newPE);
+            }
             return true;
         }else{
             return false;
@@ -88,7 +114,15 @@ public class DeliveryPlanningBean implements DeliveryFinder, DeliveryPlanner
     @Override
     public Set<PlanningEntry> getCompleteDeliveryPlanning()
     {
-        return null;
+        return new HashSet<>(planningEntries);
+    }
+
+    private Optional<PlanningEntry> getPlanningEntryForDrone(Drone d){
+        for(PlanningEntry pe : planningEntries){
+            if(pe.getDrone().equals(d))
+                return Optional.of(pe);
+        }
+        return Optional.empty();
     }
 
     @PostConstruct

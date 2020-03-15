@@ -63,6 +63,10 @@ public class Delivery implements Serializable {
         this.aPackage = p;
     }
 
+    public boolean isCompleted(){
+        return state.isCompleted();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
