@@ -7,4 +7,9 @@ public class NotSentDeliveryState extends DeliveryState {
         return "Delivery is currently not sent";
     }
 
+    @Override
+    public boolean isCompleted() {
+        return false;
+    }
+
 }

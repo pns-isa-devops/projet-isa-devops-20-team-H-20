@@ -19,7 +19,6 @@ public interface PlanningWebService
     Set<PlanningEntry> getCompleteDeliveryPlanning();
 
     @WebMethod
-    void planDelivery(@WebParam(name="drone-id") int droneId,
-                      @WebParam(name="tracking-number") String trackingNumber,
-                      @WebParam(name="shipping-time") String shippingTime) throws UnknownPackageException, UnknownDroneException, DeliveryDistanceException;
+    void planDelivery(@WebParam(name="tracking-number") String trackingNumber,
+                      @WebParam(name="shipping-time") String shippingTime) throws UnknownPackageException, DeliveryDistanceException;
 }

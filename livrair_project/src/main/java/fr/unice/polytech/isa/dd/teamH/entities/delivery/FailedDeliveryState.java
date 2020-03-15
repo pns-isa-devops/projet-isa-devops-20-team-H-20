@@ -13,4 +13,9 @@ public class FailedDeliveryState extends DeliveryState {
     public String getStatus() {
         return "Delivery failed at " + localDateTime.toString();
     }
+
+    @Override
+    public boolean isCompleted() {
+        return false;
+    }
 }

@@ -38,12 +38,8 @@ public class PlanningWebServiceImpl implements PlanningWebService
     }
 
     @Override
-    public void planDelivery(int droneID, String trackingNumber, String shippingTime) throws UnknownPackageException, UnknownDroneException, DeliveryDistanceException {
-        Optional<Drone> d = droneFinder.findById(droneID);
-        if (!d.isPresent())
-            throw new UnknownDroneException(Integer.toString(droneID));
-
-        Optional<Package> p = packageFinder.findPackageByTrackingNumber(trackingNumber);
+    public void planDelivery(String trackingNumber, String shippingTime) throws UnknownPackageException, DeliveryDistanceException {
+                Optional<Package> p = packageFinder.findPackageByTrackingNumber(trackingNumber);
         if(!p.isPresent())
             throw new UnknownPackageException(trackingNumber);
 

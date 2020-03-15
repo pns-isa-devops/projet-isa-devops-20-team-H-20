@@ -13,4 +13,9 @@ public class CompletedDeliveryState extends DeliveryState {
     public String getStatus() {
         return "Delivery already shipped at " + shippedAt.toString();
     }
+
+    @Override
+    public boolean isCompleted() {
+        return true;
+    }
 }

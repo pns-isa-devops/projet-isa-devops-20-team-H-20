@@ -13,4 +13,9 @@ public class InFlightDeliveryState extends DeliveryState {
     public String getStatus() {
         return "Delivery is shipped since " + shippedAt.toString();
     }
+
+    @Override
+    public boolean isCompleted() {
+        return false;
+    }
 }
