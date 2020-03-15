@@ -7,9 +7,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for deletePackage complex type.
+ * <p>Classe Java pour deletePackage complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
  * &lt;complexType name="deletePackage"&gt;
@@ -34,7 +34,7 @@ public class DeletePackage {
     protected String packageTrackingNumber;
 
     /**
-     * Gets the value of the packageTrackingNumber property.
+     * Obtient la valeur de la propriété packageTrackingNumber.
      * 
      * @return
      *     possible object is
@@ -46,7 +46,7 @@ public class DeletePackage {
     }
 
     /**
-     * Sets the value of the packageTrackingNumber property.
+     * Définit la valeur de la propriété packageTrackingNumber.
      * 
      * @param value
      *     allowed object is

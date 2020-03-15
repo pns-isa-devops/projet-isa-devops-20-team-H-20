@@ -7,9 +7,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for removeDrone complex type.
+ * <p>Classe Java pour removeDrone complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
  * &lt;complexType name="removeDrone"&gt;
@@ -34,7 +34,7 @@ public class RemoveDrone {
     protected int id;
 
     /**
-     * Gets the value of the id property.
+     * Obtient la valeur de la propriété id.
      * 
      */
     public int getId() {
@@ -42,7 +42,7 @@ public class RemoveDrone {
     }
 
     /**
-     * Sets the value of the id property.
+     * Définit la valeur de la propriété id.
      * 
      */
     public void setId(int value) {

@@ -7,9 +7,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for delivery complex type.
+ * <p>Classe Java pour delivery complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
  * &lt;complexType name="delivery"&gt;
@@ -43,7 +43,7 @@ public class Delivery {
     protected DeliveryState state;
 
     /**
-     * Gets the value of the dateTimeToShip property.
+     * Obtient la valeur de la propriété dateTimeToShip.
      * 
      * @return
      *     possible object is
@@ -55,7 +55,7 @@ public class Delivery {
     }
 
     /**
-     * Sets the value of the dateTimeToShip property.
+     * Définit la valeur de la propriété dateTimeToShip.
      * 
      * @param value
      *     allowed object is
@@ -67,7 +67,7 @@ public class Delivery {
     }
 
     /**
-     * Gets the value of the distance property.
+     * Obtient la valeur de la propriété distance.
      * 
      */
     public float getDistance() {
@@ -75,7 +75,7 @@ public class Delivery {
     }
 
     /**
-     * Sets the value of the distance property.
+     * Définit la valeur de la propriété distance.
      * 
      */
     public void setDistance(float value) {
@@ -83,7 +83,7 @@ public class Delivery {
     }
 
     /**
-     * Gets the value of the flightTime property.
+     * Obtient la valeur de la propriété flightTime.
      * 
      */
     public float getFlightTime() {
@@ -91,7 +91,7 @@ public class Delivery {
     }
 
     /**
-     * Sets the value of the flightTime property.
+     * Définit la valeur de la propriété flightTime.
      * 
      */
     public void setFlightTime(float value) {
@@ -99,7 +99,7 @@ public class Delivery {
     }
 
     /**
-     * Gets the value of the state property.
+     * Obtient la valeur de la propriété state.
      * 
      * @return
      *     possible object is
@@ -111,7 +111,7 @@ public class Delivery {
     }
 
     /**
-     * Sets the value of the state property.
+     * Définit la valeur de la propriété state.
      * 
      * @param value
      *     allowed object is

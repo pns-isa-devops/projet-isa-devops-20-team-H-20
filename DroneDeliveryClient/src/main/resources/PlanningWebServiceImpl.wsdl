@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<wsdl:definitions name="PlanningWebServiceImplService" targetNamespace="http://webservices.teamH.dd.isa.polytech.unice.fr/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://webservices.teamH.dd.isa.polytech.unice.fr/" xmlns:ns2="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/accounting/planning" xmlns:ns1="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/planning" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+<wsdl:definitions name="PlanningWebServiceImplService" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/planning" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/planning" xmlns:ns2="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/accounting/planning" xmlns:ns1="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/planning" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
   <wsdl:types>
 <xs:schema xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/planning" xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/planning">
   <xs:element name="getCompleteDeliveryPlanning" type="tns:getCompleteDeliveryPlanning"/>
@@ -130,7 +130,7 @@
   </wsdl:binding>
   <wsdl:service name="PlanningWebServiceImplService">
     <wsdl:port name="PlanningWebServiceImplPort" binding="ns1:PlanningWebServiceImplServiceSoapBinding">
-      <soap:address location="http://localhost:9090/PlanningWebServiceImplPort"/>
+      <soap:address location="http://localhost:8080/drone-delivery-backend/PlanningWS"/>
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

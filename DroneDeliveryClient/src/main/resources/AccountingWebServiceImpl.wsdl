@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<wsdl:definitions name="AccountingWebServiceImplService" targetNamespace="http://webservices.teamH.dd.isa.polytech.unice.fr/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://webservices.teamH.dd.isa.polytech.unice.fr/" xmlns:ns2="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/package" xmlns:ns1="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/accounting" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+<wsdl:definitions name="AccountingWebServiceImplService" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/accounting" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/accounting" xmlns:ns2="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/package" xmlns:ns1="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/accounting" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
   <wsdl:types>
 <xs:schema xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/accounting" xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/accounting">
   <xs:element name="findAllUnpaidInvoices" type="tns:findAllUnpaidInvoices"/>
@@ -273,8 +273,8 @@
     </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="AccountingWebServiceImplService">
-    <wsdl:port name="AccountingWebServiceImplPort" binding="ns1:AccountingWebServiceImplServiceSoapBinding">
-      <soap:address location="http://localhost:9090/AccountingWebServiceImplPort"/>
+    <wsdl:port name="AccountingWebServiceImplPort" binding="tns:AccountingWebServiceImplServiceSoapBinding">
+      <soap:address location="http://localhost:8080/drone-delivery-backend/AccountingWS"/>
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

@@ -7,9 +7,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for editPackage complex type.
+ * <p>Classe Java pour editPackage complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
  * &lt;complexType name="editPackage"&gt;
@@ -43,7 +43,7 @@ public class EditPackage {
     protected String destination;
 
     /**
-     * Gets the value of the packageTrackingNumber property.
+     * Obtient la valeur de la propriété packageTrackingNumber.
      * 
      * @return
      *     possible object is
@@ -55,7 +55,7 @@ public class EditPackage {
     }
 
     /**
-     * Sets the value of the packageTrackingNumber property.
+     * Définit la valeur de la propriété packageTrackingNumber.
      * 
      * @param value
      *     allowed object is
@@ -67,7 +67,7 @@ public class EditPackage {
     }
 
     /**
-     * Gets the value of the supplierName property.
+     * Obtient la valeur de la propriété supplierName.
      * 
      * @return
      *     possible object is
@@ -79,7 +79,7 @@ public class EditPackage {
     }
 
     /**
-     * Sets the value of the supplierName property.
+     * Définit la valeur de la propriété supplierName.
      * 
      * @param value
      *     allowed object is
@@ -91,7 +91,7 @@ public class EditPackage {
     }
 
     /**
-     * Gets the value of the weight property.
+     * Obtient la valeur de la propriété weight.
      * 
      */
     public float getWeight() {
@@ -99,7 +99,7 @@ public class EditPackage {
     }
 
     /**
-     * Sets the value of the weight property.
+     * Définit la valeur de la propriété weight.
      * 
      */
     public void setWeight(float value) {
@@ -107,7 +107,7 @@ public class EditPackage {
     }
 
     /**
-     * Gets the value of the destination property.
+     * Obtient la valeur de la propriété destination.
      * 
      * @return
      *     possible object is
@@ -119,7 +119,7 @@ public class EditPackage {
     }
 
     /**
-     * Sets the value of the destination property.
+     * Définit la valeur de la propriété destination.
      * 
      * @param value
      *     allowed object is

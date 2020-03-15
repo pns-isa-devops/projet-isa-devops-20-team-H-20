@@ -28,7 +28,6 @@ public class ObjectFactory {
     private final static QName _GetCompleteDeliveryPlanningResponse_QNAME = new QName("http://www.polytech.unice.fr/si/4a/isa/dd/team-h/planning", "getCompleteDeliveryPlanningResponse");
     private final static QName _PlanDelivery_QNAME = new QName("http://www.polytech.unice.fr/si/4a/isa/dd/team-h/planning", "planDelivery");
     private final static QName _PlanDeliveryResponse_QNAME = new QName("http://www.polytech.unice.fr/si/4a/isa/dd/team-h/planning", "planDeliveryResponse");
-    private final static QName _UnknownDroneException_QNAME = new QName("http://www.polytech.unice.fr/si/4a/isa/dd/team-h/planning", "UnknownDroneException");
     private final static QName _UnknownPackageException_QNAME = new QName("http://www.polytech.unice.fr/si/4a/isa/dd/team-h/planning", "UnknownPackageException");
 
     /**
@@ -68,14 +67,6 @@ public class ObjectFactory {
      */
     public PlanDeliveryResponse createPlanDeliveryResponse() {
         return new PlanDeliveryResponse();
-    }
-
-    /**
-     * Create an instance of {@link UnknownDroneException }
-     * 
-     */
-    public UnknownDroneException createUnknownDroneException() {
-        return new UnknownDroneException();
     }
 
     /**
@@ -144,15 +135,6 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://www.polytech.unice.fr/si/4a/isa/dd/team-h/planning", name = "planDeliveryResponse")
     public JAXBElement<PlanDeliveryResponse> createPlanDeliveryResponse(PlanDeliveryResponse value) {
         return new JAXBElement<PlanDeliveryResponse>(_PlanDeliveryResponse_QNAME, PlanDeliveryResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link UnknownDroneException }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://www.polytech.unice.fr/si/4a/isa/dd/team-h/planning", name = "UnknownDroneException")
-    public JAXBElement<UnknownDroneException> createUnknownDroneException(UnknownDroneException value) {
-        return new JAXBElement<UnknownDroneException>(_UnknownDroneException_QNAME, UnknownDroneException.class, null, value);
     }
 
     /**

@@ -8,9 +8,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for UnknownPackageException complex type.
+ * <p>Classe Java pour UnknownPackageException complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
  * &lt;complexType name="UnknownPackageException"&gt;
@@ -39,7 +39,7 @@ public class UnknownPackageException {
     protected String message;
 
     /**
-     * Gets the value of the trackingNumber property.
+     * Obtient la valeur de la propriété trackingNumber.
      * 
      * @return
      *     possible object is
@@ -51,7 +51,7 @@ public class UnknownPackageException {
     }
 
     /**
-     * Sets the value of the trackingNumber property.
+     * Définit la valeur de la propriété trackingNumber.
      * 
      * @param value
      *     allowed object is
@@ -63,7 +63,7 @@ public class UnknownPackageException {
     }
 
     /**
-     * Gets the value of the message property.
+     * Obtient la valeur de la propriété message.
      * 
      * @return
      *     possible object is
@@ -75,7 +75,7 @@ public class UnknownPackageException {
     }
 
     /**
-     * Sets the value of the message property.
+     * Définit la valeur de la propriété message.
      * 
      * @param value
      *     allowed object is

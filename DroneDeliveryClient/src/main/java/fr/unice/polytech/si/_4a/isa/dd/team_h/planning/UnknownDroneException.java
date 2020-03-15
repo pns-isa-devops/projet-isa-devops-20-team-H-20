@@ -8,9 +8,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for UnknownDroneException complex type.
+ * <p>Classe Java pour UnknownDroneException complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
  * &lt;complexType name="UnknownDroneException"&gt;
@@ -39,7 +39,7 @@ public class UnknownDroneException {
     protected String message;
 
     /**
-     * Gets the value of the id property.
+     * Obtient la valeur de la propriété id.
      * 
      * @return
      *     possible object is
@@ -51,7 +51,7 @@ public class UnknownDroneException {
     }
 
     /**
-     * Sets the value of the id property.
+     * Définit la valeur de la propriété id.
      * 
      * @param value
      *     allowed object is
@@ -63,7 +63,7 @@ public class UnknownDroneException {
     }
 
     /**
-     * Gets the value of the message property.
+     * Obtient la valeur de la propriété message.
      * 
      * @return
      *     possible object is
@@ -75,7 +75,7 @@ public class UnknownDroneException {
     }
 
     /**
-     * Sets the value of the message property.
+     * Définit la valeur de la propriété message.
      * 
      * @param value
      *     allowed object is

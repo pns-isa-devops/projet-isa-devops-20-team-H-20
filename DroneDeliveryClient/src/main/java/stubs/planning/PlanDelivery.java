@@ -8,16 +8,15 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for planDelivery complex type.
+ * <p>Classe Java pour planDelivery complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
  * &lt;complexType name="planDelivery"&gt;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element name="drone-id" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
  *         &lt;element name="tracking-number" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *         &lt;element name="shipping-time" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *       &lt;/sequence&gt;
@@ -30,37 +29,18 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "planDelivery", propOrder = {
-    "droneId",
     "trackingNumber",
     "shippingTime"
 })
 public class PlanDelivery {
 
-    @XmlElement(name = "drone-id")
-    protected int droneId;
     @XmlElement(name = "tracking-number")
     protected String trackingNumber;
     @XmlElement(name = "shipping-time")
     protected String shippingTime;
 
     /**
-     * Gets the value of the droneId property.
-     * 
-     */
-    public int getDroneId() {
-        return droneId;
-    }
-
-    /**
-     * Sets the value of the droneId property.
-     * 
-     */
-    public void setDroneId(int value) {
-        this.droneId = value;
-    }
-
-    /**
-     * Gets the value of the trackingNumber property.
+     * Obtient la valeur de la propriété trackingNumber.
      * 
      * @return
      *     possible object is
@@ -72,7 +52,7 @@ public class PlanDelivery {
     }
 
     /**
-     * Sets the value of the trackingNumber property.
+     * Définit la valeur de la propriété trackingNumber.
      * 
      * @param value
      *     allowed object is
@@ -84,7 +64,7 @@ public class PlanDelivery {
     }
 
     /**
-     * Gets the value of the shippingTime property.
+     * Obtient la valeur de la propriété shippingTime.
      * 
      * @return
      *     possible object is
@@ -96,7 +76,7 @@ public class PlanDelivery {
     }
 
     /**
-     * Sets the value of the shippingTime property.
+     * Définit la valeur de la propriété shippingTime.
      * 
      * @param value
      *     allowed object is
