@@ -82,32 +82,31 @@ public class DeliveryPlanningBean implements DeliveryFinder, DeliveryPlanner
     @Override
     public boolean planDelivery(Package p, LocalDateTime shippingTime) throws DeliveryDistanceException {
         Optional<Drone> od = availabilityProcessor.getAvailableDroneAtTime(findAllPlannedDeliveries(), shippingTime);
-        if(od.isPresent()){
-            Delivery de = new Delivery();
 
-            try {
-                de.setDistance(mapService.getDistanceTo(p.getDestination()));
-            } catch (ExternalPartnerException e) {
-                log.log(Level.INFO, "Error while exchanging with external partner", e);
-                throw new DeliveryDistanceException(p.getTrackingNumber(), p.getDestination(), e);
-            }
-
-            de.setFlightTime(de.getDistance() / od.get().getSpeed());
-            de.setState(new NotSentDeliveryState());
-            de.setPackage(p);
-            de.setDateTimeToShip(shippingTime);
-
-            Optional<PlanningEntry> ope = getPlanningEntryForDrone(od.get());
-            if(ope.isPresent()){
-                ope.get().addDelivery(de);
-            }else{
-                PlanningEntry newPE = new PlanningEntry(od.get());
-                newPE.addDelivery(de);
-                planningEntries.add(newPE);
-            }
-            return true;
-        }else{
+        if(!od.isPresent())
             return false;
+
+        Delivery de = new Delivery();
+
+        try {
+            de.setDistance(mapService.getDistanceTo(p.getDestination()));
+        } catch (ExternalPartnerException e) {
+            log.log(Level.INFO, "Error while exchanging with external partner", e);
+            throw new DeliveryDistanceException(p.getTrackingNumber(), p.getDestination(), e);
+        }
+
+        de.setFlightTime(de.getDistance() / od.get().getSpeed());
+        de.setState(new NotSentDeliveryState());
+        de.setPackage(p);
+        de.setDateTimeToShip(shippingTime);
+
+        Optional<PlanningEntry> ope = getPlanningEntryForDrone(od.get());
+        if(ope.isPresent()){
+            return ope.get().addDelivery(de);
+        }else{
+            PlanningEntry newPE = new PlanningEntry(od.get());
+            newPE.addDelivery(de);
+            return planningEntries.add(newPE);
         }
     }
 

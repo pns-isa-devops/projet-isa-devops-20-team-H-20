@@ -1,5 +1,6 @@
 package fr.unice.polytech.isa.dd.teamH.webservices;
 
+import fr.unice.polytech.isa.dd.teamH.exceptions.AlreadyExistingDroneException;
 import fr.unice.polytech.isa.dd.teamH.exceptions.UnknownDroneException;
 import fr.unice.polytech.isa.dd.teamH.interfaces.DroneFleetManagement;
 
@@ -14,7 +15,7 @@ public class DroneFleetManagementWebServiceImpl implements DroneFleetManagementW
     private DroneFleetManagement fleet;
 
     @Override
-    public void addDrone(int id, float weightCapacity) {
+    public void addDrone(int id, float weightCapacity) throws AlreadyExistingDroneException {
         fleet.addDrone(id, weightCapacity);
     }
 

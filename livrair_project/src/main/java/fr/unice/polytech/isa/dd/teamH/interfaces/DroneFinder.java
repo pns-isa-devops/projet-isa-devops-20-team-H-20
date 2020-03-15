@@ -6,6 +6,6 @@ import java.util.Set;
 import java.util.Optional;
 
 public interface DroneFinder {
-    Optional<Drone> findById(int id);
+    Optional<Drone> findDroneById(int id);
     Set<Drone> findReadyDrones();
 }

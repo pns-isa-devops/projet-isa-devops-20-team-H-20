@@ -48,7 +48,7 @@
   <xs:element name="AlreadyExistingPackageException" type="tns:AlreadyExistingPackageException"/>
   <xs:complexType name="AlreadyExistingPackageException">
     <xs:sequence>
-      <xs:element name="conflictingTrackingNumber" nillable="true" type="xs:string"/>
+      <xs:element name="conflictingId" nillable="true" type="xs:string"/>
       <xs:element minOccurs="0" name="message" type="xs:string"/>
     </xs:sequence>
   </xs:complexType>

@@ -9,6 +9,7 @@ public class Drone implements Serializable {
     private int battery;
     private float weightCapacity;
     private DroneState state;
+
     private final float DRONE_SPEED = (float)(10.0/60.0);
 
     public Drone() {

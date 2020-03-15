@@ -2,6 +2,8 @@ package fr.unice.polytech.isa.dd.teamH.components;
 
 import fr.unice.polytech.isa.dd.teamH.entities.Package;
 import fr.unice.polytech.isa.dd.teamH.entities.Supplier;
+import fr.unice.polytech.isa.dd.teamH.exceptions.AlreadyExistingPackageException;
+import fr.unice.polytech.isa.dd.teamH.exceptions.UnknownPackageException;
 import fr.unice.polytech.isa.dd.teamH.interfaces.PackageFinder;
 import fr.unice.polytech.isa.dd.teamH.interfaces.PackageRegistration;
 
@@ -18,7 +20,10 @@ public class PackageRegistryBean implements PackageRegistration, PackageFinder {
     private Set<Package> packages = new HashSet<>();
 
     @Override
-    public void register(String trackingId, Supplier supplier, float weight, String destinationAddress){
+    public void register(String trackingId, Supplier supplier, float weight, String destinationAddress) throws AlreadyExistingPackageException {
+        if(findPackageByTrackingNumber(trackingId).isPresent())
+            throw new AlreadyExistingPackageException(trackingId);
+
         Package aPackage = new Package();
 
         aPackage.setDestination(destinationAddress);
@@ -30,8 +35,14 @@ public class PackageRegistryBean implements PackageRegistration, PackageFinder {
     }
 
     @Override
-    public void edit(Package aPackage, Supplier s, float weight, String destinationAddress){
-        Package p = new Package(); // TODO
+    public void edit(String trackingNumber, Supplier s, float weight, String destinationAddress) throws UnknownPackageException {
+        Optional<Package> op = findPackageByTrackingNumber(trackingNumber);
+
+        if(!op.isPresent())
+            throw new UnknownPackageException(trackingNumber);
+
+        Package p = op.get();
+
         p.setSupplier(s);
         p.setWeight(weight);
         p.setDestination(destinationAddress);
