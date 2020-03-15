@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<wsdl:definitions name="CommentPostingWebServiceImplService" targetNamespace="http://webservices.teamH.dd.isa.polytech.unice.fr/rating" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://webservices.teamH.dd.isa.polytech.unice.fr/rating" xmlns:ns2="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/accounting" xmlns:ns1="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/rating" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+<wsdl:definitions name="CommentPostingWebServiceImplService" targetNamespace="http://webservices.teamH.dd.isa.polytech.unice.fr/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://webservices.teamH.dd.isa.polytech.unice.fr/" xmlns:ns2="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/accounting" xmlns:ns1="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/rating" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
   <wsdl:types>
 <xs:schema xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/rating" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/rating" version="1.0">
 
@@ -69,7 +69,7 @@
   </wsdl:binding>
   <wsdl:service name="CommentPostingWebServiceImplService">
     <wsdl:port name="CommentPostingWebServiceImplPort" binding="ns1:CommentPostingWebServiceImplServiceSoapBinding">
-      <soap:address location="http://localhost:8080/CommentPostingWebServiceImplPort"/>
+      <soap:address location="http://localhost:9090/CommentPostingWebServiceImplPort"/>
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>
