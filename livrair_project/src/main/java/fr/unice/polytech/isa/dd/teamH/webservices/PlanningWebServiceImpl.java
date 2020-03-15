@@ -3,6 +3,7 @@ package fr.unice.polytech.isa.dd.teamH.webservices;
 import fr.unice.polytech.isa.dd.teamH.entities.Package;
 import fr.unice.polytech.isa.dd.teamH.entities.deliveryplanning.PlanningEntry;
 import fr.unice.polytech.isa.dd.teamH.entities.drone.Drone;
+import fr.unice.polytech.isa.dd.teamH.exceptions.DeliveryDistanceException;
 import fr.unice.polytech.isa.dd.teamH.exceptions.UnknownDroneException;
 import fr.unice.polytech.isa.dd.teamH.exceptions.UnknownPackageException;
 import fr.unice.polytech.isa.dd.teamH.interfaces.DeliveryPlanner;
@@ -37,8 +38,7 @@ public class PlanningWebServiceImpl implements PlanningWebService
     }
 
     @Override
-    public void planDelivery(int droneID, String trackingNumber, String shippingTime) throws UnknownPackageException, UnknownDroneException
-    {
+    public void planDelivery(int droneID, String trackingNumber, String shippingTime) throws UnknownPackageException, UnknownDroneException, DeliveryDistanceException {
         Optional<Drone> d = droneFinder.findById(droneID);
         if (!d.isPresent())
             throw new UnknownDroneException(Integer.toString(droneID));

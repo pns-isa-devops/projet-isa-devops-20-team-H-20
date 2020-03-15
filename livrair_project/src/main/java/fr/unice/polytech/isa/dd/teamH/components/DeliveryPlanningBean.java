@@ -32,15 +32,21 @@ public class DeliveryPlanningBean implements DeliveryFinder, DeliveryPlanner
     private Set<PlanningEntry> planningEntries = new HashSet<>();
 
     @EJB
-    AvailabilityProcessorBean availabilityProcessor;
+    private AvailabilityProcessorBean availabilityProcessor;
 
     private MapAPI mapService;
 
 
     @Override
-    public Delivery findDeliveryById(String id)
+    public Optional<Delivery> findDeliveryById(String id)
     {
-        return null;
+        for(PlanningEntry pe : planningEntries){
+            for(Delivery d : pe.getDeliveries()){
+                if(d.getaPackage().getTrackingNumber().equals(id))
+                    return Optional.of(d);
+            }
+        }
+        return Optional.empty();
     }
 
     @Override
