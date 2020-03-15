@@ -2,10 +2,11 @@
 <project>
   <modelVersion>4.0.0</modelVersion>
   <groupId>fr.polytech.team.h</groupId>
-  <artifactId>DroneDelivery</artifactId>
+  <artifactId>drone-delivery-backend</artifactId>
   <version>1.0</version>
 
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <versions.java>1.8</versions.java>
         <versions.maven-compiler>3.8.0</versions.maven-compiler>
         <versions.json>20160810</versions.json>
@@ -15,13 +16,15 @@
         <versions.tomee>7.0.2</versions.tomee>
         <versions.openjpa>2.4.1</versions.openjpa>
         <versions.myface>2.2.10</versions.myface>
+        <!-- Testing dependencies -->
+        <versions.junit>4.12</versions.junit>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.12</version>
+            <version>${versions.junit}</version>
             <scope>test</scope>
         </dependency>
         <!-- Dependencies for the OpenEJB framework (provided at runtime by the app server) -->
@@ -72,6 +75,8 @@
     </dependencies>
 
     <build>
+        <finalName>drone-delivery-backend</finalName>
+        <defaultGoal>package</defaultGoal>
     	<sourceDirectory>src/main/java</sourceDirectory>
    		<testSourceDirectory>src/test</testSourceDirectory>
         <plugins>
@@ -80,8 +85,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${versions.maven-compiler}</version>
                 <configuration>
-                    <source>8</source>
-                    <target>8</target>
+                    <source>${versions.java}</source>
+                    <target>${versions.java}</target>
                 </configuration>
             </plugin>
             <plugin>

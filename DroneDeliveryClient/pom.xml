@@ -33,6 +33,7 @@
                         <phase>generate-sources</phase>
                         <configuration>
                             <sourceRoot>${basedir}/src/main/java/</sourceRoot>
+                            <!-- ADD WSDL FILES TO THE CONFIG BELOW -->
                             <wsdlOptions>
                                 <wsdlOption>
                                     <wsdl>${basedir}/src/main/resources/PlanningWebServiceImpl.wsdl</wsdl>
