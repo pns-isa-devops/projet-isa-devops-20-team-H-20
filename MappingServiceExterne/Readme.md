@@ -1,4 +1,3 @@
-# To run the server
+# Note
 
-`csc -out:server.exe -recurse:*.cs`
-`mono .\server.exe`
+You need to execute Visual studio as administrator to run the server
