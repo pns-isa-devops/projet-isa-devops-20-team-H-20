@@ -1,9 +1,0 @@
-C:\Users\user\Desktop\mono demo\src\bin\Debug\ConsoleApplication.exe.config
-C:\Users\user\Desktop\mono demo\src\bin\Debug\ConsoleApplication.exe
-C:\Users\user\Desktop\mono demo\src\bin\Debug\ConsoleApplication.pdb
-C:\Users\user\Desktop\mono demo\src\bin\Debug\Newtonsoft.Json.dll
-C:\Users\user\Desktop\mono demo\src\bin\Debug\Newtonsoft.Json.xml
-C:\Users\user\Desktop\mono demo\src\obj\x86\Debug\MappingSvc.csprojAssemblyReference.cache
-C:\Users\user\Desktop\mono demo\src\obj\x86\Debug\MappingSvc.csproj.CopyComplete
-C:\Users\user\Desktop\mono demo\src\obj\x86\Debug\ConsoleApplication.exe
-C:\Users\user\Desktop\mono demo\src\obj\x86\Debug\ConsoleApplication.pdb
