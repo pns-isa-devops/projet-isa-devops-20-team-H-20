@@ -39,7 +39,7 @@ public class PackageRegistrationWebServiceImpl implements PackageRegistrationWeb
 
     @Override
     public void editPackage(String packageTrackingNumber, String supplierName, float weight, String destination) throws UnknownSupplierException, UnknownPackageException {
-        register.edit(readPackage(packageTrackingNumber), readSupplier(supplierName), weight, destination);
+        register.edit(packageTrackingNumber, readSupplier(supplierName), weight, destination);
     }
 
     @Override
