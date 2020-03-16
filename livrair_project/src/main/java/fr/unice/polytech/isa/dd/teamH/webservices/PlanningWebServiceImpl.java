@@ -1,11 +1,12 @@
 package fr.unice.polytech.isa.dd.teamH.webservices;
 
 import fr.unice.polytech.isa.dd.teamH.entities.Package;
+import fr.unice.polytech.isa.dd.teamH.entities.delivery.Delivery;
+import fr.unice.polytech.isa.dd.teamH.entities.delivery.DeliveryStateFactory;
 import fr.unice.polytech.isa.dd.teamH.entities.deliveryplanning.PlanningEntry;
 import fr.unice.polytech.isa.dd.teamH.entities.drone.Drone;
-import fr.unice.polytech.isa.dd.teamH.exceptions.DeliveryDistanceException;
-import fr.unice.polytech.isa.dd.teamH.exceptions.UnknownDroneException;
-import fr.unice.polytech.isa.dd.teamH.exceptions.UnknownPackageException;
+import fr.unice.polytech.isa.dd.teamH.exceptions.*;
+import fr.unice.polytech.isa.dd.teamH.interfaces.DeliveryFinder;
 import fr.unice.polytech.isa.dd.teamH.interfaces.DeliveryPlanner;
 import fr.unice.polytech.isa.dd.teamH.interfaces.DroneFinder;
 import fr.unice.polytech.isa.dd.teamH.interfaces.PackageFinder;
@@ -22,7 +23,7 @@ import java.util.Set;
 public class PlanningWebServiceImpl implements PlanningWebService
 {
     @EJB
-    private DroneFinder droneFinder;
+    private DeliveryFinder deliveryFinder;
 
     @EJB
     private PackageFinder packageFinder;
@@ -46,5 +47,14 @@ public class PlanningWebServiceImpl implements PlanningWebService
         LocalDateTime t = LocalDateTime.parse(shippingTime);
 
         deliveryPlanner.planDelivery(p.get(), t);
+    }
+
+    @Override
+    public void editDeliveryStatus(String id, String status) throws UnknownDeliveryStateException, UnknownDeliveryException {
+        Optional<Delivery> d = deliveryFinder.findDeliveryById(id);
+        if(!d.isPresent()) {
+            throw new UnknownDeliveryException();
+        }
+        d.get().setState(DeliveryStateFactory.getInstance().createState(status));
     }
 }

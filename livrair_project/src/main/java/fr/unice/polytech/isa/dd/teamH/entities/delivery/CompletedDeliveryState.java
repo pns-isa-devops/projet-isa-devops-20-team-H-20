@@ -6,6 +6,7 @@ public class CompletedDeliveryState extends DeliveryState {
     private LocalDateTime shippedAt;
 
     public CompletedDeliveryState(){
+        name = "completed";
         this.shippedAt = LocalDateTime.now();
     }
 
@@ -17,5 +18,15 @@ public class CompletedDeliveryState extends DeliveryState {
     @Override
     public boolean isCompleted() {
         return true;
+    }
+
+    @Override
+    boolean is(String name) {
+        return name.equals(this.name);
+    }
+
+    @Override
+    public DeliveryState clone() {
+        return new CompletedDeliveryState();
     }
 }

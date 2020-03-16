@@ -1,6 +1,8 @@
 package fr.unice.polytech.isa.dd.teamH.entities.drone;
 
-public abstract class DroneState {
+public abstract class DroneState implements Cloneable {
+    protected String name;
+
     /**
      * Indicate if the drone is available for a delivery
      * @return a boolean, true if available else false
@@ -16,4 +18,8 @@ public abstract class DroneState {
     public abstract int getRemainingTime();
 
     public abstract String getStatus();
+
+    abstract boolean is(String name);
+
+    public abstract DroneState clone();
 }

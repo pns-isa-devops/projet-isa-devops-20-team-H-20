@@ -1,9 +1,7 @@
 package fr.unice.polytech.isa.dd.teamH.webservices;
 
 import fr.unice.polytech.isa.dd.teamH.entities.deliveryplanning.PlanningEntry;
-import fr.unice.polytech.isa.dd.teamH.exceptions.DeliveryDistanceException;
-import fr.unice.polytech.isa.dd.teamH.exceptions.UnknownDroneException;
-import fr.unice.polytech.isa.dd.teamH.exceptions.UnknownPackageException;
+import fr.unice.polytech.isa.dd.teamH.exceptions.*;
 
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
@@ -21,4 +19,7 @@ public interface PlanningWebService
     @WebMethod
     void planDelivery(@WebParam(name="tracking-number") String trackingNumber,
                       @WebParam(name="shipping-time") String shippingTime) throws UnknownPackageException, DeliveryDistanceException;
+
+    @WebMethod
+    void editDeliveryStatus(@WebParam(name="id") String id, @WebParam(name="status") String status) throws UnknownDeliveryStateException, UnknownDeliveryException;
 }
