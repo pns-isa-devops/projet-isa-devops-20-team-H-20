@@ -1,21 +1,12 @@
 using System;
-using System.IO;
-using System.Threading;
+
 using System.ServiceModel;
 using System.ServiceModel.Web;
 
 using Partner.Service;
 
-/**
- * References:
- * http://badger.developpez.com/tutoriels/dotnet/web-service-rest-avec-wcf-3-5/#LII-B
- *  - mono server.exe /standalone  => start the server in standalone mode
- *  - mono server.exe /port 9191   => starts the server on port 9191
- * Default is interactive mode on port 9090. Options can obviously be combined
- **/
 public class Server
 {
-  // Attirbutes to support port selection and standalone mode
   private string Port = "9090";
   
 
@@ -27,7 +18,7 @@ public class Server
    */
   public void start() {
     Console.WriteLine("Starting a WCF self-hosted .Net server... ");
-    string url = "http://" + "localhost" + ":" + Port;
+    string url = "http://localhost" + ":" + Port;
 
     WebHttpBinding b = new WebHttpBinding();
     Host = new WebServiceHost(typeof(MappingService), new Uri (url));
