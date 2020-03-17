@@ -1,5 +1,7 @@
 package api;
 
+import stubs.accounting.AccountingWebService;
+import stubs.accounting.AccountingWebServiceImplService;
 import stubs.drone.DroneFleetManagementWebService;
 import stubs.drone.DroneFleetManagementWebServiceImplService;
 import stubs.packages.PackageRegistrationWebService;
@@ -14,6 +16,7 @@ public class DronePublicAPI {
     private PackageRegistrationWebService packageRegistrationWebService;
     private DroneFleetManagementWebService droneFleetManagementWebService;
     private PlanningWebService planningWebService;
+    private AccountingWebService accountingWebService;
 
     public PackageRegistrationWebService getPackageRegistrationWebService() {
         return packageRegistrationWebService;
@@ -25,6 +28,10 @@ public class DronePublicAPI {
 
     public DroneFleetManagementWebService getDroneFleetManagementWebService() {
         return droneFleetManagementWebService;
+    }
+
+    public AccountingWebService getAccountingWebService() {
+        return accountingWebService;
     }
 
     private void initPackageRegistration(String host, String port){
@@ -51,11 +58,20 @@ public class DronePublicAPI {
         ((BindingProvider) planningWebService).getRequestContext().put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY, address);
     }
 
+    private void initAccounting(String host, String port){
+        URL wsdlLocation = DronePublicAPI.class.getResource("/AccountingWebServiceImpl.wsdl");
+        AccountingWebServiceImplService factory = new AccountingWebServiceImplService(wsdlLocation);
+        this.accountingWebService = factory.getAccountingWebServiceImplPort();
+        String address = "http://" + host + ":" + port + "/drone-delivery-backend/webservices/AccountingWS";
+        ((BindingProvider) accountingWebService).getRequestContext().put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY, address);
+    }
+
     public DronePublicAPI(String host, String port) {
         initPackageRegistration(host, port);
         initDroneFleet(host, port);
         initDroneFleet(host, port);
         initPlanning(host, port);
+        initAccounting(host, port);
     }
 
 

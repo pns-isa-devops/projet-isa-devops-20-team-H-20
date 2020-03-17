@@ -35,7 +35,7 @@ public class ObjectFactory {
     private final static QName _GenerateInvoicesForAllSuppliers_QNAME = new QName("http://www.polytech.unice.fr/si/4a/isa/dd/team-h/accounting", "generateInvoicesForAllSuppliers");
     private final static QName _AlreadyExistingSupplierException_QNAME = new QName("http://www.polytech.unice.fr/si/4a/isa/dd/team-h/accounting", "AlreadyExistingSupplierException");
     private final static QName _GenerateInvoiceFor_QNAME = new QName("http://www.polytech.unice.fr/si/4a/isa/dd/team-h/accounting", "generateInvoiceFor");
-    private final static QName _UnknownSupplierException_QNAME = new QName("http://www.polytech.unice.fr/si/4a/isa/dd/team-h/package", "UnknownSupplierException");
+    private final static QName _UnknownSupplierException_QNAME = new QName("http://www.polytech.unice.fr/si/4a/isa/dd/team-h/packages", "UnknownSupplierException");
     private final static QName _FindAllUnpaidInvoices_QNAME = new QName("http://www.polytech.unice.fr/si/4a/isa/dd/team-h/accounting", "findAllUnpaidInvoices");
     private final static QName _FindByName_QNAME = new QName("http://www.polytech.unice.fr/si/4a/isa/dd/team-h/accounting", "findByName");
 
@@ -285,7 +285,7 @@ public class ObjectFactory {
      * Create an instance of {@link JAXBElement }{@code <}{@link UnknownSupplierException }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://www.polytech.unice.fr/si/4a/isa/dd/team-h/package", name = "UnknownSupplierException")
+    @XmlElementDecl(namespace = "http://www.polytech.unice.fr/si/4a/isa/dd/team-h/packages", name = "UnknownSupplierException")
     public JAXBElement<UnknownSupplierException> createUnknownSupplierException(UnknownSupplierException value) {
         return new JAXBElement<UnknownSupplierException>(_UnknownSupplierException_QNAME, UnknownSupplierException.class, null, value);
     }

@@ -10,7 +10,7 @@ import javax.xml.ws.WebFault;
  * Generated source version: 2.7.9
  */
 
-@WebFault(name = "UnknownSupplierException", targetNamespace = "http://www.polytech.unice.fr/si/4a/isa/dd/team-h/package")
+@WebFault(name = "UnknownSupplierException", targetNamespace = "http://www.polytech.unice.fr/si/4a/isa/dd/team-h/packages")
 public class UnknownSupplierException_Exception extends Exception {
     
     private stubs.accounting.UnknownSupplierException unknownSupplierException;

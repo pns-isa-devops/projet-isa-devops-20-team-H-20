@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<wsdl:definitions name="DroneFleetManagementWebServiceImplService" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/drones" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/drones" xmlns:ns2="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/planning" xmlns:ns1="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/drone" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+<wsdl:definitions name="DroneFleetManagementWebServiceImplService" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/drones" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/drones" xmlns:ns2="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/planning" xmlns:ns1="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/drones" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
   <wsdl:types>
 <xs:schema xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/drones" xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/drones">
   <xs:element name="addDrone" type="tns:addDrone"/>
@@ -65,7 +65,7 @@
     </xs:sequence>
   </xs:complexType>
 </xs:schema>
-<xsd:schema xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/drone" xmlns:xsd="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/drone">
+<xsd:schema xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/drones" xmlns:xsd="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/drones">
   <xsd:element name="AlreadyExistingDroneException" type="tns:AlreadyExistingDroneException"/>
   <xsd:complexType name="AlreadyExistingDroneException">
     <xsd:sequence>

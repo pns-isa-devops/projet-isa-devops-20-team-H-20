@@ -24,14 +24,14 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _DeletePackage_QNAME = new QName("http://www.polytech.unice.fr/si/4a/isa/dd/team-h/package", "deletePackage");
-    private final static QName _DeletePackageResponse_QNAME = new QName("http://www.polytech.unice.fr/si/4a/isa/dd/team-h/package", "deletePackageResponse");
-    private final static QName _EditPackage_QNAME = new QName("http://www.polytech.unice.fr/si/4a/isa/dd/team-h/package", "editPackage");
-    private final static QName _EditPackageResponse_QNAME = new QName("http://www.polytech.unice.fr/si/4a/isa/dd/team-h/package", "editPackageResponse");
-    private final static QName _RegisterPackage_QNAME = new QName("http://www.polytech.unice.fr/si/4a/isa/dd/team-h/package", "registerPackage");
-    private final static QName _RegisterPackageResponse_QNAME = new QName("http://www.polytech.unice.fr/si/4a/isa/dd/team-h/package", "registerPackageResponse");
-    private final static QName _UnknownSupplierException_QNAME = new QName("http://www.polytech.unice.fr/si/4a/isa/dd/team-h/package", "UnknownSupplierException");
-    private final static QName _AlreadyExistingPackageException_QNAME = new QName("http://www.polytech.unice.fr/si/4a/isa/dd/team-h/package", "AlreadyExistingPackageException");
+    private final static QName _DeletePackage_QNAME = new QName("http://www.polytech.unice.fr/si/4a/isa/dd/team-h/packages", "deletePackage");
+    private final static QName _DeletePackageResponse_QNAME = new QName("http://www.polytech.unice.fr/si/4a/isa/dd/team-h/packages", "deletePackageResponse");
+    private final static QName _EditPackage_QNAME = new QName("http://www.polytech.unice.fr/si/4a/isa/dd/team-h/packages", "editPackage");
+    private final static QName _EditPackageResponse_QNAME = new QName("http://www.polytech.unice.fr/si/4a/isa/dd/team-h/packages", "editPackageResponse");
+    private final static QName _RegisterPackage_QNAME = new QName("http://www.polytech.unice.fr/si/4a/isa/dd/team-h/packages", "registerPackage");
+    private final static QName _RegisterPackageResponse_QNAME = new QName("http://www.polytech.unice.fr/si/4a/isa/dd/team-h/packages", "registerPackageResponse");
+    private final static QName _UnknownSupplierException_QNAME = new QName("http://www.polytech.unice.fr/si/4a/isa/dd/team-h/packages", "UnknownSupplierException");
+    private final static QName _AlreadyExistingPackageException_QNAME = new QName("http://www.polytech.unice.fr/si/4a/isa/dd/team-h/packages", "AlreadyExistingPackageException");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: stubs.packages
@@ -108,7 +108,7 @@ public class ObjectFactory {
      * Create an instance of {@link JAXBElement }{@code <}{@link DeletePackage }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://www.polytech.unice.fr/si/4a/isa/dd/team-h/package", name = "deletePackage")
+    @XmlElementDecl(namespace = "http://www.polytech.unice.fr/si/4a/isa/dd/team-h/packages", name = "deletePackage")
     public JAXBElement<DeletePackage> createDeletePackage(DeletePackage value) {
         return new JAXBElement<DeletePackage>(_DeletePackage_QNAME, DeletePackage.class, null, value);
     }
@@ -117,7 +117,7 @@ public class ObjectFactory {
      * Create an instance of {@link JAXBElement }{@code <}{@link DeletePackageResponse }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://www.polytech.unice.fr/si/4a/isa/dd/team-h/package", name = "deletePackageResponse")
+    @XmlElementDecl(namespace = "http://www.polytech.unice.fr/si/4a/isa/dd/team-h/packages", name = "deletePackageResponse")
     public JAXBElement<DeletePackageResponse> createDeletePackageResponse(DeletePackageResponse value) {
         return new JAXBElement<DeletePackageResponse>(_DeletePackageResponse_QNAME, DeletePackageResponse.class, null, value);
     }
@@ -126,7 +126,7 @@ public class ObjectFactory {
      * Create an instance of {@link JAXBElement }{@code <}{@link EditPackage }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://www.polytech.unice.fr/si/4a/isa/dd/team-h/package", name = "editPackage")
+    @XmlElementDecl(namespace = "http://www.polytech.unice.fr/si/4a/isa/dd/team-h/packages", name = "editPackage")
     public JAXBElement<EditPackage> createEditPackage(EditPackage value) {
         return new JAXBElement<EditPackage>(_EditPackage_QNAME, EditPackage.class, null, value);
     }
@@ -135,7 +135,7 @@ public class ObjectFactory {
      * Create an instance of {@link JAXBElement }{@code <}{@link EditPackageResponse }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://www.polytech.unice.fr/si/4a/isa/dd/team-h/package", name = "editPackageResponse")
+    @XmlElementDecl(namespace = "http://www.polytech.unice.fr/si/4a/isa/dd/team-h/packages", name = "editPackageResponse")
     public JAXBElement<EditPackageResponse> createEditPackageResponse(EditPackageResponse value) {
         return new JAXBElement<EditPackageResponse>(_EditPackageResponse_QNAME, EditPackageResponse.class, null, value);
     }
@@ -144,7 +144,7 @@ public class ObjectFactory {
      * Create an instance of {@link JAXBElement }{@code <}{@link RegisterPackage }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://www.polytech.unice.fr/si/4a/isa/dd/team-h/package", name = "registerPackage")
+    @XmlElementDecl(namespace = "http://www.polytech.unice.fr/si/4a/isa/dd/team-h/packages", name = "registerPackage")
     public JAXBElement<RegisterPackage> createRegisterPackage(RegisterPackage value) {
         return new JAXBElement<RegisterPackage>(_RegisterPackage_QNAME, RegisterPackage.class, null, value);
     }
@@ -153,7 +153,7 @@ public class ObjectFactory {
      * Create an instance of {@link JAXBElement }{@code <}{@link RegisterPackageResponse }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://www.polytech.unice.fr/si/4a/isa/dd/team-h/package", name = "registerPackageResponse")
+    @XmlElementDecl(namespace = "http://www.polytech.unice.fr/si/4a/isa/dd/team-h/packages", name = "registerPackageResponse")
     public JAXBElement<RegisterPackageResponse> createRegisterPackageResponse(RegisterPackageResponse value) {
         return new JAXBElement<RegisterPackageResponse>(_RegisterPackageResponse_QNAME, RegisterPackageResponse.class, null, value);
     }
@@ -162,7 +162,7 @@ public class ObjectFactory {
      * Create an instance of {@link JAXBElement }{@code <}{@link UnknownSupplierException }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://www.polytech.unice.fr/si/4a/isa/dd/team-h/package", name = "UnknownSupplierException")
+    @XmlElementDecl(namespace = "http://www.polytech.unice.fr/si/4a/isa/dd/team-h/packages", name = "UnknownSupplierException")
     public JAXBElement<UnknownSupplierException> createUnknownSupplierException(UnknownSupplierException value) {
         return new JAXBElement<UnknownSupplierException>(_UnknownSupplierException_QNAME, UnknownSupplierException.class, null, value);
     }
@@ -171,7 +171,7 @@ public class ObjectFactory {
      * Create an instance of {@link JAXBElement }{@code <}{@link AlreadyExistingPackageException }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://www.polytech.unice.fr/si/4a/isa/dd/team-h/package", name = "AlreadyExistingPackageException")
+    @XmlElementDecl(namespace = "http://www.polytech.unice.fr/si/4a/isa/dd/team-h/packages", name = "AlreadyExistingPackageException")
     public JAXBElement<AlreadyExistingPackageException> createAlreadyExistingPackageException(AlreadyExistingPackageException value) {
         return new JAXBElement<AlreadyExistingPackageException>(_AlreadyExistingPackageException_QNAME, AlreadyExistingPackageException.class, null, value);
     }
