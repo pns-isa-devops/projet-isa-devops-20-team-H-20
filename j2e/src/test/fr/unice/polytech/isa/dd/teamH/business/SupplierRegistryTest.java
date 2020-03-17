@@ -31,7 +31,8 @@ public class SupplierRegistryTest extends AbstractDroneDeliveryTest {
 
     @EJB
     private SupplierRegistration registry;
-    @EJB private SupplierFinder finder;
+    @EJB
+    private SupplierFinder finder;
 
 
 //    @PersistenceContext
