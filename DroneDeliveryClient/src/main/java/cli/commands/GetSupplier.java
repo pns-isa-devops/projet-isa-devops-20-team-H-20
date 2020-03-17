@@ -2,6 +2,7 @@ package cli.commands;
 
 import api.DronePublicAPI;
 import cli.framework.Command;
+import stubs.accounting.Supplier;
 
 import java.util.List;
 
@@ -20,7 +21,11 @@ public class GetSupplier extends Command<DronePublicAPI> {
 
     @Override
     public void execute() throws Exception {
-        System.out.println(shell.system.getAccountingWebService().findByName(name));
+        displayResult(shell.system.getAccountingWebService().findByName(name));
+    }
+
+    private void displayResult(Supplier supplier){
+        System.out.println("Supplier : " + supplier.getName());
     }
 
     @Override

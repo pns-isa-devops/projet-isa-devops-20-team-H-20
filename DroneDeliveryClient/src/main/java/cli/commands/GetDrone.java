@@ -2,6 +2,8 @@ package cli.commands;
 
 import api.DronePublicAPI;
 import cli.framework.Command;
+import stubs.accounting.Supplier;
+import stubs.drone.Drone;
 
 import java.util.List;
 
@@ -20,7 +22,14 @@ public class GetDrone extends Command<DronePublicAPI> {
 
     @Override
     public void execute() throws Exception {
-        System.out.println(shell.system.getDroneFleetManagementWebService().getDrone(id));;
+        displayResult(shell.system.getDroneFleetManagementWebService().getDrone(id));;
+    }
+
+    private void displayResult(Drone drone){
+        System.out.println("Drone with id : " + drone.getId());
+        System.out.println("\t Battery : " + drone.getBattery());
+        System.out.println("\t Flight time : " + drone.getCurrentFlightTime());
+        System.out.println("\t State : " + drone.getState().toString());
     }
 
     @Override
