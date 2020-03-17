@@ -5,26 +5,26 @@ import cli.framework.Command;
 
 import java.util.List;
 
-public class GetDrone extends Command<DronePublicAPI> {
-    private int id;
+public class GetSupplier extends Command<DronePublicAPI> {
+    private String name;
 
     @Override
     public String identifier() {
-        return "get-drone";
+        return "get-supplier";
     }
 
     @Override
     public void load(List<String> args) {
-        id = Integer.parseInt(args.get(0));
+        name = args.get(0);
     }
 
     @Override
     public void execute() throws Exception {
-        System.out.println(shell.system.getDroneFleetManagementWebService().getDrone(id));;
+        System.out.println(shell.system.getAccountingWebService().findByName(name));
     }
 
     @Override
     public String describe() {
-        return identifier() + " (id)";
+        return identifier() + " (name)";
     }
 }

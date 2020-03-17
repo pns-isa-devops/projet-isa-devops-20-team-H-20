@@ -15,9 +15,9 @@ DD > ?
   - add-package (trackingId supplierName packageWeight destinationAddress)
   - edit-package (trackingId supplierName packageWeight destinationAddress)
   - delete-package (trackingId)
+  - add-supplier (name contact(mail or phone))
+  - get-supplier (name)
   Not for mvp :
-  - add-supplier (name)
-  - get-suppliers
   - get-paid-invoices
   - get-notpaid-invoices
 ```
