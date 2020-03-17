@@ -44,7 +44,7 @@ public class SupplierRegistryBean implements SupplierFinder, SupplierRegistratio
     }
 
     @Override
-    public void remove(String name) throws UnknownSupplierException
+    public void delete(String name) throws UnknownSupplierException
     {
         if(!findByName(name).isPresent())
             throw new UnknownSupplierException(name);

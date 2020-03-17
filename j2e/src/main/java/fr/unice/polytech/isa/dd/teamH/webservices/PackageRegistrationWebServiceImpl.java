@@ -44,7 +44,7 @@ public class PackageRegistrationWebServiceImpl implements PackageRegistrationWeb
 
     @Override
     public void deletePackage(String packageTrackingNumber) throws UnknownPackageException {
-        register.delete(readPackage(packageTrackingNumber));
+        register.delete(packageTrackingNumber);
     }
 
     private Supplier readSupplier(String customerName)

@@ -8,5 +8,5 @@ import java.util.Optional;
 
 @Local
 public interface SupplierFinder {
-    Optional<Supplier> findByName(String name) throws UnknownSupplierException;
+    Optional<Supplier> findByName(String name);
 }

@@ -26,6 +26,10 @@ public class PlanningEntry implements Serializable {
         return drone;
     }
 
+    public Set<Delivery> getDeliveries(){
+        return new HashSet<>(deliveries);
+    }
+
     public boolean addDelivery(Delivery d){
         // check conflicts
         boolean isCoincidence = false;
@@ -42,10 +46,6 @@ public class PlanningEntry implements Serializable {
             return true;
         }
         return false;
-    }
-
-    public Set<Delivery> getDeliveries(){
-        return new HashSet<>(deliveries);
     }
 
     @Override

@@ -1,5 +1,7 @@
 package fr.unice.polytech.isa.dd.teamH.entities.delivery;
 
+import java.util.Objects;
+
 public class NotSentDeliveryState extends DeliveryState {
 
     @Override
@@ -22,5 +24,4 @@ public class NotSentDeliveryState extends DeliveryState {
     public DeliveryState clone() {
         return new NotSentDeliveryState();
     }
-
 }

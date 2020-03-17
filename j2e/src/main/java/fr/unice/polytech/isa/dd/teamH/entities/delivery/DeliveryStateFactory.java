@@ -2,10 +2,12 @@ package fr.unice.polytech.isa.dd.teamH.entities.delivery;
 
 import fr.unice.polytech.isa.dd.teamH.exceptions.UnknownDeliveryStateException;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
-public class DeliveryStateFactory {
+public class DeliveryStateFactory implements Serializable {
     private List<DeliveryState> states;
     private static final DeliveryStateFactory instance = new DeliveryStateFactory();
 
@@ -24,7 +26,7 @@ public class DeliveryStateFactory {
     public String getCommands() {
         StringBuilder s = new StringBuilder("available commands : \n");
         for(DeliveryState state : states) {
-            s.append(state.name + "\n");
+            s.append(state.name).append("\n");
         }
         return s.toString();
     }
@@ -36,5 +38,18 @@ public class DeliveryStateFactory {
             }
         }
         throw new UnknownDeliveryStateException(name);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        DeliveryStateFactory that = (DeliveryStateFactory) o;
+        return states.equals(that.states);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(states);
     }
 }

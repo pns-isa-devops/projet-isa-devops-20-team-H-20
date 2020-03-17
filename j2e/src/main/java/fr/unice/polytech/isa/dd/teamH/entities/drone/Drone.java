@@ -1,5 +1,7 @@
 package fr.unice.polytech.isa.dd.teamH.entities.drone;
 
+import fr.unice.polytech.isa.dd.teamH.exceptions.UnknownDroneStateException;
+
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -15,7 +17,11 @@ public class Drone implements Serializable {
     public Drone() {
         this.currentFlightTime = 0;
         this.battery = 100;
-        this.state = new ReadyDroneState();
+        try {
+            setState(DroneStateFactory.getInstance().createState("ready"));
+        } catch (UnknownDroneStateException e) {
+            e.printStackTrace();
+        }
     }
 
     public Drone(int id, float weightCapacity) {

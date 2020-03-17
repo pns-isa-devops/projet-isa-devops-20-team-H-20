@@ -1,6 +1,8 @@
 package fr.unice.polytech.isa.dd.teamH.entities.drone;
 
-public abstract class DroneState implements Cloneable {
+import java.io.Serializable;
+
+public abstract class DroneState implements Cloneable, Serializable {
     protected String name;
 
     /**
@@ -22,4 +24,8 @@ public abstract class DroneState implements Cloneable {
     abstract boolean is(String name);
 
     public abstract DroneState clone();
+
+    public String getName() {
+        return name;
+    }
 }

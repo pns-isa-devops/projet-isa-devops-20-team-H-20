@@ -12,11 +12,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import javax.ejb.EJB;
-import javax.ejb.EJBException;
-import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.transaction.UserTransaction;
 
 import java.util.Optional;
 
@@ -52,20 +47,21 @@ public class SupplierRegistryTest extends AbstractDroneDeliveryTest {
 
         Optional<Supplier> toDispose = finder.findByName(amazon.getName());
         if(toDispose.isPresent())
-            registry.remove(toDispose.get().getName());
+            registry.delete(toDispose.get().getName());
 
 //        utx.begin();
 //        Optional<Customer> toDispose = finder.findByName(john.getName());
-//        toDispose.ifPresent(cust -> { Customer c = entityManager.merge(cust); entityManager.remove(c); });
+//        toDispose.ifPresent(cust -> { Customer c = entityManager.merge(cust); entityManager.delete(c); });
 //        utx.commit();
     }
 
     @Test
-    public void unknownCustomer() {
+    public void unknownSupplier() {
+        assertFalse(finder.findByName("La Poste").isPresent());
     }
 
     @Test
-    public void registerCustomer() throws Exception {
+    public void registerSupplier() throws Exception {
         registry.register(amazon.getName(), contact);
         Optional<Supplier> supplier = finder.findByName(amazon.getName());
         assertTrue(supplier.isPresent());

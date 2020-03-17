@@ -2,12 +2,14 @@ package fr.unice.polytech.isa.dd.teamH.components;
 
 import fr.unice.polytech.isa.dd.teamH.entities.Package;
 import fr.unice.polytech.isa.dd.teamH.entities.delivery.Delivery;
+import fr.unice.polytech.isa.dd.teamH.entities.delivery.DeliveryStateFactory;
 import fr.unice.polytech.isa.dd.teamH.entities.delivery.NotSentDeliveryState;
 import fr.unice.polytech.isa.dd.teamH.entities.deliveryplanning.PlanningEntry;
 import fr.unice.polytech.isa.dd.teamH.entities.drone.Drone;
 import fr.unice.polytech.isa.dd.teamH.exceptions.DeliveryDistanceException;
 import fr.unice.polytech.isa.dd.teamH.exceptions.ExternalPartnerException;
 import fr.unice.polytech.isa.dd.teamH.exceptions.UncheckedException;
+import fr.unice.polytech.isa.dd.teamH.exceptions.UnknownDeliveryStateException;
 import fr.unice.polytech.isa.dd.teamH.interfaces.DeliveryFinder;
 import fr.unice.polytech.isa.dd.teamH.interfaces.DeliveryPlanner;
 import fr.unice.polytech.isa.dd.teamH.utils.MapAPI;
@@ -96,7 +98,6 @@ public class DeliveryPlanningBean implements DeliveryFinder, DeliveryPlanner
         }
 
         de.setFlightTime(de.getDistance() / od.get().getSpeed());
-        de.setState(new NotSentDeliveryState());
         de.setPackage(p);
         de.setDateTimeToShip(shippingTime);
 

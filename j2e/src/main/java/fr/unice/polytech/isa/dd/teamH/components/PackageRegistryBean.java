@@ -49,8 +49,10 @@ public class PackageRegistryBean implements PackageRegistration, PackageFinder {
     }
 
     @Override
-    public void delete(Package aPackage) {
-        packages.remove(aPackage);
+    public void delete(String trackingNumber) throws UnknownPackageException{
+        if(!findPackageByTrackingNumber(trackingNumber).isPresent())
+            throw new UnknownPackageException(trackingNumber);
+        packages.removeIf(e -> e.getTrackingNumber().equals(trackingNumber));
     }
 
     @Override

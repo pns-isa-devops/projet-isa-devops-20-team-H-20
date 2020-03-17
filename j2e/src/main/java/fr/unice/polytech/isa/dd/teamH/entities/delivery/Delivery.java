@@ -1,6 +1,7 @@
 package fr.unice.polytech.isa.dd.teamH.entities.delivery;
 
 import fr.unice.polytech.isa.dd.teamH.entities.Package;
+import fr.unice.polytech.isa.dd.teamH.exceptions.UnknownDeliveryStateException;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -19,7 +20,11 @@ public class Delivery implements Serializable {
     private DeliveryState state;
 
     public Delivery(){
-        setState(new NotSentDeliveryState());
+        try {
+            setState(DeliveryStateFactory.getInstance().createState("not-sent"));
+        } catch (UnknownDeliveryStateException e) {
+            e.printStackTrace();
+        }
     }
 
     public Delivery(LocalDateTime dateTimeToShip, float flightTime, float distance, Package aPackage) {

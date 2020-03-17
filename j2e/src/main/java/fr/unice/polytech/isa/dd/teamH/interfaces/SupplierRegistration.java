@@ -8,5 +8,5 @@ import javax.ejb.Local;
 @Local
 public interface SupplierRegistration {
     void register(String name, String contact) throws AlreadyExistingSupplierException;
-    void remove(String name) throws UnknownSupplierException;
+    void delete(String name) throws UnknownSupplierException;
 }
