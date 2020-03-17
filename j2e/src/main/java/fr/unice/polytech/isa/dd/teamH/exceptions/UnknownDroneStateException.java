@@ -7,16 +7,23 @@ import java.io.Serializable;
 
 @WebFault(targetNamespace = "http://www.polytech.unice.fr/si/4a/isa/dd/team-h/drones")
 public class UnknownDroneStateException extends Exception implements Serializable {
-    String state;
+    String conflictingState;
 
     public UnknownDroneStateException(String state) {
-        super();
-        this.state = state;
+        super(state);
+        this.conflictingState = state;
+    }
+
+    public String getConflictingState() {
+        return conflictingState;
+    }
+
+    public void setConflictingState(String conflictingState) {
+        this.conflictingState = conflictingState;
     }
 
     @Override
     public String toString() {
-        return "Unknown state : " + state +"\n" + DroneStateFactory.getInstance().getCommands();
-
+        return "Unknown state : " + conflictingState +"\n" + DroneStateFactory.getInstance().getCommands();
     }
 }

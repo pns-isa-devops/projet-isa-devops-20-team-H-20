@@ -29,7 +29,7 @@ public class DroneFleetManagementWebServiceImpl implements DroneFleetManagementW
 
     @Override
     public void removeDrone(int id) throws UnknownDroneException {
-        fleet.removeDrone(id);
+        fleet.deleteDrone(id);
     }
 
     @Override
@@ -43,7 +43,6 @@ public class DroneFleetManagementWebServiceImpl implements DroneFleetManagementW
 
     @Override
     public void editDroneStatus(int id, String status) throws UnknownDroneStateException, UnknownDroneException {
-        Drone drone = getDrone(id);
-        drone.setState(DroneStateFactory.getInstance().createState(status));
+        fleet.editDroneStatus(id, status);
     }
 }

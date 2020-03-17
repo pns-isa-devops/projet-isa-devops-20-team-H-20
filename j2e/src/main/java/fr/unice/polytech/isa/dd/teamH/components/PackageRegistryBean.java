@@ -20,16 +20,16 @@ public class PackageRegistryBean implements PackageRegistration, PackageFinder {
     private Set<Package> packages = new HashSet<>();
 
     @Override
-    public void register(String trackingId, Supplier supplier, float weight, String destinationAddress) throws AlreadyExistingPackageException {
-        if(findPackageByTrackingNumber(trackingId).isPresent())
-            throw new AlreadyExistingPackageException(trackingId);
+    public void register(String trackingNumber, Supplier supplier, float weight, String destinationAddress) throws AlreadyExistingPackageException {
+        if(findPackageByTrackingNumber(trackingNumber).isPresent())
+            throw new AlreadyExistingPackageException(trackingNumber);
 
         Package aPackage = new Package();
 
         aPackage.setDestination(destinationAddress);
         aPackage.setSupplier(supplier);
         aPackage.setWeight(weight);
-        aPackage.setTrackingNumber(trackingId);
+        aPackage.setTrackingNumber(trackingNumber);
 
         packages.add(aPackage);
     }
@@ -56,8 +56,13 @@ public class PackageRegistryBean implements PackageRegistration, PackageFinder {
     }
 
     @Override
+    public void flush() {
+        packages = new HashSet<>();
+    }
+
+    @Override
     public Optional<Package> findPackageByTrackingNumber(String trackingId) {
-        return packages.stream().findFirst();
+        return packages.stream().filter(e -> e.getTrackingNumber().equals(trackingId)).findFirst();
     }
 
     @Override

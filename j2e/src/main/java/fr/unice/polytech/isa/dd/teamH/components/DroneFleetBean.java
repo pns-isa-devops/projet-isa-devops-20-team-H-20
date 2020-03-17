@@ -1,6 +1,9 @@
 package fr.unice.polytech.isa.dd.teamH.components;
 
+import fr.unice.polytech.isa.dd.teamH.entities.drone.DroneStateFactory;
 import fr.unice.polytech.isa.dd.teamH.exceptions.AlreadyExistingDroneException;
+import fr.unice.polytech.isa.dd.teamH.exceptions.UnknownDroneException;
+import fr.unice.polytech.isa.dd.teamH.exceptions.UnknownDroneStateException;
 import fr.unice.polytech.isa.dd.teamH.interfaces.DroneFinder;
 import fr.unice.polytech.isa.dd.teamH.entities.drone.Drone;
 import fr.unice.polytech.isa.dd.teamH.interfaces.DroneFleetManagement;
@@ -20,11 +23,7 @@ public class DroneFleetBean implements DroneFinder, DroneFleetManagement
 
     @Override
     public Optional<Drone> findDroneById(int id) {
-        for(Drone d : drones){
-            if(d.getId() == id)
-                return Optional.of(d);
-        }
-        return Optional.empty();
+        return drones.stream().filter(e -> e.getId() == id).findFirst();
     }
 
     @Override
@@ -46,8 +45,24 @@ public class DroneFleetBean implements DroneFinder, DroneFleetManagement
     }
 
     @Override
-    public void removeDrone(int id)
-    {
+    public void editDroneStatus(int id, String newStatus) throws UnknownDroneException, UnknownDroneStateException {
+        Optional<Drone> d = findDroneById(id);
+        if(!d.isPresent())
+            throw new UnknownDroneException(Integer.toString(id));
+
+        Drone drone = d.get();
+        drone.setState(DroneStateFactory.getInstance().createState(newStatus));
+    }
+
+    @Override
+    public void deleteDrone(int id) throws UnknownDroneException {
+        if(!findDroneById(id).isPresent())
+            throw new UnknownDroneException(Integer.toString(id));
         drones.removeIf(e -> e.getId() == id);
+    }
+
+    @Override
+    public void flush() {
+        drones = new HashSet<>();
     }
 }

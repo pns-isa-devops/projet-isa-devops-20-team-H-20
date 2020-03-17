@@ -1,6 +1,7 @@
 package fr.unice.polytech.isa.dd.teamH.components;
 
 import fr.unice.polytech.isa.dd.teamH.entities.Supplier;
+import fr.unice.polytech.isa.dd.teamH.exceptions.AlreadyExistingContactException;
 import fr.unice.polytech.isa.dd.teamH.exceptions.AlreadyExistingSupplierException;
 import fr.unice.polytech.isa.dd.teamH.exceptions.UnknownSupplierException;
 import fr.unice.polytech.isa.dd.teamH.interfaces.SupplierFinder;
@@ -23,7 +24,7 @@ public class SupplierRegistryBean implements SupplierFinder, SupplierRegistratio
     @Override
     public Optional<Supplier> findByName(String name)
     {
-        return suppliers.stream().findFirst();
+        return suppliers.stream().filter(e -> e.getName().equals(name)).findFirst();
     }
 
     /******************************************
@@ -50,5 +51,23 @@ public class SupplierRegistryBean implements SupplierFinder, SupplierRegistratio
             throw new UnknownSupplierException(name);
 
         suppliers.removeIf(e -> e.getName().equals(name));
+    }
+
+    @Override
+    public void addContact(String name, String contact) throws UnknownSupplierException, AlreadyExistingContactException {
+        Optional<Supplier> sup = findByName(name);
+
+        if(!sup.isPresent())
+            throw new UnknownSupplierException(name);
+
+        if(sup.get().getContacts().contains(contact))
+            throw new AlreadyExistingContactException(name, contact);
+
+        sup.get().addContact(contact);
+    }
+
+    @Override
+    public void flush() {
+        suppliers = new HashSet<>();
     }
 }
