@@ -13,7 +13,7 @@ public class MapAPI {
         this.url = "http://" + host + ":" + port;
     }
 
-    public MapAPI() { this("localhost", "8080"); }
+    public MapAPI() { this("localhost", "9090"); }
 
 
     public float getDistanceTo(String destination) throws ExternalPartnerException {

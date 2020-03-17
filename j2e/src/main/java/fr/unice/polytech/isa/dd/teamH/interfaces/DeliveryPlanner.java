@@ -14,4 +14,6 @@ public interface DeliveryPlanner {
     boolean planDelivery(Package p, LocalDateTime shippingTime) throws DeliveryDistanceException;
 
     Set<PlanningEntry> getCompleteDeliveryPlanning();
+
+    void flush();
 }

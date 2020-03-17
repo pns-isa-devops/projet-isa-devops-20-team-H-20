@@ -10,6 +10,7 @@ import fr.unice.polytech.isa.dd.teamH.exceptions.DeliveryDistanceException;
 import fr.unice.polytech.isa.dd.teamH.exceptions.ExternalPartnerException;
 import fr.unice.polytech.isa.dd.teamH.exceptions.UncheckedException;
 import fr.unice.polytech.isa.dd.teamH.exceptions.UnknownDeliveryStateException;
+import fr.unice.polytech.isa.dd.teamH.interfaces.AvailableDroneFinder;
 import fr.unice.polytech.isa.dd.teamH.interfaces.DeliveryFinder;
 import fr.unice.polytech.isa.dd.teamH.interfaces.DeliveryPlanner;
 import fr.unice.polytech.isa.dd.teamH.utils.MapAPI;
@@ -32,7 +33,7 @@ public class DeliveryPlanningBean implements DeliveryFinder, DeliveryPlanner
     private Set<PlanningEntry> planningEntries = new HashSet<>();
 
     @EJB
-    private AvailabilityProcessorBean availabilityProcessor;
+    private AvailableDroneFinder availabilityProcessor;
 
     private MapAPI mapService;
 
@@ -84,14 +85,13 @@ public class DeliveryPlanningBean implements DeliveryFinder, DeliveryPlanner
     @Override
     public boolean planDelivery(Package p, LocalDateTime shippingTime) throws DeliveryDistanceException {
         Optional<Drone> od = availabilityProcessor.getAvailableDroneAtTime(findAllPlannedDeliveries(), shippingTime);
-
         if(!od.isPresent())
             return false;
 
         Delivery de = new Delivery();
 
         try {
-            de.setDistance(mapService.getDistanceTo(p.getDestination()));
+          de.setDistance(mapService.getDistanceTo(p.getDestination()));
         } catch (ExternalPartnerException e) {
             log.log(Level.INFO, "Error while exchanging with external partner", e);
             throw new DeliveryDistanceException(p.getTrackingNumber(), p.getDestination(), e);
@@ -115,6 +115,11 @@ public class DeliveryPlanningBean implements DeliveryFinder, DeliveryPlanner
     public Set<PlanningEntry> getCompleteDeliveryPlanning()
     {
         return new HashSet<>(planningEntries);
+    }
+
+    @Override
+    public void flush() {
+        planningEntries = new HashSet<>();
     }
 
     private Optional<PlanningEntry> getPlanningEntryForDrone(Drone d){
