@@ -63,14 +63,14 @@
                                     <wsdl>${basedir}/src/main/resources/PackageRegistrationWebServiceImpl.wsdl</wsdl>
                                     <extraargs>
                                         <extraarg>-p</extraarg>
-                                        <extraarg>http://www.polytech.unice.fr/si/4a/isa/dd/team-h/package=stubs.packages</extraarg>
+                                        <extraarg>http://www.polytech.unice.fr/si/4a/isa/dd/team-h/packages=stubs.packages</extraarg>
                                     </extraargs>
                                 </wsdlOption>
                                 <wsdlOption>
                                     <wsdl>${basedir}/src/main/resources/DroneFleetManagementWebServiceImpl.wsdl</wsdl>
                                     <extraargs>
                                         <extraarg>-p</extraarg>
-                                        <extraarg>http://www.polytech.unice.fr/si/4a/isa/dd/team-h/drone=stubs.drone</extraarg>
+                                        <extraarg>http://www.polytech.unice.fr/si/4a/isa/dd/team-h/drones=stubs.drone</extraarg>
                                     </extraargs>
                                 </wsdlOption>
                             </wsdlOptions>

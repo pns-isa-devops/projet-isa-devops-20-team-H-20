@@ -20,8 +20,7 @@ public class GetDrone extends Command<DronePublicAPI> {
 
     @Override
     public void execute() throws Exception {
-        // TODO : getDrone(id) not implemented?
-        // shell.system.getDroneFleetManagementWebService().getDrone(id);
+        shell.system.getDroneFleetManagementWebService().getDrone(id);
     }
 
     @Override

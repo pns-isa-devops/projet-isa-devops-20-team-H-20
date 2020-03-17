@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlType;
 /**
  * <p>Classe Java pour UnknownSupplierException complex type.
  * 
- * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
+ * <p>Le fragment de schï¿½ma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
  * &lt;complexType name="UnknownSupplierException">
@@ -28,7 +28,7 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "UnknownSupplierException", namespace = "http://www.polytech.unice.fr/si/4a/isa/dd/team-h/package", propOrder = {
+@XmlType(name = "UnknownSupplierException", namespace = "http://www.polytech.unice.fr/si/4a/isa/dd/team-h/packages", propOrder = {
     "name",
     "message"
 })
@@ -39,7 +39,7 @@ public class UnknownSupplierException {
     protected String message;
 
     /**
-     * Obtient la valeur de la propriété name.
+     * Obtient la valeur de la propriï¿½tï¿½ name.
      * 
      * @return
      *     possible object is
@@ -51,7 +51,7 @@ public class UnknownSupplierException {
     }
 
     /**
-     * Définit la valeur de la propriété name.
+     * Dï¿½finit la valeur de la propriï¿½tï¿½ name.
      * 
      * @param value
      *     allowed object is
@@ -63,7 +63,7 @@ public class UnknownSupplierException {
     }
 
     /**
-     * Obtient la valeur de la propriété message.
+     * Obtient la valeur de la propriï¿½tï¿½ message.
      * 
      * @return
      *     possible object is
@@ -75,7 +75,7 @@ public class UnknownSupplierException {
     }
 
     /**
-     * Définit la valeur de la propriété message.
+     * Dï¿½finit la valeur de la propriï¿½tï¿½ message.
      * 
      * @param value
      *     allowed object is
