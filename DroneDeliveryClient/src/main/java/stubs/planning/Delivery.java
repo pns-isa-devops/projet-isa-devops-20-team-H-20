@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlType;
 /**
  * <p>Classe Java pour delivery complex type.
  * 
- * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
+ * <p>Le fragment de schÃ©ma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
  * &lt;complexType name="delivery"&gt;
@@ -43,7 +43,7 @@ public class Delivery {
     protected DeliveryState state;
 
     /**
-     * Obtient la valeur de la propriété dateTimeToShip.
+     * Obtient la valeur de la propriÃ©tÃ© dateTimeToShip.
      * 
      * @return
      *     possible object is
@@ -55,7 +55,7 @@ public class Delivery {
     }
 
     /**
-     * Définit la valeur de la propriété dateTimeToShip.
+     * DÃ©finit la valeur de la propriÃ©tÃ© dateTimeToShip.
      * 
      * @param value
      *     allowed object is
@@ -67,7 +67,7 @@ public class Delivery {
     }
 
     /**
-     * Obtient la valeur de la propriété distance.
+     * Obtient la valeur de la propriÃ©tÃ© distance.
      * 
      */
     public float getDistance() {
@@ -75,7 +75,7 @@ public class Delivery {
     }
 
     /**
-     * Définit la valeur de la propriété distance.
+     * DÃ©finit la valeur de la propriÃ©tÃ© distance.
      * 
      */
     public void setDistance(float value) {
@@ -83,7 +83,7 @@ public class Delivery {
     }
 
     /**
-     * Obtient la valeur de la propriété flightTime.
+     * Obtient la valeur de la propriÃ©tÃ© flightTime.
      * 
      */
     public float getFlightTime() {
@@ -91,7 +91,7 @@ public class Delivery {
     }
 
     /**
-     * Définit la valeur de la propriété flightTime.
+     * DÃ©finit la valeur de la propriÃ©tÃ© flightTime.
      * 
      */
     public void setFlightTime(float value) {
@@ -99,7 +99,7 @@ public class Delivery {
     }
 
     /**
-     * Obtient la valeur de la propriété state.
+     * Obtient la valeur de la propriÃ©tÃ© state.
      * 
      * @return
      *     possible object is
@@ -111,7 +111,7 @@ public class Delivery {
     }
 
     /**
-     * Définit la valeur de la propriété state.
+     * DÃ©finit la valeur de la propriÃ©tÃ© state.
      * 
      * @param value
      *     allowed object is

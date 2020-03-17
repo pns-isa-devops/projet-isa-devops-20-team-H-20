@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlType;
 /**
  * <p>Classe Java pour registerPackage complex type.
  * 
- * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
+ * <p>Le fragment de schÃ©ma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
  * &lt;complexType name="registerPackage"&gt;
@@ -43,7 +43,7 @@ public class RegisterPackage {
     protected String destination;
 
     /**
-     * Obtient la valeur de la propriété packageTrackingNumber.
+     * Obtient la valeur de la propriÃ©tÃ© packageTrackingNumber.
      * 
      * @return
      *     possible object is
@@ -55,7 +55,7 @@ public class RegisterPackage {
     }
 
     /**
-     * Définit la valeur de la propriété packageTrackingNumber.
+     * DÃ©finit la valeur de la propriÃ©tÃ© packageTrackingNumber.
      * 
      * @param value
      *     allowed object is
@@ -67,7 +67,7 @@ public class RegisterPackage {
     }
 
     /**
-     * Obtient la valeur de la propriété supplierName.
+     * Obtient la valeur de la propriÃ©tÃ© supplierName.
      * 
      * @return
      *     possible object is
@@ -79,7 +79,7 @@ public class RegisterPackage {
     }
 
     /**
-     * Définit la valeur de la propriété supplierName.
+     * DÃ©finit la valeur de la propriÃ©tÃ© supplierName.
      * 
      * @param value
      *     allowed object is
@@ -91,7 +91,7 @@ public class RegisterPackage {
     }
 
     /**
-     * Obtient la valeur de la propriété weight.
+     * Obtient la valeur de la propriÃ©tÃ© weight.
      * 
      */
     public float getWeight() {
@@ -99,7 +99,7 @@ public class RegisterPackage {
     }
 
     /**
-     * Définit la valeur de la propriété weight.
+     * DÃ©finit la valeur de la propriÃ©tÃ© weight.
      * 
      */
     public void setWeight(float value) {
@@ -107,7 +107,7 @@ public class RegisterPackage {
     }
 
     /**
-     * Obtient la valeur de la propriété destination.
+     * Obtient la valeur de la propriÃ©tÃ© destination.
      * 
      * @return
      *     possible object is
@@ -119,7 +119,7 @@ public class RegisterPackage {
     }
 
     /**
-     * Définit la valeur de la propriété destination.
+     * DÃ©finit la valeur de la propriÃ©tÃ© destination.
      * 
      * @param value
      *     allowed object is

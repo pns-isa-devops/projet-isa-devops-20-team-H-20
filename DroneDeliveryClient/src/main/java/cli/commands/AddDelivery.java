@@ -7,7 +7,7 @@ import java.util.List;
 
 public class AddDelivery extends Command<DronePublicAPI> {
     private String trackingId;
-    private float weightCapacity;
+    private String shippingDateTime;
 
 
     @Override
@@ -18,13 +18,13 @@ public class AddDelivery extends Command<DronePublicAPI> {
     @Override
     public void load(List<String> args) {
         trackingId = args.get(0);
-        weightCapacity = Float.parseFloat(args.get(1));
+        String[] tmpShip = args.get(1).split("_");
+        shippingDateTime = tmpShip[0] + " " + tmpShip[1];
     }
 
     @Override
     public void execute() throws Exception {
-        //TODO but change backend
-        //shell.system.getPlanningWebService().planDelivery(id, weightCapacity);
+        shell.system.getPlanningWebService().planDelivery(trackingId, shippingDateTime);
     }
 
     @Override

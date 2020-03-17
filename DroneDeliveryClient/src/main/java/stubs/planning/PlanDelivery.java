@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlType;
 /**
  * <p>Classe Java pour planDelivery complex type.
  * 
- * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
+ * <p>Le fragment de schÃ©ma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
  * &lt;complexType name="planDelivery"&gt;
@@ -40,7 +40,7 @@ public class PlanDelivery {
     protected String shippingTime;
 
     /**
-     * Obtient la valeur de la propriété trackingNumber.
+     * Obtient la valeur de la propriÃ©tÃ© trackingNumber.
      * 
      * @return
      *     possible object is
@@ -52,7 +52,7 @@ public class PlanDelivery {
     }
 
     /**
-     * Définit la valeur de la propriété trackingNumber.
+     * DÃ©finit la valeur de la propriÃ©tÃ© trackingNumber.
      * 
      * @param value
      *     allowed object is
@@ -64,7 +64,7 @@ public class PlanDelivery {
     }
 
     /**
-     * Obtient la valeur de la propriété shippingTime.
+     * Obtient la valeur de la propriÃ©tÃ© shippingTime.
      * 
      * @return
      *     possible object is
@@ -76,7 +76,7 @@ public class PlanDelivery {
     }
 
     /**
-     * Définit la valeur de la propriété shippingTime.
+     * DÃ©finit la valeur de la propriÃ©tÃ© shippingTime.
      * 
      * @param value
      *     allowed object is

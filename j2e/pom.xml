@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project>
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>fr.polytech.team.h</groupId>
-  <artifactId>drone-delivery-backend</artifactId>
-  <version>1.0</version>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>fr.polytech.team.h</groupId>
+    <artifactId>drone-delivery-backend</artifactId>
+    <version>1.0</version>
+    <name>Drone Delivery :: J2E Backend</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -77,8 +78,8 @@
     <build>
         <finalName>drone-delivery-backend</finalName>
         <defaultGoal>package</defaultGoal>
-    	<sourceDirectory>src/main/java</sourceDirectory>
-   		<testSourceDirectory>src/test</testSourceDirectory>
+        <sourceDirectory>src/main/java</sourceDirectory>
+        <testSourceDirectory>src/test</testSourceDirectory>
         <plugins>
             <plugin> <!-- used to define level language 8 to use LocalDateTime -->
                 <groupId>org.apache.maven.plugins</groupId>

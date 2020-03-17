@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlType;
 /**
  * <p>Classe Java pour AlreadyExistingPackageException complex type.
  * 
- * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
+ * <p>Le fragment de schÃ©ma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
  * &lt;complexType name="AlreadyExistingPackageException"&gt;
@@ -39,7 +39,7 @@ public class AlreadyExistingPackageException {
     protected String message;
 
     /**
-     * Obtient la valeur de la propriété conflictingTrackingNumber.
+     * Obtient la valeur de la propriÃ©tÃ© conflictingTrackingNumber.
      * 
      * @return
      *     possible object is
@@ -51,7 +51,7 @@ public class AlreadyExistingPackageException {
     }
 
     /**
-     * Définit la valeur de la propriété conflictingTrackingNumber.
+     * DÃ©finit la valeur de la propriÃ©tÃ© conflictingTrackingNumber.
      * 
      * @param value
      *     allowed object is
@@ -63,7 +63,7 @@ public class AlreadyExistingPackageException {
     }
 
     /**
-     * Obtient la valeur de la propriété message.
+     * Obtient la valeur de la propriÃ©tÃ© message.
      * 
      * @return
      *     possible object is
@@ -75,7 +75,7 @@ public class AlreadyExistingPackageException {
     }
 
     /**
-     * Définit la valeur de la propriété message.
+     * DÃ©finit la valeur de la propriÃ©tÃ© message.
      * 
      * @param value
      *     allowed object is

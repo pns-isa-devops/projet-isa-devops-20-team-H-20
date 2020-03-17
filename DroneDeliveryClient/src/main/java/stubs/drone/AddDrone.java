@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlType;
 /**
  * <p>Classe Java pour addDrone complex type.
  * 
- * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
+ * <p>Le fragment de schÃ©ma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
  * &lt;complexType name="addDrone"&gt;
@@ -37,7 +37,7 @@ public class AddDrone {
     protected float weightCapacity;
 
     /**
-     * Obtient la valeur de la propriété id.
+     * Obtient la valeur de la propriÃ©tÃ© id.
      * 
      */
     public int getId() {
@@ -45,7 +45,7 @@ public class AddDrone {
     }
 
     /**
-     * Définit la valeur de la propriété id.
+     * DÃ©finit la valeur de la propriÃ©tÃ© id.
      * 
      */
     public void setId(int value) {
@@ -53,7 +53,7 @@ public class AddDrone {
     }
 
     /**
-     * Obtient la valeur de la propriété weightCapacity.
+     * Obtient la valeur de la propriÃ©tÃ© weightCapacity.
      * 
      */
     public float getWeightCapacity() {
@@ -61,7 +61,7 @@ public class AddDrone {
     }
 
     /**
-     * Définit la valeur de la propriété weightCapacity.
+     * DÃ©finit la valeur de la propriÃ©tÃ© weightCapacity.
      * 
      */
     public void setWeightCapacity(float value) {
