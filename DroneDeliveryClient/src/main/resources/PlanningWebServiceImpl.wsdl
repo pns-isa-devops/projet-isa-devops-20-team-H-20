@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<wsdl:definitions name="PlanningWebServiceImplService" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/planning" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/planning" xmlns:ns2="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/accounting/planning" xmlns:ns1="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/planning" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+<wsdl:definitions name="PlanningWebServiceImplService" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/planning" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/planning" xmlns:ns2="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/accounting" xmlns:ns1="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/accounting/planning" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
   <wsdl:types>
 <xs:schema xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/planning" xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/planning">
+  <xs:element name="editDeliveryStatus" type="tns:editDeliveryStatus"/>
+  <xs:element name="editDeliveryStatusResponse" type="tns:editDeliveryStatusResponse"/>
   <xs:element name="getCompleteDeliveryPlanning" type="tns:getCompleteDeliveryPlanning"/>
   <xs:element name="getCompleteDeliveryPlanningResponse" type="tns:getCompleteDeliveryPlanningResponse"/>
   <xs:element name="planDelivery" type="tns:planDelivery"/>
@@ -40,10 +42,25 @@
   <xs:complexType name="planDeliveryResponse">
     <xs:sequence/>
   </xs:complexType>
+  <xs:complexType name="editDeliveryStatus">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="id" type="xs:string"/>
+      <xs:element minOccurs="0" name="status" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="editDeliveryStatusResponse">
+    <xs:sequence/>
+  </xs:complexType>
   <xs:element name="UnknownPackageException" type="tns:UnknownPackageException"/>
   <xs:complexType name="UnknownPackageException">
     <xs:sequence>
       <xs:element name="trackingNumber" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UnknownDeliveryStateException" type="tns:UnknownDeliveryStateException"/>
+  <xs:complexType name="UnknownDeliveryStateException">
+    <xs:sequence>
       <xs:element minOccurs="0" name="message" type="xs:string"/>
     </xs:sequence>
   </xs:complexType>
@@ -58,50 +75,85 @@
     </xsd:sequence>
   </xsd:complexType>
 </xsd:schema>
+<xsd:schema xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/accounting" xmlns:xsd="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/accounting">
+  <xsd:element name="UnknownDeliveryException" type="tns:UnknownDeliveryException"/>
+  <xsd:complexType name="UnknownDeliveryException">
+    <xsd:sequence>
+      <xsd:element name="id" nillable="true" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="message" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>
   </wsdl:types>
   <wsdl:message name="getCompleteDeliveryPlanning">
-    <wsdl:part name="parameters" element="ns1:getCompleteDeliveryPlanning">
+    <wsdl:part name="parameters" element="tns:getCompleteDeliveryPlanning">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="UnknownDeliveryStateException">
+    <wsdl:part name="UnknownDeliveryStateException" element="tns:UnknownDeliveryStateException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="UnknownDeliveryException">
+    <wsdl:part name="UnknownDeliveryException" element="ns2:UnknownDeliveryException">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="planDelivery">
-    <wsdl:part name="parameters" element="ns1:planDelivery">
+    <wsdl:part name="parameters" element="tns:planDelivery">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="planDeliveryResponse">
-    <wsdl:part name="parameters" element="ns1:planDeliveryResponse">
+    <wsdl:part name="parameters" element="tns:planDeliveryResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="editDeliveryStatusResponse">
+    <wsdl:part name="parameters" element="tns:editDeliveryStatusResponse">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="getCompleteDeliveryPlanningResponse">
-    <wsdl:part name="parameters" element="ns1:getCompleteDeliveryPlanningResponse">
+    <wsdl:part name="parameters" element="tns:getCompleteDeliveryPlanningResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="editDeliveryStatus">
+    <wsdl:part name="parameters" element="tns:editDeliveryStatus">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="UnknownPackageException">
-    <wsdl:part name="UnknownPackageException" element="ns1:UnknownPackageException">
+    <wsdl:part name="UnknownPackageException" element="tns:UnknownPackageException">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="DeliveryDistanceException">
-    <wsdl:part name="DeliveryDistanceException" element="ns2:DeliveryDistanceException">
+    <wsdl:part name="DeliveryDistanceException" element="ns1:DeliveryDistanceException">
     </wsdl:part>
   </wsdl:message>
   <wsdl:portType name="PlanningWebService">
     <wsdl:operation name="getCompleteDeliveryPlanning">
-      <wsdl:input name="getCompleteDeliveryPlanning" message="ns1:getCompleteDeliveryPlanning">
+      <wsdl:input name="getCompleteDeliveryPlanning" message="tns:getCompleteDeliveryPlanning">
     </wsdl:input>
-      <wsdl:output name="getCompleteDeliveryPlanningResponse" message="ns1:getCompleteDeliveryPlanningResponse">
+      <wsdl:output name="getCompleteDeliveryPlanningResponse" message="tns:getCompleteDeliveryPlanningResponse">
     </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="planDelivery">
-      <wsdl:input name="planDelivery" message="ns1:planDelivery">
+      <wsdl:input name="planDelivery" message="tns:planDelivery">
     </wsdl:input>
-      <wsdl:output name="planDeliveryResponse" message="ns1:planDeliveryResponse">
+      <wsdl:output name="planDeliveryResponse" message="tns:planDeliveryResponse">
     </wsdl:output>
-      <wsdl:fault name="UnknownPackageException" message="ns1:UnknownPackageException">
+      <wsdl:fault name="UnknownPackageException" message="tns:UnknownPackageException">
     </wsdl:fault>
-      <wsdl:fault name="DeliveryDistanceException" message="ns1:DeliveryDistanceException">
+      <wsdl:fault name="DeliveryDistanceException" message="tns:DeliveryDistanceException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="editDeliveryStatus">
+      <wsdl:input name="editDeliveryStatus" message="tns:editDeliveryStatus">
+    </wsdl:input>
+      <wsdl:output name="editDeliveryStatusResponse" message="tns:editDeliveryStatusResponse">
+    </wsdl:output>
+      <wsdl:fault name="UnknownDeliveryStateException" message="tns:UnknownDeliveryStateException">
+    </wsdl:fault>
+      <wsdl:fault name="UnknownDeliveryException" message="tns:UnknownDeliveryException">
     </wsdl:fault>
     </wsdl:operation>
   </wsdl:portType>
-  <wsdl:binding name="PlanningWebServiceImplServiceSoapBinding" type="ns1:PlanningWebService">
+  <wsdl:binding name="PlanningWebServiceImplServiceSoapBinding" type="tns:PlanningWebService">
     <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
     <wsdl:operation name="getCompleteDeliveryPlanning">
       <soap:operation soapAction="" style="document"/>
@@ -127,10 +179,25 @@
         <soap:fault name="DeliveryDistanceException" use="literal"/>
       </wsdl:fault>
     </wsdl:operation>
+    <wsdl:operation name="editDeliveryStatus">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="editDeliveryStatus">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="editDeliveryStatusResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="UnknownDeliveryStateException">
+        <soap:fault name="UnknownDeliveryStateException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UnknownDeliveryException">
+        <soap:fault name="UnknownDeliveryException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="PlanningWebServiceImplService">
-    <wsdl:port name="PlanningWebServiceImplPort" binding="ns1:PlanningWebServiceImplServiceSoapBinding">
-      <soap:address location="http://localhost:8080/drone-delivery-backend/webservices/PlanningWS"/>
+    <wsdl:port name="PlanningWebServiceImplPort" binding="tns:PlanningWebServiceImplServiceSoapBinding">
+      <soap:address location="http://localhost:9090/PlanningWebServiceImplPort"/>
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

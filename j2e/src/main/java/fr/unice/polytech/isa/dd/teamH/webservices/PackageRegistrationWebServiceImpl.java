@@ -14,7 +14,7 @@ import javax.ejb.Stateless;
 import javax.jws.WebService;
 import java.util.Optional;
 
-@WebService(targetNamespace = "http://www.polytech.unice.fr/si/4a/isa/dd/team-h/package")
+@WebService(targetNamespace = "http://www.polytech.unice.fr/si/4a/isa/dd/team-h/packages")
 @Stateless(name = "PackageWS")
 public class PackageRegistrationWebServiceImpl implements PackageRegistrationWebService{
     @EJB

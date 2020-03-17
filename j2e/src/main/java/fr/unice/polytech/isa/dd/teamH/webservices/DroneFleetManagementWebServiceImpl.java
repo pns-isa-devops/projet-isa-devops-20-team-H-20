@@ -13,7 +13,7 @@ import javax.ejb.Stateless;
 import javax.jws.WebService;
 import java.util.Optional;
 
-@WebService(targetNamespace = "http://www.polytech.unice.fr/si/4a/isa/dd/team-h/drone")
+@WebService(targetNamespace = "http://www.polytech.unice.fr/si/4a/isa/dd/team-h/drones")
 @Stateless(name = "DroneWS")
 public class DroneFleetManagementWebServiceImpl implements DroneFleetManagementWebService{
     @EJB
