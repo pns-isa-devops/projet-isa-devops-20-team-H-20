@@ -1,26 +1,21 @@
 package fr.unice.polytech.isa.dd.teamH.business;
 
 import arquillian.AbstractDroneDeliveryTest;
-import fr.unice.polytech.isa.dd.teamH.components.SupplierRegistryBean;
 import fr.unice.polytech.isa.dd.teamH.entities.Supplier;
 import fr.unice.polytech.isa.dd.teamH.exceptions.AlreadyExistingSupplierException;
 import fr.unice.polytech.isa.dd.teamH.interfaces.SupplierFinder;
 import fr.unice.polytech.isa.dd.teamH.interfaces.SupplierRegistration;
 import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.arquillian.transaction.api.annotation.TransactionMode;
-import org.jboss.arquillian.transaction.api.annotation.Transactional;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import javax.ejb.EJB;
+import javax.ejb.EJBException;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.UserTransaction;
-import java.util.HashSet;
-import java.util.Optional;
 
 import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
@@ -68,7 +63,7 @@ public class SupplierRegistryTest extends AbstractDroneDeliveryTest {
     @Test(expected = AlreadyExistingSupplierException.class)
     public void cannotRegisterTwice() throws Exception {
         registry.register(amazon.getName(), contact);
-        //registry.register(amazon.getName(), contact);
+        registry.register(amazon.getName(), contact);
     }
 
 }

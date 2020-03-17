@@ -31,7 +31,7 @@ public abstract class AbstractDroneDeliveryTest {
                 .addPackage(CustomerSatisfactionStatsEntry.class.getPackage())
                 // Components Interfaces
                 .addPackage(AvailableDroneFinder.class.getPackage())
-                // Cart components
+                // Components
                 .addPackage(AccountingBean.class.getPackage())
                 // Exceptions
                 .addPackage(AlreadyExistingDroneException.class.getPackage());

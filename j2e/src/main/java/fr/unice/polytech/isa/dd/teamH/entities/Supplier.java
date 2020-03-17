@@ -10,6 +10,7 @@ public class Supplier implements Serializable {
     private Set<String> contacts;
 
     public Supplier() {
+        contacts = new HashSet<>();
     }
 
     public Supplier(String name){
