@@ -2,6 +2,7 @@ package fr.unice.polytech.isa.dd.teamH.components;
 
 import fr.unice.polytech.isa.dd.teamH.entities.Supplier;
 import fr.unice.polytech.isa.dd.teamH.exceptions.AlreadyExistingSupplierException;
+import fr.unice.polytech.isa.dd.teamH.exceptions.UnknownSupplierException;
 import fr.unice.polytech.isa.dd.teamH.interfaces.SupplierFinder;
 import fr.unice.polytech.isa.dd.teamH.interfaces.SupplierRegistration;
 
@@ -40,5 +41,14 @@ public class SupplierRegistryBean implements SupplierFinder, SupplierRegistratio
         s.addContact(contact);
 
         suppliers.add(s);
+    }
+
+    @Override
+    public void remove(String name) throws UnknownSupplierException
+    {
+        if(!findByName(name).isPresent())
+            throw new UnknownSupplierException(name);
+
+        suppliers.removeIf(e -> e.getName().equals(name));
     }
 }
