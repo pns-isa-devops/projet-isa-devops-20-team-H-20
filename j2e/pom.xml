@@ -3,6 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>fr.polytech.team.h</groupId>
     <artifactId>drone-delivery-backend</artifactId>
+    <packaging>war</packaging>
     <version>1.0</version>
     <name>Drone Delivery :: J2E Backend</name>
 

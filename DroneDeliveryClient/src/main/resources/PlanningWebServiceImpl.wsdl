@@ -130,7 +130,7 @@
   </wsdl:binding>
   <wsdl:service name="PlanningWebServiceImplService">
     <wsdl:port name="PlanningWebServiceImplPort" binding="ns1:PlanningWebServiceImplServiceSoapBinding">
-      <soap:address location="http://localhost:8080/drone-delivery-backend/PlanningWS"/>
+      <soap:address location="http://localhost:8080/drone-delivery-backend/webservices/PlanningWS"/>
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

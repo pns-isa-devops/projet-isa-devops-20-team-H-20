@@ -9,7 +9,6 @@ public class AddDelivery extends Command<DronePublicAPI> {
     private String trackingId;
     private String shippingDateTime;
 
-
     @Override
     public String identifier() {
         return "add-delivery";
@@ -29,6 +28,6 @@ public class AddDelivery extends Command<DronePublicAPI> {
 
     @Override
     public String describe() {
-        return "add-delivery (trackingId shippingDateTime mm-dd-yyyy_hh:mm)";
+        return "add-delivery (trackingId shippingDateTime(mm-dd-yyyy_hh:mm))";
     }
 }

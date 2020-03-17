@@ -176,7 +176,7 @@
   </wsdl:binding>
   <wsdl:service name="PackageRegistrationWebServiceImplService">
     <wsdl:port name="PackageRegistrationWebServiceImplPort" binding="ns1:PackageRegistrationWebServiceImplServiceSoapBinding">
-      <soap:address location="http://localhost:8080/drone-delivery-backend/PackageWS"/>
+      <soap:address location="http://localhost:8080/drone-delivery-backend/webservices/PackageWS"/>
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

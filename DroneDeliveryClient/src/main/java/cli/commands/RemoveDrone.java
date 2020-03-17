@@ -8,7 +8,6 @@ import java.util.List;
 public class RemoveDrone extends Command<DronePublicAPI> {
     private int id;
 
-
     @Override
     public String identifier() {
         return "remove-drone";

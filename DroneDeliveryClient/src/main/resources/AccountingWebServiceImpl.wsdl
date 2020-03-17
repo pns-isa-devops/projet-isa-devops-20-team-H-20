@@ -274,7 +274,7 @@
   </wsdl:binding>
   <wsdl:service name="AccountingWebServiceImplService">
     <wsdl:port name="AccountingWebServiceImplPort" binding="tns:AccountingWebServiceImplServiceSoapBinding">
-      <soap:address location="http://localhost:8080/drone-delivery-backend/AccountingWS"/>
+      <soap:address location="http://localhost:8080/drone-delivery-backend/webservices/AccountingWS"/>
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

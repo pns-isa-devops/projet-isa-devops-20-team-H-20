@@ -31,7 +31,7 @@ public class DronePublicAPI {
         URL wsdlLocation = DronePublicAPI.class.getResource("/PackageRegistrationWebServiceImpl.wsdl");
         PackageRegistrationWebServiceImplService factory = new PackageRegistrationWebServiceImplService(wsdlLocation);
         this.packageRegistrationWebService = factory.getPackageRegistrationWebServiceImplPort();
-        String address = "http://" + host + ":" + port + "/PackageRegistrationWebServiceImplPort";
+        String address = "http://" + host + ":" + port + "/drone-delivery-backend/webservices/PackageWS";
         ((BindingProvider) packageRegistrationWebService).getRequestContext().put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY, address);
     }
 
@@ -39,7 +39,7 @@ public class DronePublicAPI {
         URL wsdlLocation = DronePublicAPI.class.getResource("/DroneFleetManagementWebServiceImpl.wsdl");
         DroneFleetManagementWebServiceImplService factory = new DroneFleetManagementWebServiceImplService(wsdlLocation);
         this.droneFleetManagementWebService = factory.getDroneFleetManagementWebServiceImplPort();
-        String address = "http://" + host + ":" + port + "/DroneFleetManagementWebServiceImplPort";
+        String address = "http://" + host + ":" + port + "/drone-delivery-backend/webservices/DroneWS";
         ((BindingProvider) droneFleetManagementWebService).getRequestContext().put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY, address);
     }
 
@@ -47,7 +47,7 @@ public class DronePublicAPI {
         URL wsdlLocation = DronePublicAPI.class.getResource("/PlanningWebServiceImpl.wsdl");
         PlanningWebServiceImplService factory = new PlanningWebServiceImplService(wsdlLocation);
         this.planningWebService = factory.getPlanningWebServiceImplPort();
-        String address = "http://" + host + ":" + port + "/PlanningWebServiceImplPort";
+        String address = "http://" + host + ":" + port + "/drone-delivery-backend/webservices/PlanningWS";
         ((BindingProvider) planningWebService).getRequestContext().put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY, address);
     }
 
@@ -55,6 +55,7 @@ public class DronePublicAPI {
         initPackageRegistration(host, port);
         initDroneFleet(host, port);
         initDroneFleet(host, port);
+        initPlanning(host, port);
     }
 
 

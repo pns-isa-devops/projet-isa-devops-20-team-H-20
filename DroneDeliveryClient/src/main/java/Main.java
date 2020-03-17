@@ -12,11 +12,14 @@ public class Main extends Shell<DronePublicAPI> {
         this.invite  = "DD";
         register(
                 Bye.class,
-                AddPackage.class,
-                EditPackage.class,
-                RemovePackage.class,
+                AddDelivery.class,
                 AddDrone.class,
-                RemoveDrone.class
+                AddPackage.class,
+                EditDeliveryStatus.class,
+                EditPackage.class,
+                GetDrone.class,
+                RemoveDrone.class,
+                RemovePackage.class
         );
     }
 
