@@ -8,7 +8,7 @@ import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebService;
 
-@WebService(targetNamespace = "http://www.polytech.unice.fr/si/4a/isa/dd/team-h/package")
+@WebService(targetNamespace = "http://www.polytech.unice.fr/si/4a/isa/dd/team-h/packages")
 public interface PackageRegistrationWebService {
     @WebMethod
     void registerPackage(@WebParam(name="packageTrackingNumber") String packageTrackingNumber,

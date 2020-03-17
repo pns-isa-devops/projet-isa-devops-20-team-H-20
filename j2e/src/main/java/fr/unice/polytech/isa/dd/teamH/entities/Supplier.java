@@ -17,6 +17,11 @@ public class Supplier implements Serializable {
         contacts = new HashSet<>();
     }
 
+    public Supplier(String name, String contact) {
+        this(name);
+        contacts.add(contact);
+    }
+
     public void setName(String name) {
         this.name = name;
     }

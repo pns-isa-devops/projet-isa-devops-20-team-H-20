@@ -9,7 +9,7 @@ import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebService;
 
-@WebService(targetNamespace = "http://www.polytech.unice.fr/si/4a/isa/dd/team-h/drone")
+@WebService(targetNamespace = "http://www.polytech.unice.fr/si/4a/isa/dd/team-h/drones")
 public interface DroneFleetManagementWebService {
 
     @WebMethod
