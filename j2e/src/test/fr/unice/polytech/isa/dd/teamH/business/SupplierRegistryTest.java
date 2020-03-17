@@ -49,13 +49,13 @@ public class SupplierRegistryTest extends AbstractDroneDeliveryTest {
         amazon = new Supplier("Amazon");
     }
 
-    @After
-    public void cleaningUp() throws Exception {
+//    @After
+//    public void cleaningUp() throws Exception {
 //        utx.begin();
 //        Optional<Customer> toDispose = finder.findByName(john.getName());
 //        toDispose.ifPresent(cust -> { Customer c = entityManager.merge(cust); entityManager.remove(c); });
 //        utx.commit();
-    }
+//    }
 
     @Test
     public void unknownCustomer() {
@@ -65,9 +65,9 @@ public class SupplierRegistryTest extends AbstractDroneDeliveryTest {
     public void registerCustomer() throws Exception {
     }
 
-    @Test/*(expected = AlreadyExistingSupplierException.class)*/
+    @Test(expected = AlreadyExistingSupplierException.class)
     public void cannotRegisterTwice() throws Exception {
-        //registry.register(amazon.getName(), contact);
+        registry.register(amazon.getName(), contact);
         //registry.register(amazon.getName(), contact);
     }
 
