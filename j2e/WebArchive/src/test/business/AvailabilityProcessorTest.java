@@ -1,9 +1,8 @@
-package test.fr.unice.polytech.isa.dd.teamH.business;
+package business;
 
-import test.arquillian.AbstractDroneDeliveryTest;
+import arquillian.AbstractDroneDeliveryTest;
 import fr.unice.polytech.isa.dd.teamH.entities.drone.Drone;
 import fr.unice.polytech.isa.dd.teamH.interfaces.AvailableDroneFinder;
-import fr.unice.polytech.isa.dd.teamH.interfaces.DroneFinder;
 import fr.unice.polytech.isa.dd.teamH.interfaces.DroneFleetManagement;
 import org.jboss.arquillian.junit.Arquillian;
 import org.junit.After;

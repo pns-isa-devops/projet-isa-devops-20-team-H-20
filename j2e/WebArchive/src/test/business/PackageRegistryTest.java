@@ -1,10 +1,9 @@
-package test.fr.unice.polytech.isa.dd.teamH.business;
+package business;
 
-import test.arquillian.AbstractDroneDeliveryTest;
+import arquillian.AbstractDroneDeliveryTest;
 import fr.unice.polytech.isa.dd.teamH.entities.Supplier;
 import fr.unice.polytech.isa.dd.teamH.entities.Package;
 import fr.unice.polytech.isa.dd.teamH.exceptions.AlreadyExistingPackageException;
-import fr.unice.polytech.isa.dd.teamH.exceptions.UncheckedException;
 import fr.unice.polytech.isa.dd.teamH.exceptions.UnknownPackageException;
 import fr.unice.polytech.isa.dd.teamH.interfaces.PackageFinder;
 import fr.unice.polytech.isa.dd.teamH.interfaces.PackageRegistration;

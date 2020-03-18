@@ -103,8 +103,6 @@
     <build>
         <finalName>drone-delivery-backend</finalName>
         <defaultGoal>package</defaultGoal>
-        <sourceDirectory>Core/src/main/java</sourceDirectory>
-        <testSourceDirectory>Core/src/test</testSourceDirectory>
         <plugins>
             <plugin> <!-- used to define level language 8 to use LocalDateTime -->
                 <groupId>org.apache.maven.plugins</groupId>

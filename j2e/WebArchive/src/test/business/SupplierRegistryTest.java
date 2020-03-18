@@ -1,6 +1,6 @@
-package test.fr.unice.polytech.isa.dd.teamH.business;
+package business;
 
-import test.arquillian.AbstractDroneDeliveryTest;
+import arquillian.AbstractDroneDeliveryTest;
 import fr.unice.polytech.isa.dd.teamH.entities.Supplier;
 import fr.unice.polytech.isa.dd.teamH.exceptions.AlreadyExistingContactException;
 import fr.unice.polytech.isa.dd.teamH.exceptions.AlreadyExistingSupplierException;

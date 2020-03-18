@@ -1,4 +1,4 @@
-package test.arquillian;
+package arquillian;
 
 import fr.unice.polytech.isa.dd.teamH.components.AccountingBean;
 import fr.unice.polytech.isa.dd.teamH.entities.Comment;

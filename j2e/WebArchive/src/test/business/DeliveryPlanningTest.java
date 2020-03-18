@@ -1,6 +1,6 @@
-package test.fr.unice.polytech.isa.dd.teamH.business;
+package business;
 
-import test.arquillian.AbstractDroneDeliveryTest;
+import arquillian.AbstractDroneDeliveryTest;
 import fr.unice.polytech.isa.dd.teamH.entities.Supplier;
 import fr.unice.polytech.isa.dd.teamH.entities.Package;
 import fr.unice.polytech.isa.dd.teamH.entities.drone.Drone;
@@ -12,8 +12,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import javax.ejb.EJB;
-
-import java.time.LocalDateTime;
 
 import static org.junit.Assert.assertEquals;
 
