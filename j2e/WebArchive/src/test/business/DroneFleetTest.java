@@ -14,9 +14,7 @@ import org.junit.runner.RunWith;
 import javax.ejb.EJB;
 import java.util.Optional;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 @RunWith(Arquillian.class)
 public class DroneFleetTest extends AbstractDroneDeliveryTest {
@@ -76,5 +74,16 @@ public class DroneFleetTest extends AbstractDroneDeliveryTest {
     public void cannotRegisterTwice() throws Exception {
         management.addDrone(drone1.getId(), drone1.getWeightCapacity());
         management.addDrone(drone1.getId(), drone1.getWeightCapacity());
+    }
+
+    @Test
+    public void editDrone() throws Exception {
+        management.addDrone(drone1.getId(), drone1.getWeightCapacity());
+        management.addDrone(drone2.getId(), drone2.getWeightCapacity());
+
+        management.editDroneStatus(drone2.getId(), "charge");
+        if(!finder.findDroneById(drone2.getId()).isPresent())
+            fail();
+        assertEquals("charge", finder.findDroneById(drone2.getId()).get().getState().getName());
     }
 }
