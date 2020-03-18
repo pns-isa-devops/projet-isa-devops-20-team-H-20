@@ -137,7 +137,6 @@
         <module>PackageRegistry</module>
         <module>Statistics</module>
         <module>SupplierRegistry</module>
-        <module>WebArchive</module>
         <module>WebServices</module>
     </modules>
 </project>

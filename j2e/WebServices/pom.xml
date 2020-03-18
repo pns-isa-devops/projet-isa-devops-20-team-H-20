@@ -8,7 +8,7 @@
 
     <modelVersion>4.0.0</modelVersion>
     <artifactId>WebServices</artifactId>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
     <version>1.0</version>
     <name>Drone Delivery :: WebServices Module</name>
 
@@ -21,6 +21,11 @@
         <dependency>
             <groupId>fr.polytech.team.h</groupId>
             <artifactId>Accounting</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>fr.polytech.team.h</groupId>
+            <artifactId>AvailabilityProcessor</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
@@ -57,6 +62,7 @@
 
     <build>
         <sourceDirectory>src/main/java</sourceDirectory>
-        <finalName>dd-webservices</finalName>
+        <testSourceDirectory>src/test</testSourceDirectory>
+        <finalName>drone-delivery-backend</finalName>
     </build>
 </project>
