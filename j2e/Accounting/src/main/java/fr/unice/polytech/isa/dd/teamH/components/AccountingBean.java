@@ -40,13 +40,13 @@ public class AccountingBean implements InvoiceFinder, InvoiceGeneration
     @Override
     public void generateInvoiceFor(Supplier s)
     {
-        //TODO
+        //TODO sprint 2
     }
 
     @Override
     public void generateInvoicesForAllSuppliers()
     {
-        //TODO
+        //TODO sprint 2
     }
 
     public Set<Invoice> findAllInvoices(){

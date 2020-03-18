@@ -1,5 +1,6 @@
 package fr.unice.polytech.isa.dd.teamH.components;
 import fr.unice.polytech.isa.dd.teamH.entities.delivery.Delivery;
+import fr.unice.polytech.isa.dd.teamH.entities.delivery.DeliveryState;
 import fr.unice.polytech.isa.dd.teamH.entities.deliveryplanning.PlanningEntry;
 import fr.unice.polytech.isa.dd.teamH.entities.drone.Drone;
 import fr.unice.polytech.isa.dd.teamH.entities.Package;
@@ -105,6 +106,11 @@ public class DeliveryPlanningBean implements DeliveryFinder, DeliveryPlanner
             newPE.addDelivery(de);
             return planningEntries.add(newPE);
         }
+    }
+
+    @Override
+    public void editDeliveryStatus(Delivery delivery, DeliveryState state) {
+        delivery.setState(state);
     }
 
     @Override

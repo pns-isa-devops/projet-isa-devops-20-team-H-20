@@ -23,7 +23,7 @@ public class CommentBoardBean implements CommentFinder, CommentPoster
     @Override
     public Optional<Comment> findCommentForPackage(String packageId)
     {
-        //TODO
+        //TODO sprint 2
         return Optional.empty();
     }
 
@@ -36,7 +36,7 @@ public class CommentBoardBean implements CommentFinder, CommentPoster
     @Override
     public Set<Comment> findCommentsForSupplier(Supplier s)
     {
-        //TODO
+        //TODO sprint 2
         return new HashSet<>();
     }
 

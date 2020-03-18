@@ -11,15 +11,11 @@ import javax.ejb.Stateless;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
-import java.util.logging.Logger;
 
 @Stateless
 public class SupplierRegistryBean implements SupplierFinder, SupplierRegistration
 {
-
     private Set<Supplier> suppliers = new HashSet<>();
-
-    private static final Logger log = Logger.getLogger(SupplierRegistryBean.class.getName());
 
     @Override
     public Optional<Supplier> findByName(String name)
@@ -64,6 +60,12 @@ public class SupplierRegistryBean implements SupplierFinder, SupplierRegistratio
             throw new AlreadyExistingContactException(name, contact);
 
         sup.get().addContact(contact);
+    }
+
+    @Override
+    public Set<Supplier> findAll()
+    {
+        return suppliers;
     }
 
     @Override

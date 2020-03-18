@@ -17,9 +17,6 @@ import java.util.logging.Logger;
 
 @Stateless
 public class StatisticsBean implements StatisticsGenerator {
-
-    private static final Logger log = Logger.getLogger(StatisticsBean.class.getName());
-
     private Set<DroneStatsEntry> droneEntries = new TreeSet<>(Comparator.comparing(DroneStatsEntry::getEntryTime));
     private Set<CustomerSatisfactionStatsEntry> customerSatisfactionEntries = new TreeSet<>(Comparator.comparing(CustomerSatisfactionStatsEntry::getEntryTime));
 
@@ -43,7 +40,7 @@ public class StatisticsBean implements StatisticsGenerator {
 
     @Override
     public float getAverageDroneUseRate() {
-        //TODO use delivery finder
+        //TODO use delivery finder sprint 2
         return 0;
     }
 
