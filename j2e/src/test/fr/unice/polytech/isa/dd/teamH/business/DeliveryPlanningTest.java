@@ -16,6 +16,7 @@ import javax.ejb.EJB;
 import java.time.LocalDateTime;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 @RunWith(Arquillian.class)
 public class DeliveryPlanningTest extends AbstractDroneDeliveryTest {
@@ -69,4 +70,9 @@ public class DeliveryPlanningTest extends AbstractDroneDeliveryTest {
         //assertEquals(1, planner.getCompleteDeliveryPlanning().size());
     }
 
+    //TODO
+    @Test
+    public void editDelivery() throws Exception {
+
+    }
 }
