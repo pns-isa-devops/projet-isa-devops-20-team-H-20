@@ -1,6 +1,4 @@
 using System;
-using System.Net;
-using System.IO;
 using System.Collections.Generic;
 using System.ServiceModel;
 
@@ -14,14 +12,21 @@ namespace Partner.Service {
 
         public float CalculateDistance(string from, string to)
         {
-            coordinates = Utils.convertLatLng(from, to);
-            return Utils.calculateDistance(coordinates["lat1"], coordinates["lng1"], coordinates["lat2"], coordinates["lng2"]);
+            Console.WriteLine("Calculate distance in km from " + from + " to " + to);
+            return getRandom(0, 20);
         }
 
         public float CalculateTime(string from, string to)
         {
-            coordinates = Utils.convertLatLng(from, to);
-            return Utils.calculateTime(coordinates["lat1"], coordinates["lng1"], coordinates["lat2"], coordinates["lng2"]);
+            Console.WriteLine("Calculate time in min from " + from + " to " + to);
+            return getRandom(0, 45);
+        }
+
+        private float getRandom(int min, int max)
+        {
+            Random rand = new Random();
+            double val = rand.NextDouble() + rand.Next(min, max);
+            return (float) val;
         }
 
     }

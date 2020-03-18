@@ -4,6 +4,6 @@
 Then add the bin folder (C:\Program Files\Mono\bin) to the path variables
 
 ### How to use
-Compile the client with the command `mcs src/*.cs -pkg:wcf -out:server.exe` if it is not working launch the compile.sh script
+Compile the client by launching `compile.sh` script
 
-Then start the server with `mono server.exe`
+Then start the server with `mono server.exe` or open it with admin rights
