@@ -1,0 +1,27 @@
+<project>
+
+    <parent>
+        <groupId>fr.polytech.team.h</groupId>
+        <artifactId>drone-delivery-backend</artifactId>
+        <version>1.0</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>PackageRegistry</artifactId>
+    <packaging>jar</packaging>
+    <version>1.0</version>
+    <name>Drone Delivery :: PackageRegistry Module</name>
+
+    <dependencies>
+        <dependency>
+            <groupId>fr.polytech.team.h</groupId>
+            <artifactId>Core</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <sourceDirectory>src/main/java</sourceDirectory>
+        <finalName>dd-package-registry</finalName>
+    </build>
+</project>

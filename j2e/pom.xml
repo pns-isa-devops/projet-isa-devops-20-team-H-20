@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>fr.polytech.team.h</groupId>
     <artifactId>drone-delivery-backend</artifactId>
-    <packaging>war</packaging>
+    <packaging>pom</packaging>
     <version>1.0</version>
     <name>Drone Delivery :: J2E Backend</name>
 
@@ -103,8 +103,8 @@
     <build>
         <finalName>drone-delivery-backend</finalName>
         <defaultGoal>package</defaultGoal>
-        <sourceDirectory>src/main/java</sourceDirectory>
-        <testSourceDirectory>src/test</testSourceDirectory>
+        <sourceDirectory>Core/src/main/java</sourceDirectory>
+        <testSourceDirectory>Core/src/test</testSourceDirectory>
         <plugins>
             <plugin> <!-- used to define level language 8 to use LocalDateTime -->
                 <groupId>org.apache.maven.plugins</groupId>
@@ -128,4 +128,18 @@
             </plugin>
         </plugins>
     </build>
+
+    <modules>
+        <module>Accounting</module>
+        <module>AvailabilityProcessor</module>
+        <module>CommentBoard</module>
+        <module>Core</module>
+        <module>DeliveryPlanning</module>
+        <module>DroneFleet</module>
+        <module>PackageRegistry</module>
+        <module>Statistics</module>
+        <module>SupplierRegistry</module>
+        <module>WebArchive</module>
+        <module>WebServices</module>
+    </modules>
 </project>
