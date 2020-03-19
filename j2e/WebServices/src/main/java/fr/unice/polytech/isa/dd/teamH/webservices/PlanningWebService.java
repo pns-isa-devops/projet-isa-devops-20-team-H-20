@@ -17,12 +17,12 @@ public interface PlanningWebService {
     Set<PlanningEntry> getCompleteDeliveryPlanning();
 
     @WebMethod
-    @WebResult(name = "return code")
+    @WebResult(name = "return_code")
     boolean planDelivery(@WebParam(name="tracking-number") String trackingNumber,
                       @WebParam(name="shipping-time") String shippingTime) throws UnknownPackageException, DeliveryDistanceException;
 
     @WebMethod
-    @WebResult(name = "return code")
+    @WebResult(name = "return_code")
     boolean editDeliveryStatus(@WebParam(name="id") String id, @WebParam(name="status") String status) throws UnknownDeliveryStateException, UnknownDeliveryException;
 
 //    @WebMethod

@@ -12,7 +12,7 @@ import javax.jws.WebService;
 @WebService(targetNamespace = "http://www.polytech.unice.fr/si/4a/isa/dd/team-h/packages")
 public interface PackageRegistrationWebService {
     @WebMethod
-    @WebResult(name = "return code")
+    @WebResult(name = "return_code")
     boolean registerPackage(@WebParam(name="packageTrackingNumber") String packageTrackingNumber,
                        @WebParam(name="supplierName") String supplierName,
                        @WebParam(name="weight") float weight,
@@ -20,7 +20,7 @@ public interface PackageRegistrationWebService {
             throws UnknownSupplierException, AlreadyExistingPackageException;
 
     @WebMethod
-    @WebResult(name = "return code")
+    @WebResult(name = "return_code")
     boolean editPackage(@WebParam(name="packageTrackingNumber") String packageTrackingNumber,
                     @WebParam(name="supplierName") String supplierName,
                     @WebParam(name="weight") float weight,
@@ -28,7 +28,7 @@ public interface PackageRegistrationWebService {
             throws UnknownSupplierException, UnknownPackageException;
 
     @WebMethod
-    @WebResult(name = "return code")
+    @WebResult(name = "return_code")
     boolean deletePackage(@WebParam(name="packageTrackingNumber") String packageTrackingNumber)
             throws UnknownPackageException;
 }

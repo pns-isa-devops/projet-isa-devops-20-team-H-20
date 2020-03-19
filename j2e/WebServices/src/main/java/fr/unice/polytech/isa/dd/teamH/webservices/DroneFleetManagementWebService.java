@@ -14,12 +14,12 @@ import javax.jws.WebService;
 public interface DroneFleetManagementWebService {
 
     @WebMethod
-    @WebResult(name = "return code")
+    @WebResult(name = "return_code")
     boolean addDrone(@WebParam(name="id") int id,
                        @WebParam(name="weightCapacity") float weightCapacity) throws AlreadyExistingDroneException;
 
     @WebMethod
-    @WebResult(name = "return code")
+    @WebResult(name = "return_code")
     boolean removeDrone(@WebParam(name="id") int id) throws UnknownDroneException;
 
     @WebMethod
@@ -27,6 +27,6 @@ public interface DroneFleetManagementWebService {
     Drone getDrone(@WebParam(name="id") int id) throws UnknownDroneException;
 
     @WebMethod
-    @WebResult(name = "return code")
+    @WebResult(name = "return_code")
     boolean editDroneStatus(@WebParam(name="id") int id, @WebParam(name="status") String status) throws UnknownDroneStateException, UnknownDroneException;
 }
