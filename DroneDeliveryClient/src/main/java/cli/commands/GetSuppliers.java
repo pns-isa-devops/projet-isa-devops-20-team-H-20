@@ -15,7 +15,7 @@ public class GetSuppliers extends Command<DronePublicAPI> {
 
     @Override
     public void execute() {
-        List<Supplier> suppliers = shell.system.getAccountingWebService().findAllSuppliers(null);
+        List<Supplier> suppliers = shell.system.getAccountingWebService().findAllSuppliers();
         for(Supplier supplier : suppliers)
             displayResult(supplier);
     }
