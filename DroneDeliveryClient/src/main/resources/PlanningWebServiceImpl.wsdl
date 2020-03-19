@@ -31,7 +31,9 @@
     <xs:sequence/>
   </xs:complexType>
   <xs:complexType abstract="true" name="deliveryState">
-    <xs:sequence/>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="name" type="xs:string"/>
+    </xs:sequence>
   </xs:complexType>
   <xs:complexType name="planDelivery">
     <xs:sequence>

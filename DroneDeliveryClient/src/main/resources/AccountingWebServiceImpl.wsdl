@@ -27,6 +27,7 @@
   </xs:complexType>
   <xs:complexType name="supplier">
     <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="contacts" nillable="true" type="xs:string"/>
       <xs:element minOccurs="0" name="name" type="xs:string"/>
     </xs:sequence>
   </xs:complexType>
