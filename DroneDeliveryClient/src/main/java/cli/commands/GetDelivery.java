@@ -26,6 +26,7 @@ public class GetDelivery extends Command<DronePublicAPI> {
         //displayResult(shell.system.getPlanningWebService().);
     }
 
+
     private void displayResult(Delivery delivery){
         System.out.println("Delivery : " + delivery.getDateTimeToShip());
     }
