@@ -1,8 +1,13 @@
 package fr.unice.polytech.isa.dd.teamH.entities.delivery;
 
+import javax.xml.bind.annotation.XmlSeeAlso;
 import java.io.Serializable;
 import java.util.Objects;
 
+@XmlSeeAlso({CompletedDeliveryState.class,
+            FailedDeliveryState.class,
+            InFlightDeliveryState.class,
+            NotSentDeliveryState.class})
 public abstract class DeliveryState implements Serializable {
     protected String name;
     public abstract boolean isCompleted();
