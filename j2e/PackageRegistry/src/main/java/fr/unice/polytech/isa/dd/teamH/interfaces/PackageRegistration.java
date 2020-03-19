@@ -8,9 +8,9 @@ import javax.ejb.Local;
 
 @Local
 public interface PackageRegistration {
-    void register(String trackingNumber, Supplier s, float weight, String destinationAddress) throws AlreadyExistingPackageException;
-    void edit(String trackingNumber, Supplier s, float weight, String destinationAddress) throws UnknownPackageException;
-    void delete(String trackingNumber) throws UnknownPackageException;
+    boolean register(String trackingNumber, Supplier s, float weight, String destinationAddress) throws AlreadyExistingPackageException;
+    boolean edit(String trackingNumber, Supplier s, float weight, String destinationAddress) throws UnknownPackageException;
+    boolean delete(String trackingNumber) throws UnknownPackageException;
 
     void flush();
 }

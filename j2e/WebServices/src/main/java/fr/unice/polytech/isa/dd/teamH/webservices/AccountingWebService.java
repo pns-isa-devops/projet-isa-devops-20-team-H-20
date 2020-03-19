@@ -20,7 +20,7 @@ public interface AccountingWebService {
     Supplier findSupplierByName(@WebParam(name="name") String name) throws UnknownSupplierException;
 
     @WebMethod
-    @WebResult(name = "supplier")
+    @WebResult(name = "return code")
     boolean deleteSupplier(@WebParam(name="name") String name) throws UnknownSupplierException;
 
     @WebMethod
@@ -28,10 +28,12 @@ public interface AccountingWebService {
     Set<Supplier> findAllSuppliers(@WebParam(name="name") String name);
 
     @WebMethod
+    @WebResult(name = "return code")
     boolean registerSupplier(@WebParam(name="name") String name,
                   @WebParam(name="contact") String contact) throws AlreadyExistingSupplierException;
 
     @WebMethod
+    @WebResult(name = "return code")
     boolean addSupplierContact(@WebParam(name="name") String name,
                   @WebParam(name="contact") String contact) throws UnknownSupplierException, AlreadyExistingContactException;
 

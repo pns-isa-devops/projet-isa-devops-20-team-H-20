@@ -7,21 +7,26 @@ import fr.unice.polytech.isa.dd.teamH.exceptions.UnknownDroneStateException;
 
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
+import javax.jws.WebResult;
 import javax.jws.WebService;
 
 @WebService(targetNamespace = "http://www.polytech.unice.fr/si/4a/isa/dd/team-h/drones")
 public interface DroneFleetManagementWebService {
 
     @WebMethod
+    @WebResult(name = "return code")
     boolean addDrone(@WebParam(name="id") int id,
                        @WebParam(name="weightCapacity") float weightCapacity) throws AlreadyExistingDroneException;
 
     @WebMethod
+    @WebResult(name = "return code")
     boolean removeDrone(@WebParam(name="id") int id) throws UnknownDroneException;
 
     @WebMethod
+    @WebResult(name = "drone")
     Drone getDrone(@WebParam(name="id") int id) throws UnknownDroneException;
 
     @WebMethod
+    @WebResult(name = "return code")
     boolean editDroneStatus(@WebParam(name="id") int id, @WebParam(name="status") String status) throws UnknownDroneStateException, UnknownDroneException;
 }

@@ -19,7 +19,7 @@ public class PackageRegistryBean implements PackageRegistration, PackageFinder {
     private Set<Package> packages = new HashSet<>();
 
     @Override
-    public void register(String trackingNumber, Supplier supplier, float weight, String destinationAddress) throws AlreadyExistingPackageException {
+    public boolean register(String trackingNumber, Supplier supplier, float weight, String destinationAddress) throws AlreadyExistingPackageException {
         if(findPackageByTrackingNumber(trackingNumber).isPresent())
             throw new AlreadyExistingPackageException(trackingNumber);
 
@@ -28,12 +28,16 @@ public class PackageRegistryBean implements PackageRegistration, PackageFinder {
         aPackage.setSupplier(supplier);
         aPackage.setWeight(weight);
         aPackage.setTrackingNumber(trackingNumber);
-        packages.add(aPackage);
-        log.log(Level.INFO, "Package added : " + aPackage.toString());
+        boolean result = packages.add(aPackage);
+        if(result)
+            log.log(Level.INFO, "Package added : " + aPackage.toString());
+        else
+            log.log(Level.INFO, "Package not added : " + aPackage.toString());
+        return result;
     }
 
     @Override
-    public void edit(String trackingNumber, Supplier s, float weight, String destinationAddress) throws UnknownPackageException {
+    public boolean edit(String trackingNumber, Supplier s, float weight, String destinationAddress) throws UnknownPackageException {
         Optional<Package> op = findPackageByTrackingNumber(trackingNumber);
         if(!op.isPresent())
             throw new UnknownPackageException(trackingNumber);
@@ -42,14 +46,19 @@ public class PackageRegistryBean implements PackageRegistration, PackageFinder {
         aPackage.setWeight(weight);
         aPackage.setDestination(destinationAddress);
         log.log(Level.INFO, "Package edited : " + aPackage.toString());
+        return true;
     }
 
     @Override
-    public void delete(String trackingNumber) throws UnknownPackageException{
+    public boolean delete(String trackingNumber) throws UnknownPackageException{
         if(!findPackageByTrackingNumber(trackingNumber).isPresent())
             throw new UnknownPackageException(trackingNumber);
-        packages.removeIf(e -> e.getTrackingNumber().equals(trackingNumber));
-        log.log(Level.INFO, "Package edited : " + trackingNumber);
+        boolean result = packages.removeIf(e -> e.getTrackingNumber().equals(trackingNumber));
+        if(result)
+            log.log(Level.INFO, "Package deleted : " + trackingNumber);
+        else
+            log.log(Level.INFO, "Package not deleted : " + trackingNumber);
+        return result;
     }
 
     @Override

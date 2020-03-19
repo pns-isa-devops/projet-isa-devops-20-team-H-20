@@ -6,25 +6,29 @@ import fr.unice.polytech.isa.dd.teamH.exceptions.UnknownSupplierException;
 
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
+import javax.jws.WebResult;
 import javax.jws.WebService;
 
 @WebService(targetNamespace = "http://www.polytech.unice.fr/si/4a/isa/dd/team-h/packages")
 public interface PackageRegistrationWebService {
     @WebMethod
-    void registerPackage(@WebParam(name="packageTrackingNumber") String packageTrackingNumber,
+    @WebResult(name = "return code")
+    boolean registerPackage(@WebParam(name="packageTrackingNumber") String packageTrackingNumber,
                        @WebParam(name="supplierName") String supplierName,
                        @WebParam(name="weight") float weight,
                         @WebParam(name="destination") String destination)
             throws UnknownSupplierException, AlreadyExistingPackageException;
 
     @WebMethod
-    void editPackage(@WebParam(name="packageTrackingNumber") String packageTrackingNumber,
+    @WebResult(name = "return code")
+    boolean editPackage(@WebParam(name="packageTrackingNumber") String packageTrackingNumber,
                     @WebParam(name="supplierName") String supplierName,
                     @WebParam(name="weight") float weight,
                     @WebParam(name="destination") String destination)
             throws UnknownSupplierException, UnknownPackageException;
 
     @WebMethod
-    void deletePackage(@WebParam(name="packageTrackingNumber") String packageTrackingNumber)
+    @WebResult(name = "return code")
+    boolean deletePackage(@WebParam(name="packageTrackingNumber") String packageTrackingNumber)
             throws UnknownPackageException;
 }

@@ -22,6 +22,7 @@ public interface PlanningWebService {
                       @WebParam(name="shipping-time") String shippingTime) throws UnknownPackageException, DeliveryDistanceException;
 
     @WebMethod
+    @WebResult(name = "return code")
     boolean editDeliveryStatus(@WebParam(name="id") String id, @WebParam(name="status") String status) throws UnknownDeliveryStateException, UnknownDeliveryException;
 
 //    @WebMethod
