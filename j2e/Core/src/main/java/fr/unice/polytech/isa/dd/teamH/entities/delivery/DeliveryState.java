@@ -5,7 +5,6 @@ import java.util.Objects;
 
 public abstract class DeliveryState implements Serializable {
     protected String name;
-    public abstract String getStatus();
     public abstract boolean isCompleted();
     abstract boolean is(String name);
     public abstract DeliveryState clone();

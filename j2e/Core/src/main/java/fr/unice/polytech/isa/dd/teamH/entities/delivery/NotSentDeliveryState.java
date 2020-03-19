@@ -9,7 +9,7 @@ public class NotSentDeliveryState extends DeliveryState {
     }
 
     @Override
-    public String getStatus() {
+    public String toString() {
         return "Delivery is currently not sent";
     }
 

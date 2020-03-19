@@ -45,6 +45,34 @@
       <xs:element minOccurs="0" name="name" type="xs:string"/>
     </xs:sequence>
   </xs:complexType>
+  <xs:complexType name="inChargeDroneState">
+    <xs:complexContent>
+      <xs:extension base="tns:droneState">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="inFlightDroneState">
+    <xs:complexContent>
+      <xs:extension base="tns:droneState">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="inMaintenanceDroneState">
+    <xs:complexContent>
+      <xs:extension base="tns:droneState">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="readyDroneState">
+    <xs:complexContent>
+      <xs:extension base="tns:droneState">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
   <xs:complexType name="removeDrone">
     <xs:sequence>
       <xs:element name="id" type="xs:int"/>
