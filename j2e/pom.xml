@@ -24,11 +24,11 @@
         <versions.arquilian.jta>1.0.3.Final</versions.arquilian.jta>
         <versions.shrinkwrap>2.2.6</versions.shrinkwrap>
     <!-- Artifactory configuration parameters -->
-        <artifactory.repository.url>http://192.168.99.1:8082/artifactory</artifactory.repository.url>
+        <artifactory.repository.url>http://192.168.99.101:8082/artifactory</artifactory.repository.url>
         <artifactory.snapshots.id>snapshots</artifactory.snapshots.id>
         <artifactory.releases.id>central</artifactory.releases.id>
-        <artifactory.snapshots.name>badedd2981f1-snapshots</artifactory.snapshots.name>
-        <artifactory.releases.name>badedd2981f1-releases</artifactory.releases.name>
+        <artifactory.snapshots.name>2ae717df37c1-snapshots</artifactory.snapshots.name>
+        <artifactory.releases.name>2ae717df37c1-releases</artifactory.releases.name>
 
     </properties>
 
