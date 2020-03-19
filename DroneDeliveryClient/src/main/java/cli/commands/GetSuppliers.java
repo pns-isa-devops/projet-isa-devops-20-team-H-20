@@ -22,6 +22,9 @@ public class GetSuppliers extends Command<DronePublicAPI> {
 
     private void displayResult(Supplier supplier){
         System.out.println("Supplier : " + supplier.getName());
+        for(String contact : supplier.getContacts()){
+            System.out.println("\tContact : " + contact);
+        }
     }
 
     @Override

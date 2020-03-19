@@ -39,7 +39,6 @@ public class DroneFleetTest extends AbstractDroneDeliveryTest {
 
     @After
     public void cleaningUp() throws Exception {
-
         management.flush();
 
 //        utx.begin();
@@ -61,12 +60,48 @@ public class DroneFleetTest extends AbstractDroneDeliveryTest {
     }
 
     @Test
+    public void findById() throws Exception {
+        Optional<Drone> drone = finder.findDroneById(drone1.getId());
+        assertFalse(drone.isPresent());
+        management.addDrone(drone1.getId(), drone1.getWeightCapacity());
+        drone = finder.findDroneById(drone1.getId());
+        assertTrue(drone.isPresent());
+
+        management.addDrone(drone2.getId(), drone2.getWeightCapacity());
+        drone = finder.findDroneById(drone1.getId());
+        assertTrue(drone.isPresent());
+
+        drone = finder.findDroneById(drone2.getId());
+        assertTrue(drone.isPresent());
+
+        management.deleteDrone(drone1.getId());
+        drone = finder.findDroneById(drone1.getId());
+        assertFalse(drone.isPresent());
+    }
+
+    @Test
+    public void deleteDrone() throws Exception {
+        management.addDrone(drone1.getId(), drone1.getWeightCapacity());
+        management.deleteDrone(drone1.getId());
+        Optional<Drone> drone = finder.findDroneById(drone1.getId());
+        assertFalse(drone.isPresent());
+
+        management.addDrone(drone1.getId(), drone1.getWeightCapacity());
+        management.addDrone(drone2.getId(), drone2.getWeightCapacity());
+        management.deleteDrone(drone1.getId());
+        drone = finder.findDroneById(drone1.getId());
+        assertFalse(drone.isPresent());
+
+        management.deleteDrone(drone2.getId());
+        drone = finder.findDroneById(drone2.getId());
+        assertFalse(drone.isPresent());
+    }
+
+    @Test
     public void findReadyDrones() throws Exception {
         management.addDrone(drone1.getId(), drone1.getWeightCapacity());
         management.addDrone(drone2.getId(), drone2.getWeightCapacity());
-
         management.editDroneStatus(drone2.getId(), "maintenance");
-
         assertEquals(1, finder.findReadyDrones().size());
     }
 
@@ -77,7 +112,7 @@ public class DroneFleetTest extends AbstractDroneDeliveryTest {
     }
 
     @Test
-    public void editDrone() throws Exception {
+    public void editDroneStatus() throws Exception {
         management.addDrone(drone1.getId(), drone1.getWeightCapacity());
         management.addDrone(drone2.getId(), drone2.getWeightCapacity());
 
