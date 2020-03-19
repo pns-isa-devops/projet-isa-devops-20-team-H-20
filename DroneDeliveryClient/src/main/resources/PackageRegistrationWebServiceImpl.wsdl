@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<wsdl:definitions name="PackageRegistrationWebServiceImplService" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/packages" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/packages" xmlns:ns1="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/planning" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+<wsdl:definitions name="PackageRegistrationWebServiceImplService" targetNamespace="http://webservices.teamH.dd.isa.polytech.unice.fr/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://webservices.teamH.dd.isa.polytech.unice.fr/" xmlns:ns2="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/planning" xmlns:ns1="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/packages" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
   <wsdl:types>
 <xs:schema xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/packages" xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/packages">
   <xs:element name="deletePackage" type="tns:deletePackage"/>
@@ -70,72 +70,72 @@
 </xsd:schema>
   </wsdl:types>
   <wsdl:message name="registerPackage">
-    <wsdl:part name="parameters" element="tns:registerPackage">
+    <wsdl:part name="parameters" element="ns1:registerPackage">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="UnknownSupplierException">
-    <wsdl:part name="UnknownSupplierException" element="tns:UnknownSupplierException">
+    <wsdl:part name="UnknownSupplierException" element="ns1:UnknownSupplierException">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="UnknownPackageException">
-    <wsdl:part name="UnknownPackageException" element="ns1:UnknownPackageException">
+    <wsdl:part name="UnknownPackageException" element="ns2:UnknownPackageException">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="AlreadyExistingPackageException">
-    <wsdl:part name="AlreadyExistingPackageException" element="tns:AlreadyExistingPackageException">
+    <wsdl:part name="AlreadyExistingPackageException" element="ns1:AlreadyExistingPackageException">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="deletePackageResponse">
-    <wsdl:part name="parameters" element="tns:deletePackageResponse">
+    <wsdl:part name="parameters" element="ns1:deletePackageResponse">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="registerPackageResponse">
-    <wsdl:part name="parameters" element="tns:registerPackageResponse">
+    <wsdl:part name="parameters" element="ns1:registerPackageResponse">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="deletePackage">
-    <wsdl:part name="parameters" element="tns:deletePackage">
+    <wsdl:part name="parameters" element="ns1:deletePackage">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="editPackageResponse">
-    <wsdl:part name="parameters" element="tns:editPackageResponse">
+    <wsdl:part name="parameters" element="ns1:editPackageResponse">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="editPackage">
-    <wsdl:part name="parameters" element="tns:editPackage">
+    <wsdl:part name="parameters" element="ns1:editPackage">
     </wsdl:part>
   </wsdl:message>
   <wsdl:portType name="PackageRegistrationWebService">
     <wsdl:operation name="registerPackage">
-      <wsdl:input name="registerPackage" message="tns:registerPackage">
+      <wsdl:input name="registerPackage" message="ns1:registerPackage">
     </wsdl:input>
-      <wsdl:output name="registerPackageResponse" message="tns:registerPackageResponse">
+      <wsdl:output name="registerPackageResponse" message="ns1:registerPackageResponse">
     </wsdl:output>
-      <wsdl:fault name="UnknownSupplierException" message="tns:UnknownSupplierException">
+      <wsdl:fault name="UnknownSupplierException" message="ns1:UnknownSupplierException">
     </wsdl:fault>
-      <wsdl:fault name="AlreadyExistingPackageException" message="tns:AlreadyExistingPackageException">
+      <wsdl:fault name="AlreadyExistingPackageException" message="ns1:AlreadyExistingPackageException">
     </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="deletePackage">
-      <wsdl:input name="deletePackage" message="tns:deletePackage">
+      <wsdl:input name="deletePackage" message="ns1:deletePackage">
     </wsdl:input>
-      <wsdl:output name="deletePackageResponse" message="tns:deletePackageResponse">
+      <wsdl:output name="deletePackageResponse" message="ns1:deletePackageResponse">
     </wsdl:output>
-      <wsdl:fault name="UnknownPackageException" message="tns:UnknownPackageException">
+      <wsdl:fault name="UnknownPackageException" message="ns1:UnknownPackageException">
     </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="editPackage">
-      <wsdl:input name="editPackage" message="tns:editPackage">
+      <wsdl:input name="editPackage" message="ns1:editPackage">
     </wsdl:input>
-      <wsdl:output name="editPackageResponse" message="tns:editPackageResponse">
+      <wsdl:output name="editPackageResponse" message="ns1:editPackageResponse">
     </wsdl:output>
-      <wsdl:fault name="UnknownSupplierException" message="tns:UnknownSupplierException">
+      <wsdl:fault name="UnknownSupplierException" message="ns1:UnknownSupplierException">
     </wsdl:fault>
-      <wsdl:fault name="UnknownPackageException" message="tns:UnknownPackageException">
+      <wsdl:fault name="UnknownPackageException" message="ns1:UnknownPackageException">
     </wsdl:fault>
     </wsdl:operation>
   </wsdl:portType>
-  <wsdl:binding name="PackageRegistrationWebServiceImplServiceSoapBinding" type="tns:PackageRegistrationWebService">
+  <wsdl:binding name="PackageRegistrationWebServiceImplServiceSoapBinding" type="ns1:PackageRegistrationWebService">
     <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
     <wsdl:operation name="registerPackage">
       <soap:operation soapAction="" style="document"/>
@@ -181,7 +181,7 @@
     </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="PackageRegistrationWebServiceImplService">
-    <wsdl:port name="PackageRegistrationWebServiceImplPort" binding="tns:PackageRegistrationWebServiceImplServiceSoapBinding">
+    <wsdl:port name="PackageRegistrationWebServiceImplPort" binding="ns1:PackageRegistrationWebServiceImplServiceSoapBinding">
       <soap:address location="http://localhost:9090/PackageRegistrationWebServiceImplPort"/>
     </wsdl:port>
   </wsdl:service>
