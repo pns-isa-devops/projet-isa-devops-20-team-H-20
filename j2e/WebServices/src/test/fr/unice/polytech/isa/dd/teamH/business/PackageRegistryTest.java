@@ -39,7 +39,7 @@ public class PackageRegistryTest extends AbstractDroneDeliveryTest {
     private Package p3;
 
     @Before
-    public void setUpContext() throws Exception {
+    public void setUpContext() {
         amazon = new Supplier("Amazon");
         ldlc = new Supplier("LDLC");
         p = new Package("1a", 5, "8 Avenue des lilas", amazon);
@@ -48,7 +48,7 @@ public class PackageRegistryTest extends AbstractDroneDeliveryTest {
     }
 
     @After
-    public void cleaningUp() throws Exception {
+    public void cleaningUp() {
 
         registry.flush();
 
@@ -81,6 +81,20 @@ public class PackageRegistryTest extends AbstractDroneDeliveryTest {
             assertEquals(newP.getDestination(), "9 Avenue des lilas");
             assertEquals(newP.getWeight(), 10, 0);
         }
+    }
+
+    @Test
+    public void deletePackage() throws Exception {
+        registry.register(p.getTrackingNumber(), p.getSupplier(), p.getWeight(), p.getDestination());
+        registry.delete(p.getTrackingNumber());
+        Optional<Package> aPackage = finder.findPackageByTrackingNumber(p.getTrackingNumber());
+        assertFalse(aPackage.isPresent());
+
+        registry.register(p.getTrackingNumber(), p.getSupplier(), p.getWeight(), p.getDestination());
+        registry.register(p2.getTrackingNumber(), p2.getSupplier(), p2.getWeight(), p2.getDestination());
+        registry.delete(p2.getTrackingNumber());
+        aPackage = finder.findPackageByTrackingNumber(p.getTrackingNumber());
+        assertTrue(aPackage.isPresent());
     }
 
     @Test

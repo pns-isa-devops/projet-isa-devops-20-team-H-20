@@ -32,12 +32,12 @@ public class AvailabilityProcessorTest extends AbstractDroneDeliveryTest {
     Drone drone1;
 
     @Before
-    public void setUpContext() throws Exception {
+    public void setUpContext() {
         drone1 = new Drone(1, 5);
     }
 
     @After
-    public void cleaningUp() throws Exception {
+    public void cleaningUp() {
         management.flush();
 //        utx.begin();
 //        Optional<Customer> toDispose = finder.findByName(john.getName());

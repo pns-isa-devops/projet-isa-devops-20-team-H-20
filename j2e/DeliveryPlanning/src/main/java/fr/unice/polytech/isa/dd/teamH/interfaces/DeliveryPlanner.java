@@ -14,7 +14,7 @@ import java.util.Set;
 
 @Local
 public interface DeliveryPlanner {
-    boolean planDelivery(Package p, LocalDateTime shippingTime) throws DeliveryDistanceException;
+    boolean planDelivery(Package p, String date, String time) throws DeliveryDistanceException;
     boolean editDeliveryStatus(Delivery delivery, DeliveryState state);
     Set<PlanningEntry> getCompleteDeliveryPlanning();
 

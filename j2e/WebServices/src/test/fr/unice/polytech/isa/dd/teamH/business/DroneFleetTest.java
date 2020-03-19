@@ -32,13 +32,13 @@ public class DroneFleetTest extends AbstractDroneDeliveryTest {
     private Drone drone2;
 
     @Before
-    public void setUpContext() throws Exception {
+    public void setUpContext() {
         drone1 = new Drone(1, 5);
         drone2 = new Drone(2, 5);
     }
 
     @After
-    public void cleaningUp() throws Exception {
+    public void cleaningUp() {
         management.flush();
 
 //        utx.begin();

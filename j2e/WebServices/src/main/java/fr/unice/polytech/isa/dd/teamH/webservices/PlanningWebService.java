@@ -19,12 +19,13 @@ public interface PlanningWebService {
     @WebMethod
     @WebResult(name = "return_code")
     boolean planDelivery(@WebParam(name="tracking-number") String trackingNumber,
-                      @WebParam(name="shipping-time") String shippingTime) throws UnknownPackageException, DeliveryDistanceException;
+                      @WebParam(name="shipping-time") String date, @WebParam(name="shipping-time") String time) throws UnknownPackageException, DeliveryDistanceException;
 
     @WebMethod
     @WebResult(name = "return_code")
     boolean editDeliveryStatus(@WebParam(name="id") String id, @WebParam(name="status") String status) throws UnknownDeliveryStateException, UnknownDeliveryException;
 
-//    @WebMethod
-//    Delivery findDeliveryById(@WebParam(name="id") String id) throws UnknownDeliveryException;
+    @WebMethod
+    @WebResult(name = "delivery")
+    Delivery findDeliveryById(@WebParam(name="id") String id) throws UnknownDeliveryException;
 }

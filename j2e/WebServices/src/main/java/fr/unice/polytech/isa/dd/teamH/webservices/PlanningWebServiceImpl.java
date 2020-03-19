@@ -12,7 +12,6 @@ import fr.unice.polytech.isa.dd.teamH.interfaces.PackageFinder;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.jws.WebService;
-import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.Set;
 
@@ -36,12 +35,11 @@ public class PlanningWebServiceImpl implements PlanningWebService {
     }
 
     @Override
-    public boolean planDelivery(String trackingNumber, String shippingTime) throws UnknownPackageException, DeliveryDistanceException {
+    public boolean planDelivery(String trackingNumber, String date, String time) throws UnknownPackageException, DeliveryDistanceException {
         Optional<Package> p = packageFinder.findPackageByTrackingNumber(trackingNumber);
         if(!p.isPresent())
             throw new UnknownPackageException(trackingNumber);
-        LocalDateTime t = LocalDateTime.parse(shippingTime);
-        return deliveryPlanner.planDelivery(p.get(), t);
+        return deliveryPlanner.planDelivery(p.get(), date, time);
     }
 
     @Override
@@ -52,14 +50,12 @@ public class PlanningWebServiceImpl implements PlanningWebService {
         }
         return deliveryPlanner.editDeliveryStatus(d.get(), DeliveryStateFactory.getInstance().createState(status));
     }
-//
-//    @Override
-//    public Delivery findDeliveryById(String id) throws UnknownDeliveryException {
-//        Optional<Delivery> delivery = deliveryFinder.findDeliveryById(id);
-//        if(!delivery.isPresent())
-//            throw new UnknownDeliveryException(id);
-//        return delivery.get();
-//    }
 
-
+    @Override
+    public Delivery findDeliveryById(String id) throws UnknownDeliveryException {
+        Optional<Delivery> delivery = deliveryFinder.findDeliveryById(id);
+        if(!delivery.isPresent())
+            throw new UnknownDeliveryException(id);
+        return delivery.get();
+    }
 }

@@ -15,7 +15,7 @@
 ### How to use
 To launch the project tomcat server, go to the root project folder (j2e), then use this command line `mvn clean install`. Then, go to the "WebServices" folder/module and use `mvn tomee:run`.
 
-To launch the tests get to the root project then use this command line `mvn test`.
+To launch the tests get to the root project then use this command line `mvn test`. When launching test the better is to have the external mapping service also launched
 
 ### Artifactory Notes
 Please modify artifactory configurations finding in `pom.xml` and `settings.xml` to match the artifactory used on your computer before using.

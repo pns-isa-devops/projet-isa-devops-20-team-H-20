@@ -5,18 +5,21 @@ import fr.unice.polytech.isa.dd.teamH.exceptions.UnknownDeliveryStateException;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.time.Year;
 import java.util.Objects;
 
 public class Delivery implements Serializable {
-
-    private LocalDateTime dateTimeToShip;
-
+    /**
+     * yyyy-mm-dd
+     */
+    private String date;
+    /**
+     * hh:mm
+     */
+    private String time;
     private float flightTime;
-
     private float distance;
-
     private Package aPackage;
-
     private DeliveryState state;
 
     public Delivery(){
@@ -27,8 +30,34 @@ public class Delivery implements Serializable {
         }
     }
 
-    public Delivery(LocalDateTime dateTimeToShip, float flightTime, float distance, Package aPackage) {
-        this.dateTimeToShip = dateTimeToShip;
+    public Delivery(String date, String time, float flightTime, float distance, Package aPackage) {
+        this.date = date;
+        this.time = time;
+        this.flightTime = flightTime;
+        this.distance = distance;
+        this.aPackage = aPackage;
+        this.state = new NotSentDeliveryState();
+    }
+
+    public Delivery(LocalDateTime localDateTime, float flightTime, float distance, Package aPackage) {
+        int monthValue = localDateTime.getMonthValue();
+        String monthVal = Integer.toString(monthValue);;
+        if(monthValue < 10)
+            monthVal = "0" + monthVal;
+        int dayValue = localDateTime.getDayOfMonth();
+        String dayVal = Integer.toString(dayValue);;
+        if(dayValue < 10)
+            dayVal = "0" + dayVal;
+        int hourValue = localDateTime.getHour();
+        String hourVal = Integer.toString(hourValue);;
+        if(hourValue < 10)
+            dayVal = "0" + hourVal;
+        int minuteValue = localDateTime.getMinute();
+        String minuteVal = Integer.toString(minuteValue);;
+        if(minuteValue < 10)
+            minuteVal = "0" + minuteVal;
+        this.date = localDateTime.getYear() + "-" + monthVal + "-" + dayVal;
+        this.time = hourVal + ":" + minuteVal;
         this.flightTime = flightTime;
         this.distance = distance;
         this.aPackage = aPackage;
@@ -41,10 +70,27 @@ public class Delivery implements Serializable {
     }
 
     public LocalDateTime getDateTimeToShip() {
-        return dateTimeToShip;
+        return LocalDateTime.parse(date+"T"+time+":00");
     }
-    public void setDateTimeToShip(LocalDateTime ldt){
-        this.dateTimeToShip = ldt;
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public void setaPackage(Package aPackage) {
+        this.aPackage = aPackage;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public String getTime() {
+        return time;
     }
 
     public float getFlightTime() {
@@ -92,7 +138,7 @@ public class Delivery implements Serializable {
     @Override
     public String toString() {
         return "Delivery{" +
-                "dateTimeToShip=" + dateTimeToShip +
+                "dateTimeToShip=" + getDateTimeToShip() +
                 ", flightTime=" + flightTime +
                 ", distance=" + distance +
                 ", aPackage=" + aPackage +

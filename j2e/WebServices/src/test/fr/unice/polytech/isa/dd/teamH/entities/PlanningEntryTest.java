@@ -1,7 +1,5 @@
 package fr.unice.polytech.isa.dd.teamH.entities;
 
-import fr.unice.polytech.isa.dd.teamH.entities.Package;
-import fr.unice.polytech.isa.dd.teamH.entities.Supplier;
 import fr.unice.polytech.isa.dd.teamH.entities.delivery.Delivery;
 import fr.unice.polytech.isa.dd.teamH.entities.deliveryplanning.PlanningEntry;
 import fr.unice.polytech.isa.dd.teamH.entities.drone.Drone;

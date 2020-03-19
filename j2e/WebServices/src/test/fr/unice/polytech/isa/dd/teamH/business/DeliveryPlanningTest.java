@@ -3,7 +3,10 @@ package fr.unice.polytech.isa.dd.teamH.business;
 import fr.unice.polytech.isa.dd.teamH.arquillian.AbstractDroneDeliveryTest;
 import fr.unice.polytech.isa.dd.teamH.entities.Supplier;
 import fr.unice.polytech.isa.dd.teamH.entities.Package;
+import fr.unice.polytech.isa.dd.teamH.entities.delivery.Delivery;
+import fr.unice.polytech.isa.dd.teamH.entities.delivery.DeliveryStateFactory;
 import fr.unice.polytech.isa.dd.teamH.entities.drone.Drone;
+import fr.unice.polytech.isa.dd.teamH.exceptions.DeliveryDistanceException;
 import fr.unice.polytech.isa.dd.teamH.interfaces.*;
 import org.jboss.arquillian.junit.Arquillian;
 import org.junit.After;
@@ -12,6 +15,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import javax.ejb.EJB;
+
+import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
@@ -31,18 +36,22 @@ public class DeliveryPlanningTest extends AbstractDroneDeliveryTest {
 //    private UserTransaction utx;
 
     Drone d;
+    Drone d2;
     Package p;
+    Package p2;
     Supplier s;
 
     @Before
-    public void setUpContext() throws Exception {
+    public void setUpContext() {
         d = new Drone(1, 5);
+        d2 = new Drone(2, 5);
         s = new Supplier("Amazon");
         p = new Package("1a", 2, "8 Avenue des lilas", s);
+        p2 = new Package("2a", 3.5f, "158 Avenue des lilas", s);
     }
 
     @After
-    public void cleaningUp() throws Exception {
+    public void cleaningUp(){
         planner.flush();
 
 //        utx.begin();
@@ -52,25 +61,50 @@ public class DeliveryPlanningTest extends AbstractDroneDeliveryTest {
     }
 
     @Test
-    public void findAllPlannedDeliveries() throws Exception {
+    public void findAllPlannedDeliveries() {
         assertEquals(0, finder.findAllPlannedDeliveries().size());
-        //planner.planDelivery(p, LocalDateTime.now().plusDays(2));
-        //assertEquals(1, finder.findAllPlannedDeliveries().size());
+        try {
+            planner.planDelivery(p, "2020-05-20", "15:30");
+            assertEquals(1, finder.findAllPlannedDeliveries().size());
+            planner.planDelivery(p2, "2020-06-20", "15:30");
+            assertEquals(1, finder.findAllPlannedDeliveries().size());
+            //1 because drone is already assigned but will be changed with algorihtme in second sprint
+        }catch (DeliveryDistanceException e){
+            System.out.println("You have not launched the external mapping system");
+        }
     }
 
     @Test
     public void planDelivery() throws Exception {
         assertEquals(0, planner.getCompleteDeliveryPlanning().size());
         droneFleetManagement.addDrone(d.getId(), d.getWeightCapacity());
-
-        //planner.planDelivery(p, LocalDateTime.now());
-
-        //assertEquals(1, planner.getCompleteDeliveryPlanning().size());
+        try {
+            planner.planDelivery(p, "2020-05-20", "15:30");
+            Optional<Delivery> delivery = finder.findDeliveryById(p.getTrackingNumber());
+            if(delivery.isPresent()){
+                planner.editDeliveryStatus(delivery.get(), DeliveryStateFactory.getInstance().createState("completed"));
+                assertEquals(1, planner.getCompleteDeliveryPlanning().size());
+            }else{
+                fail();
+            }
+        }catch (DeliveryDistanceException e){
+            System.out.println("You have not launched the external mapping system");
+        }
     }
 
-    //TODO
     @Test
     public void editDelivery() throws Exception {
-
+        try {
+            planner.planDelivery(p, "2020-05-20", "15:30");
+            Optional<Delivery> delivery = finder.findDeliveryById(p.getTrackingNumber());
+            if (delivery.isPresent()) {
+                planner.editDeliveryStatus(delivery.get(), DeliveryStateFactory.getInstance().createState("completed"));
+                assertEquals("completed", delivery.get().getState().getName());
+            } else {
+                fail();
+            }
+        }catch (DeliveryDistanceException e){
+            System.out.println("You have not launched the external mapping system");
+        }
     }
 }

@@ -71,8 +71,9 @@ public class DeliveryPlanningBean implements DeliveryFinder, DeliveryPlanner {
     }
 
     @Override
-    public boolean planDelivery(Package p, LocalDateTime shippingTime) throws DeliveryDistanceException {
-        Optional<Drone> od = availabilityProcessor.getAvailableDroneAtTime(findAllPlannedDeliveries(), shippingTime);
+    public boolean planDelivery(Package p, String date, String time) throws DeliveryDistanceException {
+        Optional<Drone> od = availabilityProcessor.getAvailableDroneAtTime(findAllPlannedDeliveries(),
+                LocalDateTime.parse(date+"T"+time+":00"));
         if(!od.isPresent())
             return false;
 
@@ -87,7 +88,8 @@ public class DeliveryPlanningBean implements DeliveryFinder, DeliveryPlanner {
 
         de.setFlightTime(de.getDistance() / od.get().getSpeed());
         de.setPackage(p);
-        de.setDateTimeToShip(shippingTime);
+        de.setDate(date);
+        de.setTime(time);
 
         System.out.println("Adding delivery : " + de.toString());
 

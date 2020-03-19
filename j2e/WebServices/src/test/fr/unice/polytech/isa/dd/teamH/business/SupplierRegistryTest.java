@@ -2,7 +2,6 @@ package fr.unice.polytech.isa.dd.teamH.business;
 
 import fr.unice.polytech.isa.dd.teamH.arquillian.AbstractDroneDeliveryTest;
 import fr.unice.polytech.isa.dd.teamH.entities.Supplier;
-import fr.unice.polytech.isa.dd.teamH.entities.drone.Drone;
 import fr.unice.polytech.isa.dd.teamH.exceptions.AlreadyExistingContactException;
 import fr.unice.polytech.isa.dd.teamH.exceptions.AlreadyExistingSupplierException;
 import fr.unice.polytech.isa.dd.teamH.exceptions.UnknownSupplierException;
@@ -41,14 +40,14 @@ public class SupplierRegistryTest extends AbstractDroneDeliveryTest {
     private String contact;
 
     @Before
-    public void setUpContext() throws Exception {
+    public void setUpContext() {
         contact = "06 00 00 00 00";
         amazon = new Supplier("Amazon");
         ldlc = new Supplier("LDLC");
     }
 
     @After
-    public void cleaningUp() throws Exception {
+    public void cleaningUp() {
 
         registry.flush();
 
@@ -64,7 +63,7 @@ public class SupplierRegistryTest extends AbstractDroneDeliveryTest {
     }
 
     @Test
-    public void deleteDrone() throws Exception {
+    public void deleteSupplier() throws Exception {
         registry.register(amazon.getName(), contact);
         registry.delete(amazon.getName());
         Optional<Supplier> supplier = finder.findByName(amazon.getName());
