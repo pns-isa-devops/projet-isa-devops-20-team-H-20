@@ -15,7 +15,7 @@ public class GetSuppliers extends Command<DronePublicAPI> {
 
     @Override
     public void execute() throws Exception {
-        displayResult(shell.system.getAccountingWebService().find);
+        //displayResult(shell.system.getAccountingWebService().find);
     }
 
     private void displayResult(Supplier supplier){
