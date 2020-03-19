@@ -2,6 +2,7 @@ package fr.unice.polytech.isa.dd.teamH.webservices;
 
 import fr.unice.polytech.isa.dd.teamH.entities.Invoice;
 import fr.unice.polytech.isa.dd.teamH.entities.Supplier;
+import fr.unice.polytech.isa.dd.teamH.exceptions.AlreadyExistingContactException;
 import fr.unice.polytech.isa.dd.teamH.exceptions.AlreadyExistingSupplierException;
 import fr.unice.polytech.isa.dd.teamH.exceptions.UnknownSupplierException;
 import fr.unice.polytech.isa.dd.teamH.interfaces.InvoiceFinder;
@@ -28,7 +29,7 @@ public class AccountingWebServiceImpl implements AccountingWebService{
     private InvoiceGeneration invoiceGeneration;
 
     @Override
-    public Supplier findByName(String name) throws UnknownSupplierException {
+    public Supplier findSupplierByName(String name) throws UnknownSupplierException {
         Optional<Supplier> s = supplierFinder.findByName(name);
         if(!s.isPresent())
             throw new UnknownSupplierException(name);
@@ -36,8 +37,26 @@ public class AccountingWebServiceImpl implements AccountingWebService{
     }
 
     @Override
-    public void register(String name, String contact) throws AlreadyExistingSupplierException {
-        supplierRegistration.register(name, contact);
+    public boolean deleteSupplier(String name) throws UnknownSupplierException {
+        return supplierRegistration.delete(name);
+    }
+
+    @Override
+    public Set<Supplier> findAllSuppliers(String name){
+        return supplierFinder.findAll();
+    }
+
+    @Override
+    public boolean registerSupplier(String name, String contact) throws AlreadyExistingSupplierException {
+        return supplierRegistration.register(name, contact);
+    }
+
+    @Override
+    public boolean addSupplierContact(String name, String contact) throws UnknownSupplierException, AlreadyExistingContactException {
+        Optional<Supplier> s = supplierFinder.findByName(name);
+        if(!s.isPresent())
+            throw new UnknownSupplierException(name);
+        return supplierRegistration.addContact(name, contact);
     }
 
     @Override

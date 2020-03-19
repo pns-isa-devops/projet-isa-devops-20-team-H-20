@@ -1,4 +1,5 @@
 package fr.unice.polytech.isa.dd.teamH.components;
+
 import fr.unice.polytech.isa.dd.teamH.entities.delivery.Delivery;
 import fr.unice.polytech.isa.dd.teamH.entities.delivery.DeliveryState;
 import fr.unice.polytech.isa.dd.teamH.entities.deliveryplanning.PlanningEntry;
@@ -23,21 +24,16 @@ import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 @Stateless
-public class DeliveryPlanningBean implements DeliveryFinder, DeliveryPlanner
-{
+public class DeliveryPlanningBean implements DeliveryFinder, DeliveryPlanner {
     private static final Logger log = Logger.getLogger(Logger.class.getName());
-
     private Set<PlanningEntry> planningEntries = new HashSet<>();
 
     @EJB
     private AvailableDroneFinder availabilityProcessor;
-
     private MapAPI mapService;
 
-
     @Override
-    public Optional<Delivery> findDeliveryById(String id)
-    {
+    public Optional<Delivery> findDeliveryById(String id) {
         for(PlanningEntry pe : planningEntries){
             for(Delivery d : pe.getDeliveries()){
                 if(d.getaPackage().getTrackingNumber().equals(id))
@@ -48,10 +44,8 @@ public class DeliveryPlanningBean implements DeliveryFinder, DeliveryPlanner
     }
 
     @Override
-    public Set<PlanningEntry> findAllPlannedDeliveries()
-    {
+    public Set<PlanningEntry> findAllPlannedDeliveries() {
         Set<PlanningEntry> result = new HashSet<>();
-
         for(PlanningEntry pe : planningEntries){
             PlanningEntry newPE = new PlanningEntry(pe.getDrone());
             for(Delivery d : pe.getDeliveries().stream().filter(e -> e.getDateTimeToShip().isAfter(LocalDateTime.now())).collect(Collectors.toSet())){
@@ -59,15 +53,12 @@ public class DeliveryPlanningBean implements DeliveryFinder, DeliveryPlanner
             }
             result.add(newPE);
         }
-
         return result;
     }
 
     @Override
-    public Set<PlanningEntry> findCompletedDeliveriesSince(LocalDateTime time)
-    {
+    public Set<PlanningEntry> findCompletedDeliveriesSince(LocalDateTime time) {
         Set<PlanningEntry> result = new HashSet<>();
-
         for(PlanningEntry pe : planningEntries){
             PlanningEntry newPE = new PlanningEntry(pe.getDrone());
             for(Delivery d : pe.getDeliveries().stream().filter(e -> e.getDateTimeToShip().isAfter(time) && e.isCompleted()).collect(Collectors.toSet())){
@@ -111,14 +102,15 @@ public class DeliveryPlanningBean implements DeliveryFinder, DeliveryPlanner
     }
 
     @Override
-    public void editDeliveryStatus(Delivery delivery, DeliveryState state) {
+    public boolean editDeliveryStatus(Delivery delivery, DeliveryState state) {
         delivery.setState(state);
+        log.log(Level.INFO, "Delivery edited : " + delivery.toString());
+        return true;
     }
 
     @Override
-    public Set<PlanningEntry> getCompleteDeliveryPlanning()
-    {
-        System.out.println("Getting deliveries : " + planningEntries.toString());
+    public Set<PlanningEntry> getCompleteDeliveryPlanning() {
+        log.log(Level.INFO, "Getting deliveris : " + planningEntries.toString());
         return new HashSet<>(planningEntries);
     }
 

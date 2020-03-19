@@ -10,15 +10,13 @@ import fr.unice.polytech.isa.dd.teamH.interfaces.DroneFleetManagement;
 
 import javax.ejb.Stateless;
 import java.util.*;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 @Stateless
-public class DroneFleetBean implements DroneFinder, DroneFleetManagement
-{
-
+public class DroneFleetBean implements DroneFinder, DroneFleetManagement {
     private static final Logger log = Logger.getLogger(DroneFleetBean.class.getName());
-
     private Set<Drone> drones = new HashSet<>();
 
     @Override
@@ -33,32 +31,40 @@ public class DroneFleetBean implements DroneFinder, DroneFleetManagement
 
     @Override
     public boolean addDrone(int id, float weightCapacity) throws AlreadyExistingDroneException {
-
         if(findDroneById(id).isPresent())
             throw new AlreadyExistingDroneException(id);
-
         Drone drone = new Drone();
         drone.setId(id);
         drone.setWeightCapacity(weightCapacity);
-
-        return drones.add(drone);
+        boolean result = drones.add(drone);
+        if(result)
+            log.log(Level.INFO, "Drone added : " + drone.toString());
+        else
+            log.log(Level.WARNING, "Drone not added : " + drone.toString());
+        return result;
     }
 
     @Override
-    public void editDroneStatus(int id, String newStatus) throws UnknownDroneException, UnknownDroneStateException {
+    public boolean editDroneStatus(int id, String newStatus) throws UnknownDroneException, UnknownDroneStateException {
         Optional<Drone> d = findDroneById(id);
         if(!d.isPresent())
             throw new UnknownDroneException(Integer.toString(id));
-
         Drone drone = d.get();
         drone.setState(DroneStateFactory.getInstance().createState(newStatus));
+        log.log(Level.INFO, "Drone edited " + drone.toString());
+        return true;
     }
 
     @Override
-    public void deleteDrone(int id) throws UnknownDroneException {
+    public boolean deleteDrone(int id) throws UnknownDroneException {
         if(!findDroneById(id).isPresent())
             throw new UnknownDroneException(Integer.toString(id));
-        drones.removeIf(e -> e.getId() == id);
+        boolean result = drones.removeIf(e -> e.getId() == id);
+        if(result)
+            log.log(Level.INFO, "Drone deleted : " + id);
+        else
+            log.log(Level.WARNING, "Drone not deleted : " + id);
+        return result;
     }
 
     @Override

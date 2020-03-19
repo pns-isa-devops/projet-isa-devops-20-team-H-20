@@ -14,38 +14,32 @@ import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 @Stateless
-public class AccountingBean implements InvoiceFinder, InvoiceGeneration
-{
+public class AccountingBean implements InvoiceFinder, InvoiceGeneration {
     private static final Logger log = Logger.getLogger(AccountingBean.class.getName());
-
     private Set<Invoice> invoices = new HashSet<>();
 
     @EJB
     private DeliveryFinder deliveryFinder;
 
     @Override
-    public Set<Invoice> findAllUnpaidInvoices()
-    {
+    public Set<Invoice> findAllUnpaidInvoices() {
         Set<Invoice> allInvoices = this.findAllInvoices();
         return allInvoices.stream().filter(p -> !p.isPaid()).collect(Collectors.toSet());
     }
 
     @Override
-    public Set<Invoice> findInvoicesForSupplier(Supplier s)
-    {
+    public Set<Invoice> findInvoicesForSupplier(Supplier s) {
         Set<Invoice> allInvoices = this.findAllInvoices();
         return allInvoices.stream().filter(p -> p.getSupplier().getName().equals(s.getName())).collect(Collectors.toSet());
     }
 
     @Override
-    public void generateInvoiceFor(Supplier s)
-    {
+    public void generateInvoiceFor(Supplier s) {
         //TODO sprint 2
     }
 
     @Override
-    public void generateInvoicesForAllSuppliers()
-    {
+    public void generateInvoicesForAllSuppliers() {
         //TODO sprint 2
     }
 

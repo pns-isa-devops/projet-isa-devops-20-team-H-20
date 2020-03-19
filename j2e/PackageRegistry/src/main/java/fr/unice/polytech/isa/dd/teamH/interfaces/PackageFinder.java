@@ -11,4 +11,5 @@ import java.util.Set;
 public interface PackageFinder {
     Optional<Package> findPackageByTrackingNumber(String trackingId);
     Set<Package> findPackagesBySupplier(Supplier s);
+    Set<Package> findAllPackages();
 }

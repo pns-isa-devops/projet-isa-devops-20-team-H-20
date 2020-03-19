@@ -11,15 +11,16 @@ import javax.ejb.Stateless;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @Stateless
-public class SupplierRegistryBean implements SupplierFinder, SupplierRegistration
-{
+public class SupplierRegistryBean implements SupplierFinder, SupplierRegistration {
+    private static final Logger log = Logger.getLogger(SupplierRegistryBean.class.getName());
     private Set<Supplier> suppliers = new HashSet<>();
 
     @Override
-    public Optional<Supplier> findByName(String name)
-    {
+    public Optional<Supplier> findByName(String name) {
         return suppliers.stream().filter(e -> e.getName().equals(name)).findFirst();
     }
 
@@ -28,38 +29,42 @@ public class SupplierRegistryBean implements SupplierFinder, SupplierRegistratio
      ******************************************/
 
     @Override
-    public void register(String name, String contact) throws AlreadyExistingSupplierException
-    {
+    public boolean register(String name, String contact) throws AlreadyExistingSupplierException {
         if(findByName(name).isPresent())
             throw new AlreadyExistingSupplierException(name);
-
         Supplier s = new Supplier();
         s.setName(name);
         s.addContact(contact);
-
-        suppliers.add(s);
+        boolean result = suppliers.add(s);
+        if(result)
+            log.log(Level.INFO, "Supplier added : " + s.toString());
+        else
+            log.log(Level.WARNING, "Supplier not added : " + s.toString());
+        return result;
     }
 
     @Override
-    public void delete(String name) throws UnknownSupplierException
-    {
+    public boolean delete(String name) throws UnknownSupplierException {
         if(!findByName(name).isPresent())
             throw new UnknownSupplierException(name);
-
-        suppliers.removeIf(e -> e.getName().equals(name));
+        boolean result = suppliers.removeIf(e -> e.getName().equals(name));
+        if(result)
+            log.log(Level.INFO, "Supplier removed : " + name);
+        else
+            log.log(Level.WARNING, "Supplier not removed : " + name);;
+        return result;
     }
 
     @Override
-    public void addContact(String name, String contact) throws UnknownSupplierException, AlreadyExistingContactException {
+    public boolean addContact(String name, String contact) throws UnknownSupplierException, AlreadyExistingContactException {
         Optional<Supplier> sup = findByName(name);
-
         if(!sup.isPresent())
             throw new UnknownSupplierException(name);
-
         if(sup.get().getContacts().contains(contact))
             throw new AlreadyExistingContactException(name, contact);
-
         sup.get().addContact(contact);
+        log.log(Level.INFO, "Supplier contact added : " + contact);
+        return true;
     }
 
     @Override

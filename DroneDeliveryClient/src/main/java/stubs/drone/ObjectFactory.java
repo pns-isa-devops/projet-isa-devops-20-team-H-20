@@ -32,8 +32,8 @@ public class ObjectFactory {
     private final static QName _GetDroneResponse_QNAME = new QName("http://www.polytech.unice.fr/si/4a/isa/dd/team-h/drones", "getDroneResponse");
     private final static QName _RemoveDrone_QNAME = new QName("http://www.polytech.unice.fr/si/4a/isa/dd/team-h/drones", "removeDrone");
     private final static QName _RemoveDroneResponse_QNAME = new QName("http://www.polytech.unice.fr/si/4a/isa/dd/team-h/drones", "removeDroneResponse");
-    private final static QName _UnknownDroneStateException_QNAME = new QName("http://www.polytech.unice.fr/si/4a/isa/dd/team-h/drones", "UnknownDroneStateException");
     private final static QName _AlreadyExistingDroneException_QNAME = new QName("http://www.polytech.unice.fr/si/4a/isa/dd/team-h/drones", "AlreadyExistingDroneException");
+    private final static QName _UnknownDroneStateException_QNAME = new QName("http://www.polytech.unice.fr/si/4a/isa/dd/team-h/drones", "UnknownDroneStateException");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: stubs.drone
@@ -107,19 +107,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link UnknownDroneStateException }
-     * 
-     */
-    public UnknownDroneStateException createUnknownDroneStateException() {
-        return new UnknownDroneStateException();
-    }
-
-    /**
      * Create an instance of {@link AlreadyExistingDroneException }
      * 
      */
     public AlreadyExistingDroneException createAlreadyExistingDroneException() {
         return new AlreadyExistingDroneException();
+    }
+
+    /**
+     * Create an instance of {@link UnknownDroneStateException }
+     * 
+     */
+    public UnknownDroneStateException createUnknownDroneStateException() {
+        return new UnknownDroneStateException();
     }
 
     /**
@@ -203,21 +203,21 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link UnknownDroneStateException }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://www.polytech.unice.fr/si/4a/isa/dd/team-h/drones", name = "UnknownDroneStateException")
-    public JAXBElement<UnknownDroneStateException> createUnknownDroneStateException(UnknownDroneStateException value) {
-        return new JAXBElement<UnknownDroneStateException>(_UnknownDroneStateException_QNAME, UnknownDroneStateException.class, null, value);
-    }
-
-    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link AlreadyExistingDroneException }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "http://www.polytech.unice.fr/si/4a/isa/dd/team-h/drones", name = "AlreadyExistingDroneException")
     public JAXBElement<AlreadyExistingDroneException> createAlreadyExistingDroneException(AlreadyExistingDroneException value) {
         return new JAXBElement<AlreadyExistingDroneException>(_AlreadyExistingDroneException_QNAME, AlreadyExistingDroneException.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link UnknownDroneStateException }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://www.polytech.unice.fr/si/4a/isa/dd/team-h/drones", name = "UnknownDroneStateException")
+    public JAXBElement<UnknownDroneStateException> createUnknownDroneStateException(UnknownDroneStateException value) {
+        return new JAXBElement<UnknownDroneStateException>(_UnknownDroneStateException_QNAME, UnknownDroneStateException.class, null, value);
     }
 
 }

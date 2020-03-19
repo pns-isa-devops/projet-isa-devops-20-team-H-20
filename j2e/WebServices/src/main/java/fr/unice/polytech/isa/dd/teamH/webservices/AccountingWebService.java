@@ -2,6 +2,7 @@ package fr.unice.polytech.isa.dd.teamH.webservices;
 
 import fr.unice.polytech.isa.dd.teamH.entities.Invoice;
 import fr.unice.polytech.isa.dd.teamH.entities.Supplier;
+import fr.unice.polytech.isa.dd.teamH.exceptions.AlreadyExistingContactException;
 import fr.unice.polytech.isa.dd.teamH.exceptions.AlreadyExistingSupplierException;
 import fr.unice.polytech.isa.dd.teamH.exceptions.UnknownSupplierException;
 
@@ -16,11 +17,23 @@ public interface AccountingWebService {
 
     @WebMethod
     @WebResult(name = "supplier")
-    Supplier findByName(@WebParam(name="name") String name) throws UnknownSupplierException;
+    Supplier findSupplierByName(@WebParam(name="name") String name) throws UnknownSupplierException;
 
     @WebMethod
-    void register(@WebParam(name="name") String name,
+    @WebResult(name = "supplier")
+    boolean deleteSupplier(@WebParam(name="name") String name) throws UnknownSupplierException;
+
+    @WebMethod
+    @WebResult(name = "supplier")
+    Set<Supplier> findAllSuppliers(@WebParam(name="name") String name);
+
+    @WebMethod
+    boolean registerSupplier(@WebParam(name="name") String name,
                   @WebParam(name="contact") String contact) throws AlreadyExistingSupplierException;
+
+    @WebMethod
+    boolean addSupplierContact(@WebParam(name="name") String name,
+                  @WebParam(name="contact") String contact) throws UnknownSupplierException, AlreadyExistingContactException;
 
     @WebMethod
     @WebResult(name = "unpaid_list")

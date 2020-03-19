@@ -9,13 +9,13 @@ import fr.unice.polytech.isa.dd.teamH.exceptions.DeliveryDistanceException;
 
 import javax.ejb.Local;
 import java.time.LocalDateTime;
+import java.util.Optional;
 import java.util.Set;
 
 @Local
 public interface DeliveryPlanner {
     boolean planDelivery(Package p, LocalDateTime shippingTime) throws DeliveryDistanceException;
-    void editDeliveryStatus(Delivery delivery, DeliveryState state);
-
+    boolean editDeliveryStatus(Delivery delivery, DeliveryState state);
     Set<PlanningEntry> getCompleteDeliveryPlanning();
 
     void flush();

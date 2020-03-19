@@ -1,7 +1,6 @@
 package fr.unice.polytech.isa.dd.teamH.webservices;
 
 import fr.unice.polytech.isa.dd.teamH.entities.drone.Drone;
-import fr.unice.polytech.isa.dd.teamH.entities.drone.DroneStateFactory;
 import fr.unice.polytech.isa.dd.teamH.exceptions.AlreadyExistingDroneException;
 import fr.unice.polytech.isa.dd.teamH.exceptions.UnknownDroneException;
 import fr.unice.polytech.isa.dd.teamH.exceptions.UnknownDroneStateException;
@@ -23,13 +22,13 @@ public class DroneFleetManagementWebServiceImpl implements DroneFleetManagementW
     private DroneFleetManagement fleet;
 
     @Override
-    public void addDrone(int id, float weightCapacity) throws AlreadyExistingDroneException {
-        fleet.addDrone(id, weightCapacity);
+    public boolean addDrone(int id, float weightCapacity) throws AlreadyExistingDroneException {
+        return fleet.addDrone(id, weightCapacity);
     }
 
     @Override
-    public void removeDrone(int id) throws UnknownDroneException {
-        fleet.deleteDrone(id);
+    public boolean removeDrone(int id) throws UnknownDroneException {
+        return fleet.deleteDrone(id);
     }
 
     @Override
@@ -42,7 +41,7 @@ public class DroneFleetManagementWebServiceImpl implements DroneFleetManagementW
     }
 
     @Override
-    public void editDroneStatus(int id, String status) throws UnknownDroneStateException, UnknownDroneException {
-        fleet.editDroneStatus(id, status);
+    public boolean editDroneStatus(int id, String status) throws UnknownDroneStateException, UnknownDroneException {
+        return fleet.editDroneStatus(id, status);
     }
 }

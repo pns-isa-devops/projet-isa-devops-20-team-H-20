@@ -18,8 +18,7 @@ import java.util.Set;
 
 @WebService(targetNamespace = "http://www.polytech.unice.fr/si/4a/isa/dd/team-h/planning")
 @Stateless(name = "PlanningWS")
-public class PlanningWebServiceImpl implements PlanningWebService
-{
+public class PlanningWebServiceImpl implements PlanningWebService {
     @EJB
     private DeliveryFinder deliveryFinder;
 
@@ -38,21 +37,29 @@ public class PlanningWebServiceImpl implements PlanningWebService
 
     @Override
     public boolean planDelivery(String trackingNumber, String shippingTime) throws UnknownPackageException, DeliveryDistanceException {
-                Optional<Package> p = packageFinder.findPackageByTrackingNumber(trackingNumber);
+        Optional<Package> p = packageFinder.findPackageByTrackingNumber(trackingNumber);
         if(!p.isPresent())
             throw new UnknownPackageException(trackingNumber);
-
         LocalDateTime t = LocalDateTime.parse(shippingTime);
-
         return deliveryPlanner.planDelivery(p.get(), t);
     }
 
     @Override
-    public void editDeliveryStatus(String id, String status) throws UnknownDeliveryStateException, UnknownDeliveryException {
+    public boolean editDeliveryStatus(String id, String status) throws UnknownDeliveryStateException, UnknownDeliveryException {
         Optional<Delivery> d = deliveryFinder.findDeliveryById(id);
         if(!d.isPresent()) {
             throw new UnknownDeliveryException();
         }
-        deliveryPlanner.editDeliveryStatus(d.get(), DeliveryStateFactory.getInstance().createState(status));
+        return deliveryPlanner.editDeliveryStatus(d.get(), DeliveryStateFactory.getInstance().createState(status));
     }
+//
+//    @Override
+//    public Delivery findDeliveryById(String id) throws UnknownDeliveryException {
+//        Optional<Delivery> delivery = deliveryFinder.findDeliveryById(id);
+//        if(!delivery.isPresent())
+//            throw new UnknownDeliveryException(id);
+//        return delivery.get();
+//    }
+
+
 }

@@ -1,5 +1,6 @@
 package fr.unice.polytech.isa.dd.teamH.webservices;
 
+import fr.unice.polytech.isa.dd.teamH.entities.delivery.Delivery;
 import fr.unice.polytech.isa.dd.teamH.entities.deliveryplanning.PlanningEntry;
 import fr.unice.polytech.isa.dd.teamH.exceptions.*;
 
@@ -10,8 +11,7 @@ import javax.jws.WebService;
 import java.util.Set;
 
 @WebService(targetNamespace = "http://www.polytech.unice.fr/si/4a/isa/dd/team-h/planning")
-public interface PlanningWebService
-{
+public interface PlanningWebService {
     @WebMethod
     @WebResult(name = "delivery-planning")
     Set<PlanningEntry> getCompleteDeliveryPlanning();
@@ -22,5 +22,8 @@ public interface PlanningWebService
                       @WebParam(name="shipping-time") String shippingTime) throws UnknownPackageException, DeliveryDistanceException;
 
     @WebMethod
-    void editDeliveryStatus(@WebParam(name="id") String id, @WebParam(name="status") String status) throws UnknownDeliveryStateException, UnknownDeliveryException;
+    boolean editDeliveryStatus(@WebParam(name="id") String id, @WebParam(name="status") String status) throws UnknownDeliveryStateException, UnknownDeliveryException;
+
+//    @WebMethod
+//    Delivery findDeliveryById(@WebParam(name="id") String id) throws UnknownDeliveryException;
 }

@@ -9,8 +9,7 @@ import javax.ejb.Local;
 @Local
 public interface DroneFleetManagement {
     boolean addDrone(int id, float weightCapacity) throws AlreadyExistingDroneException;
-    void editDroneStatus(int id, String newStatus) throws UnknownDroneException, UnknownDroneStateException;
-    void deleteDrone(int id) throws UnknownDroneException;
-
+    boolean editDroneStatus(int id, String newStatus) throws UnknownDroneException, UnknownDroneStateException;
+    boolean deleteDrone(int id) throws UnknownDroneException;
     void flush();
 }
