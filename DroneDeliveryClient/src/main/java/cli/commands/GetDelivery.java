@@ -3,29 +3,31 @@ package cli.commands;
 import api.DronePublicAPI;
 import cli.framework.Command;
 import stubs.accounting.Supplier;
+import stubs.planning.Delivery;
 
 import java.util.List;
 
-public class GetSupplier extends Command<DronePublicAPI> {
-    private String name;
+public class GetDelivery extends Command<DronePublicAPI> {
+    private String trackingId;
 
     @Override
     public String identifier() {
-        return "get-supplier";
+        return "get-delivery";
     }
 
     @Override
     public void load(List<String> args) {
-        name = args.get(0);
+        trackingId = args.get(0);
     }
 
     @Override
     public void execute() throws Exception {
-        displayResult(shell.system.getAccountingWebService().findSupplierByName(name));
+        //TODO not working in backend
+        //displayResult(shell.system.getPlanningWebService().);
     }
 
-    private void displayResult(Supplier supplier){
-        System.out.println("Supplier : " + supplier.getName());
+    private void displayResult(Delivery delivery){
+        System.out.println("Delivery : " + delivery.getDateTimeToShip());
     }
 
     @Override

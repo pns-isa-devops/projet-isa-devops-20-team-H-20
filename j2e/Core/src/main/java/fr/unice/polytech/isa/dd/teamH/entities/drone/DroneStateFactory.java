@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class DroneStateFactory implements Serializable {
+public class DroneStateFactory {
     private List<DroneState> states;
     private static final DroneStateFactory instance = new DroneStateFactory();
 
@@ -38,18 +38,5 @@ public class DroneStateFactory implements Serializable {
             }
         }
         throw new UnknownDroneStateException(name);
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        DroneStateFactory that = (DroneStateFactory) o;
-        return states.equals(that.states);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(states);
     }
 }

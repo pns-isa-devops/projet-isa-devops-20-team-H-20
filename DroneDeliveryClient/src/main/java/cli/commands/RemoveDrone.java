@@ -20,11 +20,16 @@ public class RemoveDrone extends Command<DronePublicAPI> {
 
     @Override
     public void execute() throws Exception {
-        shell.system.getDroneFleetManagementWebService().removeDrone(id);
+        boolean res = shell.system.getDroneFleetManagementWebService().removeDrone(id);
+        if(res){
+            System.out.println("Drone deleted");
+        }else{
+            System.out.println("Error drone not deleted");
+        }
     }
 
     @Override
     public String describe() {
-        return "remove-drone (id)";
+        return identifier() + " (id)";
     }
 }

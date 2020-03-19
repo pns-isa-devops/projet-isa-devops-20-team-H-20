@@ -16,13 +16,17 @@ public class Main extends Shell<DronePublicAPI> {
                 AddDrone.class,
                 AddPackage.class,
                 AddSupplier.class,
+                AddSupplierContact.class,
                 EditDeliveryStatus.class,
+                EditDroneStatus.class,
                 EditPackage.class,
                 GetDeliveries.class,
                 GetDrone.class,
                 GetSupplier.class,
+                GetSuppliers.class,
                 RemoveDrone.class,
-                RemovePackage.class
+                RemovePackage.class,
+                RemoveSupplier.class
         );
     }
 

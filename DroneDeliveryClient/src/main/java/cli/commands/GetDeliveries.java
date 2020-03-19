@@ -16,6 +16,7 @@ public class GetDeliveries extends Command<DronePublicAPI> {
     @Override
     public void execute() {
         List<PlanningEntry> planningEntryList = shell.system.getPlanningWebService().getCompleteDeliveryPlanning();
+        System.out.println("Size : " + planningEntryList.size());
         for(PlanningEntry planningEntry : planningEntryList){
             displayResult(planningEntry);
         }
@@ -28,6 +29,6 @@ public class GetDeliveries extends Command<DronePublicAPI> {
 
     @Override
     public String describe() {
-        return identifier() + " (id)";
+        return identifier();
     }
 }

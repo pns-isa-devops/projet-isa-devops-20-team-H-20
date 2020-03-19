@@ -22,7 +22,12 @@ public class EditDroneStatus extends Command<DronePublicAPI> {
 
     @Override
     public void execute() throws Exception {
-        shell.system.getDroneFleetManagementWebService().editDroneStatus(id, status);
+        boolean res = shell.system.getDroneFleetManagementWebService().editDroneStatus(id, status);
+        if(res){
+            System.out.println("Drone edited");
+        }else{
+            System.out.println("Error drone not edited");
+        }
     }
 
     @Override

@@ -22,7 +22,12 @@ public class EditDeliveryStatus extends Command<DronePublicAPI> {
 
     @Override
     public void execute() throws Exception {
-        shell.system.getPlanningWebService().editDeliveryStatus(trackingId, status);
+        boolean res = shell.system.getPlanningWebService().editDeliveryStatus(trackingId, status);
+        if(res){
+            System.out.println("Delivery edited");
+        }else{
+            System.out.println("Error delivery not edited");
+        }
     }
 
     @Override

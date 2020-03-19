@@ -20,11 +20,16 @@ public class RemovePackage extends Command<DronePublicAPI> {
 
     @Override
     public void execute() throws Exception {
-        shell.system.getPackageRegistrationWebService().deletePackage(trackingId);
+        boolean res = shell.system.getPackageRegistrationWebService().deletePackage(trackingId);
+        if(res){
+            System.out.println("Package removed");
+        }else{
+            System.out.println("Error package not removed");
+        }
     }
 
     @Override
     public String describe() {
-        return "remove-package (trackingId)";
+        return identifier() + " (trackingId)";
     }
 }

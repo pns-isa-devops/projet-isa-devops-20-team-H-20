@@ -27,11 +27,16 @@ public class AddPackage extends Command<DronePublicAPI> {
 
     @Override
     public void execute() throws Exception {
-        shell.system.getPackageRegistrationWebService().registerPackage(trackingId, supplierName, packageWeight, destinationAddress);
+        boolean res = shell.system.getPackageRegistrationWebService().registerPackage(trackingId, supplierName, packageWeight, destinationAddress);
+        if(res){
+            System.out.println("Package added");
+        }else{
+            System.out.println("Error package not added");
+        }
     }
 
     @Override
     public String describe() {
-        return "add-package (trackingId supplierName packageWeight destinationAddress)";
+        return identifier() + " (trackingId supplierName packageWeight destinationAddress)";
     }
 }

@@ -5,14 +5,14 @@ import cli.framework.Command;
 
 import java.util.List;
 
-public class AddSupplier extends Command<DronePublicAPI> {
+public class AddSupplierContact extends Command<DronePublicAPI> {
     private String name;
     private String contact;
 
 
     @Override
     public String identifier() {
-        return "add-supplier";
+        return "add-supplier-contact";
     }
 
     @Override
@@ -23,11 +23,11 @@ public class AddSupplier extends Command<DronePublicAPI> {
 
     @Override
     public void execute() throws Exception {
-        boolean res = shell.system.getAccountingWebService().registerSupplier(name, contact);
+        boolean res = shell.system.getAccountingWebService().addSupplierContact(name, contact);
         if(res){
-            System.out.println("Supplier added");
+            System.out.println("Supplier contact added");
         }else{
-            System.out.println("Error supplier not added");
+            System.out.println("Error supplier contact not added");
         }
     }
 

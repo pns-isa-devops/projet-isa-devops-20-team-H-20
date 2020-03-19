@@ -26,11 +26,16 @@ public class EditPackage extends Command<DronePublicAPI> {
 
     @Override
     public void execute() throws Exception {
-        shell.system.getPackageRegistrationWebService().editPackage(trackingId, supplierName, packageWeight, destinationAddress);
+        boolean res = shell.system.getPackageRegistrationWebService().editPackage(trackingId, supplierName, packageWeight, destinationAddress);
+        if(res){
+            System.out.println("Package edited");
+        }else{
+            System.out.println("Error package not edited");
+        }
     }
 
     @Override
     public String describe() {
-        return "edit-package (trackingId supplierName packageWeight destinationAddress)";
+        return identifier() + " (trackingId supplierName packageWeight destinationAddress)";
     }
 }

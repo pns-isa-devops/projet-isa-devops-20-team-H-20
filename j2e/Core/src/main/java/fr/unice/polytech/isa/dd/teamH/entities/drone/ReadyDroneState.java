@@ -28,4 +28,10 @@ public class ReadyDroneState extends DroneState {
     public ReadyDroneState clone() {
         return new ReadyDroneState();
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        return o != null && getClass() == o.getClass();
+    }
 }

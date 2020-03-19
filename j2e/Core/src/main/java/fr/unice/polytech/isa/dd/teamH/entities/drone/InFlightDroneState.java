@@ -23,4 +23,10 @@ public class InFlightDroneState extends DroneState {
     public InFlightDroneState clone() {
         return new InFlightDroneState();
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        return o != null && getClass() == o.getClass();
+    }
 }

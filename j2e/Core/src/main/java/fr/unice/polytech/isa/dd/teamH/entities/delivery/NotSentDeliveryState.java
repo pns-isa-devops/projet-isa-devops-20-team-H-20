@@ -4,15 +4,29 @@ import java.util.Objects;
 
 public class NotSentDeliveryState extends DeliveryState {
 
+    public NotSentDeliveryState(){
+        name = "not-sent";
+    }
+
     @Override
     public String getStatus() {
-        name = "not-sent";
         return "Delivery is currently not sent";
     }
 
     @Override
     public boolean isCompleted() {
         return false;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        return o != null && getClass() == o.getClass();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 
     @Override

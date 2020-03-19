@@ -32,9 +32,9 @@ public class DeliveryStateFactory implements Serializable {
     }
 
     public DeliveryState createState(String name) throws UnknownDeliveryStateException {
-        for(DeliveryState drone : states) {
-            if(drone.is(name)) {
-                return drone.clone();
+        for(DeliveryState delivery : states) {
+            if(delivery.is(name)) {
+                return delivery.clone();
             }
         }
         throw new UnknownDeliveryStateException(name);

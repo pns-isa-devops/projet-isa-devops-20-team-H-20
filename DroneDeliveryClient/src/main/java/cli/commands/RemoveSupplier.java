@@ -5,34 +5,31 @@ import cli.framework.Command;
 
 import java.util.List;
 
-public class AddSupplier extends Command<DronePublicAPI> {
+public class RemoveSupplier extends Command<DronePublicAPI> {
     private String name;
-    private String contact;
-
 
     @Override
     public String identifier() {
-        return "add-supplier";
+        return "remove-supplier";
     }
 
     @Override
     public void load(List<String> args) {
         name = args.get(0);
-        contact = args.get(1);
     }
 
     @Override
     public void execute() throws Exception {
-        boolean res = shell.system.getAccountingWebService().registerSupplier(name, contact);
+        boolean res = shell.system.getAccountingWebService().deleteSupplier(name);
         if(res){
-            System.out.println("Supplier added");
+            System.out.println("Supplier removed");
         }else{
-            System.out.println("Error supplier not added");
+            System.out.println("Error supplier not removed");
         }
     }
 
     @Override
     public String describe() {
-        return identifier() + " (name contact(mail or phone))";
+        return identifier() +  " (name)";
     }
 }

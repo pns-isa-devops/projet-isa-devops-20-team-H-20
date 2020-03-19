@@ -6,7 +6,7 @@ import java.util.Objects;
 public class FailedDeliveryState extends DeliveryState {
     private LocalDateTime localDateTime;
 
-    FailedDeliveryState(){
+    public FailedDeliveryState(){
         name = "failed";
         this.localDateTime = LocalDateTime.now();
     }

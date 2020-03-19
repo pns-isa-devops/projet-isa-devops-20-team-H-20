@@ -24,13 +24,16 @@ public class AddDelivery extends Command<DronePublicAPI> {
 
     @Override
     public void execute() throws Exception {
-        if(!shell.system.getPlanningWebService().planDelivery(trackingId, shippingDateTime)){
-            throw new Exception("Error during delivery creation");
+        boolean res = shell.system.getPlanningWebService().planDelivery(trackingId, shippingDateTime);
+        if(res){
+            System.out.println("Delivery added");
+        }else{
+            System.out.println("Error delivery not added");
         }
     }
 
     @Override
     public String describe() {
-        return "add-delivery (trackingId shippingDate(yyyy-mm-dd) shippingTime(hh:mm)";
+        return  identifier() + " (trackingId shippingDate(yyyy-mm-dd) shippingTime(hh:mm)";
     }
 }

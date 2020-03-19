@@ -23,11 +23,16 @@ public class AddDrone extends Command<DronePublicAPI> {
 
     @Override
     public void execute() throws Exception {
-        shell.system.getDroneFleetManagementWebService().addDrone(id, weightCapacity);
+        boolean res = shell.system.getDroneFleetManagementWebService().addDrone(id, weightCapacity);
+        if(res){
+            System.out.println("Drone added");
+        }else{
+            System.out.println("Error drone not added");
+        }
     }
 
     @Override
     public String describe() {
-        return "add-drone (id weightCapacity)";
+        return identifier() + " (id weightCapacity)";
     }
 }
