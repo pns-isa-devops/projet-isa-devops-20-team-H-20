@@ -41,7 +41,7 @@
   </xs:complexType>
   <xs:complexType name="planDeliveryResponse">
     <xs:sequence>
-      <xs:element name="return code" type="xs:boolean"/>
+      <xs:element name="return_code" type="xs:boolean"/>
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="editDeliveryStatus">
@@ -51,7 +51,9 @@
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="editDeliveryStatusResponse">
-    <xs:sequence/>
+    <xs:sequence>
+      <xs:element name="return_code" type="xs:boolean"/>
+    </xs:sequence>
   </xs:complexType>
   <xs:element name="UnknownPackageException" type="tns:UnknownPackageException"/>
   <xs:complexType name="UnknownPackageException">
