@@ -25,7 +25,7 @@ public interface AccountingWebService {
 
     @WebMethod
     @WebResult(name = "supplier")
-    Set<Supplier> findAllSuppliers(@WebParam(name="name") String name);
+    Set<Supplier> findAllSuppliers();
 
     @WebMethod
     @WebResult(name = "return_code")

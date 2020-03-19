@@ -42,7 +42,7 @@ public class AccountingWebServiceImpl implements AccountingWebService{
     }
 
     @Override
-    public Set<Supplier> findAllSuppliers(String name){
+    public Set<Supplier> findAllSuppliers(){
         return supplierFinder.findAll();
     }
 
