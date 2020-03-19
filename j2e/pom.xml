@@ -4,7 +4,7 @@
     <groupId>fr.polytech.team.h</groupId>
     <artifactId>drone-delivery-backend</artifactId>
     <packaging>pom</packaging>
-    <version>1.0</version>
+    <version>1.0-SNAPSHOT</version>
     <name>Drone Delivery :: J2E Backend</name>
 
     <properties>
@@ -23,6 +23,12 @@
         <versions.arquillian.junit>1.1.12.Final</versions.arquillian.junit>
         <versions.arquilian.jta>1.0.3.Final</versions.arquilian.jta>
         <versions.shrinkwrap>2.2.6</versions.shrinkwrap>
+    <!-- Artifactory configuration parameters -->
+        <artifactory.repository.url>http://192.168.99.1:8082/artifactory</artifactory.repository.url>
+        <artifactory.snapshots.id>snapshots</artifactory.snapshots.id>
+        <artifactory.releases.id>central</artifactory.releases.id>
+        <artifactory.snapshots.name>badedd2981f1-snapshots</artifactory.snapshots.name>
+        <artifactory.releases.name>badedd2981f1-releases</artifactory.releases.name>
 
     </properties>
 
