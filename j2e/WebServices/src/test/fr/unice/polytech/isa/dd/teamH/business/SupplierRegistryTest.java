@@ -2,6 +2,7 @@ package fr.unice.polytech.isa.dd.teamH.business;
 
 import fr.unice.polytech.isa.dd.teamH.arquillian.AbstractDroneDeliveryTest;
 import fr.unice.polytech.isa.dd.teamH.entities.Supplier;
+import fr.unice.polytech.isa.dd.teamH.entities.drone.Drone;
 import fr.unice.polytech.isa.dd.teamH.exceptions.AlreadyExistingContactException;
 import fr.unice.polytech.isa.dd.teamH.exceptions.AlreadyExistingSupplierException;
 import fr.unice.polytech.isa.dd.teamH.exceptions.UnknownSupplierException;
@@ -63,6 +64,20 @@ public class SupplierRegistryTest extends AbstractDroneDeliveryTest {
     }
 
     @Test
+    public void deleteDrone() throws Exception {
+        registry.register(amazon.getName(), contact);
+        registry.delete(amazon.getName());
+        Optional<Supplier> supplier = finder.findByName(amazon.getName());
+        assertFalse(supplier.isPresent());
+
+        registry.register(amazon.getName(), contact);
+        registry.register(ldlc.getName(), contact);
+        registry.delete(ldlc.getName());
+        supplier = finder.findByName(amazon.getName());
+        assertTrue(supplier.isPresent());
+    }
+
+    @Test
     public void registerSupplier() throws Exception {
         registry.register(amazon.getName(), contact);
         Optional<Supplier> supplier = finder.findByName(amazon.getName());
@@ -78,6 +93,18 @@ public class SupplierRegistryTest extends AbstractDroneDeliveryTest {
         supplier.ifPresent(supplier1 -> assertEquals(2, supplier1.getContacts().size()));
 
         registry.addContact(amazon.getName(), "06 11 11 11 11");
+    }
+
+    @Test
+    public void findByName() throws Exception {
+        Optional<Supplier> supplier = finder.findByName(amazon.getName());
+        assertFalse(supplier.isPresent());
+
+        registry.register(amazon.getName(), contact);
+        registry.register(ldlc.getName(), contact);
+        supplier = finder.findByName(amazon.getName());
+        assertTrue(supplier.isPresent());
+
     }
 
     @Test(expected = UnknownSupplierException.class)

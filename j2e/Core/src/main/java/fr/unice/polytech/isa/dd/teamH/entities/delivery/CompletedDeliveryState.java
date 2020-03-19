@@ -12,7 +12,7 @@ public class CompletedDeliveryState extends DeliveryState {
     }
 
     @Override
-    public String getStatus() {
+    public String toString() {
         return "Delivery already shipped at " + shippedAt.toString();
     }
 
@@ -42,5 +42,23 @@ public class CompletedDeliveryState extends DeliveryState {
     @Override
     public int hashCode() {
         return Objects.hash(shippedAt);
+    }
+
+    @Override
+    public String getName() {
+        return super.getName();
+    }
+
+    public LocalDateTime getShippedAt() {
+        return shippedAt;
+    }
+
+    @Override
+    public void setName(String name) {
+        super.setName(name);
+    }
+
+    public void setShippedAt(LocalDateTime shippedAt) {
+        this.shippedAt = shippedAt;
     }
 }

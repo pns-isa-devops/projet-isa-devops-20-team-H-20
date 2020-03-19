@@ -12,7 +12,7 @@ public class FailedDeliveryState extends DeliveryState {
     }
 
     @Override
-    public String getStatus() {
+    public String toString() {
         return "Delivery failed at " + localDateTime.toString();
     }
 

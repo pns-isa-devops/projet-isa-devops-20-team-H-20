@@ -69,4 +69,12 @@ public class PlanningEntry implements Serializable {
                 ", deliveries=" + deliveries +
                 '}';
     }
+
+    public void setDeliveries(Set<Delivery> deliveries) {
+        this.deliveries = deliveries;
+    }
+
+    public void setDrone(Drone drone) {
+        this.drone = drone;
+    }
 }

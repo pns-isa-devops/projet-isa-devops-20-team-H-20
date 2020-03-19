@@ -1,8 +1,13 @@
 package fr.unice.polytech.isa.dd.teamH.entities.drone;
 
+import javax.xml.bind.annotation.XmlSeeAlso;
 import java.io.Serializable;
 import java.util.Objects;
 
+@XmlSeeAlso({InChargeDroneState.class,
+            InFlightDroneState.class,
+            InMaintenanceDroneState.class,
+            ReadyDroneState.class})
 public abstract class DroneState implements Cloneable, Serializable {
     protected String name;
 

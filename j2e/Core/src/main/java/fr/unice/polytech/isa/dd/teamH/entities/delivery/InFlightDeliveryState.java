@@ -12,7 +12,7 @@ public class InFlightDeliveryState extends DeliveryState {
     }
 
     @Override
-    public String getStatus() {
+    public String toString() {
         return "Delivery is shipped since " + shippedAt.toString();
     }
 
