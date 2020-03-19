@@ -2,7 +2,7 @@ package cli.commands;
 
 import api.DronePublicAPI;
 import cli.framework.Command;
-import stubs.drone.Drone;
+import stubs.planning.Delivery;
 import stubs.planning.PlanningEntry;
 
 import java.util.List;
@@ -23,8 +23,11 @@ public class GetDeliveries extends Command<DronePublicAPI> {
     }
 
     private void displayResult(PlanningEntry planningEntry){
-        System.out.println("Planning entry: " + planningEntry.toString());
-        //TODO : backend add attributes
+        System.out.println("Planning entry: ");
+        System.out.println("\tDrone : " + planningEntry.getDrone());
+        for(Delivery delivery : planningEntry.getDeliveries()){
+            System.out.println("Delivery : " + delivery.getDateTimeToShip());
+        }
     }
 
     @Override

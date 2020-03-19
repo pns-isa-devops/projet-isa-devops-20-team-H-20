@@ -23,15 +23,16 @@ public class MapAPI {
                 .put("FromAddress", "1645 route des lucioles, Parc de Sophia-Antipolis, 06410 Biot")
                 .put("ToAddress", destination);
 
-        String res = sendRESTRequest(request, "/mapping/distance/biot/orange");
+        String res = sendRESTRequest(request, "/mapping/distance/biot/" + destination);
 
+        float distance;
         try {
-            float distance = Float.parseFloat(res);
+            distance = Float.parseFloat(res);
         }catch(NumberFormatException e){
             throw new ExternalPartnerException("Invalid number format", e);
         }
         //return distance
-        return 10;
+        return distance;
     }
 
     private String sendRESTRequest(JSONObject request, String path) throws ExternalPartnerException {
