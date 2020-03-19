@@ -31,7 +31,6 @@ public class ObjectFactory {
     private final static QName _PlanDelivery_QNAME = new QName("http://www.polytech.unice.fr/si/4a/isa/dd/team-h/planning", "planDelivery");
     private final static QName _PlanDeliveryResponse_QNAME = new QName("http://www.polytech.unice.fr/si/4a/isa/dd/team-h/planning", "planDeliveryResponse");
     private final static QName _UnknownPackageException_QNAME = new QName("http://www.polytech.unice.fr/si/4a/isa/dd/team-h/planning", "UnknownPackageException");
-    private final static QName _UnknownDeliveryStateException_QNAME = new QName("http://www.polytech.unice.fr/si/4a/isa/dd/team-h/planning", "UnknownDeliveryStateException");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: stubs.planning
@@ -94,14 +93,6 @@ public class ObjectFactory {
      */
     public UnknownPackageException createUnknownPackageException() {
         return new UnknownPackageException();
-    }
-
-    /**
-     * Create an instance of {@link UnknownDeliveryStateException }
-     * 
-     */
-    public UnknownDeliveryStateException createUnknownDeliveryStateException() {
-        return new UnknownDeliveryStateException();
     }
 
     /**
@@ -189,15 +180,6 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://www.polytech.unice.fr/si/4a/isa/dd/team-h/planning", name = "UnknownPackageException")
     public JAXBElement<UnknownPackageException> createUnknownPackageException(UnknownPackageException value) {
         return new JAXBElement<UnknownPackageException>(_UnknownPackageException_QNAME, UnknownPackageException.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link UnknownDeliveryStateException }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://www.polytech.unice.fr/si/4a/isa/dd/team-h/planning", name = "UnknownDeliveryStateException")
-    public JAXBElement<UnknownDeliveryStateException> createUnknownDeliveryStateException(UnknownDeliveryStateException value) {
-        return new JAXBElement<UnknownDeliveryStateException>(_UnknownDeliveryStateException_QNAME, UnknownDeliveryStateException.class, null, value);
     }
 
 }

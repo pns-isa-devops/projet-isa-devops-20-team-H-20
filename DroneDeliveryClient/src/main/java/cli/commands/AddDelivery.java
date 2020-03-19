@@ -17,17 +17,20 @@ public class AddDelivery extends Command<DronePublicAPI> {
     @Override
     public void load(List<String> args) {
         trackingId = args.get(0);
-        String[] tmpShip = args.get(1).split("_");
-        shippingDateTime = tmpShip[0] + " " + tmpShip[1];
+        String date = args.get(1);
+        String time = args.get(2);
+        shippingDateTime = date+"T"+time+":00";
     }
 
     @Override
     public void execute() throws Exception {
-        shell.system.getPlanningWebService().planDelivery(trackingId, shippingDateTime);
+        if(!shell.system.getPlanningWebService().planDelivery(trackingId, shippingDateTime)){
+            throw new Exception("Error during delivery creation");
+        }
     }
 
     @Override
     public String describe() {
-        return "add-delivery (trackingId shippingDateTime(mm-dd-yyyy_hh:mm))";
+        return "add-delivery (trackingId shippingDate(yyyy-mm-dd) shippingTime(hh:mm)";
     }
 }

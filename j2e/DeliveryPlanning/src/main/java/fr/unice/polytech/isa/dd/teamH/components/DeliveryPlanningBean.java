@@ -98,6 +98,8 @@ public class DeliveryPlanningBean implements DeliveryFinder, DeliveryPlanner
         de.setPackage(p);
         de.setDateTimeToShip(shippingTime);
 
+        System.out.println("Adding delivery : " + de.toString());
+
         Optional<PlanningEntry> ope = getPlanningEntryForDrone(od.get());
         if(ope.isPresent()){
             return ope.get().addDelivery(de);
@@ -116,6 +118,7 @@ public class DeliveryPlanningBean implements DeliveryFinder, DeliveryPlanner
     @Override
     public Set<PlanningEntry> getCompleteDeliveryPlanning()
     {
+        System.out.println("Getting deliveries : " + planningEntries.toString());
         return new HashSet<>(planningEntries);
     }
 

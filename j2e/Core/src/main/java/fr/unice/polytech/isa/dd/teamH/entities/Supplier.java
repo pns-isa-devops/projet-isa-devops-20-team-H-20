@@ -55,13 +55,9 @@ public class Supplier implements Serializable {
 
     @Override
     public String toString() {
-        StringBuilder result = new StringBuilder("Supplier: ").append(getName())
-                .append("\nList of contacts: \n");
-        if(contacts != null){
-            for(String s : contacts){
-                result.append(s).append("\n");
-            }
-        }
-        return result.toString();
+        return "Supplier{" +
+                "name='" + name + '\'' +
+                ", contacts=" + contacts +
+                '}';
     }
 }

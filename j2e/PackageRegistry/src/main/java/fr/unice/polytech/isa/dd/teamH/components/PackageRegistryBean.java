@@ -32,6 +32,8 @@ public class PackageRegistryBean implements PackageRegistration, PackageFinder {
         aPackage.setTrackingNumber(trackingNumber);
 
         packages.add(aPackage);
+
+        System.out.println("Added new package : " + aPackage.toString());
     }
 
     @Override
@@ -73,6 +75,7 @@ public class PackageRegistryBean implements PackageRegistration, PackageFinder {
     }
 
     public Set<Package> findAllPackages() {
+        System.out.println("Getting packages list : " + packages.toString());
         return new HashSet<>(packages);
     }
 }

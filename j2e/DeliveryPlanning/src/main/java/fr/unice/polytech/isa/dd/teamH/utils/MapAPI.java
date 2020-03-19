@@ -23,7 +23,7 @@ public class MapAPI {
                 .put("FromAddress", "1645 route des lucioles, Parc de Sophia-Antipolis, 06410 Biot")
                 .put("ToAddress", destination);
 
-        String res = sendRESTRequest(request, "/distance");
+        String res = sendRESTRequest(request, "/mapping/distance/biot/orange");
 
         try {
             float distance = Float.parseFloat(res);
@@ -40,7 +40,7 @@ public class MapAPI {
                     .accept(MediaType.APPLICATION_JSON_TYPE).header("Content-Type", MediaType.APPLICATION_JSON)
                     .post(request.toString(), String.class);
         } catch (Exception e) {
-            throw new ExternalPartnerException(url+"/distance", e);
+            throw new ExternalPartnerException(url+"/mapping/distance", e);
         }
     }
 
