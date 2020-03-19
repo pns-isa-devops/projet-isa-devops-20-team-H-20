@@ -41,7 +41,9 @@
     </xs:sequence>
   </xs:complexType>
   <xs:complexType abstract="true" name="droneState">
-    <xs:sequence/>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="name" type="xs:string"/>
+    </xs:sequence>
   </xs:complexType>
   <xs:complexType name="removeDrone">
     <xs:sequence>

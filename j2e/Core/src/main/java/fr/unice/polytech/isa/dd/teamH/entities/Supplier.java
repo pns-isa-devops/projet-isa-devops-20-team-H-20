@@ -7,7 +7,7 @@ public class Supplier implements Serializable {
 
     private String name;
 
-    private Set<String> contacts;
+    private HashSet<String> contacts;
 
     public Supplier() {
         contacts = new HashSet<>();
@@ -31,7 +31,7 @@ public class Supplier implements Serializable {
         return name;
     }
 
-    public Set<String> getContacts() {
+    public HashSet<String> getContacts() {
         return new HashSet<>(contacts);
     }
 
@@ -59,5 +59,9 @@ public class Supplier implements Serializable {
                 "name='" + name + '\'' +
                 ", contacts=" + contacts +
                 '}';
+    }
+
+    public void setContacts(HashSet<String> contacts) {
+        this.contacts = contacts;
     }
 }

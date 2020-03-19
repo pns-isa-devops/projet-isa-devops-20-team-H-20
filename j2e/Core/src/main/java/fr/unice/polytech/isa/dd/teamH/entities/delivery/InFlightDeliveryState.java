@@ -43,4 +43,22 @@ public class InFlightDeliveryState extends DeliveryState {
     public int hashCode() {
         return Objects.hash(shippedAt);
     }
+
+    @Override
+    public String getName() {
+        return super.getName();
+    }
+
+    public LocalDateTime getShippedAt() {
+        return shippedAt;
+    }
+
+    @Override
+    public void setName(String name) {
+        super.setName(name);
+    }
+
+    public void setShippedAt(LocalDateTime shippedAt) {
+        this.shippedAt = shippedAt;
+    }
 }

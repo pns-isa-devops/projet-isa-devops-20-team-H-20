@@ -43,4 +43,22 @@ public class FailedDeliveryState extends DeliveryState {
     public int hashCode() {
         return Objects.hash(localDateTime);
     }
+
+    @Override
+    public String getName() {
+        return super.getName();
+    }
+
+    public LocalDateTime getLocalDateTime() {
+        return localDateTime;
+    }
+
+    @Override
+    public void setName(String name) {
+        super.setName(name);
+    }
+
+    public void setLocalDateTime(LocalDateTime localDateTime) {
+        this.localDateTime = localDateTime;
+    }
 }
