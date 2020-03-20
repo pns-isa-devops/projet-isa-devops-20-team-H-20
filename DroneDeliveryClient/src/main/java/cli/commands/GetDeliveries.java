@@ -17,21 +17,22 @@ public class GetDeliveries extends Command<DronePublicAPI> {
     @Override
     public void execute() {
         List<PlanningEntry> planningEntryList = shell.system.getPlanningWebService().getCompleteDeliveryPlanning();
-        System.out.println("Size : " + planningEntryList.size());
         for(PlanningEntry planningEntry : planningEntryList){
-            //displayResult(planningEntry);
+            displayResult(planningEntry);
         }
     }
 
-    /*
+
     private void displayResult(PlanningEntry planningEntry){
         System.out.println("Planning entry: ");
-        System.out.println("\tDrone : " + planningEntry.getDrone());
+        System.out.println("\tDrone : " + planningEntry.getDrone().getId());
         for(Delivery delivery : planningEntry.getDeliveries()){
-            System.out.println("Delivery : " + delivery.getDateTimeToShip());
+            System.out.println("Delivery : ");
+            System.out.println("\tDate : " + delivery.getDate());
+            System.out.println("\tTime : " + delivery.getTime());
         }
     }
-    */
+
     @Override
     public String describe() {
         return identifier();

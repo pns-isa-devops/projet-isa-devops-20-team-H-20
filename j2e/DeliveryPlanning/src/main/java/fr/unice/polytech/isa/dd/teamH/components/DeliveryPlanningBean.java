@@ -91,16 +91,20 @@ public class DeliveryPlanningBean implements DeliveryFinder, DeliveryPlanner {
         de.setDate(date);
         de.setTime(time);
 
-        System.out.println("Adding delivery : " + de.toString());
-
+        boolean res;
         Optional<PlanningEntry> ope = getPlanningEntryForDrone(od.get());
         if(ope.isPresent()){
-            return ope.get().addDelivery(de);
+            res = ope.get().addDelivery(de);
         }else{
             PlanningEntry newPE = new PlanningEntry(od.get());
             newPE.addDelivery(de);
-            return planningEntries.add(newPE);
+            res = planningEntries.add(newPE);
         }
+        if(res)
+            log.log(Level.INFO, "Delivery added : " + de.toString());
+        else
+            log.log(Level.INFO, "Delivery not added : " + de.toString());
+        return res;
     }
 
     @Override
