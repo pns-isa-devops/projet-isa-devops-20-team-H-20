@@ -22,6 +22,6 @@ public class AvailabilityProcessorBean implements AvailableDroneFinder {
 
     @Override
     public Optional<Drone> getAvailableDroneAtTime(Set<PlanningEntry> alreadyPlannedDeliveries, LocalDateTime ldt) {
-        return droneFinder.findReadyDrones().stream().findFirst();
+        return droneFinder.findReadyDrones().stream().filter(e -> e.getState().isReadyToFly()).findFirst();
     }
 }
