@@ -21,6 +21,7 @@ public class Main extends Shell<DronePublicAPI> {
                 EditDroneStatus.class,
                 EditPackage.class,
                 GetDeliveries.class,
+                GetDelivery.class,
                 GetDrone.class,
                 GetSupplier.class,
                 GetSuppliers.class,

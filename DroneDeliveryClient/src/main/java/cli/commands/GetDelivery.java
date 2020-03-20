@@ -24,9 +24,10 @@ public class GetDelivery extends Command<DronePublicAPI> {
         displayResult(shell.system.getPlanningWebService().findDeliveryById(trackingId));
     }
 
-
     private void displayResult(Delivery delivery){
-        System.out.println("Delivery : " + delivery.getTime());
+        System.out.println("Delivery : ");
+        System.out.println("\tDate : " + delivery.getDate());
+        System.out.println("\tTime : " + delivery.getTime());
     }
 
     @Override

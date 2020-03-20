@@ -10,6 +10,7 @@ DD > ?
   - add-delivery (trackingId shippingDateTime(yyyy-mm-dd) shippingTime(hh:mm))
   - edit-delivery-status (trackingId status[completed|failed|inflight])
   - get-deliveries ()
+  - get-delivery (trackingId)
   - add-drone (id weightCapacity)
   - edit-drone-status (id status[charge|maintenance|ready])
   - remove-drone (id)
