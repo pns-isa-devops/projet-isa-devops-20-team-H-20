@@ -7,7 +7,8 @@ import java.util.List;
 
 public class AddDelivery extends Command<DronePublicAPI> {
     private String trackingId;
-    private String shippingDateTime;
+    private String date;
+    private String time;
 
     @Override
     public String identifier() {
@@ -17,14 +18,13 @@ public class AddDelivery extends Command<DronePublicAPI> {
     @Override
     public void load(List<String> args) {
         trackingId = args.get(0);
-        String date = args.get(1);
-        String time = args.get(2);
-        shippingDateTime = date+"T"+time+":00";
+        date = args.get(1);
+        time = args.get(2);
     }
 
     @Override
     public void execute() throws Exception {
-        boolean res = shell.system.getPlanningWebService().planDelivery(trackingId, shippingDateTime);
+        boolean res = shell.system.getPlanningWebService().planDelivery(trackingId, date , time);
         if(res){
             System.out.println("Delivery added");
         }else{
