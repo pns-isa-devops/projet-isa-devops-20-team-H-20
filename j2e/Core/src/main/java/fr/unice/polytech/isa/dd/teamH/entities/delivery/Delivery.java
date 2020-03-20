@@ -5,7 +5,6 @@ import fr.unice.polytech.isa.dd.teamH.exceptions.UnknownDeliveryStateException;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.time.Year;
 import java.util.Objects;
 
 public class Delivery implements Serializable {
@@ -41,19 +40,19 @@ public class Delivery implements Serializable {
 
     public Delivery(LocalDateTime localDateTime, float flightTime, float distance, Package aPackage) {
         int monthValue = localDateTime.getMonthValue();
-        String monthVal = Integer.toString(monthValue);;
+        String monthVal = Integer.toString(monthValue);
         if(monthValue < 10)
             monthVal = "0" + monthVal;
         int dayValue = localDateTime.getDayOfMonth();
-        String dayVal = Integer.toString(dayValue);;
+        String dayVal = Integer.toString(dayValue);
         if(dayValue < 10)
             dayVal = "0" + dayVal;
         int hourValue = localDateTime.getHour();
-        String hourVal = Integer.toString(hourValue);;
+        String hourVal = Integer.toString(hourValue);
         if(hourValue < 10)
-            dayVal = "0" + hourVal;
+            hourVal = "0" + hourVal;
         int minuteValue = localDateTime.getMinute();
-        String minuteVal = Integer.toString(minuteValue);;
+        String minuteVal = Integer.toString(minuteValue);
         if(minuteValue < 10)
             minuteVal = "0" + minuteVal;
         this.date = localDateTime.getYear() + "-" + monthVal + "-" + dayVal;
@@ -65,6 +64,7 @@ public class Delivery implements Serializable {
     }
 
     public DeliveryState getState() {return this.state;}
+
     public void setState(DeliveryState state) {
         this.state = state;
     }
@@ -96,6 +96,7 @@ public class Delivery implements Serializable {
     public float getFlightTime() {
         return flightTime;
     }
+
     public void setFlightTime(float flightTime) {
         this.flightTime = flightTime;
     }
@@ -103,6 +104,7 @@ public class Delivery implements Serializable {
     public float getDistance() {
         return distance;
     }
+
     public void setDistance(float distance) {
         this.distance = distance;
     }
@@ -110,6 +112,7 @@ public class Delivery implements Serializable {
     public Package getaPackage() {
         return aPackage;
     }
+
     public void setPackage(Package p){
         this.aPackage = p;
     }

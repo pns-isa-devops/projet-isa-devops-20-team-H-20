@@ -2,7 +2,6 @@ package cli.commands;
 
 import api.DronePublicAPI;
 import cli.framework.Command;
-import stubs.accounting.Supplier;
 import stubs.planning.Delivery;
 
 import java.util.List;
@@ -22,13 +21,12 @@ public class GetDelivery extends Command<DronePublicAPI> {
 
     @Override
     public void execute() throws Exception {
-        //TODO not working in backend
-        //displayResult(shell.system.getPlanningWebService().);
+        displayResult(shell.system.getPlanningWebService().findDeliveryById(trackingId));
     }
 
 
     private void displayResult(Delivery delivery){
-        System.out.println("Delivery : " + delivery.getDateTimeToShip());
+        System.out.println("Delivery : " + delivery.getTime());
     }
 
     @Override
