@@ -1,6 +1,6 @@
 package fr.unice.polytech.isa.dd.teamH.business;
 
-import fr.unice.polytech.isa.dd.teamH.arquillian.AbstractDroneDeliveryTest;
+import fr.unice.polytech.isa.dd.teamH.arquillian.AbstractDroneFleetTest;
 import fr.unice.polytech.isa.dd.teamH.entities.drone.Drone;
 import fr.unice.polytech.isa.dd.teamH.exceptions.AlreadyExistingDroneException;
 import fr.unice.polytech.isa.dd.teamH.interfaces.DroneFinder;
@@ -17,7 +17,7 @@ import java.util.Optional;
 import static org.junit.Assert.*;
 
 @RunWith(Arquillian.class)
-public class DroneFleetTest extends AbstractDroneDeliveryTest {
+public class DroneFleetTest extends AbstractDroneFleetTest {
     @EJB
     private DroneFleetManagement management;
     @EJB

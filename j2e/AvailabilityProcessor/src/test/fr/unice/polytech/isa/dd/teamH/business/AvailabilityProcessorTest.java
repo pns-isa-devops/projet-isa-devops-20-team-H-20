@@ -1,6 +1,6 @@
 package fr.unice.polytech.isa.dd.teamH.business;
 
-import fr.unice.polytech.isa.dd.teamH.arquillian.AbstractDroneDeliveryTest;
+import fr.unice.polytech.isa.dd.teamH.arquillian.AbstractAvailabilityProcessorTest;
 import fr.unice.polytech.isa.dd.teamH.entities.drone.Drone;
 import fr.unice.polytech.isa.dd.teamH.interfaces.AvailableDroneFinder;
 import fr.unice.polytech.isa.dd.teamH.interfaces.DroneFleetManagement;
@@ -18,7 +18,7 @@ import java.util.Optional;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(Arquillian.class)
-public class AvailabilityProcessorTest extends AbstractDroneDeliveryTest {
+public class AvailabilityProcessorTest extends AbstractAvailabilityProcessorTest {
     @EJB
     private AvailableDroneFinder availableDroneFinder;
     @EJB

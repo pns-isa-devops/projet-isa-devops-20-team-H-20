@@ -25,16 +25,9 @@
         </dependency>
     </dependencies>
 
-    <distributionManagement>
-        <repository>
-            <id>${artifactory.snapshots.id}</id>
-            <name>${artifactory.snapshots.name}</name>
-            <url>${artifactory.repository.url}/libs-snapshot-local</url>
-        </repository>
-    </distributionManagement>
-
     <build>
         <sourceDirectory>src/main/java</sourceDirectory>
+        <testSourceDirectory>src/test</testSourceDirectory>
         <finalName>dd-delivery-planning</finalName>
     </build>
 </project>

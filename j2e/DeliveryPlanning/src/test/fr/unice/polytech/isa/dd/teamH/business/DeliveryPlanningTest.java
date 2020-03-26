@@ -1,6 +1,6 @@
 package fr.unice.polytech.isa.dd.teamH.business;
 
-import fr.unice.polytech.isa.dd.teamH.arquillian.AbstractDroneDeliveryTest;
+import fr.unice.polytech.isa.dd.teamH.arquillian.AbstractDeliveryPlanningTest;
 import fr.unice.polytech.isa.dd.teamH.entities.Supplier;
 import fr.unice.polytech.isa.dd.teamH.entities.Package;
 import fr.unice.polytech.isa.dd.teamH.entities.delivery.Delivery;
@@ -22,7 +22,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
 @RunWith(Arquillian.class)
-public class DeliveryPlanningTest extends AbstractDroneDeliveryTest {
+public class DeliveryPlanningTest extends AbstractDeliveryPlanningTest {
     @EJB
     private DeliveryFinder finder;
     @EJB

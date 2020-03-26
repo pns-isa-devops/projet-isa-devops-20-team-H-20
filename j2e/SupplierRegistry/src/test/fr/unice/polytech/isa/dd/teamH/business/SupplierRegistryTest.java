@@ -1,6 +1,6 @@
 package fr.unice.polytech.isa.dd.teamH.business;
 
-import fr.unice.polytech.isa.dd.teamH.arquillian.AbstractDroneDeliveryTest;
+import fr.unice.polytech.isa.dd.teamH.arquillian.AbstractSupplierRegistryTest;
 import fr.unice.polytech.isa.dd.teamH.entities.Supplier;
 import fr.unice.polytech.isa.dd.teamH.exceptions.AlreadyExistingContactException;
 import fr.unice.polytech.isa.dd.teamH.exceptions.AlreadyExistingSupplierException;
@@ -22,7 +22,7 @@ import static org.junit.Assert.assertEquals;
 
 @RunWith(Arquillian.class)
 //@Transactional(TransactionMode.COMMIT)
-public class SupplierRegistryTest extends AbstractDroneDeliveryTest {
+public class SupplierRegistryTest extends AbstractSupplierRegistryTest {
 
     @EJB
     private SupplierRegistration registry;
