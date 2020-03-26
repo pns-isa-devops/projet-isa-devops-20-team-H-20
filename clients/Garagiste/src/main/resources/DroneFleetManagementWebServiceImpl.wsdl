@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="DroneFleetManagementWebServiceImplService" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/drones" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/drones" xmlns:ns1="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/planning" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+<xs:schema xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/drones" xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/drones">
+  <xs:element name="addDrone" type="tns:addDrone"/>
+  <xs:element name="addDroneResponse" type="tns:addDroneResponse"/>
+  <xs:element name="editDroneStatus" type="tns:editDroneStatus"/>
+  <xs:element name="editDroneStatusResponse" type="tns:editDroneStatusResponse"/>
+  <xs:element name="getDrone" type="tns:getDrone"/>
+  <xs:element name="getDroneResponse" type="tns:getDroneResponse"/>
+  <xs:element name="removeDrone" type="tns:removeDrone"/>
+  <xs:element name="removeDroneResponse" type="tns:removeDroneResponse"/>
+  <xs:complexType name="addDrone">
+    <xs:sequence>
+      <xs:element name="id" type="xs:int"/>
+      <xs:element name="weightCapacity" type="xs:float"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="addDroneResponse">
+    <xs:sequence>
+      <xs:element name="return_code" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getDrone">
+    <xs:sequence>
+      <xs:element name="id" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getDroneResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="drone" type="tns:drone"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="drone">
+    <xs:sequence>
+      <xs:element name="battery" type="xs:int"/>
+      <xs:element name="currentFlightTime" type="xs:float"/>
+      <xs:element name="id" type="xs:int"/>
+      <xs:element minOccurs="0" name="state" type="tns:droneState"/>
+      <xs:element name="weightCapacity" type="xs:float"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType abstract="true" name="droneState">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="name" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="inChargeDroneState">
+    <xs:complexContent>
+      <xs:extension base="tns:droneState">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="inFlightDroneState">
+    <xs:complexContent>
+      <xs:extension base="tns:droneState">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="inMaintenanceDroneState">
+    <xs:complexContent>
+      <xs:extension base="tns:droneState">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="readyDroneState">
+    <xs:complexContent>
+      <xs:extension base="tns:droneState">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="removeDrone">
+    <xs:sequence>
+      <xs:element name="id" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="removeDroneResponse">
+    <xs:sequence>
+      <xs:element name="return_code" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="editDroneStatus">
+    <xs:sequence>
+      <xs:element name="id" type="xs:int"/>
+      <xs:element minOccurs="0" name="status" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="editDroneStatusResponse">
+    <xs:sequence>
+      <xs:element name="return_code" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AlreadyExistingDroneException" type="tns:AlreadyExistingDroneException"/>
+  <xs:complexType name="AlreadyExistingDroneException">
+    <xs:sequence>
+      <xs:element name="conflictingId" nillable="true" type="xs:int"/>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UnknownDroneStateException" type="tns:UnknownDroneStateException"/>
+  <xs:complexType name="UnknownDroneStateException">
+    <xs:sequence>
+      <xs:element name="conflictingState" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+<xsd:schema xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/planning" xmlns:xsd="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/planning">
+  <xsd:element name="UnknownDroneException" type="tns:UnknownDroneException"/>
+  <xsd:complexType name="UnknownDroneException">
+    <xsd:sequence>
+      <xsd:element name="id" nillable="true" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="message" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="addDrone">
+    <wsdl:part name="parameters" element="tns:addDrone">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="UnknownDroneStateException">
+    <wsdl:part name="UnknownDroneStateException" element="tns:UnknownDroneStateException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addDroneResponse">
+    <wsdl:part name="parameters" element="tns:addDroneResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="editDroneStatus">
+    <wsdl:part name="parameters" element="tns:editDroneStatus">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDrone">
+    <wsdl:part name="parameters" element="tns:getDrone">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeDrone">
+    <wsdl:part name="parameters" element="tns:removeDrone">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="editDroneStatusResponse">
+    <wsdl:part name="parameters" element="tns:editDroneStatusResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="AlreadyExistingDroneException">
+    <wsdl:part name="AlreadyExistingDroneException" element="tns:AlreadyExistingDroneException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeDroneResponse">
+    <wsdl:part name="parameters" element="tns:removeDroneResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDroneResponse">
+    <wsdl:part name="parameters" element="tns:getDroneResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="UnknownDroneException">
+    <wsdl:part name="UnknownDroneException" element="ns1:UnknownDroneException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="DroneFleetManagementWebService">
+    <wsdl:operation name="addDrone">
+      <wsdl:input name="addDrone" message="tns:addDrone">
+    </wsdl:input>
+      <wsdl:output name="addDroneResponse" message="tns:addDroneResponse">
+    </wsdl:output>
+      <wsdl:fault name="AlreadyExistingDroneException" message="tns:AlreadyExistingDroneException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getDrone">
+      <wsdl:input name="getDrone" message="tns:getDrone">
+    </wsdl:input>
+      <wsdl:output name="getDroneResponse" message="tns:getDroneResponse">
+    </wsdl:output>
+      <wsdl:fault name="UnknownDroneException" message="tns:UnknownDroneException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="removeDrone">
+      <wsdl:input name="removeDrone" message="tns:removeDrone">
+    </wsdl:input>
+      <wsdl:output name="removeDroneResponse" message="tns:removeDroneResponse">
+    </wsdl:output>
+      <wsdl:fault name="UnknownDroneException" message="tns:UnknownDroneException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="editDroneStatus">
+      <wsdl:input name="editDroneStatus" message="tns:editDroneStatus">
+    </wsdl:input>
+      <wsdl:output name="editDroneStatusResponse" message="tns:editDroneStatusResponse">
+    </wsdl:output>
+      <wsdl:fault name="UnknownDroneException" message="tns:UnknownDroneException">
+    </wsdl:fault>
+      <wsdl:fault name="UnknownDroneStateException" message="tns:UnknownDroneStateException">
+    </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DroneFleetManagementWebServiceImplServiceSoapBinding" type="tns:DroneFleetManagementWebService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="addDrone">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="addDrone">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="addDroneResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AlreadyExistingDroneException">
+        <soap:fault name="AlreadyExistingDroneException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getDrone">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getDrone">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getDroneResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="UnknownDroneException">
+        <soap:fault name="UnknownDroneException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="removeDrone">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="removeDrone">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="removeDroneResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="UnknownDroneException">
+        <soap:fault name="UnknownDroneException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="editDroneStatus">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="editDroneStatus">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="editDroneStatusResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="UnknownDroneException">
+        <soap:fault name="UnknownDroneException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UnknownDroneStateException">
+        <soap:fault name="UnknownDroneStateException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="DroneFleetManagementWebServiceImplService">
+    <wsdl:port name="DroneFleetManagementWebServiceImplPort" binding="tns:DroneFleetManagementWebServiceImplServiceSoapBinding">
+      <soap:address location="http://localhost:9090/DroneFleetManagementWebServiceImplPort"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

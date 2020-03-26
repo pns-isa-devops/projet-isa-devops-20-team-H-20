@@ -10,6 +10,8 @@
 ### Technology
 [Java 8](https://www.java.com/fr/download/)
 
+[Artifactory is used to manage modules](https://jfrog.com/artifactory/)
+
 [Arquillian is used for tests](http://arquillian.org/)
 
 ### How to use

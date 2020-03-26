@@ -5,6 +5,7 @@ import fr.unice.polytech.isa.dd.teamH.entities.Supplier;
 import fr.unice.polytech.isa.dd.teamH.entities.Package;
 import fr.unice.polytech.isa.dd.teamH.entities.delivery.Delivery;
 import fr.unice.polytech.isa.dd.teamH.entities.delivery.DeliveryStateFactory;
+import fr.unice.polytech.isa.dd.teamH.entities.deliveryplanning.PlanningEntry;
 import fr.unice.polytech.isa.dd.teamH.entities.drone.Drone;
 import fr.unice.polytech.isa.dd.teamH.exceptions.DeliveryDistanceException;
 import fr.unice.polytech.isa.dd.teamH.interfaces.*;
@@ -100,6 +101,24 @@ public class DeliveryPlanningTest extends AbstractDeliveryPlanningTest {
             if (delivery.isPresent()) {
                 planner.editDeliveryStatus(delivery.get(), DeliveryStateFactory.getInstance().createState("completed"));
                 assertEquals("completed", delivery.get().getState().getName());
+            } else {
+                fail();
+            }
+        }catch (DeliveryDistanceException e){
+            System.out.println("You have not launched the external mapping system");
+        }
+    }
+
+    @Test
+    public void startDelivery(){
+        try {
+            planner.planDelivery(p, "2020-05-20", "15:30");
+            Optional<PlanningEntry> planningEntry = finder.findPlanningEntryByTrackingId(p.getTrackingNumber());
+            Optional<Delivery> delivery = finder.findDeliveryById(p.getTrackingNumber());
+            if (delivery.isPresent() && planningEntry.isPresent()) {
+                planner.startDelivery(planningEntry.get().getDrone(), delivery.get());
+                assertEquals("in-flight", delivery.get().getState().getName());
+                assertEquals("flight", planningEntry.get().getDrone().getState().getName());
             } else {
                 fail();
             }
