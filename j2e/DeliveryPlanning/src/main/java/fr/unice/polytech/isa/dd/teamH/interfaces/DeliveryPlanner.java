@@ -16,6 +16,7 @@ import java.util.Set;
 public interface DeliveryPlanner {
     boolean planDelivery(Package p, String date, String time) throws DeliveryDistanceException;
     boolean editDeliveryStatus(Delivery delivery, DeliveryState state);
+    boolean startDelivery(Drone drone, Delivery delivery);
     Set<PlanningEntry> getCompleteDeliveryPlanning();
 
     void flush();

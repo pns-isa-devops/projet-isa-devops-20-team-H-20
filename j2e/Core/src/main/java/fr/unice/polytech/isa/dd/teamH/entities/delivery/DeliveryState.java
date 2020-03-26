@@ -10,6 +10,7 @@ import java.util.Objects;
             NotSentDeliveryState.class})
 public abstract class DeliveryState implements Serializable {
     protected String name;
+
     public abstract boolean isCompleted();
     abstract boolean is(String name);
     public abstract DeliveryState clone();

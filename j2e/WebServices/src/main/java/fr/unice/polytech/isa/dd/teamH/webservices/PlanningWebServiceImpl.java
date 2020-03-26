@@ -52,6 +52,16 @@ public class PlanningWebServiceImpl implements PlanningWebService {
     }
 
     @Override
+    public boolean startDelivery(String trackingId) throws UnknownDeliveryException {
+        Optional<PlanningEntry> planningEntry = deliveryFinder.findPlanningEntryByTrackingId(trackingId);
+        if(!planningEntry.isPresent()) {
+            throw new UnknownDeliveryException();
+        }
+        Delivery d = findDeliveryById(trackingId);
+        return deliveryPlanner.startDelivery(planningEntry.get().getDrone(), d);
+    }
+
+    @Override
     public Delivery findDeliveryById(String id) throws UnknownDeliveryException {
         Optional<Delivery> delivery = deliveryFinder.findDeliveryById(id);
         if(!delivery.isPresent())
