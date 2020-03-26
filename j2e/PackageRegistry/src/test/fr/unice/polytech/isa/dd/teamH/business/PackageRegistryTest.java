@@ -5,6 +5,7 @@ import fr.unice.polytech.isa.dd.teamH.entities.Supplier;
 import fr.unice.polytech.isa.dd.teamH.entities.Package;
 import fr.unice.polytech.isa.dd.teamH.exceptions.AlreadyExistingPackageException;
 import fr.unice.polytech.isa.dd.teamH.exceptions.UnknownPackageException;
+import fr.unice.polytech.isa.dd.teamH.exceptions.UnknownSupplierException;
 import fr.unice.polytech.isa.dd.teamH.interfaces.PackageFinder;
 import fr.unice.polytech.isa.dd.teamH.interfaces.PackageRegistration;
 import org.jboss.arquillian.junit.Arquillian;
@@ -49,7 +50,6 @@ public class PackageRegistryTest extends AbstractPackageRegistryTest {
 
     @After
     public void cleaningUp() {
-
         registry.flush();
 
 //        utx.begin();
@@ -67,6 +67,10 @@ public class PackageRegistryTest extends AbstractPackageRegistryTest {
     public void registerPackage() throws Exception {
         registry.register(p.getTrackingNumber(), p.getSupplier(), p.getWeight(), p.getDestination());
         Optional<Package> pack = finder.findPackageByTrackingNumber(p.getTrackingNumber());
+        assertTrue(pack.isPresent());
+
+        registry.register(p2.getTrackingNumber(), p2.getSupplier(), p2.getWeight(), p2.getDestination());
+        pack = finder.findPackageByTrackingNumber(p2.getTrackingNumber());
         assertTrue(pack.isPresent());
     }
 
