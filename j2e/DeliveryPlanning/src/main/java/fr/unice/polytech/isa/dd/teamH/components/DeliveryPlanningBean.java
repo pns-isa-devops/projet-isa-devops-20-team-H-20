@@ -2,12 +2,12 @@ package fr.unice.polytech.isa.dd.teamH.components;
 
 import fr.unice.polytech.isa.dd.teamH.entities.delivery.Delivery;
 import fr.unice.polytech.isa.dd.teamH.entities.delivery.DeliveryState;
+import fr.unice.polytech.isa.dd.teamH.entities.delivery.DeliveryStateFactory;
 import fr.unice.polytech.isa.dd.teamH.entities.deliveryplanning.PlanningEntry;
 import fr.unice.polytech.isa.dd.teamH.entities.drone.Drone;
 import fr.unice.polytech.isa.dd.teamH.entities.Package;
-import fr.unice.polytech.isa.dd.teamH.exceptions.DeliveryDistanceException;
-import fr.unice.polytech.isa.dd.teamH.exceptions.ExternalPartnerException;
-import fr.unice.polytech.isa.dd.teamH.exceptions.UncheckedException;
+import fr.unice.polytech.isa.dd.teamH.entities.drone.DroneStateFactory;
+import fr.unice.polytech.isa.dd.teamH.exceptions.*;
 import fr.unice.polytech.isa.dd.teamH.interfaces.AvailableDroneFinder;
 import fr.unice.polytech.isa.dd.teamH.interfaces.DeliveryFinder;
 import fr.unice.polytech.isa.dd.teamH.interfaces.DeliveryPlanner;
@@ -44,6 +44,17 @@ public class DeliveryPlanningBean implements DeliveryFinder, DeliveryPlanner {
     }
 
     @Override
+    public Optional<PlanningEntry> findPlanningEntryByTrackingId(String trackingId){
+        for(PlanningEntry pe : planningEntries){
+            for(Delivery d : pe.getDeliveries()){
+                if(d.getaPackage().getTrackingNumber().equals(trackingId))
+                    return Optional.of(pe);
+            }
+        }
+        return Optional.empty();
+    }
+
+    @Override
     public Set<PlanningEntry> findAllPlannedDeliveries() {
         Set<PlanningEntry> result = new HashSet<>();
         for(PlanningEntry pe : planningEntries){
@@ -68,6 +79,18 @@ public class DeliveryPlanningBean implements DeliveryFinder, DeliveryPlanner {
         }
 
         return result;
+    }
+
+    @Override
+    public boolean startDelivery(Drone drone, Delivery delivery){
+        try {
+            drone.setState(DroneStateFactory.getInstance().createState("flight"));
+            delivery.setState(DeliveryStateFactory.getInstance().createState("in-flight"));
+        } catch (UnknownDroneStateException | UnknownDeliveryStateException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
 
     @Override

@@ -13,4 +13,5 @@ public interface DeliveryFinder {
     Optional<Delivery> findDeliveryById(String id);
     Set<PlanningEntry> findAllPlannedDeliveries();
     Set<PlanningEntry> findCompletedDeliveriesSince(LocalDateTime time);
+    Optional<PlanningEntry> findPlanningEntryByTrackingId(String trackingId);
 }
