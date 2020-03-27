@@ -2,32 +2,38 @@ package fr.unice.polytech.isa.dd.teamH.business;
 
 import fr.unice.polytech.isa.dd.teamH.arquillian.AbstractDroneFleetTest;
 import fr.unice.polytech.isa.dd.teamH.entities.drone.Drone;
+import fr.unice.polytech.isa.dd.teamH.entities.drone.DroneStateFactory;
 import fr.unice.polytech.isa.dd.teamH.exceptions.AlreadyExistingDroneException;
 import fr.unice.polytech.isa.dd.teamH.exceptions.UnknownDroneStateException;
 import fr.unice.polytech.isa.dd.teamH.interfaces.DroneFinder;
 import fr.unice.polytech.isa.dd.teamH.interfaces.DroneFleetManagement;
 import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.arquillian.transaction.api.annotation.TransactionMode;
+import org.jboss.arquillian.transaction.api.annotation.Transactional;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import javax.ejb.EJB;
+import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.UserTransaction;
 import java.util.Optional;
 
 import static org.junit.Assert.*;
 
 @RunWith(Arquillian.class)
+@Transactional(TransactionMode.COMMIT)
 public class DroneFleetTest extends AbstractDroneFleetTest {
     @EJB
     private DroneFleetManagement management;
     @EJB
     private DroneFinder finder;
 
-//    @PersistenceContext
-//    private EntityManager entityManager;
-//    @Inject
-//    private UserTransaction utx;
+    @PersistenceContext private EntityManager entityManager;
+    @Inject private UserTransaction utx;
 
     private Drone drone1;
     private Drone drone2;
@@ -39,13 +45,13 @@ public class DroneFleetTest extends AbstractDroneFleetTest {
     }
 
     @After
-    public void cleaningUp() {
+    public void cleaningUp() throws Exception{
         management.flush();
 
-//        utx.begin();
-//        Optional<Customer> toDispose = finder.findByName(john.getName());
-//        toDispose.ifPresent(cust -> { Customer c = entityManager.merge(cust); entityManager.delete(c); });
-//        utx.commit();
+       utx.begin();
+           Optional<Drone> toDispose = finder.findDroneById(drone1.getId());
+           toDispose.ifPresent(d -> { Drone c = entityManager.merge(d); entityManager.remove(c); });
+       utx.commit();
     }
 
     @Test
@@ -130,5 +136,19 @@ public class DroneFleetTest extends AbstractDroneFleetTest {
         if(!finder.findDroneById(drone2.getId()).isPresent())
             fail();
         assertEquals("charge", finder.findDroneById(drone2.getId()).get().getState().getName());
+    }
+
+    @Test
+    public void testDroneStorage() throws Exception {
+        Drone d = new Drone();
+        d.setId(1);
+        d.setWeightCapacity(10);
+        d.setState(DroneStateFactory.getInstance().createState("ready"));
+        d.setBattery(100);
+        d.setCurrentFlightTime(0);
+        entityManager.persist(d);
+        int id = d.getId();
+        Drone stored = entityManager.find(Drone.class, id);
+        assertEquals(d, stored);
     }
 }

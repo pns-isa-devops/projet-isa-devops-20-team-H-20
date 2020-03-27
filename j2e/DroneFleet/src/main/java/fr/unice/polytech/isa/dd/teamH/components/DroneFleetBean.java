@@ -26,7 +26,7 @@ public class DroneFleetBean implements DroneFinder, DroneFleetManagement {
 
     @Override
     public Set<Drone> findReadyDrones() {
-        return drones.stream().filter(e -> e.getState().isReadyToFly()).collect(Collectors.toSet());
+        return drones.stream().filter(Drone::isReadyToFly).collect(Collectors.toSet());
     }
 
     @Override
@@ -36,6 +36,13 @@ public class DroneFleetBean implements DroneFinder, DroneFleetManagement {
         Drone drone = new Drone();
         drone.setId(id);
         drone.setWeightCapacity(weightCapacity);
+        drone.setCurrentFlightTime(0);
+        drone.setBattery(100);
+        try {
+            drone.setState(DroneStateFactory.getInstance().createState("ready"));
+        } catch (UnknownDroneStateException e) {
+            e.printStackTrace();
+        }
         boolean result = drones.add(drone);
         if(result)
             log.log(Level.INFO, "Drone added : " + drone.toString());

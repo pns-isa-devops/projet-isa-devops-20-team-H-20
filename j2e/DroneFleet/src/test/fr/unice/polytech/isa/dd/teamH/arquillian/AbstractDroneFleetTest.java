@@ -10,6 +10,7 @@ import fr.unice.polytech.isa.dd.teamH.exceptions.AlreadyExistingDroneException;
 import fr.unice.polytech.isa.dd.teamH.interfaces.DroneFinder;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.asset.ClassLoaderAsset;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 
@@ -31,6 +32,7 @@ public abstract class AbstractDroneFleetTest {
                 // Components
                 .addPackage(DroneFleetBean.class.getPackage())
                 // Exceptions
-                .addPackage(AlreadyExistingDroneException.class.getPackage());
+                .addPackage(AlreadyExistingDroneException.class.getPackage())
+                .addAsManifestResource(new ClassLoaderAsset("META-INF/persistence.xml"), "persistence.xml");
     }
 }
