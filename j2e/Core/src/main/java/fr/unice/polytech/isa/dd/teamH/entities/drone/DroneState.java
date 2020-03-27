@@ -10,10 +10,9 @@ import java.util.Objects;
             InFlightDroneState.class,
             InMaintenanceDroneState.class,
             ReadyDroneState.class})
-@Embeddable
+
 public abstract class DroneState implements Cloneable, Serializable {
 
-    @NotNull
     protected String name;
 
     /**

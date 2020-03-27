@@ -1,7 +1,5 @@
 package fr.unice.polytech.isa.dd.teamH.entities.drone;
 
-import fr.unice.polytech.isa.dd.teamH.exceptions.UnknownDroneStateException;
-
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -72,8 +70,6 @@ public class Drone implements Serializable {
         this.weightCapacity = weightCapacity;
     }
 
-    @Embedded
-    @NotNull
     public DroneState getState() {
         return state;
     }
@@ -101,15 +97,19 @@ public class Drone implements Serializable {
     @Override
     public String toString() {
         return "Drone{" +
-                "id=" + id +
-                ", currentFlightTime=" + currentFlightTime +
-                ", battery=" + battery +
-                ", weightCapacity=" + weightCapacity +
-                ", state=" + state +
+                "id=" + getId() +
+                ", currentFlightTime=" + getCurrentFlightTime() +
+                ", battery=" + getBattery() +
+                ", weightCapacity=" + getWeightCapacity() +
+                ", state=" + getState() +
                 '}';
     }
 
     public float getSpeed() {
         return DRONE_SPEED;
+    }
+
+    public boolean isReadyToFly() {
+        return getState() != null && getState().isReadyToFly();
     }
 }

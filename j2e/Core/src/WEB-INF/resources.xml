@@ -1,7 +1,7 @@
 <resources>
     <Resource id="production" type="DataSource">
         JdbcDriver  org.hsqldb.jdbcDriver
-        JdbcUrl     jdbc:hsqldb:file:devdb
+        JdbcUrl     jdbc:hsqldb:file:proddb
         UserName    sa
         Password
         LogSql      true
