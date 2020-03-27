@@ -22,6 +22,7 @@
 
     <build>
         <sourceDirectory>src/main/java</sourceDirectory>
+        <testSourceDirectory>src/test</testSourceDirectory>
         <finalName>dd-comment-board</finalName>
     </build>
 </project>
