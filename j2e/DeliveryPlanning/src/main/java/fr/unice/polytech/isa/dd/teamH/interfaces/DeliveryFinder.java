@@ -1,5 +1,6 @@
 package fr.unice.polytech.isa.dd.teamH.interfaces;
 
+import fr.unice.polytech.isa.dd.teamH.entities.Supplier;
 import fr.unice.polytech.isa.dd.teamH.entities.delivery.Delivery;
 import fr.unice.polytech.isa.dd.teamH.entities.deliveryplanning.PlanningEntry;
 
@@ -13,5 +14,6 @@ public interface DeliveryFinder {
     Optional<Delivery> findDeliveryById(String id);
     Set<PlanningEntry> findAllPlannedDeliveries();
     Set<PlanningEntry> findCompletedDeliveriesSince(LocalDateTime time);
+    Set<PlanningEntry> findCompletedDeliveriesSince(LocalDateTime time, Supplier s);
     Optional<PlanningEntry> findPlanningEntryByTrackingId(String trackingId);
 }

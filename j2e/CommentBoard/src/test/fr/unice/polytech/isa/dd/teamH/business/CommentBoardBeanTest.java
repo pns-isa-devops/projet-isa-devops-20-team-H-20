@@ -1,22 +1,26 @@
 package fr.unice.polytech.isa.dd.teamH.business;
 
+import fr.unice.polytech.isa.dd.teamH.arquillian.AbstractCommentBoardBeanTest;
 import fr.unice.polytech.isa.dd.teamH.components.CommentBoardBean;
 import fr.unice.polytech.isa.dd.teamH.entities.Comment;
 import fr.unice.polytech.isa.dd.teamH.entities.Package;
 import fr.unice.polytech.isa.dd.teamH.entities.Supplier;
 import fr.unice.polytech.isa.dd.teamH.entities.delivery.Delivery;
 import fr.unice.polytech.isa.dd.teamH.exceptions.UnknownCommentException;
+import org.jboss.arquillian.junit.Arquillian;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import java.time.LocalDateTime;
-import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
-public class CommentBoardBeanTest {
+@RunWith(Arquillian.class)
+public class CommentBoardBeanTest extends AbstractCommentBoardBeanTest {
 
     CommentBoardBean cbb;
     Supplier supplier1 = new Supplier("supplier1");

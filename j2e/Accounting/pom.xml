@@ -23,6 +23,12 @@
             <artifactId>DeliveryPlanning</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>fr.polytech.team.h</groupId>
+            <artifactId>SupplierRegistry</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
     <build>

@@ -11,8 +11,8 @@ public class Invoice implements Serializable {
     private boolean paid;
     private float amount;
 
-    private LocalDate creationDate;
-    private LocalDate paymentDate;
+    private String creationDate;
+    private String paymentDate;
 
     private Supplier supplier;
 
@@ -23,13 +23,13 @@ public class Invoice implements Serializable {
         this.paid = false;
         this.paymentDate = null;
         this.amount = amount;
-        this.creationDate = creationDate;
+        this.creationDate = creationDate.toString();
         this.supplier = supplier;
     }
 
     public void pay(LocalDate paymentDate){
         this.paid = true;
-        this.paymentDate = paymentDate;
+        this.paymentDate = paymentDate.toString();
     }
 
     public boolean isPaid() {
@@ -57,19 +57,19 @@ public class Invoice implements Serializable {
     }
 
     public LocalDate getCreationDate() {
-        return creationDate;
+        return LocalDate.parse(creationDate);
     }
 
     public void setCreationDate(LocalDate creationDate) {
-        this.creationDate = creationDate;
+        this.creationDate = creationDate.toString();
     }
 
     public LocalDate getPaymentDate() {
-        return paymentDate;
+        return LocalDate.parse(paymentDate);
     }
 
     public void setPaymentDate(LocalDate paymentDate) {
-        this.paymentDate = paymentDate;
+        this.paymentDate = paymentDate.toString();
     }
 
     public Supplier getSupplier() {
@@ -88,9 +88,9 @@ public class Invoice implements Serializable {
         if(paymentDate != null) //already paid
             return -2;
         LocalDate now = LocalDate.now();
-        if(creationDate.plusDays(30).isBefore(now)) //late
+        if(LocalDate.parse(creationDate).plusDays(30).isBefore(now)) //late
             return -1;
-        return (int) ChronoUnit.DAYS.between(now, creationDate.plusDays(30));
+        return (int) ChronoUnit.DAYS.between(now, LocalDate.parse(creationDate).plusDays(30));
     }
 
     @Override

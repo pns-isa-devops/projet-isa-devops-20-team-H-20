@@ -1,5 +1,6 @@
 package fr.unice.polytech.isa.dd.teamH.components;
 
+import fr.unice.polytech.isa.dd.teamH.entities.Supplier;
 import fr.unice.polytech.isa.dd.teamH.entities.delivery.Delivery;
 import fr.unice.polytech.isa.dd.teamH.entities.delivery.DeliveryState;
 import fr.unice.polytech.isa.dd.teamH.entities.delivery.DeliveryStateFactory;
@@ -78,6 +79,23 @@ public class DeliveryPlanningBean implements DeliveryFinder, DeliveryPlanner {
             result.add(newPE);
         }
 
+        return result;
+    }
+
+    @Override
+    public Set<PlanningEntry> findCompletedDeliveriesSince(LocalDateTime time, Supplier s) {
+        Set<PlanningEntry> result = new HashSet<>();
+        for(PlanningEntry pe : planningEntries) {
+            PlanningEntry newPE = new PlanningEntry(pe.getDrone());
+            for(Delivery d : pe.getDeliveries().stream().filter(e -> e.getDateTimeToShip().isAfter(time) && e.isCompleted()).collect(Collectors.toSet())){
+                if(d.getaPackage().getSupplier().equals(s)) {
+                    newPE.addDelivery(d);
+                }
+            }
+            if(!newPE.getDeliveries().isEmpty()) {
+                result.add(newPE);
+            }
+        }
         return result;
     }
 

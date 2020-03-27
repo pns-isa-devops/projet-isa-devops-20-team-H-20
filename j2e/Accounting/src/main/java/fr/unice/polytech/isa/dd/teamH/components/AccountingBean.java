@@ -2,12 +2,17 @@ package fr.unice.polytech.isa.dd.teamH.components;
 
 import fr.unice.polytech.isa.dd.teamH.entities.Invoice;
 import fr.unice.polytech.isa.dd.teamH.entities.Supplier;
+import fr.unice.polytech.isa.dd.teamH.entities.delivery.Delivery;
+import fr.unice.polytech.isa.dd.teamH.entities.deliveryplanning.PlanningEntry;
 import fr.unice.polytech.isa.dd.teamH.interfaces.DeliveryFinder;
 import fr.unice.polytech.isa.dd.teamH.interfaces.InvoiceFinder;
 import fr.unice.polytech.isa.dd.teamH.interfaces.InvoiceGeneration;
+import fr.unice.polytech.isa.dd.teamH.interfaces.SupplierFinder;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.logging.Logger;
@@ -20,6 +25,9 @@ public class AccountingBean implements InvoiceFinder, InvoiceGeneration {
 
     @EJB
     private DeliveryFinder deliveryFinder;
+
+    @EJB
+    private SupplierFinder supplierFinder;
 
     @Override
     public Set<Invoice> findAllUnpaidInvoices() {
@@ -35,12 +43,22 @@ public class AccountingBean implements InvoiceFinder, InvoiceGeneration {
 
     @Override
     public void generateInvoiceFor(Supplier s) {
-        //TODO sprint 2
+        Set<PlanningEntry> planningEntries = deliveryFinder.findCompletedDeliveriesSince(LocalDateTime.now().minusMonths(1), s);
+        Invoice res = new Invoice(0, LocalDate.now(), s);
+        // Calcul du prix de la facture
+        for(PlanningEntry pe : planningEntries) {
+            res.setAmount(res.getAmount() + pe.getDeliveries().size()); // Pour un MVP, on considère que le prix d'une delivery est fixée à 1€
+        }
+        // Aucune vérification préalable, on assume que la facturation se fait mensuellement sans faute.
+        invoices.add(res);
     }
 
     @Override
     public void generateInvoicesForAllSuppliers() {
-        //TODO sprint 2
+        // Not the most optimized way, but definitely the easiest to maintain and understand
+        for(Supplier supplier : supplierFinder.findAll()) {
+            findInvoicesForSupplier(supplier);
+        }
     }
 
     public Set<Invoice> findAllInvoices(){
