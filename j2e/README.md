@@ -10,7 +10,11 @@
 ### Technology
 [Java 8](https://www.java.com/fr/download/)
 
+[Artifactory is used to manage modules](https://jfrog.com/artifactory/)
+
 [Arquillian is used for tests](http://arquillian.org/)
+
+[Cukespace is used to link Arquillian and Cucumber](https://github.com/cukespace/cukespace)
 
 ### How to use
 To launch the project tomcat server, go to the root project folder (j2e), then use this command line `mvn clean install`. Then, go to the "WebServices" folder/module and use `mvn tomee:run`.

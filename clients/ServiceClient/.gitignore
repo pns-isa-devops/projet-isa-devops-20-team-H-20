@@ -1,0 +1,15 @@
+.idea/
+target/
+out/
+*.iml
+.vs/
+bin/
+obj/
+src/main/java/stubs/*
+!src/main/java/stubs/accounting/package-info.java
+!src/main/java/stubs/drone/package-info.java
+!src/main/java/stubs/packages/package-info.java
+!src/main/java/stubs/planning/package-info.java
+
+
+src/main/java/fr/unice/polytech/si/_4a/isa/dd/*

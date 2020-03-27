@@ -16,6 +16,7 @@ import org.junit.runner.RunWith;
 import javax.ejb.EJB;
 
 import java.util.Optional;
+import java.util.Set;
 
 import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
@@ -37,11 +38,15 @@ public class SupplierRegistryTest extends AbstractSupplierRegistryTest {
 
     private Supplier amazon;
     private Supplier ldlc;
+    private Supplier fedex;
     private String contact;
+    private String contact2;
 
     @Before
     public void setUpContext() {
         contact = "06 00 00 00 00";
+        contact2 = "06 06 00 00 00";
+        fedex = new Supplier("Fedex");
         amazon = new Supplier("Amazon");
         ldlc = new Supplier("LDLC");
     }
@@ -81,6 +86,10 @@ public class SupplierRegistryTest extends AbstractSupplierRegistryTest {
         registry.register(amazon.getName(), contact);
         Optional<Supplier> supplier = finder.findByName(amazon.getName());
         assertTrue(supplier.isPresent());
+
+        registry.register(ldlc.getName(), contact2);
+        supplier = finder.findByName(ldlc.getName());
+        assertTrue(supplier.isPresent());
     }
 
     @Test(expected = AlreadyExistingContactException.class)
@@ -103,7 +112,18 @@ public class SupplierRegistryTest extends AbstractSupplierRegistryTest {
         registry.register(ldlc.getName(), contact);
         supplier = finder.findByName(amazon.getName());
         assertTrue(supplier.isPresent());
+    }
 
+    @Test
+    public void findAll() throws Exception {
+        registry.register(amazon.getName(), contact);
+        registry.register(ldlc.getName(), contact);
+        Set<Supplier> findAll = finder.findAll();
+        assertEquals(2, findAll.size());
+
+        registry.register(fedex.getName(), contact);
+        findAll = finder.findAll();
+        assertEquals(3, findAll.size());
     }
 
     @Test(expected = UnknownSupplierException.class)
