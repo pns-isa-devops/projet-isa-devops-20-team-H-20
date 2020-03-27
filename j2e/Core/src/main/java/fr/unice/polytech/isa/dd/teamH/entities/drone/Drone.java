@@ -2,10 +2,18 @@ package fr.unice.polytech.isa.dd.teamH.entities.drone;
 
 import fr.unice.polytech.isa.dd.teamH.exceptions.UnknownDroneStateException;
 
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
 
+@Entity
+@Table(name="drones")
 public class Drone implements Serializable {
+
     private int id;
     private float currentFlightTime;
     private int battery;
@@ -15,13 +23,13 @@ public class Drone implements Serializable {
     private final float DRONE_SPEED = (float)(10.0/60.0);
 
     public Drone() {
-        this.currentFlightTime = 0;
-        this.battery = 100;
-        try {
-            setState(DroneStateFactory.getInstance().createState("ready"));
-        } catch (UnknownDroneStateException e) {
-            e.printStackTrace();
-        }
+//        this.currentFlightTime = 0;
+//        this.battery = 100;
+//        try {
+//            setState(DroneStateFactory.getInstance().createState("ready"));
+//        } catch (UnknownDroneStateException e) {
+//            e.printStackTrace();
+//        }
     }
 
     public Drone(int id, float weightCapacity) {
@@ -32,6 +40,7 @@ public class Drone implements Serializable {
         this.state = new ReadyDroneState();
     }
 
+    @Id
     public int getId() {
         return id;
     }
@@ -39,6 +48,7 @@ public class Drone implements Serializable {
         this.id = id;
     }
 
+    @NotNull
     public float getCurrentFlightTime() {
         return currentFlightTime;
     }
@@ -46,6 +56,7 @@ public class Drone implements Serializable {
         this.currentFlightTime = currentFlightTime;
     }
 
+    @NotNull
     public int getBattery() {
         return battery;
     }
@@ -53,6 +64,7 @@ public class Drone implements Serializable {
         this.battery = battery;
     }
 
+    @NotNull
     public float getWeightCapacity() {
         return weightCapacity;
     }
@@ -60,6 +72,8 @@ public class Drone implements Serializable {
         this.weightCapacity = weightCapacity;
     }
 
+    @Embedded
+    @NotNull
     public DroneState getState() {
         return state;
     }
@@ -72,7 +86,7 @@ public class Drone implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Drone drone = (Drone) o;
-        return getId() == drone.getId() &&
+        return  getId() == ((Drone) o).getId() &&
                 Float.compare(drone.getCurrentFlightTime(), getCurrentFlightTime()) == 0 &&
                 getBattery() == drone.getBattery() &&
                 Float.compare(drone.getWeightCapacity(), getWeightCapacity()) == 0 &&

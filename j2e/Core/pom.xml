@@ -19,5 +19,26 @@
         <sourceDirectory>src/main/java</sourceDirectory>
         <testSourceDirectory>src/test</testSourceDirectory>
         <finalName>dd-core</finalName>
+        <plugins>
+            <plugin>
+            <groupId>org.apache.openjpa</groupId>
+            <artifactId>openjpa-maven-plugin</artifactId>
+            <version>2.4.1</version>
+            <configuration>
+                <includes>**/entities/*.class</includes>
+                <addDefaultConstructor>true</addDefaultConstructor>
+                <enforcePropertyRestrictions>true</enforcePropertyRestrictions>
+            </configuration>
+            <executions>
+                <execution>
+                    <id>enhancer</id>
+                    <phase>process-classes</phase>
+                    <goals>
+                        <goal>enhance</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+        </plugins>
     </build>
 </project>

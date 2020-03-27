@@ -1,5 +1,7 @@
 package fr.unice.polytech.isa.dd.teamH.entities.drone;
 
+import javax.persistence.Embeddable;
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import java.io.Serializable;
 import java.util.Objects;
@@ -8,11 +10,14 @@ import java.util.Objects;
             InFlightDroneState.class,
             InMaintenanceDroneState.class,
             ReadyDroneState.class})
+@Embeddable
 public abstract class DroneState implements Cloneable, Serializable {
+
+    @NotNull
     protected String name;
 
     /**
-     * Indicate if the drone is available for a delivery
+     * Indicates if the drone is available for a delivery
      * @return a boolean, true if available else false
      */
     public boolean isReadyToFly(){
@@ -20,7 +25,7 @@ public abstract class DroneState implements Cloneable, Serializable {
     }
 
     /**
-     * Rreturn the time of the current status in seconds
+     * Return the time of the current status in seconds
      * @return the number of seconds
      */
     public abstract int getRemainingTime();
