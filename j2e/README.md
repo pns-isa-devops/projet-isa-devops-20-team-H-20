@@ -27,3 +27,12 @@ Please modify artifactory configurations finding in `pom.xml` and `settings.xml`
 To perform operations related to the artifactory by using `mvn` command. i.e:
  - `mvn install -s ..\settings.xml` 
  - `mvn deploy -s ..\settings.xml`
+
+### Jenkins installation
+
+To install Jenkins you need docker. Run the following commands :
+
+`docker pull jenkins/jenkins`
+`docker run --name my-jenkins -p 8080:8080 -p 50000:50000 jenkins/jenkins`
+
+THen go to localhost:8080 (or ip if under docker toolbox). Enter the password given in the comand prompt

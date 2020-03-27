@@ -2,6 +2,7 @@ package features;
 
 import cucumber.runtime.arquillian.CukeSpace;
 import fr.unice.polytech.isa.dd.teamH.arquillian.AbstractDroneFleetTest;
+import fr.unice.polytech.isa.dd.teamH.entities.drone.Drone;
 import fr.unice.polytech.isa.dd.teamH.interfaces.DroneFinder;
 import org.junit.runner.RunWith;
 import cucumber.api.CucumberOptions;
@@ -11,6 +12,8 @@ import cucumber.api.java.en.When;
 
 import javax.ejb.EJB;
 
+import java.util.Optional;
+
 import static org.junit.Assert.*;
 
 @RunWith(CukeSpace.class)
@@ -19,6 +22,7 @@ public class DroneFleetManagementStepdefsTest extends AbstractDroneFleetTest {
     @EJB private fr.unice.polytech.isa.dd.teamH.interfaces.DroneFleetManagement management;
     @EJB private DroneFinder finder;
 
+    private Optional<Drone> droneFound;
 
     //float ([0-9]*[.][0-9]+)
     @Given("^some drones with ids (\\d+) (\\d+) (\\d+)$")
@@ -52,6 +56,11 @@ public class DroneFleetManagementStepdefsTest extends AbstractDroneFleetTest {
         management.addDrone(id2, 5.0f);
     }
 
+    @When("^the garagiste search the drone with id (\\d+)$")
+    public void SearchDrone(int id1){
+        droneFound = finder.findDroneById(id1);
+    }
+
     @When("^the garagiste edit the drone with id (\\d+) and put the status to (.*)$")
     public void EditDrone(int id1, String status) throws Exception{
         management.editDroneStatus(id1, status);
@@ -72,5 +81,15 @@ public class DroneFleetManagementStepdefsTest extends AbstractDroneFleetTest {
     @Then("^the drone with id (\\d+) has a (.*) status$")
     public void checkEditDrone(int id, String status){
         finder.findDroneById(id).ifPresent(value -> assertEquals(status, value.getState().getName()));
+    }
+
+    @Then("^the drone is found$")
+    public void checkFoundDrone(){
+        assertTrue(droneFound.isPresent());
+    }
+
+    @Then("^the drone is not found$")
+    public void checkNotFoundDrone(){
+        assertFalse(droneFound.isPresent());
     }
 }
