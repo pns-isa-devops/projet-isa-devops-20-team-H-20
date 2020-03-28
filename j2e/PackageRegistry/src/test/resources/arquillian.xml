@@ -21,11 +21,8 @@
         </configuration>
     </container>
 
-    <!--<extension qualifier="cucumber">-->
-        <!--<property name="report">true</property>-->
-        <!--<property name="generateDocs">true</property>-->
-        <!--<property name="report-directory">target/cucumber-report</property>-->
+    <extension qualifier="cucumber">
         <!--<property name="persistenceEventsActivated">true</property>-->
-    <!--</extension>-->
+    </extension>
 
 </arquillian>

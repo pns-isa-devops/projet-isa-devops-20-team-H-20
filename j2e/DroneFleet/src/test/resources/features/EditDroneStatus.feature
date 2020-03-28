@@ -1,4 +1,4 @@
-Feature: Delete drone
+Feature: Edit drone
   This feature support the way a Garagiste adds a drone
 
   Background:

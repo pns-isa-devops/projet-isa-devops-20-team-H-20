@@ -5,7 +5,6 @@ import fr.unice.polytech.isa.dd.teamH.entities.Supplier;
 import fr.unice.polytech.isa.dd.teamH.entities.Package;
 import fr.unice.polytech.isa.dd.teamH.exceptions.AlreadyExistingPackageException;
 import fr.unice.polytech.isa.dd.teamH.exceptions.UnknownPackageException;
-import fr.unice.polytech.isa.dd.teamH.exceptions.UnknownSupplierException;
 import fr.unice.polytech.isa.dd.teamH.interfaces.PackageFinder;
 import fr.unice.polytech.isa.dd.teamH.interfaces.PackageRegistration;
 import org.jboss.arquillian.junit.Arquillian;

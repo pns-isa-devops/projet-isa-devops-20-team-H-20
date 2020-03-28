@@ -26,7 +26,7 @@ public class DroneFleetManagementStepdefsTest extends AbstractDroneFleetTest {
 
     //float ([0-9]*[.][0-9]+)
     @Given("^some drones with ids (\\d+) (\\d+) (\\d+)$")
-    public void createDrones(int id1, int id2, int id3) throws Exception{
+    public void background(int id1, int id2, int id3) throws Exception{
         management.flush();
         management.addDrone(id1, 5.0f);
         management.addDrone(id2, 5.0f);
@@ -46,23 +46,23 @@ public class DroneFleetManagementStepdefsTest extends AbstractDroneFleetTest {
     }
 
     @When("^the garagiste adds the drone with id (\\d+)$")
-    public void AddDrone(int id1) throws Exception{
+    public void addDrone(int id1) throws Exception{
         management.addDrone(id1, 5.0f);
     }
 
     @When("^the garagiste adds the drones with id (\\d+) and (\\d+)$")
-    public void AddDrone(int id1, int id2) throws Exception{
+    public void addDrone(int id1, int id2) throws Exception{
         management.addDrone(id1, 5.0f);
         management.addDrone(id2, 5.0f);
     }
 
     @When("^the garagiste search the drone with id (\\d+)$")
-    public void SearchDrone(int id1){
+    public void searchDrone(int id1){
         droneFound = finder.findDroneById(id1);
     }
 
     @When("^the garagiste edit the drone with id (\\d+) and put the status to (.*)$")
-    public void EditDrone(int id1, String status) throws Exception{
+    public void editDrone(int id1, String status) throws Exception{
         management.editDroneStatus(id1, status);
     }
 
