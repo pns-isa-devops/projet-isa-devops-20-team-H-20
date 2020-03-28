@@ -51,6 +51,7 @@ public class PackageRegistryStepdefsTest extends AbstractPackageRegistryTest {
         supplierRegistration.flush();
         supplierRegistration.register(supplier, "0649712258");
         supplierRegistration.register(supplier2, "0649712255");
+
         Optional<Supplier> supplierObject = supplierFinder.findByName(supplier);
         Optional<Supplier> supplierObject2 = supplierFinder.findByName(supplier);
         if(!supplierObject.isPresent() || !supplierObject2.isPresent())
