@@ -1,6 +1,5 @@
 package fr.unice.polytech.isa.dd.teamH.entities.drone;
 
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -21,13 +20,7 @@ public class Drone implements Serializable {
     private final float DRONE_SPEED = (float)(10.0/60.0);
 
     public Drone() {
-//        this.currentFlightTime = 0;
-//        this.battery = 100;
-//        try {
-//            setState(DroneStateFactory.getInstance().createState("ready"));
-//        } catch (UnknownDroneStateException e) {
-//            e.printStackTrace();
-//        }
+
     }
 
     public Drone(int id, float weightCapacity) {

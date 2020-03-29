@@ -1,4 +1,4 @@
-Feature: Find drone
+Feature: Find package
   This feature support the way a manutentionnaire find a package
 
   Background:

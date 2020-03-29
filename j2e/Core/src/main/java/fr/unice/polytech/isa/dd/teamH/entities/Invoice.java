@@ -19,14 +19,6 @@ public class Invoice implements Serializable {
     public Invoice(){
     }
 
-    public Invoice(float amount, LocalDate creationDate, Supplier supplier) {
-        this.paid = false;
-        this.paymentDate = null;
-        this.amount = amount;
-        this.creationDate = creationDate.toString();
-        this.supplier = supplier;
-    }
-
     public void pay(LocalDate paymentDate){
         this.paid = true;
         this.paymentDate = paymentDate.toString();
@@ -65,6 +57,8 @@ public class Invoice implements Serializable {
     }
 
     public LocalDate getPaymentDate() {
+        if(paymentDate == null)
+            return null;
         return LocalDate.parse(paymentDate);
     }
 

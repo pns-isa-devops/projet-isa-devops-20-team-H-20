@@ -10,4 +10,5 @@ import java.util.Set;
 public interface InvoiceFinder {
     Set<Invoice> findAllUnpaidInvoices();
     Set<Invoice> findInvoicesForSupplier(Supplier s);
+    Set<Invoice> findAllInvoices();
 }

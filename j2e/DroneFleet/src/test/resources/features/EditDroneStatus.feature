@@ -1,5 +1,5 @@
 Feature: Edit drone
-  This feature support the way a Garagiste adds a drone
+  This feature support the way a Garagiste edits a drone
 
   Background:
     Given some drones with ids 5 6 7
@@ -19,3 +19,7 @@ Feature: Edit drone
   Scenario: There is 3 drones in the system
     When the garagiste edit the drone with id 7 and put the status to ready
     Then the drone with id 7 has a ready status
+
+  Scenario: There is 3 drones in the system
+    When the garagiste wants to edit the drone with id 10 and set status to ready there is an error
+    Then there is an exception

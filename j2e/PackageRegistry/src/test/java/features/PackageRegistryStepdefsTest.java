@@ -1,13 +1,16 @@
 package features;
 
-import fr.unice.polytech.isa.dd.teamH.arquillian.AbstractPackageRegistryTest;
+import arquillian.AbstractPackageRegistryTest;
 import cucumber.runtime.arquillian.CukeSpace;
 import fr.unice.polytech.isa.dd.teamH.entities.Package;
 import fr.unice.polytech.isa.dd.teamH.entities.Supplier;
+import fr.unice.polytech.isa.dd.teamH.exceptions.AlreadyExistingPackageException;
+import fr.unice.polytech.isa.dd.teamH.exceptions.UnknownPackageException;
 import fr.unice.polytech.isa.dd.teamH.interfaces.PackageFinder;
 import fr.unice.polytech.isa.dd.teamH.interfaces.PackageRegistration;
 import fr.unice.polytech.isa.dd.teamH.interfaces.SupplierFinder;
 import fr.unice.polytech.isa.dd.teamH.interfaces.SupplierRegistration;
+import org.junit.After;
 import org.junit.runner.RunWith;
 import cucumber.api.CucumberOptions;
 import cucumber.api.java.en.Given;
@@ -29,6 +32,7 @@ public class PackageRegistryStepdefsTest extends AbstractPackageRegistryTest {
     @EJB private SupplierRegistration supplierRegistration;
     @EJB private SupplierFinder supplierFinder;
 
+    private Exception exception = null;
     private Optional<Package> packageFound;
 
     @Given("^some packages with trackingIds (.*) (.*) and (.*) as supplier$")
@@ -106,6 +110,46 @@ public class PackageRegistryStepdefsTest extends AbstractPackageRegistryTest {
         management.edit(trackingId, supplierObject.get(), 6.0f, "Nice ville");
     }
 
+    @When("^the gestionnaire wants to add the package with trackingId (.*) and supplier (.*) there is an error$")
+    public void addPackageError(String trackingId, String supplier){
+        Optional<Supplier> supplierObject = supplierFinder.findByName(supplier);
+        if(!supplierObject.isPresent())
+            fail();
+
+        try {
+            management.register(trackingId, supplierObject.get(), 5.5f, "Nice");
+        }catch (AlreadyExistingPackageException e){
+            exception = e;
+        }
+    }
+
+    @When("^the gestionnaire wants to delete the package with trackingId (.*) there is an error$")
+    public void deletePackageError(String trackingId){
+        try {
+            management.delete(trackingId);
+        }catch (UnknownPackageException e){
+            exception = e;
+        }
+    }
+
+    @When("^the gestionnaire wants to edit the package with trackingId (.*) and supplier (.*) there is an error$")
+    public void editPackageError(String trackingId, String supplier){
+        Optional<Supplier> supplierObject = supplierFinder.findByName(supplier);
+        if(!supplierObject.isPresent())
+            fail();
+
+        try {
+            management.edit(trackingId, supplierObject.get(), 5.2f, "Nice ville");
+        }catch (UnknownPackageException e){
+            exception = e;
+        }
+    }
+
+    @Then("^there is an exception$")
+    public void checkExceptionAdd(){
+        assertNotNull(exception);
+    }
+
     @Then("^there is (\\d+) items in the package list and the package with trackingId (.*) is found$")
     public void checkAddPackage(int number,  String trackingId){
         assertEquals(number, finder.findAllPackages().size());
@@ -119,7 +163,7 @@ public class PackageRegistryStepdefsTest extends AbstractPackageRegistryTest {
     }
 
     @Then("^the package with trackingId (.*) has now (.*) as supplier$")
-    public void checkDeletePackage(String trackingId, String supplier){
+    public void checkEditPackage(String trackingId, String supplier){
         Optional<Package> packageOptional = finder.findPackageByTrackingNumber(trackingId);
         if(!packageOptional.isPresent())
             fail();
@@ -134,5 +178,11 @@ public class PackageRegistryStepdefsTest extends AbstractPackageRegistryTest {
     @Then("^the package is not found$")
     public void checkNotFoundPackage(){
         assertFalse(packageFound.isPresent());
+    }
+
+    @After
+    public void cleaningUp(){
+        management.flush();
+        supplierRegistration.flush();
     }
 }

@@ -8,4 +8,6 @@ import javax.ejb.Local;
 public interface InvoiceGeneration {
     void generateInvoiceFor(Supplier s);
     void generateInvoicesForAllSuppliers();
+
+    void flush();
 }

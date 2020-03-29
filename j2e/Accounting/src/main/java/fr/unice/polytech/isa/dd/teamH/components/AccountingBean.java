@@ -44,10 +44,17 @@ public class AccountingBean implements InvoiceFinder, InvoiceGeneration {
     @Override
     public void generateInvoiceFor(Supplier s) {
         Set<PlanningEntry> planningEntries = deliveryFinder.findCompletedDeliveriesSince(LocalDateTime.now().minusMonths(1), s);
-        Invoice res = new Invoice(0, LocalDate.now(), s);
+        Invoice res = new Invoice();
+        res.setAmount(0.0f);
+        res.setCreationDate(LocalDate.now());
+        res.setSupplier(s);
+
         // Calcul du prix de la facture
         for(PlanningEntry pe : planningEntries) {
-            res.setAmount(res.getAmount() + pe.getDeliveries().size()); // Pour un MVP, on considère que le prix d'une delivery est fixée à 1€
+            for(Delivery delivery : pe.getDeliveries()) {
+                if(delivery.getaPackage().getSupplier().equals(s))
+                    res.setAmount(res.getAmount() + 1); // Pour un MVP, on considère que le prix d'une delivery est fixée à 1€
+            }
         }
         // Aucune vérification préalable, on assume que la facturation se fait mensuellement sans faute.
         invoices.add(res);
@@ -57,11 +64,17 @@ public class AccountingBean implements InvoiceFinder, InvoiceGeneration {
     public void generateInvoicesForAllSuppliers() {
         // Not the most optimized way, but definitely the easiest to maintain and understand
         for(Supplier supplier : supplierFinder.findAll()) {
-            findInvoicesForSupplier(supplier);
+            generateInvoiceFor(supplier);
         }
     }
 
+    @Override
     public Set<Invoice> findAllInvoices(){
         return new HashSet<>(invoices);
+    }
+
+    @Override
+    public void flush(){
+        invoices = new HashSet<>();
     }
 }

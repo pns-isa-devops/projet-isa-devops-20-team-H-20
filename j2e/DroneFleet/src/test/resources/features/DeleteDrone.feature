@@ -11,3 +11,7 @@ Feature: Delete drone
   Scenario: There is 3 drones in the system and 2 deletion
     When the garagiste deletes the drones with id 1 and 3
     Then there is 1 items in the drone list and the drone with id 1 does not exist anymore
+
+  Scenario: There is 3 drones in the system
+    When the garagiste wants to delete the drone with id 10 there is an error
+    Then there is an exception

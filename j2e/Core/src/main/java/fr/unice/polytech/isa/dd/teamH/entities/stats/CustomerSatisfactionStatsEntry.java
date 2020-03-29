@@ -48,8 +48,8 @@ public class CustomerSatisfactionStatsEntry implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        DroneStatsEntry that = (DroneStatsEntry) o;
-        return Float.compare(that.getDronesUseRate(), getCustomerSatisfactionRate()) == 0 &&
+        CustomerSatisfactionStatsEntry that = (CustomerSatisfactionStatsEntry) o;
+        return Float.compare(that.getCustomerSatisfactionRate(), getCustomerSatisfactionRate()) == 0 &&
                 getEntryTime().equals(that.getEntryTime());
     }
 

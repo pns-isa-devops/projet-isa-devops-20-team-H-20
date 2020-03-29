@@ -22,7 +22,7 @@
 
     <build>
         <sourceDirectory>src/main/java</sourceDirectory>
-        <testSourceDirectory>src/test</testSourceDirectory>
+        <testSourceDirectory>src/test/java</testSourceDirectory>
         <finalName>dd-supplier-registry</finalName>
     </build>
 </project>

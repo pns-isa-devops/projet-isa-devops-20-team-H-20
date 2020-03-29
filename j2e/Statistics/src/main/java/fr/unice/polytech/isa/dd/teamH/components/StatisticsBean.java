@@ -4,7 +4,7 @@ import fr.unice.polytech.isa.dd.teamH.entities.Comment;
 import fr.unice.polytech.isa.dd.teamH.entities.stats.CustomerSatisfactionStatsEntry;
 import fr.unice.polytech.isa.dd.teamH.entities.stats.DroneStatsEntry;
 import fr.unice.polytech.isa.dd.teamH.interfaces.CommentFinder;
-import fr.unice.polytech.isa.dd.teamH.interfaces.DeliveryFinder;
+import fr.unice.polytech.isa.dd.teamH.interfaces.DroneFinder;
 import fr.unice.polytech.isa.dd.teamH.interfaces.StatisticsGenerator;
 
 import javax.ejb.EJB;
@@ -13,7 +13,6 @@ import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.Set;
 import java.util.TreeSet;
-import java.util.logging.Logger;
 
 @Stateless
 public class StatisticsBean implements StatisticsGenerator {
@@ -24,7 +23,7 @@ public class StatisticsBean implements StatisticsGenerator {
     private CommentFinder commentFinder;
 
     @EJB
-    private DeliveryFinder deliveryFinder;
+    private DroneFinder droneFinder;
 
     @Override
     public float getAverageCustomerSatisfaction() {

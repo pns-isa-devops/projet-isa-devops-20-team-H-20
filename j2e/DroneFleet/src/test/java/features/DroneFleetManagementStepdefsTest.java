@@ -1,9 +1,15 @@
 package features;
 
+import arquillian.AbstractDroneFleetTest;
 import cucumber.runtime.arquillian.CukeSpace;
-import fr.unice.polytech.isa.dd.teamH.arquillian.AbstractDroneFleetTest;
 import fr.unice.polytech.isa.dd.teamH.entities.drone.Drone;
+import fr.unice.polytech.isa.dd.teamH.exceptions.AlreadyExistingDroneException;
+import fr.unice.polytech.isa.dd.teamH.exceptions.UnknownDroneException;
+import fr.unice.polytech.isa.dd.teamH.exceptions.UnknownDroneStateException;
 import fr.unice.polytech.isa.dd.teamH.interfaces.DroneFinder;
+import org.jboss.arquillian.transaction.api.annotation.TransactionMode;
+import org.jboss.arquillian.transaction.api.annotation.Transactional;
+import org.junit.After;
 import org.junit.runner.RunWith;
 import cucumber.api.CucumberOptions;
 import cucumber.api.java.en.Given;
@@ -11,23 +17,38 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
 import javax.ejb.EJB;
+import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.UserTransaction;
 
 import java.util.Optional;
 
 import static org.junit.Assert.*;
 
 @RunWith(CukeSpace.class)
+@Transactional(TransactionMode.COMMIT)
 @CucumberOptions(features = "src/test/resources/features")
 public class DroneFleetManagementStepdefsTest extends AbstractDroneFleetTest {
     @EJB private fr.unice.polytech.isa.dd.teamH.interfaces.DroneFleetManagement management;
     @EJB private DroneFinder finder;
-
+    @Inject private UserTransaction utx;
+    @PersistenceContext
+    private EntityManager entityManager;
+    private Exception exception = null;
     private Optional<Drone> droneFound;
+
+    private int id1;
+    private int id2;
+    private int id3;
 
     //float ([0-9]*[.][0-9]+)
     @Given("^some drones with ids (\\d+) (\\d+) (\\d+)$")
     public void background(int id1, int id2, int id3) throws Exception{
         management.flush();
+        this.id1 = id1;
+        this.id2 = id2;
+        this.id3 = id3;
         management.addDrone(id1, 5.0f);
         management.addDrone(id2, 5.0f);
         management.addDrone(id3, 5.0f);
@@ -66,6 +87,40 @@ public class DroneFleetManagementStepdefsTest extends AbstractDroneFleetTest {
         management.editDroneStatus(id1, status);
     }
 
+    @When("^the garagiste wants to edit the drone with id (\\d+) and set status to (.*) there is an error$")
+    public void editDroneError(int id, String status){
+        try {
+            management.editDroneStatus(id, status);
+        }catch (UnknownDroneException e){
+            exception = e;
+        }catch (UnknownDroneStateException e){
+            fail();
+        }
+    }
+
+    @When("^the garagiste wants to delete the drone with id (\\d+) there is an error$")
+    public void deleteDroneError(int id){
+        try {
+            management.deleteDrone(id);
+        }catch (UnknownDroneException e){
+            exception = e;
+        }
+    }
+
+    @When("^the garagiste wants to add the drone with id (\\d+) there is an error$")
+    public void addDroneError(int id){
+        try {
+            management.addDrone(id, 5.0f);
+        }catch (AlreadyExistingDroneException e){
+            exception = e;
+        }
+    }
+
+    @Then("^there is an exception$")
+    public void checkExceptionAdd(){
+        assertNotNull(exception);
+    }
+
     @Then("^there is (\\d+) items in the drone list and the drone with id (\\d+) is found$")
     public void checkAddDrone(int number, int id){
         assertEquals(number, finder.findReadyDrones().size());
@@ -91,5 +146,20 @@ public class DroneFleetManagementStepdefsTest extends AbstractDroneFleetTest {
     @Then("^the drone is not found$")
     public void checkNotFoundDrone(){
         assertFalse(droneFound.isPresent());
+    }
+
+    @After
+    public void cleaningUp() throws Exception{
+        management.flush();
+        utx.begin();
+        Optional<Drone> toDispose = finder.findDroneById(id1);
+        toDispose.ifPresent(d -> { Drone c = entityManager.merge(d); entityManager.remove(c); });
+
+        toDispose = finder.findDroneById(id2);
+        toDispose.ifPresent(d -> { Drone c = entityManager.merge(d); entityManager.remove(c); });
+
+        toDispose = finder.findDroneById(id3);
+        toDispose.ifPresent(d -> { Drone c = entityManager.merge(d); entityManager.remove(c); });
+        utx.commit();
     }
 }

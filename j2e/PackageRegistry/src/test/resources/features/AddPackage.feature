@@ -12,3 +12,7 @@ Feature: Add package
     When the manutentionnaire adds the packages with trackingId UIDL45C and UIDL45D and LePosta as supplier
     Then there is 4 items in the package list and the package with trackingId UIDL45C is found
     Then there is 4 items in the package list and the package with trackingId UIDL45D is found
+
+  Scenario: There is 2 packages in the system and 1 addition
+    When the gestionnaire wants to add the package with trackingId UIDL45A and supplier LePosta there is an error
+    Then there is an exception
