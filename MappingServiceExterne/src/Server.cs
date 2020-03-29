@@ -1,5 +1,6 @@
 using System;
-
+using System.IO;
+using System.Threading;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 
@@ -7,8 +8,9 @@ using Partner.Service;
 
 public class Server
 {
+  private bool Standalone = false;
   private string Port = "9090";
-  
+  private string Locker = "server.LOCK";
 
   // Web Server used to host services
   private WebServiceHost Host;
@@ -30,7 +32,7 @@ public class Server
     Host.Open();
     Console.WriteLine("\nListening to " + "localhost" + ":" + Port + "\n");
 
-    interactive();
+    if ( Standalone ) { lockServer(); } else { interactive(); }
 
   }
 
@@ -42,7 +44,16 @@ public class Server
     Console.WriteLine("Server shutdown complete!");
   }
 
-  
+   /**
+   * Read options fron the command line. Does not support inconsistent commands
+   */
+  public void configure(string[] args) {
+    int aloneIdx = Array.FindIndex(args, key => key == "/standalone");
+    if (aloneIdx != -1) { this.Standalone = true; }
+    int portIndex = Array.FindLastIndex(args, key => key == "/port");
+    if (portIndex != -1) { this.Port = args[portIndex + 1]; }
+  }
+
   /**
    * Start the server in interactive mode, waiting for Return to
    */
@@ -52,6 +63,26 @@ public class Server
     stop();
   }
  
+ /**
+   * Lock the server in standalone mode using a given file
+   */
+  private void lockServer() {
+    File.Create(Locker);
+    Console.WriteLine("Delete the lock file (" + Locker + ") to stop the server");
+    watchforLockRemoval();
+  }
+
+  /**
+   * Active polling of the file system (ugly) to check the existence of the lock file
+   */
+  private void watchforLockRemoval() {
+    var shouldStop = false;
+    while(! shouldStop) {
+      Thread.Sleep(1000);
+      if ( ! File.Exists(Locker)){ shouldStop = true; }
+    }
+    stop();
+  }
 
   /**
    * Main method, called with `mono server.exe`
@@ -59,6 +90,7 @@ public class Server
   public static void Main(string[] args)
   {
     var server = new Server();
+    server.configure(args);
     server.start();
   }
 
