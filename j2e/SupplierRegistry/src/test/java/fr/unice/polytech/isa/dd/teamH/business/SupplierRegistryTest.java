@@ -8,12 +8,18 @@ import fr.unice.polytech.isa.dd.teamH.exceptions.UnknownSupplierException;
 import fr.unice.polytech.isa.dd.teamH.interfaces.SupplierFinder;
 import fr.unice.polytech.isa.dd.teamH.interfaces.SupplierRegistration;
 import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.arquillian.transaction.api.annotation.TransactionMode;
+import org.jboss.arquillian.transaction.api.annotation.Transactional;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import javax.ejb.EJB;
+import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.UserTransaction;
 
 import java.util.Optional;
 import java.util.Set;
@@ -22,7 +28,7 @@ import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(Arquillian.class)
-//@Transactional(TransactionMode.COMMIT)
+@Transactional(TransactionMode.COMMIT)
 public class SupplierRegistryTest extends AbstractSupplierRegistryTest {
 
     @EJB
@@ -31,10 +37,10 @@ public class SupplierRegistryTest extends AbstractSupplierRegistryTest {
     private SupplierFinder finder;
 
 
-//    @PersistenceContext
-//    private EntityManager entityManager;
-//    @Inject
-//    private UserTransaction utx;
+    @PersistenceContext
+    private EntityManager entityManager;
+    @Inject
+    private UserTransaction utx;
 
     private Supplier amazon;
     private Supplier ldlc;
@@ -52,13 +58,13 @@ public class SupplierRegistryTest extends AbstractSupplierRegistryTest {
     }
 
     @After
-    public void cleaningUp() {
+    public void cleaningUp() throws Exception {
         registry.flush();
 
-//        utx.begin();
-//        Optional<Customer> toDispose = finder.findByName(john.getName());
-//        toDispose.ifPresent(cust -> { Customer c = entityManager.merge(cust); entityManager.delete(c); });
-//        utx.commit();
+        utx.begin();
+        Optional<Supplier> toDispose = finder.findByName(amazon.getName());
+        toDispose.ifPresent(sup -> { Supplier s = entityManager.merge(sup); entityManager.remove(s); });
+        utx.commit();
     }
 
     @Test
@@ -135,5 +141,16 @@ public class SupplierRegistryTest extends AbstractSupplierRegistryTest {
     public void cannotRegisterTwice() throws Exception {
         registry.register(amazon.getName(), contact);
         registry.register(amazon.getName(), contact);
+    }
+
+    @Test
+    public void testSupplierStorage() throws Exception {
+        Supplier s = new Supplier();
+        s.setName(amazon.getName());
+        s.addContact(contact);
+        entityManager.persist(s);
+        String n = s.getName();
+        Supplier stored = entityManager.find(Supplier.class, n);
+        assertEquals(s, stored);
     }
 }

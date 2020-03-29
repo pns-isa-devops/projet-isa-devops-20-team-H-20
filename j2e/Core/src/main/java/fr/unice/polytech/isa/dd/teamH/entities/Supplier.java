@@ -1,21 +1,25 @@
 package fr.unice.polytech.isa.dd.teamH.entities;
 
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.*;
 
+@Entity
+@Table(name="suppliers")
 public class Supplier implements Serializable {
 
     private String name;
-
-    private HashSet<String> contacts;
+    private Set<String> contacts = new HashSet<>();
 
     public Supplier() {
-        contacts = new HashSet<>();
     }
 
     public Supplier(String name){
         this.name = name;
-        contacts = new HashSet<>();
     }
 
     public Supplier(String name, String contact) {
@@ -23,18 +27,18 @@ public class Supplier implements Serializable {
         contacts.add(contact);
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    @Id
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
 
-    public String getName() {
-        return name;
-    }
-
-    public HashSet<String> getContacts() {
+    @ElementCollection
+    @NotNull
+    public Set<String> getContacts() {
         return new HashSet<>(contacts);
     }
-
+    public void setContacts(Set<String> contacts){
+        this.contacts = new HashSet<>(contacts);
+    }
     public void addContact(String contact) {
         contacts.add(contact);
     }
@@ -59,9 +63,5 @@ public class Supplier implements Serializable {
                 "name='" + name + '\'' +
                 ", contacts=" + contacts +
                 '}';
-    }
-
-    public void setContacts(HashSet<String> contacts) {
-        this.contacts = contacts;
     }
 }

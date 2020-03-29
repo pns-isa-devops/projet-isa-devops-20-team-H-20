@@ -7,12 +7,12 @@
     <persistence-unit name="dd_core_persistence_unit" transaction-type="JTA">
         <jta-data-source>DDDataSource</jta-data-source>
 
+        <class>fr.unice.polytech.isa.dd.teamH.entities.Supplier</class>
         <class>fr.unice.polytech.isa.dd.teamH.entities.drone.Drone</class>
 
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <properties>
             <property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(ForeignKeys=true)"/>
-            <property name="openjpa.RuntimeUnenhancedClasses" value="unsupported" />
         </properties>
     </persistence-unit>
 
