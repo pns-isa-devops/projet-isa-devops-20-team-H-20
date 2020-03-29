@@ -37,8 +37,9 @@ To install Jenkins you need docker. Run the following commands :
 
 - Then go to localhost:8080 (or ip if under docker toolbox). 
 - Enter the password given in the comand prompt. 
-- Create a new free-style job.
-- Choose your github repository under "Gestion de code source".
+- Go to Jenkins main page > Administrer Jenkins > Configuration globale des outils
+  - Under Maven click "Ajouter Maven", maven 3.6.3 in name and install from Apache
+  - Save
 - If repository is private :
   - Return to the command prompt
   - `docker exec -it my-jenkins /bin/bash`
@@ -46,10 +47,15 @@ To install Jenkins you need docker. Run the following commands :
   - `cat /var/jenkins_home/.ssh/id_rsa.pub`
   - copy the key
   - go to your github project > settings > deploy key > add your key
-  - get to the github project code page and get the ssh connection
-- Paste the ssh or repository link
+  - In the left menu in jenkins click on Identifiants > System > Identifiants globaux > Ajouter des identifiants
+  - Type choose ssh username
+  - Choose Global
+  - Put ssh key
+- Create a new free-style job.
+- Choose your github repository under "Gestion de code source".
+- get to the github project code page and get the ssh connection
+- Build -> choose maven version name previously entered
+- Build -> Invoquer les cibles Maven de haut niveau > POM > /var/jenkins_home/workspace/Drone-Delivery-Snapshot-1.0.0/j2e/pom.xml
 - Then click save
-- Go to Jenkins main page > Administrer Jenkins > Configuration globale des outils
-  - Under Maven click "Ajouter Maven", maven 3.6.3 in name and install from Apache
-  - Save
+
 - Launch a build and voila !
