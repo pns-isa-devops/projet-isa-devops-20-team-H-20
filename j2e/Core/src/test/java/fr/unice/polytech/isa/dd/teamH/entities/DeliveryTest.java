@@ -28,10 +28,10 @@ public class DeliveryTest {
     @Test
     public void getDateTimeTest(){
         Delivery delivery = new Delivery("2020-05-19", "15:30", (float) 0.4, 2, aPackage);
-        assertEquals(5, delivery.getDateTimeToShip().getMonthValue());
-        assertEquals(2020, delivery.getDateTimeToShip().getYear());
-        assertEquals(19, delivery.getDateTimeToShip().getDayOfMonth());
-        assertEquals(15, delivery.getDateTimeToShip().getHour());
-        assertEquals(30, delivery.getDateTimeToShip().getMinute());
+        assertEquals(5, delivery.dateTimeToShip().getMonthValue());
+        assertEquals(2020, delivery.dateTimeToShip().getYear());
+        assertEquals(19, delivery.dateTimeToShip().getDayOfMonth());
+        assertEquals(15, delivery.dateTimeToShip().getHour());
+        assertEquals(30, delivery.dateTimeToShip().getMinute());
     }
 }

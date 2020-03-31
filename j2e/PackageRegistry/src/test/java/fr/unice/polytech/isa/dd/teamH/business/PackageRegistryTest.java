@@ -129,7 +129,7 @@ public class PackageRegistryTest extends AbstractPackageRegistryTest {
     }
 
     @Test
-    public void testSupplierStorage() throws Exception {
+    public void testPackageStorage() throws Exception {
         Package p1 = new Package();
         p1.setTrackingNumber(p.getTrackingNumber());
         p1.setSupplier(amazon);

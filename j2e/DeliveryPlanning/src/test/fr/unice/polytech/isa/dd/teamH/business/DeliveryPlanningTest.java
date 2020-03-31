@@ -1,6 +1,6 @@
 package fr.unice.polytech.isa.dd.teamH.business;
 
-import fr.unice.polytech.isa.dd.teamH.arquillian.AbstractDeliveryPlanningTest;
+import arquillian.AbstractDeliveryPlanningTest;
 import fr.unice.polytech.isa.dd.teamH.entities.Supplier;
 import fr.unice.polytech.isa.dd.teamH.entities.Package;
 import fr.unice.polytech.isa.dd.teamH.entities.delivery.Delivery;
@@ -10,12 +10,18 @@ import fr.unice.polytech.isa.dd.teamH.entities.drone.Drone;
 import fr.unice.polytech.isa.dd.teamH.exceptions.DeliveryDistanceException;
 import fr.unice.polytech.isa.dd.teamH.interfaces.*;
 import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.arquillian.transaction.api.annotation.TransactionMode;
+import org.jboss.arquillian.transaction.api.annotation.Transactional;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import javax.ejb.EJB;
+import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.UserTransaction;
 
 import java.util.Optional;
 
@@ -23,6 +29,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
 @RunWith(Arquillian.class)
+@Transactional(TransactionMode.COMMIT)
 public class DeliveryPlanningTest extends AbstractDeliveryPlanningTest {
     @EJB
     private DeliveryFinder finder;
@@ -31,10 +38,10 @@ public class DeliveryPlanningTest extends AbstractDeliveryPlanningTest {
     @EJB
     private DroneFleetManagement droneFleetManagement;
 
-//    @PersistenceContext
-//    private EntityManager entityManager;
-//    @Inject
-//    private UserTransaction utx;
+    @PersistenceContext
+    private EntityManager entityManager;
+    @Inject
+    private UserTransaction utx;
 
     Drone d;
     Drone d2;
@@ -52,13 +59,13 @@ public class DeliveryPlanningTest extends AbstractDeliveryPlanningTest {
     }
 
     @After
-    public void cleaningUp(){
+    public void cleaningUp() throws Exception{
         planner.flush();
 
-//        utx.begin();
-//        Optional<Customer> toDispose = finder.findByName(john.getName());
-//        toDispose.ifPresent(cust -> { Customer c = entityManager.merge(cust); entityManager.delete(c); });
-//        utx.commit();
+        utx.begin();
+        Optional<Delivery> toDispose = finder.findDeliveryById(p.getTrackingNumber());
+        toDispose.ifPresent(del -> { Delivery d = entityManager.merge(del); entityManager.remove(d); });
+        utx.commit();
     }
 
     @Test
@@ -125,5 +132,19 @@ public class DeliveryPlanningTest extends AbstractDeliveryPlanningTest {
         }catch (DeliveryDistanceException e){
             System.out.println("You have not launched the external mapping system");
         }
+    }
+
+    @Test
+    public void testDeliveryStorage() throws Exception {
+        Delivery d = new Delivery();
+        d.setState(DeliveryStateFactory.getInstance().createState("not-sent"));
+        d.setFlightTime(10);
+        d.setDistance(10);
+        d.setDate("2020-05-20");
+        d.setTime("15:30");
+        //entityManager.persist(d);
+        //int id = d.getId();
+        //Delivery stored = entityManager.find(Delivery.class, id);
+        //assertEquals(d, stored);
     }
 }

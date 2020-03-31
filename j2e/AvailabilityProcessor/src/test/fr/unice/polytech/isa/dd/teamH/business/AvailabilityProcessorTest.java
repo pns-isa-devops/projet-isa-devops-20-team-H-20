@@ -1,6 +1,6 @@
 package fr.unice.polytech.isa.dd.teamH.business;
 
-import fr.unice.polytech.isa.dd.teamH.arquillian.AbstractAvailabilityProcessorTest;
+import arquillian.AbstractAvailabilityProcessorTest;
 import fr.unice.polytech.isa.dd.teamH.entities.drone.Drone;
 import fr.unice.polytech.isa.dd.teamH.interfaces.AvailableDroneFinder;
 import fr.unice.polytech.isa.dd.teamH.interfaces.DroneFleetManagement;

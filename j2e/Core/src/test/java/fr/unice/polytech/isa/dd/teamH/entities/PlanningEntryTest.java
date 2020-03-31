@@ -46,9 +46,9 @@ public class PlanningEntryTest {
     @Test
     public void addDelivery() {
         Package anotherPackage = new Package("9876543210", 6, "132 Promenade Anglais", supplier);
-        assertFalse(planningEntry.addDelivery(new Delivery(delivery.getDateTimeToShip().plusMinutes(45), (float) 0.4, 2, anotherPackage)));
-        assertFalse(planningEntry.addDelivery(new Delivery(delivery.getDateTimeToShip().plusMinutes(20), (float) 0.4, 2, anotherPackage)));
-        assertTrue(planningEntry.addDelivery(new Delivery(delivery.getDateTimeToShip().plusMinutes(116), (float) 0.4, 2, anotherPackage)));
-        assertTrue(planningEntry.addDelivery(new Delivery(delivery.getDateTimeToShip().plusDays(20), (float) 0.4, 2, anotherPackage)));
+        assertFalse(planningEntry.addDelivery(new Delivery(delivery.dateTimeToShip().plusMinutes(45), (float) 0.4, 2, anotherPackage)));
+        assertFalse(planningEntry.addDelivery(new Delivery(delivery.dateTimeToShip().plusMinutes(20), (float) 0.4, 2, anotherPackage)));
+        assertTrue(planningEntry.addDelivery(new Delivery(delivery.dateTimeToShip().plusMinutes(116), (float) 0.4, 2, anotherPackage)));
+        assertTrue(planningEntry.addDelivery(new Delivery(delivery.dateTimeToShip().plusDays(20), (float) 0.4, 2, anotherPackage)));
     }
 }

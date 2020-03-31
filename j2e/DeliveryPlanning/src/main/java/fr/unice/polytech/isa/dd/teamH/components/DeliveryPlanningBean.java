@@ -60,7 +60,7 @@ public class DeliveryPlanningBean implements DeliveryFinder, DeliveryPlanner {
         Set<PlanningEntry> result = new HashSet<>();
         for(PlanningEntry pe : planningEntries){
             PlanningEntry newPE = new PlanningEntry(pe.getDrone());
-            for(Delivery d : pe.getDeliveries().stream().filter(e -> e.getDateTimeToShip().isAfter(LocalDateTime.now())).collect(Collectors.toSet())){
+            for(Delivery d : pe.getDeliveries().stream().filter(e -> e.dateTimeToShip().isAfter(LocalDateTime.now())).collect(Collectors.toSet())){
                 newPE.addDelivery(d);
             }
             result.add(newPE);
@@ -73,7 +73,7 @@ public class DeliveryPlanningBean implements DeliveryFinder, DeliveryPlanner {
         Set<PlanningEntry> result = new HashSet<>();
         for(PlanningEntry pe : planningEntries){
             PlanningEntry newPE = new PlanningEntry(pe.getDrone());
-            for(Delivery d : pe.getDeliveries().stream().filter(e -> e.getDateTimeToShip().isAfter(time) && e.isCompleted()).collect(Collectors.toSet())){
+            for(Delivery d : pe.getDeliveries().stream().filter(e -> e.dateTimeToShip().isAfter(time) && e.isCompleted()).collect(Collectors.toSet())){
                 newPE.addDelivery(d);
             }
             result.add(newPE);
@@ -87,7 +87,7 @@ public class DeliveryPlanningBean implements DeliveryFinder, DeliveryPlanner {
         Set<PlanningEntry> result = new HashSet<>();
         for(PlanningEntry pe : planningEntries) {
             PlanningEntry newPE = new PlanningEntry(pe.getDrone());
-            for(Delivery d : pe.getDeliveries().stream().filter(e -> e.getDateTimeToShip().isAfter(time) && e.isCompleted()).collect(Collectors.toSet())){
+            for(Delivery d : pe.getDeliveries().stream().filter(e -> e.dateTimeToShip().isAfter(time) && e.isCompleted()).collect(Collectors.toSet())){
                 if(d.getaPackage().getSupplier().equals(s)) {
                     newPE.addDelivery(d);
                 }
@@ -128,7 +128,7 @@ public class DeliveryPlanningBean implements DeliveryFinder, DeliveryPlanner {
         }
 
         de.setFlightTime(de.getDistance() / od.get().getSpeed());
-        de.setPackage(p);
+        de.setaPackage(p);
         de.setDate(date);
         de.setTime(time);
 

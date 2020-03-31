@@ -19,7 +19,7 @@ public class PlanningEntry implements Serializable {
 
     public PlanningEntry(Drone drone){
         this.drone = drone;
-        deliveries = new TreeSet<>(Comparator.comparing(Delivery::getDateTimeToShip));
+        deliveries = new TreeSet<>(Comparator.comparing(Delivery::dateTimeToShip));
     }
 
     public Drone getDrone(){
@@ -34,7 +34,7 @@ public class PlanningEntry implements Serializable {
         // check conflicts
         boolean isCoincidence = false;
         for(Delivery de: deliveries){
-            long betweenInMin = Math.abs(Duration.between(de.getDateTimeToShip(), d.getDateTimeToShip()).getSeconds())/60;
+            long betweenInMin = Math.abs(Duration.between(de.dateTimeToShip(), d.dateTimeToShip()).getSeconds())/60;
             if(betweenInMin <= 45){
                 isCoincidence = true;
                 break;

@@ -10,6 +10,7 @@
         <class>fr.unice.polytech.isa.dd.teamH.entities.Supplier</class>
         <class>fr.unice.polytech.isa.dd.teamH.entities.Package</class>
         <class>fr.unice.polytech.isa.dd.teamH.entities.drone.Drone</class>
+        <class>fr.unice.polytech.isa.dd.teamH.entities.delivery.Delivery</class>
 
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <properties>
