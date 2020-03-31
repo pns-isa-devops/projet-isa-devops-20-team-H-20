@@ -10,6 +10,7 @@ import fr.unice.polytech.isa.dd.teamH.exceptions.AlreadyExistingPackageException
 import fr.unice.polytech.isa.dd.teamH.interfaces.PackageRegistration;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.asset.ClassLoaderAsset;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 
@@ -31,6 +32,7 @@ public abstract class AbstractPackageRegistryTest {
                 // Components
                 .addPackage(PackageRegistryBean.class.getPackage())
                 // Exceptions
-                .addPackage(AlreadyExistingPackageException.class.getPackage());
+                .addPackage(AlreadyExistingPackageException.class.getPackage())
+                .addAsManifestResource(new ClassLoaderAsset("META-INF/persistence.xml"), "persistence.xml");
     }
 }

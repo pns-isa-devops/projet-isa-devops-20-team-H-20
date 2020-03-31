@@ -8,18 +8,24 @@ import fr.unice.polytech.isa.dd.teamH.exceptions.UnknownPackageException;
 import fr.unice.polytech.isa.dd.teamH.interfaces.PackageFinder;
 import fr.unice.polytech.isa.dd.teamH.interfaces.PackageRegistration;
 import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.arquillian.transaction.api.annotation.TransactionMode;
+import org.jboss.arquillian.transaction.api.annotation.Transactional;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import javax.ejb.EJB;
+import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.UserTransaction;
 import java.util.Optional;
 
 import static org.junit.Assert.*;
 
 @RunWith(Arquillian.class)
-//@Transactional(TransactionMode.COMMIT)
+@Transactional(TransactionMode.COMMIT)
 public class PackageRegistryTest extends AbstractPackageRegistryTest {
 
     @EJB
@@ -27,10 +33,10 @@ public class PackageRegistryTest extends AbstractPackageRegistryTest {
     @EJB
     private PackageFinder finder;
 
-//    @PersistenceContext
-//    private EntityManager entityManager;
-//    @Inject
-//    private UserTransaction utx;
+    @PersistenceContext
+    private EntityManager entityManager;
+    @Inject
+    private UserTransaction utx;
 
     private Supplier amazon;
     private Supplier ldlc;
@@ -48,13 +54,13 @@ public class PackageRegistryTest extends AbstractPackageRegistryTest {
     }
 
     @After
-    public void cleaningUp() {
+    public void cleaningUp() throws Exception {
         registry.flush();
 
-//        utx.begin();
-//        Optional<Customer> toDispose = finder.findByName(john.getName());
-//        toDispose.ifPresent(cust -> { Customer c = entityManager.merge(cust); entityManager.delete(c); });
-//        utx.commit();
+        utx.begin();
+        Optional<Package> toDispose = finder.findPackageByTrackingNumber(p.getTrackingNumber());
+        toDispose.ifPresent(pac -> { Package p1 = entityManager.merge(pac); entityManager.remove(p1); });
+        utx.commit();
     }
 
     @Test
@@ -120,5 +126,18 @@ public class PackageRegistryTest extends AbstractPackageRegistryTest {
     public void cannotRegisterTwice() throws Exception {
         registry.register(p.getTrackingNumber(), amazon, p.getWeight(), p.getDestination());
         registry.register(p.getTrackingNumber(), amazon, p.getWeight(), p.getDestination());
+    }
+
+    @Test
+    public void testSupplierStorage() throws Exception {
+        Package p1 = new Package();
+        p1.setTrackingNumber(p.getTrackingNumber());
+        p1.setSupplier(amazon);
+        p1.setWeight(10);
+        p1.setDestination("Test destination");
+        entityManager.persist(p1);
+        String tn = p1.getTrackingNumber();
+        Package stored = entityManager.find(Package.class, tn);
+        assertEquals(p1, stored);
     }
 }

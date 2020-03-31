@@ -8,6 +8,7 @@
         <jta-data-source>DDDataSource</jta-data-source>
 
         <class>fr.unice.polytech.isa.dd.teamH.entities.Supplier</class>
+        <class>fr.unice.polytech.isa.dd.teamH.entities.Package</class>
         <class>fr.unice.polytech.isa.dd.teamH.entities.drone.Drone</class>
 
         <exclude-unlisted-classes>true</exclude-unlisted-classes>

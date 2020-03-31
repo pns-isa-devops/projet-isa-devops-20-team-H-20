@@ -1,8 +1,12 @@
 package fr.unice.polytech.isa.dd.teamH.entities;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
 
+@Entity
+@Table(name="packages")
 public class Package implements Serializable {
 
     private String trackingNumber;
@@ -21,18 +25,23 @@ public class Package implements Serializable {
         this.supplier = supplier;
     }
 
+    @Id
     public String getTrackingNumber() {
         return trackingNumber;
     }
 
+    @NotNull
     public float getWeight() {
         return weight;
     }
 
+    @NotNull
     public String getDestination() {
         return destination;
     }
 
+    @ManyToOne(cascade = {CascadeType.PERSIST})
+    @NotNull
     public Supplier getSupplier() {
         return supplier;
     }
@@ -40,15 +49,12 @@ public class Package implements Serializable {
     public void setDestination(String destination) {
         this.destination = destination;
     }
-
     public void setTrackingNumber(String trackingNumber) {
         this.trackingNumber = trackingNumber;
     }
-
     public void setWeight(float weight) {
         this.weight = weight;
     }
-
     public void setSupplier(Supplier supplier) {
         this.supplier = supplier;
     }
