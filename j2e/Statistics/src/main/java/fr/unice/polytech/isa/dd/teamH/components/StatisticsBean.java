@@ -1,6 +1,7 @@
 package fr.unice.polytech.isa.dd.teamH.components;
 
 import fr.unice.polytech.isa.dd.teamH.entities.Comment;
+import fr.unice.polytech.isa.dd.teamH.entities.drone.Drone;
 import fr.unice.polytech.isa.dd.teamH.entities.stats.CustomerSatisfactionStatsEntry;
 import fr.unice.polytech.isa.dd.teamH.entities.stats.DroneStatsEntry;
 import fr.unice.polytech.isa.dd.teamH.interfaces.CommentFinder;
@@ -10,9 +11,8 @@ import fr.unice.polytech.isa.dd.teamH.interfaces.StatisticsGenerator;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import java.time.LocalDateTime;
-import java.util.Comparator;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Stateless
 public class StatisticsBean implements StatisticsGenerator {
@@ -39,27 +39,60 @@ public class StatisticsBean implements StatisticsGenerator {
 
     @Override
     public float getAverageDroneUseRate() {
-        //TODO use delivery finder sprint 2
-        return 0;
+        // Version simplifiée qui permet de retourner le pourcentage de drones actuellement utilisés
+        Set<Drone> drones = droneFinder.findAllDrones();
+        int dronesReady = 0;
+        for(Drone drone : drones) {
+            if(!drone.isReadyToFly()) {
+                dronesReady++;
+            }
+        }
+        return (float) dronesReady/drones.size();
     }
 
     @Override
-    public void generateNewDroneStatsEntry(LocalDateTime time) {
+    public Set<DroneStatsEntry> getDroneStatEntry() {
+        return droneEntries;
+    }
+
+    @Override
+    public Set<DroneStatsEntry> getDroneStatEntry(LocalDateTime dateTime) {
+        return droneEntries.stream().filter(entry -> entry.getEntryTime().isAfter(dateTime)).collect(Collectors.toSet());
+    }
+
+    @Override
+    public Set<CustomerSatisfactionStatsEntry> getCustomerStatEntry() {
+        return customerSatisfactionEntries;
+    }
+
+    @Override
+    public Set<CustomerSatisfactionStatsEntry> getCustomerStatEntry(LocalDateTime dateTime) {
+        return customerSatisfactionEntries.stream().filter(entry -> entry.getEntryTime().isAfter(dateTime)).collect(Collectors.toSet());
+    }
+
+    @Override
+    public void generateNewDroneStatsEntry() {
         DroneStatsEntry d = new DroneStatsEntry();
 
         d.setDronesUseRate(getAverageDroneUseRate());
-        d.setEntryTime(time);
+        d.setEntryTime(LocalDateTime.now().toString());
 
         droneEntries.add(d);
     }
 
     @Override
-    public void generateNewCustomerSatisfactionEntry(LocalDateTime time) {
+    public void generateNewCustomerSatisfactionEntry() {
         CustomerSatisfactionStatsEntry c = new CustomerSatisfactionStatsEntry();
 
         c.setCustomerSatisfactionRate(getAverageDroneUseRate());
-        c.setEntryTime(time);
+        c.setEntryTime(LocalDateTime.now().toString());
 
         customerSatisfactionEntries.add(c);
+    }
+
+    @Override
+    public void flush() {
+        droneEntries = new TreeSet<>(Comparator.comparing(DroneStatsEntry::getEntryTime));
+        customerSatisfactionEntries = new TreeSet<>(Comparator.comparing(CustomerSatisfactionStatsEntry::getEntryTime));
     }
 }

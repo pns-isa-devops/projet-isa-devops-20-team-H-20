@@ -13,4 +13,5 @@ public interface DroneFinder {
     Optional<Drone> findDroneById(int id);
     Set<Drone> findReadyDrones();
     DroneState checkAndUpdateState(String name) throws UnknownDroneStateException;
+    Set<Drone> findAllDrones();
 }

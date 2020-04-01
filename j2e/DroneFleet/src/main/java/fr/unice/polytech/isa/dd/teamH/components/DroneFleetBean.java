@@ -70,6 +70,11 @@ public class DroneFleetBean implements DroneFinder, DroneFleetManagement {
     }
 
     @Override
+    public Set<Drone> findAllDrones() {
+        return drones;
+    }
+
+    @Override
     public boolean addDrone(int id, float weightCapacity) throws AlreadyExistingDroneException {
         if(findDroneById(id).isPresent())
             throw new AlreadyExistingDroneException(id);

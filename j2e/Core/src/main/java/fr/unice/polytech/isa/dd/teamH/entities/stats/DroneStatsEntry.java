@@ -7,7 +7,7 @@ import java.util.Objects;
 
 public class DroneStatsEntry implements Serializable {
 
-    private LocalDateTime entryTime;
+    private String entryTime;
 
     private float dronesUseRate;
 
@@ -15,16 +15,16 @@ public class DroneStatsEntry implements Serializable {
 
     }
 
-    public DroneStatsEntry(LocalDateTime entryTime, float dronesUseRate) {
+    public DroneStatsEntry(String entryTime, float dronesUseRate) {
         this.entryTime = entryTime;
         this.dronesUseRate = dronesUseRate;
     }
 
     public LocalDateTime getEntryTime() {
-        return entryTime;
+        return LocalDateTime.parse(entryTime);
     }
 
-    public void setEntryTime(LocalDateTime entryTime) {
+    public void setEntryTime(String entryTime) {
         this.entryTime = entryTime;
     }
 

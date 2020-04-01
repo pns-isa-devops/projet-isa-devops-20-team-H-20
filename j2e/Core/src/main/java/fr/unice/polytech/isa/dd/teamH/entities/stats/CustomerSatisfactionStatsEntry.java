@@ -7,7 +7,7 @@ import java.util.Objects;
 
 public class CustomerSatisfactionStatsEntry implements Serializable {
 
-    private LocalDateTime entryTime;
+    private String entryTime;
 
     private float customerSatisfactionRate;
 
@@ -15,16 +15,16 @@ public class CustomerSatisfactionStatsEntry implements Serializable {
 
     }
 
-    public CustomerSatisfactionStatsEntry(LocalDateTime entryTime, float customerSatisfactionRate) {
+    public CustomerSatisfactionStatsEntry(String entryTime, float customerSatisfactionRate) {
         this.entryTime = entryTime;
         this.customerSatisfactionRate = customerSatisfactionRate;
     }
 
     public LocalDateTime getEntryTime() {
-        return entryTime;
+        return LocalDateTime.parse(entryTime);
     }
 
-    public void setEntryTime(LocalDateTime entryTime) {
+    public void setEntryTime(String entryTime) {
         this.entryTime = entryTime;
     }
 
