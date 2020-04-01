@@ -5,11 +5,8 @@ import fr.unice.polytech.isa.dd.teamH.entities.Comment;
 import fr.unice.polytech.isa.dd.teamH.entities.Package;
 import fr.unice.polytech.isa.dd.teamH.entities.Supplier;
 import fr.unice.polytech.isa.dd.teamH.entities.delivery.Delivery;
-import fr.unice.polytech.isa.dd.teamH.entities.delivery.DeliveryState;
-import fr.unice.polytech.isa.dd.teamH.entities.delivery.DeliveryStateFactory;
 import fr.unice.polytech.isa.dd.teamH.exceptions.AlreadyExistingDroneException;
 import fr.unice.polytech.isa.dd.teamH.exceptions.DeliveryDistanceException;
-import fr.unice.polytech.isa.dd.teamH.exceptions.UnknownCommentException;
 import fr.unice.polytech.isa.dd.teamH.exceptions.UnknownDeliveryStateException;
 import fr.unice.polytech.isa.dd.teamH.interfaces.*;
 import org.jboss.arquillian.junit.Arquillian;
@@ -21,15 +18,8 @@ import org.junit.runner.RunWith;
 
 import javax.ejb.EJB;
 import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
-import java.time.LocalDateTime;
 import java.util.Optional;
-import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
