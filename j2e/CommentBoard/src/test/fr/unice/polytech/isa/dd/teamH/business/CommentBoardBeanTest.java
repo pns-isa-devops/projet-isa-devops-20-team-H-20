@@ -1,6 +1,6 @@
 package fr.unice.polytech.isa.dd.teamH.business;
 
-import fr.unice.polytech.isa.dd.teamH.arquillian.AbstractCommentBoardBeanTest;
+import arquillian.AbstractCommentBoardBeanTest;
 import fr.unice.polytech.isa.dd.teamH.components.CommentBoardBean;
 import fr.unice.polytech.isa.dd.teamH.entities.Comment;
 import fr.unice.polytech.isa.dd.teamH.entities.Package;
