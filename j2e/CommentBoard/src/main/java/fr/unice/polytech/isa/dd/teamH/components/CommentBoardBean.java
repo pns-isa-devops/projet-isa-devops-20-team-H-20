@@ -69,4 +69,9 @@ public class CommentBoardBean implements CommentFinder, CommentPoster
         }
         comments.remove(toDelete.get());
     }
+
+    @Override
+    public void flush() {
+        comments = new HashSet<>();
+    }
 }
