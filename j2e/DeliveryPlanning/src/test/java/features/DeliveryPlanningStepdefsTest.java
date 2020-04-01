@@ -38,8 +38,8 @@ public class DeliveryPlanningStepdefsTest extends AbstractDeliveryPlanningTest {
     private Optional<Delivery> deliveryFound;
     private Exception exception = null;
 
-    @Given("^some delivery with date (\\d\\d\\d\\d-\\d\\d-\\d\\d) time (\\d\\d:\\d\\d) and with (.*) as package with (.*) as supplier and (\\d+) as drone$")
-    public void background(String date, String time, String pack, String supplier, int drone) throws Exception{
+    @Given("^some delivery with date (.*) time ([\\d]{2}:[\\d]{2}) and with (.*) as package with (.*) as Supplier and (\\d+) as drone and a random package (.*)$")
+    public void background(String date, String time, String pack, String supplier, int drone, String pack2) throws Exception{
         deliveryPlanner.flush();
         packageRegistration.flush();
         supplierRegistration.flush();
@@ -54,7 +54,8 @@ public class DeliveryPlanningStepdefsTest extends AbstractDeliveryPlanningTest {
         Optional<Supplier> s = supplierFinder.findByName(supplier);
         assertTrue(s.isPresent());
 
-        packageRegistration.register(pack, s.get(), 5, "Test destination");
+        packageRegistration.register(pack, s.get(), 5, "Titan");
+        packageRegistration.register(pack2, s.get(), 5.2f, "Wakanda");
 
         Optional<Package> p = packageFinder.findPackageByTrackingNumber(pack);
         assertTrue(p.isPresent());
@@ -68,7 +69,7 @@ public class DeliveryPlanningStepdefsTest extends AbstractDeliveryPlanningTest {
     }
 
     @When("^the service client adds the delivery with date (\\d\\d\\d\\d-\\d\\d-\\d\\d) time (\\d\\d:\\d\\d) and with (.*) as package$")
-    public void addSupplier(String date, String time, String pack) throws Exception{
+    public void addDelivery(String date, String time, String pack) throws Exception{
         try {
             Optional<Package> p;
             if ((p = packageFinder.findPackageByTrackingNumber(pack)).isPresent()) {
