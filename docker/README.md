@@ -26,6 +26,10 @@ The internal implementation of the DD system will relies on the following assump
 
 [See the Dockerfile](dd/Dockerfile)
 
+#### In case of problem with start-dd.sh on windows
+
+Open the file with intellij, and change the file content to LF instead CRLF (bottom right)
+
 To build the docker launch the following command `./build.sh`
 
 ### The Client image (Java)
@@ -34,11 +38,11 @@ This image relies on an OpenJDK implementation (Java 8), and executes the JAR cl
 
 See the Dockerfiles in every client directories
 
-To build the docker launch the following command `./build.sh` in very client directories
+To build the docker launch the following command `./build.sh` in the clients directory. It will launch the build in every clients.
 
 ## Composing the final system
 
-The three images can now be used independently, as standalone components. But one can combine the three images with the right configuration to define a valid deployment for the CoD system.
+The three images can now be used independently, as standalone components. But one can combine the three images with the right configuration to define a valid deployment for the DD system.
 
 This is implemented thanks to a [`docker-compose.yml`](docker-compose.yml) descriptor. 
 
@@ -52,4 +56,14 @@ To run the system, one can ask`docker-compose` to start in detached mode:
 
 The client is started inside the assembly, and already running. Thus, one can attach and then detach the current context to the container. To attach the current context to a container, the `docker attach` command do the job. When attached, one can detach using the `^P ^Q` key combination.
 
-`docker attach dd_client`
+`docker attach dd_client_boss`
+
+`docker attach dd_client_chargeur`
+
+`docker attach dd_client_garagiste`
+
+`docker attach dd_client_gestionnaire`
+
+`docker attach dd_client_manutentionnaire`
+
+`docker attach dd_client_service_client`

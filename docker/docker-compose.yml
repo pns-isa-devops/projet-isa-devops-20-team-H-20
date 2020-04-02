@@ -26,9 +26,69 @@ services:
       - "9090:9090"
 
   # A simple java CLI
-  client:
-    image: livrair/dd-client
-    container_name: dd_client
+  dd_client_boss:
+    image: livrair/dd-client-boss
+    container_name: dd_client_boss
+    command: "dd_system 8080"
+    volumes:
+      - .:/host
+    depends_on:
+      dd_system:
+        condition: service_healthy
+    stdin_open: true
+    tty: true
+
+  dd_client_chargeur:
+    image: livrair/dd-client-chargeur
+    container_name: dd_client_chargeur
+    command: "dd_system 8080"
+    volumes:
+      - .:/host
+    depends_on:
+      dd_system:
+        condition: service_healthy
+    stdin_open: true
+    tty: true
+
+  dd_client_garagiste:
+    image: livrair/dd-client-garagiste
+    container_name: dd_client_garagiste
+    command: "dd_system 8080"
+    volumes:
+      - .:/host
+    depends_on:
+      dd_system:
+        condition: service_healthy
+    stdin_open: true
+    tty: true
+
+  dd_client_gestionnaire:
+    image: livrair/dd-client-gestionnaire
+    container_name: dd_client_gestionnaire
+    command: "dd_system 8080"
+    volumes:
+      - .:/host
+    depends_on:
+      dd_system:
+        condition: service_healthy
+    stdin_open: true
+    tty: true
+
+  dd_client_manutentionnaire:
+    image: livrair/dd-client-manutentionnaire
+    container_name: dd_client_manutentionnaire
+    command: "dd_system 8080"
+    volumes:
+      - .:/host
+    depends_on:
+      dd_system:
+        condition: service_healthy
+    stdin_open: true
+    tty: true
+
+  dd_client_service_client:
+    image: livrair/dd-client-service_client
+    container_name: dd_client_service_client
     command: "dd_system 8080"
     volumes:
       - .:/host
