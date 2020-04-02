@@ -16,13 +16,31 @@
 
 [Cukespace is used to link Arquillian and Cucumber](https://github.com/cukespace/cukespace)
 
+[Jenkins is used to manage builds](https://jenkins.io/)
+
 ### How to use
 To launch the project tomcat server, go to the root project folder (j2e), then use this command line `mvn clean install`. Then, go to the "WebServices" folder/module and use `mvn tomee:run`.
 
 To launch the tests get to the root project then use this command line `mvn test`. When launching test the better is to have the external mapping service also launched
 
-### Artifactory Notes
-Please modify artifactory configurations finding in `pom.xml` and `settings.xml` to match the artifactory used on your computer before using.
+### Artifactory Installation
+
+To install artifactory you need docker. Run the following command :
+
+`docker run -p 8081:8081 -p 8082:8082 --name my-artifactory docker.bintray.io/jfrog/artifactory-oss`
+
+After the first installation :
+- `admin` and `password` to log in
+- `mysuperpassword` as the new password
+- skip the SET BASE URL
+- skip PROXY
+- check maven to create repositories
+- click on the left under "Artifactory" > "Artifacts"
+  - Set me up
+  - copy the settings to the pom.xml under `<!-- Artifactory configuration parameters -->`
+  - edit the settings.xml with your address
+  - François docker toolbox path: `192.168.99.101`
+  - Docker path: `localhost`
 
 To perform operations related to the artifactory by using `mvn` command. i.e:
  - `mvn install -s ..\settings.xml` 
