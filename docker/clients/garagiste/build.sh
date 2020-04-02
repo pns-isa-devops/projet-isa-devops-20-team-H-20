@@ -11,7 +11,7 @@ cp "./target/drone-delivery-client-$clientName-1.0-SNAPSHOT-jar-with-dependencie
 
 # building the docker image
 cd "../../docker/clients/$clientName"
-docker build -t "livrair/dd-client-$clientName" .
+docker build -t "livrair/dd-client-garagiste" .
 
 # cleaning up the environment
 rm -rf "drone-delivery-client-$clientName-1.0-SNAPSHOT-jar-with-dependencies.jar"
