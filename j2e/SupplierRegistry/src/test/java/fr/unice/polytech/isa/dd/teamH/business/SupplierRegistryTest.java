@@ -107,7 +107,10 @@ public class SupplierRegistryTest extends AbstractSupplierRegistryTest {
 
         registry.addContact(amazon.getName(), contact2);
         Optional<Supplier> supplier = finder.findByName(amazon.getName());
-        supplier.ifPresent(supplier1 -> assertEquals(2, supplier1.getContacts().size()));
+        assertEquals(2, supplier.get().getContacts().size());
+
+        assertTrue(supplier.get().getContacts().contains(contact));
+        assertTrue(supplier.get().getContacts().contains(contact2));
 
         registry.addContact(amazon.getName(), contact2);
     }

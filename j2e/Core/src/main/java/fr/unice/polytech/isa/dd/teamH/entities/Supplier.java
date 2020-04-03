@@ -1,15 +1,11 @@
 package fr.unice.polytech.isa.dd.teamH.entities;
 
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.*;
 
 @Entity
-@Table(name="suppliers")
 public class Supplier implements Serializable {
 
     private String name;
@@ -31,8 +27,9 @@ public class Supplier implements Serializable {
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
 
-    @ElementCollection
-    @NotNull
+    @ElementCollection(targetClass=String.class)
+    @Column(name="contacts")
+    @CollectionTable(name="contacts_table", joinColumns=@JoinColumn(name="contacts_id"))
     public Set<String> getContacts() {
         return contacts;
     }

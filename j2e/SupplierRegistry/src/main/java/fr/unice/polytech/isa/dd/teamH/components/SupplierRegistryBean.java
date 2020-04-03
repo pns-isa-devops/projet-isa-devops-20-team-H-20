@@ -41,7 +41,9 @@ public class SupplierRegistryBean implements SupplierFinder, SupplierRegistratio
         TypedQuery<Supplier> query = manager.createQuery(criteria);
 
         try {
-            return Optional.of(query.getSingleResult());
+            Optional<Supplier> res = Optional.of(query.getSingleResult());
+            log.log(Level.INFO, "Supplier fetched : " + res.get().toString());
+            return res;
         } catch (NoResultException nre){
             return Optional.empty();
         }
@@ -90,8 +92,11 @@ public class SupplierRegistryBean implements SupplierFinder, SupplierRegistratio
             throw new UnknownSupplierException(name);
         if(sup.get().getContacts().contains(contact))
             throw new AlreadyExistingContactException(name, contact);
-        sup.get().addContact(contact);
-        log.log(Level.INFO, "Supplier contact added : " + contact);
+        Supplier s = manager.merge(sup.get());
+        Set<String> newContacts = s.getContacts();
+        newContacts.add(contact);
+        s.setContacts(newContacts);
+        log.log(Level.INFO, "Supplier contact added : " + contact + " - supp: " + findByName(name).get());
         return true;
     }
 
