@@ -62,8 +62,12 @@ public class SupplierRegistryTest extends AbstractSupplierRegistryTest {
         registry.flush();
 
         utx.begin();
-        Optional<Supplier> toDispose = finder.findByName(amazon.getName());
-        toDispose.ifPresent(sup -> { Supplier s = entityManager.merge(sup); entityManager.remove(s); });
+            Optional<Supplier> toDispose = finder.findByName(amazon.getName());
+            toDispose.ifPresent(sup -> { Supplier s = entityManager.merge(sup); entityManager.remove(s); });
+            toDispose = finder.findByName(fedex.getName());
+            toDispose.ifPresent(sup -> { Supplier s = entityManager.merge(sup); entityManager.remove(s); });
+            toDispose = finder.findByName(ldlc.getName());
+            toDispose.ifPresent(sup -> { Supplier s = entityManager.merge(sup); entityManager.remove(s); });
         utx.commit();
     }
 
@@ -101,11 +105,11 @@ public class SupplierRegistryTest extends AbstractSupplierRegistryTest {
     public void addContact() throws Exception {
         registry.register(amazon.getName(), contact);
 
-        registry.addContact(amazon.getName(), "06 11 11 11 11");
+        registry.addContact(amazon.getName(), contact2);
         Optional<Supplier> supplier = finder.findByName(amazon.getName());
         supplier.ifPresent(supplier1 -> assertEquals(2, supplier1.getContacts().size()));
 
-        registry.addContact(amazon.getName(), "06 11 11 11 11");
+        registry.addContact(amazon.getName(), contact2);
     }
 
     @Test

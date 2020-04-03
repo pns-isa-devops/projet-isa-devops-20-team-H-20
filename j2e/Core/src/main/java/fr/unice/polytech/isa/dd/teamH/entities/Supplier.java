@@ -34,10 +34,10 @@ public class Supplier implements Serializable {
     @ElementCollection
     @NotNull
     public Set<String> getContacts() {
-        return new HashSet<>(contacts);
+        return contacts;
     }
     public void setContacts(Set<String> contacts){
-        this.contacts = new HashSet<>(contacts);
+        this.contacts = contacts;
     }
     public void addContact(String contact) {
         contacts.add(contact);

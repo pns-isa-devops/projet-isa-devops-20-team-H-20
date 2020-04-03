@@ -7,6 +7,7 @@ import fr.unice.polytech.isa.dd.teamH.interfaces.DeliveryFinder;
 import fr.unice.polytech.isa.dd.teamH.interfaces.SupplierFinder;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.asset.ClassLoaderAsset;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 
@@ -26,8 +27,8 @@ public abstract class AbstractAccountingBeanTest {
                 .addPackage(DeliveryFinder.class.getPackage())
                 .addPackage(SupplierFinder.class.getPackage())
                 // Components
-                .addPackage(AccountingBean.class.getPackage());
-                // Exceptions
+                .addPackage(AccountingBean.class.getPackage())
+                .addAsManifestResource(new ClassLoaderAsset("META-INF/persistence.xml"), "persistence.xml");
     }
 
 }
