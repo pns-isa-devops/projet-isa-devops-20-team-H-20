@@ -10,6 +10,7 @@ import fr.unice.polytech.isa.dd.teamH.entities.Package;
 import fr.unice.polytech.isa.dd.teamH.entities.drone.DroneStateFactory;
 import fr.unice.polytech.isa.dd.teamH.exceptions.*;
 import fr.unice.polytech.isa.dd.teamH.interfaces.AvailableDroneFinder;
+import fr.unice.polytech.isa.dd.teamH.interfaces.ControlledMap;
 import fr.unice.polytech.isa.dd.teamH.interfaces.DeliveryFinder;
 import fr.unice.polytech.isa.dd.teamH.interfaces.DeliveryPlanner;
 import fr.unice.polytech.isa.dd.teamH.utils.MapAPI;
@@ -25,7 +26,7 @@ import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 @Stateless
-public class DeliveryPlanningBean implements DeliveryFinder, DeliveryPlanner {
+public class DeliveryPlanningBean implements DeliveryFinder, DeliveryPlanner, ControlledMap {
     private static final Logger log = Logger.getLogger(Logger.class.getName());
     private Set<PlanningEntry> planningEntries = new HashSet<>();
 
@@ -185,5 +186,10 @@ public class DeliveryPlanningBean implements DeliveryFinder, DeliveryPlanner {
             log.log(Level.INFO, "Cannot read map.properties file", e);
             throw new UncheckedException(e);
         }
+    }
+
+    @Override
+    public void useMapReference(MapAPI mapAPI) {
+        this.mapService = mapAPI;
     }
 }
