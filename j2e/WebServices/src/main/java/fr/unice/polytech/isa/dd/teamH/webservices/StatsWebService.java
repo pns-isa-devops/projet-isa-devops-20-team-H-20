@@ -19,7 +19,7 @@ public interface StatsWebService {
 
     @WebMethod
     @WebResult(name = "stats_users")
-    Set<CustomerSatisfactionStatsEntry> getStatsUsers(@WebParam(name = "time")String time) throws DateTimeParseException;
+    Set<CustomerSatisfactionStatsEntry> getStatsUsersFrom(@WebParam(name = "time")String time) throws DateTimeParseException;
 
     @WebMethod
     @WebResult(name = "stats_drones")
@@ -27,7 +27,7 @@ public interface StatsWebService {
 
     @WebMethod
     @WebResult(name = "stats_drones")
-    Set<DroneStatsEntry> getStatsDrones(@WebParam(name = "time") String time) throws DateTimeParseException;
+    Set<DroneStatsEntry> getStatsDronesFrom(@WebParam(name = "time") String time) throws DateTimeParseException;
 
     @WebMethod
     void generateStatsDrones();

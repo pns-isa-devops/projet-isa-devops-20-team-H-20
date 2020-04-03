@@ -57,7 +57,7 @@ public class StatisticsBean implements StatisticsGenerator {
 
     @Override
     public Set<DroneStatsEntry> getDroneStatEntry(LocalDateTime dateTime) {
-        return droneEntries.stream().filter(entry -> entry.getEntryTime().isAfter(dateTime)).collect(Collectors.toSet());
+        return droneEntries.stream().filter(entry -> LocalDateTime.parse(entry.getEntryTime()).isAfter(dateTime)).collect(Collectors.toSet());
     }
 
     @Override
@@ -67,7 +67,7 @@ public class StatisticsBean implements StatisticsGenerator {
 
     @Override
     public Set<CustomerSatisfactionStatsEntry> getCustomerStatEntry(LocalDateTime dateTime) {
-        return customerSatisfactionEntries.stream().filter(entry -> entry.getEntryTime().isAfter(dateTime)).collect(Collectors.toSet());
+        return customerSatisfactionEntries.stream().filter(entry -> LocalDateTime.parse(entry.getEntryTime()).isAfter(dateTime)).collect(Collectors.toSet());
     }
 
     @Override
