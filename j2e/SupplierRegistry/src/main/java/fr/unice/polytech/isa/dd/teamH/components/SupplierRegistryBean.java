@@ -15,17 +15,13 @@ import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @Stateless
 public class SupplierRegistryBean implements SupplierFinder, SupplierRegistration {
     private static final Logger log = Logger.getLogger(SupplierRegistryBean.class.getName());
-
-    private Set<Supplier> suppliers = new HashSet<>();
 
     @PersistenceContext
     private EntityManager manager;
@@ -61,28 +57,22 @@ public class SupplierRegistryBean implements SupplierFinder, SupplierRegistratio
         s.setName(name);
         s.setContacts(new HashSet<>());
         s.addContact(contact);
-        boolean result = suppliers.add(s);
         manager.persist(s);
-        if(result)
-            log.log(Level.INFO, "Supplier added : " + s.toString());
-        else
-            log.log(Level.WARNING, "Supplier not added : " + s.toString());
-        return result;
+        log.log(Level.INFO, "Supplier added : " + s.toString());
+        log.log(Level.WARNING, "Supplier not added : " + s.toString());
+        return true;
     }
 
     @Override
     public boolean delete(String name) throws UnknownSupplierException {
         if(!findByName(name).isPresent())
             throw new UnknownSupplierException(name);
-        boolean result = suppliers.removeIf(e -> e.getName().equals(name));
         Supplier s = findByName(name).get();
         Supplier sup = manager.merge(s);
         manager.remove(sup);
-        if(result)
-            log.log(Level.INFO, "Supplier removed : " + name);
-        else
-            log.log(Level.WARNING, "Supplier not removed : " + name);;
-        return result;
+        log.log(Level.INFO, "Supplier removed : " + name);
+        log.log(Level.WARNING, "Supplier not removed : " + name);;
+        return true;
     }
 
     @Override
@@ -103,11 +93,18 @@ public class SupplierRegistryBean implements SupplierFinder, SupplierRegistratio
     @Override
     public Set<Supplier> findAll()
     {
-        return suppliers;
-    }
+        CriteriaBuilder builder = manager.getCriteriaBuilder();
 
-    @Override
-    public void flush() {
-        suppliers = new HashSet<>();
+        CriteriaQuery<Supplier> criteria = builder.createQuery(Supplier.class);
+        Root<Supplier> root =  criteria.from(Supplier.class);
+
+        criteria.select(root);
+        TypedQuery<Supplier> query = manager.createQuery(criteria);
+
+        try {
+            return new HashSet<>(query.getResultList());
+        } catch (NoResultException nre){
+            return new HashSet<>();
+        }
     }
 }

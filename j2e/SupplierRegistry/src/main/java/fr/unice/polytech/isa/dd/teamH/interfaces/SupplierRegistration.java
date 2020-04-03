@@ -11,6 +11,4 @@ public interface SupplierRegistration {
     boolean register(String name, String contact) throws AlreadyExistingSupplierException;
     boolean delete(String name) throws UnknownSupplierException;
     boolean addContact(String name, String contact) throws UnknownSupplierException, AlreadyExistingContactException;
-
-    void flush();
 }

@@ -15,14 +15,9 @@ import fr.unice.polytech.isa.dd.teamH.interfaces.SupplierRegistration;
 
 import org.jboss.arquillian.transaction.api.annotation.TransactionMode;
 import org.jboss.arquillian.transaction.api.annotation.Transactional;
-import org.junit.After;
 import org.junit.runner.RunWith;
 
 import javax.ejb.EJB;
-import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.transaction.UserTransaction;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -110,21 +105,19 @@ public class SupplierRegistryStepdefsTest extends AbstractSupplierRegistryTest {
         }
     }
 
-    //@When("^the gestionnaire wants to add contact (.*) to the supplier (.*)$")
-    //public void addContactSupplierError(String contact, String supplier){
-    //    Optional<Supplier> supplierObject = finder.findByName(supplier);
-    //    if(!supplierObject.isPresent())
-    //        fail();
-//
-    //    try {
-    //        management.addContact(supplier, contact);
-    //    }catch (AlreadyExistingContactException e){
-    //        exception = e;
-    //    }catch (UnknownSupplierException e){
-    //        fail();
-    //    }
-    //}
-//
+    @When("^the gestionnaire wants to add contact (.*) to the supplier (.*)$")
+    public void addContactSupplierError(String contact, String supplier){
+        Optional<Supplier> supplierObject = finder.findByName(supplier);
+        if(!supplierObject.isPresent())
+            fail();
+        try {
+            management.addContact(supplier, contact);
+        }catch (AlreadyExistingContactException e){
+            exception = e;
+        }catch (UnknownSupplierException e){
+            fail();
+        }
+    }
 
     @Then("^there is an exception$")
     public void checkExceptionAdd(){
@@ -163,14 +156,8 @@ public class SupplierRegistryStepdefsTest extends AbstractSupplierRegistryTest {
         assertFalse(supplierFound.isPresent());
     }
 
-    @PersistenceContext
-    private EntityManager entityManager;
-    @Inject
-    UserTransaction utx;
-
     @cucumber.api.java.After
     public void cleaningUp() throws Exception{
-        management.flush();
         suppliersAdded.forEach(sup -> {
             try {
                 management.delete(sup.getName());

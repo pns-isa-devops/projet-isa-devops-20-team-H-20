@@ -59,8 +59,6 @@ public class SupplierRegistryTest extends AbstractSupplierRegistryTest {
 
     @After
     public void cleaningUp() throws Exception {
-        registry.flush();
-
         utx.begin();
             Optional<Supplier> toDispose = finder.findByName(amazon.getName());
             toDispose.ifPresent(sup -> { Supplier s = entityManager.merge(sup); entityManager.remove(s); });
