@@ -20,8 +20,8 @@ public class CustomerSatisfactionStatsEntry implements Serializable {
         this.customerSatisfactionRate = customerSatisfactionRate;
     }
 
-    public LocalDateTime getEntryTime() {
-        return LocalDateTime.parse(entryTime);
+    public String getEntryTime() {
+        return entryTime;
     }
 
     public void setEntryTime(String entryTime) {

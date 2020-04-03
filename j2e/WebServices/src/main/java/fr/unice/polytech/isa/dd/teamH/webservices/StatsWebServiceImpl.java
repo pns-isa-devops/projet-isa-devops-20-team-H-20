@@ -24,7 +24,7 @@ public class StatsWebServiceImpl implements StatsWebService {
     }
 
     @Override
-    public Set<CustomerSatisfactionStatsEntry> getStatsUsers(String time) throws DateTimeParseException {
+    public Set<CustomerSatisfactionStatsEntry> getStatsUsersFrom(String time) throws DateTimeParseException {
         return statisticsGenerator.getCustomerStatEntry(LocalDateTime.parse(time));
     }
 
@@ -34,7 +34,7 @@ public class StatsWebServiceImpl implements StatsWebService {
     }
 
     @Override
-    public Set<DroneStatsEntry> getStatsDrones(String time) throws DateTimeParseException {
+    public Set<DroneStatsEntry> getStatsDronesFrom(String time) throws DateTimeParseException {
         return statisticsGenerator.getDroneStatEntry(LocalDateTime.parse(time));
     }
 

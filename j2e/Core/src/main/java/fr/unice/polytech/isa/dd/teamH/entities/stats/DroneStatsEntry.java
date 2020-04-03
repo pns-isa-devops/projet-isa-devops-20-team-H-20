@@ -20,8 +20,8 @@ public class DroneStatsEntry implements Serializable {
         this.dronesUseRate = dronesUseRate;
     }
 
-    public LocalDateTime getEntryTime() {
-        return LocalDateTime.parse(entryTime);
+    public String getEntryTime() {
+        return entryTime;
     }
 
     public void setEntryTime(String entryTime) {
