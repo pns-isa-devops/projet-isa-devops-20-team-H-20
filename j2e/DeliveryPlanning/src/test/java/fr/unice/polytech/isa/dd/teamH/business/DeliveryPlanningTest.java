@@ -7,11 +7,11 @@ import fr.unice.polytech.isa.dd.teamH.entities.delivery.Delivery;
 import fr.unice.polytech.isa.dd.teamH.entities.delivery.DeliveryStateFactory;
 import fr.unice.polytech.isa.dd.teamH.entities.deliveryplanning.PlanningEntry;
 import fr.unice.polytech.isa.dd.teamH.entities.drone.Drone;
-import fr.unice.polytech.isa.dd.teamH.entities.drone.DroneStateFactory;
 import fr.unice.polytech.isa.dd.teamH.exceptions.AlreadyExistingDroneException;
 import fr.unice.polytech.isa.dd.teamH.exceptions.DeliveryDistanceException;
 import fr.unice.polytech.isa.dd.teamH.exceptions.UnknownDeliveryStateException;
 import fr.unice.polytech.isa.dd.teamH.interfaces.*;
+import fr.unice.polytech.isa.dd.teamH.utils.MapAPI;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.transaction.api.annotation.TransactionMode;
 import org.jboss.arquillian.transaction.api.annotation.Transactional;
@@ -25,7 +25,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.UserTransaction;
-
+import static org.mockito.Mockito.*;
 import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
@@ -37,8 +37,6 @@ public class DeliveryPlanningTest extends AbstractDeliveryPlanningTest {
     @EJB
     private DeliveryFinder finder;
     @EJB
-    private DeliveryPlanner planner;
-    @EJB
     private DroneFleetManagement droneFleetManagement;
 
     @PersistenceContext
@@ -46,19 +44,30 @@ public class DeliveryPlanningTest extends AbstractDeliveryPlanningTest {
     @Inject
     private UserTransaction utx;
 
+    @EJB private ControlledMap planner;
+
     Drone d;
     Drone d2;
     Package p;
     Package p2;
     Supplier s;
 
+    private void initMock() throws Exception {
+        // Mocking the external partner
+        MapAPI mocked = mock(MapAPI.class);
+        planner.useMapReference(mocked);
+        when(mocked.getDistanceTo(eq(p.getDestination()))).thenReturn(12.5f);
+        when(mocked.getDistanceTo(eq(p2.getDestination()))).thenReturn(13.8f);
+    }
+
     @Before
-    public void setUpContext() {
+    public void setUpContext() throws Exception {
         d = new Drone(1, 5);
         d2 = new Drone(2, 5);
         s = new Supplier("Amazon");
         p = new Package("1a", 2, "8 Avenue des lilas", s);
         p2 = new Package("2a", 3.5f, "158 Avenue des lilas", s);
+        initMock();
     }
 
     @After
@@ -88,6 +97,7 @@ public class DeliveryPlanningTest extends AbstractDeliveryPlanningTest {
             //1 because drone is already assigned but will be changed with algorihtme in second sprint
         }catch (DeliveryDistanceException e){
             System.out.println("You have not launched the external mapping system");
+            fail();
         }
     }
 
@@ -106,6 +116,7 @@ public class DeliveryPlanningTest extends AbstractDeliveryPlanningTest {
             }
         }catch (DeliveryDistanceException e){
             System.out.println("You have not launched the external mapping system");
+            fail();
         }
     }
 
@@ -123,6 +134,7 @@ public class DeliveryPlanningTest extends AbstractDeliveryPlanningTest {
             }
         }catch (DeliveryDistanceException e){
             System.out.println("You have not launched the external mapping system");
+            fail();
         }
     }
 
@@ -142,6 +154,7 @@ public class DeliveryPlanningTest extends AbstractDeliveryPlanningTest {
             }
         }catch (DeliveryDistanceException e){
             System.out.println("You have not launched the external mapping system");
+            fail();
         }
     }
 

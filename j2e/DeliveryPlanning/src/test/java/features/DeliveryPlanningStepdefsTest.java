@@ -11,7 +11,9 @@ import fr.unice.polytech.isa.dd.teamH.entities.Supplier;
 import fr.unice.polytech.isa.dd.teamH.entities.delivery.Delivery;
 import fr.unice.polytech.isa.dd.teamH.entities.drone.Drone;
 import fr.unice.polytech.isa.dd.teamH.exceptions.DeliveryDistanceException;
+import fr.unice.polytech.isa.dd.teamH.exceptions.ExternalPartnerException;
 import fr.unice.polytech.isa.dd.teamH.interfaces.*;
+import fr.unice.polytech.isa.dd.teamH.utils.MapAPI;
 import org.junit.After;
 import org.junit.runner.RunWith;
 
@@ -19,12 +21,15 @@ import javax.ejb.EJB;
 import java.util.Optional;
 
 import static org.junit.Assert.*;
+import static org.mockito.Matchers.eq;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 @RunWith(CukeSpace.class)
 @CucumberOptions(features = "src/test/resources/features")
 public class DeliveryPlanningStepdefsTest extends AbstractDeliveryPlanningTest {
     @EJB private DeliveryFinder deliveryFinder;
-    @EJB private DeliveryPlanner deliveryPlanner;
+    @EJB private ControlledMap deliveryPlanner;
 
     @EJB private PackageFinder packageFinder;
     @EJB private PackageRegistration packageRegistration;
@@ -38,10 +43,17 @@ public class DeliveryPlanningStepdefsTest extends AbstractDeliveryPlanningTest {
     private Optional<Delivery> deliveryFound;
     private Exception exception = null;
 
-    boolean extServiceLanched = true;
+    private void initMock() throws ExternalPartnerException {
+        // Mocking the external partner
+        MapAPI mocked = mock(MapAPI.class);
+        deliveryPlanner.useMapReference(mocked);
+        when(mocked.getDistanceTo(eq("Titan"))).thenReturn(13.8f);
+        when(mocked.getDistanceTo(eq("Wakanda"))).thenReturn(13.8f);
+    }
 
     @Given("^some delivery with date (.*) time ([\\d]{2}:[\\d]{2}) and with (.*) as package with (.*) as Supplier and (\\d+) as drone and a random package (.*)$")
     public void background(String date, String time, String pack, String supplier, int drone, String pack2) throws Exception{
+        initMock();
         deliveryPlanner.flush();
         packageRegistration.flush();
         supplierRegistration.flush();
@@ -66,8 +78,8 @@ public class DeliveryPlanningStepdefsTest extends AbstractDeliveryPlanningTest {
             deliveryPlanner.planDelivery(p.get(), date, time);
             assertEquals(1, deliveryFinder.findAllPlannedDeliveries().size());
         }catch(DeliveryDistanceException e){
-            extServiceLanched = false;
             System.out.println("You have not launched the external mapping system");
+            fail();
         }
     }
 
@@ -81,8 +93,8 @@ public class DeliveryPlanningStepdefsTest extends AbstractDeliveryPlanningTest {
                 fail();
             }
         }catch(DeliveryDistanceException e){
-            extServiceLanched = false;
             System.out.println("You have not launched the external mapping system");
+            fail();
         }
     }
 
@@ -93,8 +105,7 @@ public class DeliveryPlanningStepdefsTest extends AbstractDeliveryPlanningTest {
 
     @Then("^there is (\\d+) deliveries in the delivery list$")
     public void checkAddSupplier(int number){
-        if(extServiceLanched)
-            assertEquals(number, deliveryFinder.findAllPlannedDeliveries().stream().mapToInt(pe -> pe.getDeliveries().size()).sum());
+        assertEquals(number, deliveryFinder.findAllPlannedDeliveries().stream().mapToInt(pe -> pe.getDeliveries().size()).sum());
     }
 
     @After

@@ -61,14 +61,13 @@ To install Jenkins you need docker. Run the following commands :
 - If repository is private :
   - Return to the command prompt
   - `docker exec -it my-jenkins /bin/bash`
-  - `ssh-keygen` then enter then enter
+  - `ssh-keygen -t rsa -C "your_email@example.com"` then enter then enter then enter
   - `cat /var/jenkins_home/.ssh/id_rsa.pub`
   - copy the key
   - go to your github project > settings > deploy key > add your key
   - In the left menu in jenkins click on Identifiants > System > Identifiants globaux > Ajouter des identifiants
-  - Type choose ssh username
-  - Choose Global
-  - Put ssh key
+  - Choose ssh username
+  - Choose Global, set id and description, your github username and the key and passphrase
 - Create a new free-style job.
 - Choose your github repository under "Gestion de code source".
 - get to the github project code page and get the ssh connection
@@ -77,3 +76,48 @@ To install Jenkins you need docker. Run the following commands :
 - Then click save
 
 - Launch a build and voila !
+
+### Jenkins build when git push
+
+- You need to run Jekins on a server, for example IBM cloud
+- Get an IBM id and connect you
+- Get to [this page](https://cloud.ibm.com/kubernetes/clusters)
+- This can not be done because we can't add cluster with student account
+
+So wen can use ngrok to simulate a distant server on a team member machine
+- See [ngrok.com](https://ngrok.com/)
+- See the tutorial [here](https://k6.io/blog/bootstrap-your-ci-with-jenkins-and-github)
+- Cliquez sur votre projet > Configurer > Ce qui déclencle le build
+  - Cocher GitHub hook trigger for GITScm polling
+  - Save
+- Go to github project > Settings > Webhooks
+  - Add webhook
+  - Copy the server url (or ngrok url givent [there](https://dashboard.ngrok.com/status))
+  - Under Content-typse select application/json
+  - Add webhook
+
+Expose jenkins
+
+`./ngrok http 8080`
+
+### Link Artifactory Jenkins
+
+Expose artifactory
+
+`./ngrok http 8082`
+
+- Get to Jenkins > Configuration 
+- Under Artifactory click "Add Artifactory Server"
+- set the id and the url like `http://dockerIpBecauseLocalhostNotWorks:8082/artifactory`
+- set the credentials then test and if ok save
+- get to your project > configurer
+  - Artifactory configuration
+  - Artifactory Server select the one previously added
+  - Click on Refresh Repositories and select the good ones in target releases and snapshots
+  - Build -> remove the old maven
+  - Ajouter une étape au build -> Invoke Artifactory Maven 3
+  - Root POM : $workspace/j2e/pom.xml
+  - Goals and options: clean package
+  - And voila Artifactory is linked to jenkins
+
+
