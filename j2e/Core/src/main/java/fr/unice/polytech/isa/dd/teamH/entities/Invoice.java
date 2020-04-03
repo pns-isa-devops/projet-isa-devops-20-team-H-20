@@ -1,10 +1,14 @@
 package fr.unice.polytech.isa.dd.teamH.entities;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 
+@Entity
+@Table(name="invoices")
 public class Invoice implements Serializable {
 
     private int id;
@@ -24,34 +28,36 @@ public class Invoice implements Serializable {
         this.paymentDate = paymentDate.toString();
     }
 
-    public boolean isPaid() {
-        return paid;
-    }
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public int getId() {
         return id;
     }
-
     public void setId(int id) {
         this.id = id;
     }
 
+    @NotNull
     public void setPaid(boolean paid) {
         this.paid = paid;
     }
+    public boolean isPaid() {
+        return paid;
+    }
 
+    @NotNull
     public float getAmount() {
         return amount;
     }
-
     public void setAmount(float amount) {
         this.amount = amount;
     }
 
+    @NotNull
     public LocalDate getCreationDate() {
         return LocalDate.parse(creationDate);
     }
-
     public void setCreationDate(LocalDate creationDate) {
         this.creationDate = creationDate.toString();
     }
@@ -61,15 +67,15 @@ public class Invoice implements Serializable {
             return null;
         return LocalDate.parse(paymentDate);
     }
-
     public void setPaymentDate(LocalDate paymentDate) {
         this.paymentDate = paymentDate.toString();
     }
 
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @NotNull
     public Supplier getSupplier() {
         return supplier;
     }
-
     public void setSupplier(Supplier supplier) {
         this.supplier = supplier;
     }
