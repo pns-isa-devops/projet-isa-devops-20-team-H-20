@@ -20,7 +20,7 @@ public class GenerateStatsDrones extends Command<DronePublicAPI> {
 
     @Override
     public void execute() throws Exception {
-
+        shell.system.getStatisticsWebService().generateStatsDrones();
     }
 
     @Override

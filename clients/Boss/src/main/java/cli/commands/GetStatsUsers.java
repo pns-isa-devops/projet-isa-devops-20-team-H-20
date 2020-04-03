@@ -2,6 +2,7 @@ package cli.commands;
 
 import api.DronePublicAPI;
 import cli.framework.Command;
+import fr.unice.polytech.si._4a.isa.dd.team_h.stats.CustomerSatisfactionStatsEntry;
 
 import java.util.List;
 
@@ -13,12 +14,17 @@ public class GetStatsUsers extends Command<DronePublicAPI> {
     }
 
     @Override
-    public void load(List<String> args) {
-
+    public void execute() throws Exception {
+        List<CustomerSatisfactionStatsEntry> customerSatisfactionStatsEntries = shell.system.getStatisticsWebService().getStatsUsers();
+        for(CustomerSatisfactionStatsEntry customerSatisfactionStatsEntry : customerSatisfactionStatsEntries){
+            displayResult(customerSatisfactionStatsEntry);
+        }
     }
 
-    @Override
-    public void execute() throws Exception {
+    private void displayResult(CustomerSatisfactionStatsEntry customerSatisfactionStatsEntry){
+        System.out.println("Customer entry: ");
+        System.out.println("\tTime: "+customerSatisfactionStatsEntry.getEntryTime());
+        System.out.println("\tSatisfaction: "+customerSatisfactionStatsEntry.getCustomerSatisfactionRate());
 
     }
 
