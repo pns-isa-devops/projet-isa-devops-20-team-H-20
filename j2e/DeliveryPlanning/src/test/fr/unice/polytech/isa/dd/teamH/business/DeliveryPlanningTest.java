@@ -65,6 +65,8 @@ public class DeliveryPlanningTest extends AbstractDeliveryPlanningTest {
         utx.begin();
         Optional<Delivery> toDispose = finder.findDeliveryById(p.getTrackingNumber());
         toDispose.ifPresent(del -> { Delivery d = entityManager.merge(del); entityManager.remove(d); });
+        Optional<PlanningEntry> toDispose2 = finder.findPlanningEntryByTrackingId(p.getTrackingNumber());
+        toDispose2.ifPresent(del -> { PlanningEntry d = entityManager.merge(del); entityManager.remove(d); });
         utx.commit();
     }
 
@@ -146,5 +148,14 @@ public class DeliveryPlanningTest extends AbstractDeliveryPlanningTest {
         //int id = d.getId();
         //Delivery stored = entityManager.find(Delivery.class, id);
         //assertEquals(d, stored);
+    }
+
+    @Test
+    public void testPlanningEntryStorage() throws Exception {
+        PlanningEntry i = new PlanningEntry(d);
+        i.addDelivery(new Delivery("2020-05-20", "15:30", 1, 1, p));
+        entityManager.persist(i);
+        PlanningEntry stored = entityManager.find(PlanningEntry.class, d);
+        assertEquals("Didn't find the right invoice in the persistence DB",i, stored);
     }
 }
