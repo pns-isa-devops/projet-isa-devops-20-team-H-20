@@ -3,10 +3,15 @@ package fr.unice.polytech.isa.dd.teamH.entities.deliveryplanning;
 import fr.unice.polytech.isa.dd.teamH.entities.delivery.Delivery;
 import fr.unice.polytech.isa.dd.teamH.entities.drone.Drone;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.Duration;
 import java.util.*;
 
+@Entity
 public class PlanningEntry implements Serializable {
 
     private Drone drone;
@@ -20,14 +25,6 @@ public class PlanningEntry implements Serializable {
     public PlanningEntry(Drone drone){
         this.drone = drone;
         deliveries = new TreeSet<>(Comparator.comparing(Delivery::dateTimeToShip));
-    }
-
-    public Drone getDrone(){
-        return drone;
-    }
-
-    public Set<Delivery> getDeliveries(){
-        return new HashSet<>(deliveries);
     }
 
     public boolean addDelivery(Delivery d){
@@ -70,10 +67,19 @@ public class PlanningEntry implements Serializable {
                 '}';
     }
 
+    public Set<Delivery> getDeliveries(){
+        return new HashSet<>(deliveries);
+    }
     public void setDeliveries(Set<Delivery> deliveries) {
         this.deliveries = deliveries;
     }
 
+    @Id
+    @OneToOne
+    @NotNull
+    public Drone getDrone(){
+        return drone;
+    }
     public void setDrone(Drone drone) {
         this.drone = drone;
     }
