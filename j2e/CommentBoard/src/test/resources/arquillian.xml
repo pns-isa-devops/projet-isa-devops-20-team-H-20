@@ -12,7 +12,7 @@
             <property name="appWorkingDir">target/arquillian-test-working-dir</property>
             <property name="properties">
                 my-datasource = new://Resource?type=DataSource
-                my-datasource.JdbcUrl = jdbc:hsqldb:mem:TCFDB;shutdown=true
+                my-datasource.JdbcUrl = jdbc:hsqldb:mem:DDDB;shutdown=true
                 my-datasource.UserName = sa
                 my-datasource.Password =
                 my-datasource.JtaManaged = true
@@ -21,11 +21,8 @@
         </configuration>
     </container>
 
-    <!--<extension qualifier="cucumber">-->
-        <!--<property name="report">true</property>-->
-        <!--<property name="generateDocs">true</property>-->
-        <!--<property name="report-directory">target/cucumber-report</property>-->
-        <!--<property name="persistenceEventsActivated">true</property>-->
-    <!--</extension>-->
+    <extension qualifier="cucumber">
+        <property name="persistenceEventsActivated">true</property>
+    </extension>
 
 </arquillian>

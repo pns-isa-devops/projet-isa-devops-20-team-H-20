@@ -144,6 +144,7 @@ public class DeliveryPlanningTest extends AbstractDeliveryPlanningTest {
         d.setDistance(10);
         d.setDate("2020-05-20");
         d.setTime("15:30");
+        //TODO
         //entityManager.persist(d);
         //int id = d.getId();
         //Delivery stored = entityManager.find(Delivery.class, id);

@@ -13,6 +13,7 @@
         <class>fr.unice.polytech.isa.dd.teamH.entities.delivery.Delivery</class>
         <class>fr.unice.polytech.isa.dd.teamH.entities.Invoice</class>
         <class>fr.unice.polytech.isa.dd.teamH.entities.deliveryplanning.PlanningEntry</class>
+        <class>fr.unice.polytech.isa.dd.teamH.entities.Comment</class>
 
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <properties>

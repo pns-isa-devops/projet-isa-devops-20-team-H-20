@@ -11,7 +11,7 @@ import java.util.Objects;
 @Entity
 @Table(name="deliveries")
 public class Delivery implements Serializable {
-    int id;
+    private int id;
     /**
      * yyyy-mm-dd
      */
@@ -97,7 +97,7 @@ public class Delivery implements Serializable {
         this.time = time;
     }
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.ALL)
     @NotNull
     public Package getaPackage() {
         return aPackage;

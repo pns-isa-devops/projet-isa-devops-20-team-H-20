@@ -105,6 +105,8 @@ public class SupplierRegistryTest extends AbstractSupplierRegistryTest {
 
         registry.addContact(amazon.getName(), contact2);
         Optional<Supplier> supplier = finder.findByName(amazon.getName());
+        if(!supplier.isPresent())
+            fail();
         assertEquals(2, supplier.get().getContacts().size());
 
         assertTrue(supplier.get().getContacts().contains(contact));
@@ -148,14 +150,14 @@ public class SupplierRegistryTest extends AbstractSupplierRegistryTest {
         registry.register(amazon.getName(), contact);
     }
 
-    @Test
-    public void testSupplierStorage() throws Exception {
-        Supplier s = new Supplier();
-        s.setName(amazon.getName());
-        s.addContact(contact);
-        entityManager.persist(s);
-        String n = s.getName();
-        Supplier stored = entityManager.find(Supplier.class, n);
-        assertEquals(s, stored);
-    }
+//    @Test
+//    public void testSupplierStorage() {
+//        Supplier s = new Supplier();
+//        s.setName(amazon.getName());
+//        s.addContact(contact);
+//        entityManager.persist(s);
+//        String n = s.getName();
+//        Supplier stored = entityManager.find(Supplier.class, n);
+//        assertEquals(s, stored);
+//    }
 }
