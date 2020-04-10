@@ -29,7 +29,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
 @RunWith(Arquillian.class)
-@Transactional(TransactionMode.COMMIT)
+@Transactional(TransactionMode.ROLLBACK)
 public class CommentBoardBeanTest extends AbstractCommentBoardBeanTest {
     @PersistenceContext
     private EntityManager entityManager;
@@ -42,9 +42,9 @@ public class CommentBoardBeanTest extends AbstractCommentBoardBeanTest {
     @EJB
     CommentFinder finder;
 
-    Supplier supplier1 = new Supplier("supplier1");
-    Supplier supplier2 = new Supplier("supplier2");
-    Supplier supplier3 = new Supplier("supplier3");
+    Supplier supplier1;
+    Supplier supplier2;
+    Supplier supplier3;
     Package p1;
     Package p2;
     Package p3;
@@ -56,6 +56,9 @@ public class CommentBoardBeanTest extends AbstractCommentBoardBeanTest {
 
     @Before
     public void setUp() {
+        supplier1 = new Supplier("supplier1");
+        supplier2 = new Supplier("supplier2");
+        supplier3 = new Supplier("supplier3");
         p1 = new Package("1",0,"",supplier1);
         p2 = new Package("2",0,"",supplier1);
         p3 = new Package("3",0,"",supplier3);
@@ -67,6 +70,17 @@ public class CommentBoardBeanTest extends AbstractCommentBoardBeanTest {
         poster.postComment(d1, 5, "a");
         poster.postComment(d2, 5, "b");
         poster.postComment(d3, 5, "c");
+        entityManager.persist(supplier1);
+        entityManager.persist(supplier2);
+        entityManager.persist(supplier3);
+        entityManager.persist(p1);
+        entityManager.persist(p2);
+        entityManager.persist(p3);
+        entityManager.persist(p4);
+        entityManager.persist(d1);
+        entityManager.persist(d2);
+        entityManager.persist(d3);
+        entityManager.persist(d4);
     }
 
     @Test
@@ -121,14 +135,6 @@ public class CommentBoardBeanTest extends AbstractCommentBoardBeanTest {
             fail("Could not find the previously posted comment");
         }
         assertEquals("Comments aren't equal", c, optC.get());
-    }
-
-    @After
-    public void cleaningUp() throws Exception{
-        utx.begin();
-            Optional<Comment> toDispose = finder.findCommentForPackage(d4.getaPackage().getTrackingNumber());
-            toDispose.ifPresent(del -> { Comment c = entityManager.merge(del); entityManager.remove(c); });
-        utx.commit();
     }
 
     @Test
