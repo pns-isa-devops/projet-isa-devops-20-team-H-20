@@ -62,12 +62,6 @@ public class Delivery implements Serializable {
         this.state = new NotSentDeliveryState();
     }
 
-    public DeliveryState getState() {return this.state;}
-
-    public void setState(DeliveryState state) {
-        this.state = state;
-    }
-
     public LocalDateTime dateTimeToShip() {
         return LocalDateTime.parse(date+"T"+time+":00");
     }
@@ -120,6 +114,13 @@ public class Delivery implements Serializable {
     }
     public void setDistance(float distance) {
         this.distance = distance;
+    }
+
+    @NotNull
+    @ManyToOne(cascade = {CascadeType.MERGE})
+    public DeliveryState getState() {return this.state;}
+    public void setState(DeliveryState state) {
+        this.state = state;
     }
 
     public boolean isCompleted(){

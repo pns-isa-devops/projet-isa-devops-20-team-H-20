@@ -16,6 +16,11 @@
         <class>fr.unice.polytech.isa.dd.teamH.entities.drone.InMaintenanceDroneState</class>
         <class>fr.unice.polytech.isa.dd.teamH.entities.drone.ReadyDroneState</class>
         <class>fr.unice.polytech.isa.dd.teamH.entities.delivery.Delivery</class>
+        <class>fr.unice.polytech.isa.dd.teamH.entities.delivery.DeliveryState</class>
+        <class>fr.unice.polytech.isa.dd.teamH.entities.delivery.NotSentDeliveryState</class>
+        <class>fr.unice.polytech.isa.dd.teamH.entities.delivery.InFlightDeliveryState</class>
+        <class>fr.unice.polytech.isa.dd.teamH.entities.delivery.FailedDeliveryState</class>
+        <class>fr.unice.polytech.isa.dd.teamH.entities.delivery.CompletedDeliveryState</class>
         <class>fr.unice.polytech.isa.dd.teamH.entities.Invoice</class>
         <class>fr.unice.polytech.isa.dd.teamH.entities.deliveryplanning.PlanningEntry</class>
         <class>fr.unice.polytech.isa.dd.teamH.entities.Comment</class>

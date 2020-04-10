@@ -1,7 +1,11 @@
 package fr.unice.polytech.isa.dd.teamH.entities.delivery;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 import java.util.Objects;
 
+@Entity
+@DiscriminatorValue("NS")
 public class NotSentDeliveryState extends DeliveryState {
 
     public NotSentDeliveryState(){
@@ -25,27 +29,7 @@ public class NotSentDeliveryState extends DeliveryState {
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(name);
-    }
-
-    @Override
-    boolean is(String name) {
-        return name.equals(this.name);
-    }
-
-    @Override
     public DeliveryState clone() {
         return new NotSentDeliveryState();
-    }
-
-    @Override
-    public String getName() {
-        return super.getName();
-    }
-
-    @Override
-    public void setName(String name) {
-        super.setName(name);
     }
 }
