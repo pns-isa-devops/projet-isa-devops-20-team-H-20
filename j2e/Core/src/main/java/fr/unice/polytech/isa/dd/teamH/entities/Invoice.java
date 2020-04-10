@@ -71,7 +71,7 @@ public class Invoice implements Serializable {
         this.paymentDate = paymentDate.toString();
     }
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @NotNull
     public Supplier getSupplier() {
         return supplier;

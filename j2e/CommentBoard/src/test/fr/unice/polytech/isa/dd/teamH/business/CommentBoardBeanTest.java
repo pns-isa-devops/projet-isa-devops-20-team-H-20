@@ -11,16 +11,13 @@ import fr.unice.polytech.isa.dd.teamH.interfaces.CommentPoster;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.transaction.api.annotation.TransactionMode;
 import org.jboss.arquillian.transaction.api.annotation.Transactional;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import javax.ejb.EJB;
-import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.transaction.UserTransaction;
 import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.Set;
@@ -33,43 +30,35 @@ import static org.junit.Assert.fail;
 public class CommentBoardBeanTest extends AbstractCommentBoardBeanTest {
     @PersistenceContext
     private EntityManager entityManager;
-    @Inject
-    private UserTransaction utx;
 
     @EJB
-    CommentPoster poster;
+    private CommentPoster poster;
 
     @EJB
-    CommentFinder finder;
+    private CommentFinder finder;
 
-    Supplier supplier1;
-    Supplier supplier2;
-    Supplier supplier3;
-    Package p1;
-    Package p2;
-    Package p3;
-    Package p4;
-    Delivery d1;
-    Delivery d2;
-    Delivery d3;
-    Delivery d4;
+    private Supplier supplier1;
+    private Supplier supplier3;
+    private Package p1;
+    private Package p2;
+    private Package p3;
+    private Package p4;
+    private Delivery d3;
+    private Delivery d4;
 
     @Before
     public void setUp() {
         supplier1 = new Supplier("supplier1");
-        supplier2 = new Supplier("supplier2");
+        Supplier supplier2 = new Supplier("supplier2");
         supplier3 = new Supplier("supplier3");
         p1 = new Package("1",0,"",supplier1);
         p2 = new Package("2",0,"",supplier1);
         p3 = new Package("3",0,"",supplier3);
-        p4 = new Package("3",0,"",supplier3);
-        d1 = new Delivery(LocalDateTime.now(),0,0,p1);
-        d2 = new Delivery(LocalDateTime.now(),0,0,p2);
+        p4 = new Package("4", 0, "", supplier3);
+        Delivery d1 = new Delivery(LocalDateTime.now(), 0, 0, p1);
+        Delivery d2 = new Delivery(LocalDateTime.now(), 0, 0, p2);
         d3 = new Delivery(LocalDateTime.now(),0,0,p3);
-        d4 = new Delivery(LocalDateTime.now(),0,0,p4);
-        poster.postComment(d1, 5, "a");
-        poster.postComment(d2, 5, "b");
-        poster.postComment(d3, 5, "c");
+        d4 = new Delivery(LocalDateTime.now(),0,0, p4);
         entityManager.persist(supplier1);
         entityManager.persist(supplier2);
         entityManager.persist(supplier3);
@@ -81,6 +70,9 @@ public class CommentBoardBeanTest extends AbstractCommentBoardBeanTest {
         entityManager.persist(d2);
         entityManager.persist(d3);
         entityManager.persist(d4);
+        poster.postComment(d1, 5, "a");
+        poster.postComment(d2, 5, "b");
+        poster.postComment(d3, 5, "c");
     }
 
     @Test
@@ -107,6 +99,7 @@ public class CommentBoardBeanTest extends AbstractCommentBoardBeanTest {
         comment = finder.findCommentForPackage(p3.getTrackingNumber());
         if(!comment.isPresent())
             fail();
+        assertEquals(3, finder.findAllComments().size());
     }
 
     @Test
@@ -125,16 +118,13 @@ public class CommentBoardBeanTest extends AbstractCommentBoardBeanTest {
 
     @Test
     public void postCommentTest() {
-        Package p4 = new Package("4",0,"",supplier2);
-        Delivery d4 = new Delivery(LocalDateTime.now(),0,0,p4);
-        Comment c = new Comment(d4, 5, "d");
         poster.postComment(d4, 5, "d");
 
         Optional<Comment> optC = finder.findCommentForPackage(p4.getTrackingNumber());
         if(!optC.isPresent()) {
             fail("Could not find the previously posted comment");
         }
-        assertEquals("Comments aren't equal", c, optC.get());
+        assertEquals("Comments aren't equal", d4, optC.get().getDelivery());
     }
 
     @Test

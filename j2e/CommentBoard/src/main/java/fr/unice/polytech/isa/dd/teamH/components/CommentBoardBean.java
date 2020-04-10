@@ -8,9 +8,17 @@ import fr.unice.polytech.isa.dd.teamH.interfaces.CommentFinder;
 import fr.unice.polytech.isa.dd.teamH.interfaces.CommentPoster;
 
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
@@ -18,17 +26,42 @@ import java.util.stream.Collectors;
 public class CommentBoardBean implements CommentFinder, CommentPoster {
     private static final Logger log = Logger.getLogger(CommentBoardBean.class.getName());
 
-    private Set<Comment> comments = new HashSet<>();
+    @PersistenceContext
+    private EntityManager manager;
 
     @Override
     public Optional<Comment> findCommentForPackage(String packageId) {
-        return comments.stream().filter(c -> c.getDelivery().getaPackage().getTrackingNumber().equals(packageId)).findFirst();
+        CriteriaBuilder builder = manager.getCriteriaBuilder();
+        CriteriaQuery<Comment> criteria = builder.createQuery(Comment.class);
+        Root<Comment> root =  criteria.from(Comment.class);
+        criteria.select(root).where(builder.equal(root.get("delivery").get("aPackage").get("trackingNumber"), packageId));
+
+        TypedQuery<Comment> query = manager.createQuery(criteria);
+
+        try {
+            Optional<Comment> res = Optional.of(query.getSingleResult());
+            log.log(Level.INFO, "Comment fetched : " + res.get().toString());
+            return res;
+        } catch (NoResultException nre){
+            return Optional.empty();
+        }
     }
 
     @Override
-    public Set<Comment> findAllComments()
-    {
-        return new HashSet<>(comments);
+    public Set<Comment> findAllComments() {
+        CriteriaBuilder builder = manager.getCriteriaBuilder();
+
+        CriteriaQuery<Comment> criteria = builder.createQuery(Comment.class);
+        Root<Comment> root =  criteria.from(Comment.class);
+
+        criteria.select(root);
+        TypedQuery<Comment> query = manager.createQuery(criteria);
+
+        try {
+            return new HashSet<>(query.getResultList());
+        } catch (NoResultException nre){
+            return new HashSet<>();
+        }
     }
 
     @Override
@@ -39,13 +72,18 @@ public class CommentBoardBean implements CommentFinder, CommentPoster {
     @Override
     public void postComment(Delivery d, int rating, String comment) {
         Optional<Comment> c = findCommentForPackage(d.getaPackage().getTrackingNumber());
-
         // This is in order to properly update the comment if it already exists.
         // Relying on the hash / equals method might be dangerous since we create a new Comment object
-        c.ifPresent(value -> comments.remove(value));
-
+        c.ifPresent(value -> {
+            try {
+                deleteComment(d);
+            }catch (UnknownCommentException e){
+                e.printStackTrace();
+            }
+        });
         Comment newComment = new Comment(d, rating, comment);
-        comments.add(newComment);
+        manager.merge(newComment);
+        log.log(Level.INFO, "Comment added : " + newComment.toString());
     }
 
     @Override
@@ -54,11 +92,8 @@ public class CommentBoardBean implements CommentFinder, CommentPoster {
         if(!toDelete.isPresent()) {
             throw new UnknownCommentException(d.getaPackage().getTrackingNumber());
         }
-        comments.remove(toDelete.get());
-    }
-
-    @Override
-    public void flush(){
-        comments.clear();
+        Comment deleted = manager.merge(toDelete.get());
+        manager.remove(deleted);
+        log.log(Level.INFO, "Comment deleted : " + deleted.toString());
     }
 }

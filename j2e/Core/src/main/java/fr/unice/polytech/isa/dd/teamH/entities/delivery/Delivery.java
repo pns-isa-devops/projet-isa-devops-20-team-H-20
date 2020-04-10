@@ -91,7 +91,7 @@ public class Delivery implements Serializable {
         this.time = time;
     }
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @NotNull
     public Package getaPackage() {
         return aPackage;
