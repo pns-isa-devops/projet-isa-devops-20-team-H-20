@@ -25,7 +25,7 @@ import java.util.Optional;
 import static org.junit.Assert.*;
 
 @RunWith(Arquillian.class)
-@Transactional(TransactionMode.COMMIT)
+@Transactional(TransactionMode.ROLLBACK)
 public class PackageRegistryTest extends AbstractPackageRegistryTest {
 
     @EJB
@@ -51,16 +51,21 @@ public class PackageRegistryTest extends AbstractPackageRegistryTest {
         p = new Package("1a", 5, "8 Avenue des lilas", amazon);
         p2 = new Package("1b", 5, "8 Avenue des lilas", amazon);
         p3 = new Package("3e", 5, "8 Avenue des lilas", ldlc);
+        entityManager.persist(amazon);
+        entityManager.persist(ldlc);
+        entityManager.persist(p);
+        entityManager.persist(p2);
+        entityManager.persist(p3);
     }
 
     @After
     public void cleaningUp() throws Exception {
         registry.flush();
 
-        utx.begin();
-        Optional<Package> toDispose = finder.findPackageByTrackingNumber(p.getTrackingNumber());
-        toDispose.ifPresent(pac -> { Package p1 = entityManager.merge(pac); entityManager.remove(p1); });
-        utx.commit();
+//        utx.begin();
+//        Optional<Package> toDispose = finder.findPackageByTrackingNumber(p.getTrackingNumber());
+//        toDispose.ifPresent(pac -> { Package p1 = entityManager.merge(pac); entityManager.remove(p1); });
+//        utx.commit();
     }
 
     @Test

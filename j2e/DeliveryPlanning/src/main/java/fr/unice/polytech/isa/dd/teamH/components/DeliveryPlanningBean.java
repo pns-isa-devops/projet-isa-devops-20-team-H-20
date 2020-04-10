@@ -7,6 +7,7 @@ import fr.unice.polytech.isa.dd.teamH.entities.delivery.DeliveryStateFactory;
 import fr.unice.polytech.isa.dd.teamH.entities.deliveryplanning.PlanningEntry;
 import fr.unice.polytech.isa.dd.teamH.entities.drone.Drone;
 import fr.unice.polytech.isa.dd.teamH.entities.Package;
+import fr.unice.polytech.isa.dd.teamH.entities.drone.DroneState;
 import fr.unice.polytech.isa.dd.teamH.entities.drone.DroneStateFactory;
 import fr.unice.polytech.isa.dd.teamH.exceptions.*;
 import fr.unice.polytech.isa.dd.teamH.interfaces.AvailableDroneFinder;
@@ -17,6 +18,8 @@ import fr.unice.polytech.isa.dd.teamH.utils.MapAPI;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.*;
@@ -28,6 +31,9 @@ import java.util.stream.Collectors;
 public class DeliveryPlanningBean implements DeliveryFinder, DeliveryPlanner {
     private static final Logger log = Logger.getLogger(Logger.class.getName());
     private Set<PlanningEntry> planningEntries = new HashSet<>();
+
+    @PersistenceContext
+    EntityManager entityManager;
 
     @EJB
     private AvailableDroneFinder availabilityProcessor;
@@ -102,8 +108,12 @@ public class DeliveryPlanningBean implements DeliveryFinder, DeliveryPlanner {
     @Override
     public boolean startDelivery(Drone drone, Delivery delivery){
         try {
-            drone.setState(DroneStateFactory.getInstance().createState("flight"));
-            delivery.setState(DeliveryStateFactory.getInstance().createState("in-flight"));
+            DroneState state = DroneStateFactory.getInstance().createState("flight");
+            entityManager.persist(state);
+            drone.setState(state);
+            DeliveryState deliveryState = DeliveryStateFactory.getInstance().createState("in-flight");
+            entityManager.persist(deliveryState);
+            delivery.setState(deliveryState);
         } catch (UnknownDroneStateException | UnknownDeliveryStateException e) {
             e.printStackTrace();
             return false;

@@ -4,7 +4,6 @@ import fr.unice.polytech.isa.dd.teamH.entities.delivery.Delivery;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Null;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -27,7 +26,7 @@ public class Comment implements Serializable {
     }
 
     //for OneToTone set ALL
-    @OneToOne(cascade = {CascadeType.ALL})
+    @OneToOne(cascade = {CascadeType.PERSIST})
     @NotNull
     public Delivery getDelivery() {
         return delivery;
