@@ -26,11 +26,6 @@ public class ReadyDroneState extends DroneState {
     }
 
     @Override
-    boolean is(String name) {
-        return name.equals(this.name);
-    }
-
-    @Override
     public ReadyDroneState clone() {
         return new ReadyDroneState();
     }

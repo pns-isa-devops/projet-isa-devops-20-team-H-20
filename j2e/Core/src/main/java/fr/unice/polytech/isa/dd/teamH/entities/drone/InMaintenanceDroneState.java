@@ -21,11 +21,6 @@ public class InMaintenanceDroneState extends DroneState {
     }
 
     @Override
-    boolean is(String name) {
-        return name.equals(this.name);
-    }
-
-    @Override
     public InMaintenanceDroneState clone() {
         return new InMaintenanceDroneState();
     }
