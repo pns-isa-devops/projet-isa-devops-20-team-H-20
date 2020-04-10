@@ -8,32 +8,36 @@ import fr.unice.polytech.isa.dd.teamH.interfaces.PackageFinder;
 import fr.unice.polytech.isa.dd.teamH.interfaces.PackageRegistration;
 
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
 @Stateless
 public class PackageRegistryBean implements PackageRegistration, PackageFinder {
     private static final Logger log = Logger.getLogger(PackageRegistryBean.class.getName());
-    private Set<Package> packages = new HashSet<>();
+
+    @PersistenceContext
+    private EntityManager manager;
 
     @Override
     public boolean register(String trackingNumber, Supplier supplier, float weight, String destinationAddress) throws AlreadyExistingPackageException {
         if(findPackageByTrackingNumber(trackingNumber).isPresent())
             throw new AlreadyExistingPackageException(trackingNumber);
-
         Package aPackage = new Package();
         aPackage.setDestination(destinationAddress);
         aPackage.setSupplier(supplier);
         aPackage.setWeight(weight);
         aPackage.setTrackingNumber(trackingNumber);
-        boolean result = packages.add(aPackage);
-        if(result)
-            log.log(Level.INFO, "Package added : " + aPackage.toString());
-        else
-            log.log(Level.INFO, "Package not added : " + aPackage.toString());
-        return result;
+        manager.merge(aPackage);
+        log.log(Level.INFO, "Package added : " + aPackage.toString());
+        return true;
     }
 
     @Override
@@ -41,7 +45,7 @@ public class PackageRegistryBean implements PackageRegistration, PackageFinder {
         Optional<Package> op = findPackageByTrackingNumber(trackingNumber);
         if(!op.isPresent())
             throw new UnknownPackageException(trackingNumber);
-        Package aPackage = op.get();
+        Package aPackage = manager.merge(op.get());
         aPackage.setSupplier(s);
         aPackage.setWeight(weight);
         aPackage.setDestination(destinationAddress);
@@ -51,35 +55,63 @@ public class PackageRegistryBean implements PackageRegistration, PackageFinder {
 
     @Override
     public boolean delete(String trackingNumber) throws UnknownPackageException{
-        if(!findPackageByTrackingNumber(trackingNumber).isPresent())
+        Optional<Package> toDelete = findPackageByTrackingNumber(trackingNumber);
+        if(!toDelete.isPresent()) {
             throw new UnknownPackageException(trackingNumber);
-        boolean result = packages.removeIf(e -> e.getTrackingNumber().equals(trackingNumber));
-        if(result)
-            log.log(Level.INFO, "Package deleted : " + trackingNumber);
-        else
-            log.log(Level.INFO, "Package not deleted : " + trackingNumber);
-        return result;
-    }
+        }
 
-    @Override
-    public void flush() {
-        packages = new HashSet<>();
+        Package deleted = manager.merge(toDelete.get());
+        manager.remove(deleted);
+        log.log(Level.INFO, "Package deleted : " + trackingNumber);
+        return true;
     }
 
     @Override
     public Optional<Package> findPackageByTrackingNumber(String trackingId) {
-        return packages.stream().filter(e -> e.getTrackingNumber().equals(trackingId)).findFirst();
+        CriteriaBuilder builder = manager.getCriteriaBuilder();
+        CriteriaQuery<Package> criteria = builder.createQuery(Package.class);
+        Root<Package> root =  criteria.from(Package.class);
+        criteria.select(root).where(builder.equal(root.get("trackingNumber"), trackingId));
+
+        TypedQuery<Package> query = manager.createQuery(criteria);
+
+        try {
+            Optional<Package> res = Optional.of(query.getSingleResult());
+            log.log(Level.INFO, "Comment fetched : " + res.get().toString());
+            return res;
+        } catch (NoResultException nre){
+            return Optional.empty();
+        }
     }
 
     @Override
     public Set<Package> findPackagesBySupplier(Supplier s) {
-        Set<Package> allPackages = this.findAllPackages();
-        return allPackages.stream().filter(p -> p.getSupplier().getName().equals(s.getName())).collect(Collectors.toSet());
+        CriteriaBuilder builder = manager.getCriteriaBuilder();
+        CriteriaQuery<Package> criteria = builder.createQuery(Package.class);
+        Root<Package> root =  criteria.from(Package.class);
+        criteria.select(root).where(builder.equal(root.get("supplier").get("name"), s.getName()));
+        TypedQuery<Package> query = manager.createQuery(criteria);
+        try {
+            return new HashSet<>(query.getResultList());
+        } catch (NoResultException nre){
+            return new HashSet<>();
+        }
     }
 
     @Override
     public Set<Package> findAllPackages() {
-        System.out.println("Getting packages list : " + packages.toString());
-        return new HashSet<>(packages);
+        CriteriaBuilder builder = manager.getCriteriaBuilder();
+
+        CriteriaQuery<Package> criteria = builder.createQuery(Package.class);
+        Root<Package> root =  criteria.from(Package.class);
+
+        criteria.select(root);
+        TypedQuery<Package> query = manager.createQuery(criteria);
+
+        try {
+            return new HashSet<>(query.getResultList());
+        } catch (NoResultException nre){
+            return new HashSet<>();
+        }
     }
 }
