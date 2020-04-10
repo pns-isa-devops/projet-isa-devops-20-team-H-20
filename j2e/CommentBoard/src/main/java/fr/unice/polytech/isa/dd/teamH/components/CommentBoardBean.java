@@ -15,16 +15,13 @@ import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 @Stateless
-public class CommentBoardBean implements CommentFinder, CommentPoster
-{
-
+public class CommentBoardBean implements CommentFinder, CommentPoster {
     private static final Logger log = Logger.getLogger(CommentBoardBean.class.getName());
 
     private Set<Comment> comments = new HashSet<>();
 
     @Override
-    public Optional<Comment> findCommentForPackage(String packageId)
-    {
+    public Optional<Comment> findCommentForPackage(String packageId) {
         return comments.stream().filter(c -> c.getDelivery().getaPackage().getTrackingNumber().equals(packageId)).findFirst();
     }
 
@@ -35,29 +32,19 @@ public class CommentBoardBean implements CommentFinder, CommentPoster
     }
 
     @Override
-    public Set<Comment> findCommentsForSupplier(Supplier s)
-    {
+    public Set<Comment> findCommentsForSupplier(Supplier s) {
         return findAllComments().stream().filter(c -> c.getDelivery().getaPackage().getSupplier().equals(s)).collect(Collectors.toSet());
     }
 
     @Override
-    public void postComment(Delivery d, int rating, String comment)
-    {
-        /*
-        Comment c = new Comment();
-        c.setRating(rating);
-        c.setContent(comment);
-        */
+    public void postComment(Delivery d, int rating, String comment) {
         Optional<Comment> c = findCommentForPackage(d.getaPackage().getTrackingNumber());
 
         // This is in order to properly update the comment if it already exists.
         // Relying on the hash / equals method might be dangerous since we create a new Comment object
-        if(c.isPresent()) {
-            comments.remove(c.get());
-        }
+        c.ifPresent(value -> comments.remove(value));
 
         Comment newComment = new Comment(d, rating, comment);
-
         comments.add(newComment);
     }
 
@@ -68,5 +55,10 @@ public class CommentBoardBean implements CommentFinder, CommentPoster
             throw new UnknownCommentException(d.getaPackage().getTrackingNumber());
         }
         comments.remove(toDelete.get());
+    }
+
+    @Override
+    public void flush(){
+        comments.clear();
     }
 }
