@@ -1,10 +1,14 @@
 package fr.unice.polytech.isa.dd.teamH.entities.drone;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 import java.util.Objects;
 
+@Entity
+@DiscriminatorValue("IF")
 public class InFlightDroneState extends DroneState {
 
-    InFlightDroneState() {
+    public InFlightDroneState() {
         name = "flight";
     }
 
@@ -24,26 +28,5 @@ public class InFlightDroneState extends DroneState {
     @Override
     public InFlightDroneState clone() {
         return new InFlightDroneState();
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        return o != null && getClass() == o.getClass();
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name);
-    }
-
-    @Override
-    public String getName() {
-        return super.getName();
-    }
-
-    @Override
-    public void setName(String name) {
-        super.setName(name);
     }
 }

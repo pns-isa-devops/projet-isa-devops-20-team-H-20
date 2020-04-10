@@ -7,6 +7,8 @@ import fr.unice.polytech.isa.dd.teamH.interfaces.DroneFinder;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.Set;
@@ -16,6 +18,9 @@ import java.util.logging.Logger;
 public class AvailabilityProcessorBean implements AvailableDroneFinder {
 
     private static final Logger log = Logger.getLogger(Logger.class.getName());
+
+    @PersistenceContext
+    private EntityManager manager;
 
     @EJB
     private DroneFinder droneFinder;

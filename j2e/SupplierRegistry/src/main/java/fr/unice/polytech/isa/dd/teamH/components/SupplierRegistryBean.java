@@ -59,7 +59,6 @@ public class SupplierRegistryBean implements SupplierFinder, SupplierRegistratio
         s.addContact(contact);
         manager.persist(s);
         log.log(Level.INFO, "Supplier added : " + s.toString());
-        log.log(Level.WARNING, "Supplier not added : " + s.toString());
         return true;
     }
 
@@ -71,7 +70,6 @@ public class SupplierRegistryBean implements SupplierFinder, SupplierRegistratio
         Supplier sup = manager.merge(s);
         manager.remove(sup);
         log.log(Level.INFO, "Supplier removed : " + name);
-        log.log(Level.WARNING, "Supplier not removed : " + name);;
         return true;
     }
 

@@ -127,7 +127,7 @@ public class DeliveryPlanningBean implements DeliveryFinder, DeliveryPlanner {
             throw new DeliveryDistanceException(p.getTrackingNumber(), p.getDestination(), e);
         }
 
-        de.setFlightTime(de.getDistance() / od.get().getSpeed());
+        de.setFlightTime(de.getDistance() / Drone.DRONE_SPEED);
         de.setaPackage(p);
         de.setDate(date);
         de.setTime(time);

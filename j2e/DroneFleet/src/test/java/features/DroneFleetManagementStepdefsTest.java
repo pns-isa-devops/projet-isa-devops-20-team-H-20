@@ -45,7 +45,6 @@ public class DroneFleetManagementStepdefsTest extends AbstractDroneFleetTest {
     //float ([0-9]*[.][0-9]+)
     @Given("^some drones with ids (\\d+) (\\d+) (\\d+)$")
     public void background(int id1, int id2, int id3) throws Exception{
-        management.flush();
         this.id1 = id1;
         this.id2 = id2;
         this.id3 = id3;
@@ -150,7 +149,6 @@ public class DroneFleetManagementStepdefsTest extends AbstractDroneFleetTest {
 
     @After
     public void cleaningUp() throws Exception{
-        management.flush();
         utx.begin();
         Optional<Drone> toDispose = finder.findDroneById(id1);
         toDispose.ifPresent(d -> { Drone c = entityManager.merge(d); entityManager.remove(c); });

@@ -9,6 +9,7 @@ import fr.unice.polytech.isa.dd.teamH.entities.stats.CustomerSatisfactionStatsEn
 import fr.unice.polytech.isa.dd.teamH.interfaces.AvailableDroneFinder;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.asset.ClassLoaderAsset;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 
@@ -28,6 +29,7 @@ public abstract class AbstractAvailabilityProcessorTest {
                 // Components Interfaces
                 .addPackage(AvailableDroneFinder.class.getPackage())
                 // Components
-                .addPackage(AvailabilityProcessorBean.class.getPackage());
+                .addPackage(AvailabilityProcessorBean.class.getPackage())
+                .addAsManifestResource(new ClassLoaderAsset("META-INF/persistence.xml"), "persistence.xml");
     }
 }

@@ -11,5 +11,4 @@ public interface DroneFleetManagement {
     boolean addDrone(int id, float weightCapacity) throws AlreadyExistingDroneException;
     boolean editDroneStatus(int id, String newStatus) throws UnknownDroneException, UnknownDroneStateException;
     boolean deleteDrone(int id) throws UnknownDroneException;
-    void flush();
 }
