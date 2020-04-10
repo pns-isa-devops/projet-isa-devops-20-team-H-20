@@ -150,14 +150,14 @@ public class SupplierRegistryTest extends AbstractSupplierRegistryTest {
         registry.register(amazon.getName(), contact);
     }
 
-//    @Test
-//    public void testSupplierStorage() {
-//        Supplier s = new Supplier();
-//        s.setName(amazon.getName());
-//        s.addContact(contact);
-//        entityManager.persist(s);
-//        String n = s.getName();
-//        Supplier stored = entityManager.find(Supplier.class, n);
-//        assertEquals(s, stored);
-//    }
+    @Test
+    public void testSupplierStorage() {
+        Supplier s = new Supplier();
+        s.setName(amazon.getName());
+        s.addContact(contact);
+        entityManager.persist(s);
+        String n = s.getName();
+        Supplier stored = entityManager.find(Supplier.class, n);
+        assertEquals(s, stored);
+    }
 }
