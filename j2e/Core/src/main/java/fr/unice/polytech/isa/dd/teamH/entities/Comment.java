@@ -26,7 +26,7 @@ public class Comment implements Serializable {
     }
 
     //for OneToTone set ALL
-    @OneToOne(cascade = {CascadeType.PERSIST})
+    @OneToOne(cascade = {CascadeType.MERGE})
     @NotNull
     public Delivery getDelivery() {
         return delivery;

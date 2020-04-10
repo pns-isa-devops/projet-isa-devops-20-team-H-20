@@ -40,7 +40,7 @@ public class Package implements Serializable {
         return destination;
     }
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @NotNull
     public Supplier getSupplier() {
         return supplier;
