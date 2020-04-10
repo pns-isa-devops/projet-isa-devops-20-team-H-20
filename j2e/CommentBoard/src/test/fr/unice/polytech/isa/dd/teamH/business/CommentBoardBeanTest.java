@@ -1,17 +1,26 @@
 package fr.unice.polytech.isa.dd.teamH.business;
 
 import arquillian.AbstractCommentBoardBeanTest;
-import fr.unice.polytech.isa.dd.teamH.components.CommentBoardBean;
 import fr.unice.polytech.isa.dd.teamH.entities.Comment;
 import fr.unice.polytech.isa.dd.teamH.entities.Package;
 import fr.unice.polytech.isa.dd.teamH.entities.Supplier;
 import fr.unice.polytech.isa.dd.teamH.entities.delivery.Delivery;
 import fr.unice.polytech.isa.dd.teamH.exceptions.UnknownCommentException;
+import fr.unice.polytech.isa.dd.teamH.interfaces.CommentFinder;
+import fr.unice.polytech.isa.dd.teamH.interfaces.CommentPoster;
 import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.arquillian.transaction.api.annotation.TransactionMode;
+import org.jboss.arquillian.transaction.api.annotation.Transactional;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import javax.ejb.EJB;
+import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.UserTransaction;
 import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.Set;
@@ -20,35 +29,49 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
 @RunWith(Arquillian.class)
+@Transactional(TransactionMode.COMMIT)
 public class CommentBoardBeanTest extends AbstractCommentBoardBeanTest {
+    @PersistenceContext
+    private EntityManager entityManager;
+    @Inject
+    private UserTransaction utx;
 
-    CommentBoardBean cbb;
+    @EJB
+    CommentPoster poster;
+
+    @EJB
+    CommentFinder finder;
+
     Supplier supplier1 = new Supplier("supplier1");
     Supplier supplier2 = new Supplier("supplier2");
+    Supplier supplier3 = new Supplier("supplier3");
     Package p1;
     Package p2;
     Package p3;
+    Package p4;
     Delivery d1;
     Delivery d2;
     Delivery d3;
+    Delivery d4;
 
     @Before
-    public void setUp() throws Exception {
-        cbb = new CommentBoardBean();
+    public void setUp() {
         p1 = new Package("1",0,"",supplier1);
         p2 = new Package("2",0,"",supplier1);
-        p3 = new Package("3",0,"",supplier2);
+        p3 = new Package("3",0,"",supplier3);
+        p4 = new Package("3",0,"",supplier3);
         d1 = new Delivery(LocalDateTime.now(),0,0,p1);
         d2 = new Delivery(LocalDateTime.now(),0,0,p2);
         d3 = new Delivery(LocalDateTime.now(),0,0,p3);
-        cbb.postComment(d1, 5, "a");
-        cbb.postComment(d2, 5, "b");
-        cbb.postComment(d3, 5, "c");
+        d4 = new Delivery(LocalDateTime.now(),0,0,p4);
+        poster.postComment(d1, 5, "a");
+        poster.postComment(d2, 5, "b");
+        poster.postComment(d3, 5, "c");
     }
 
     @Test
     public void findCommentForPackageTest() {
-        Optional<Comment> res = cbb.findCommentForPackage(p1.getTrackingNumber());
+        Optional<Comment> res = finder.findCommentForPackage(p1.getTrackingNumber());
         if(!res.isPresent()) {
             fail("Could not find a comment for the given pacakge");
         }
@@ -58,23 +81,32 @@ public class CommentBoardBeanTest extends AbstractCommentBoardBeanTest {
     }
 
     @Test
-    public void findAllCommentsSizeTest() {
-        Set<Comment> comments = cbb.findAllComments();
-        assertEquals("Wrong size for the set of comments", comments.size(), 3);
+    public void findAllCommentsTest() {
+        Optional<Comment> comment = finder.findCommentForPackage(p1.getTrackingNumber());
+        if(!comment.isPresent())
+            fail();
+
+        comment = finder.findCommentForPackage(p2.getTrackingNumber());
+        if(!comment.isPresent())
+            fail();
+
+        comment = finder.findCommentForPackage(p3.getTrackingNumber());
+        if(!comment.isPresent())
+            fail();
     }
 
     @Test
     public void findCommentsForSupplierTest() {
-        Set<Comment> comments = cbb.findCommentsForSupplier(supplier2);
+        Set<Comment> comments = finder.findCommentsForSupplier(supplier3);
         assertEquals("Wrong size for the set of comments for suppliers", 1, comments.size());
-        comments = cbb.findCommentsForSupplier(supplier1);
+        comments = finder.findCommentsForSupplier(supplier1);
         assertEquals("Wrong size for the set of comments for suppliers", 2, comments.size());
     }
 
     @Test
     public void deleteCommentTest() throws UnknownCommentException {
-        cbb.deleteComment(d3);
-        assertEquals("Comment wasn't properly deleted", 2, cbb.findAllComments().size());
+        poster.deleteComment(d3);
+        assertEquals("Comment wasn't properly deleted", finder.findAllComments().size(), 2);
     }
 
     @Test
@@ -82,12 +114,32 @@ public class CommentBoardBeanTest extends AbstractCommentBoardBeanTest {
         Package p4 = new Package("4",0,"",supplier2);
         Delivery d4 = new Delivery(LocalDateTime.now(),0,0,p4);
         Comment c = new Comment(d4, 5, "d");
-        cbb.postComment(d4, 5, "d");
+        poster.postComment(d4, 5, "d");
 
-        Optional<Comment> optC = cbb.findCommentForPackage(p4.getTrackingNumber());
+        Optional<Comment> optC = finder.findCommentForPackage(p4.getTrackingNumber());
         if(!optC.isPresent()) {
             fail("Could not find the previously posted comment");
         }
         assertEquals("Comments aren't equal", c, optC.get());
+    }
+
+    @After
+    public void cleaningUp() throws Exception{
+        utx.begin();
+            Optional<Comment> toDispose = finder.findCommentForPackage(d4.getaPackage().getTrackingNumber());
+            toDispose.ifPresent(del -> { Comment c = entityManager.merge(del); entityManager.remove(c); });
+        utx.commit();
+    }
+
+    @Test
+    public void testCommentStorage() {
+        Comment comment = new Comment();
+        comment.setRating(5);
+        comment.setDelivery(d4);
+        comment.setContent("Pas mal");
+        entityManager.persist(comment);
+        int id = comment.getId();
+        Comment stored = entityManager.find(Comment.class, id);
+        assertEquals(comment, stored);
     }
 }

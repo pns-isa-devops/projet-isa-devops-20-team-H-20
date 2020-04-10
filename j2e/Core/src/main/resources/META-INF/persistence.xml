@@ -12,6 +12,7 @@
         <class>fr.unice.polytech.isa.dd.teamH.entities.drone.Drone</class>
         <class>fr.unice.polytech.isa.dd.teamH.entities.delivery.Delivery</class>
         <class>fr.unice.polytech.isa.dd.teamH.entities.Invoice</class>
+        <class>fr.unice.polytech.isa.dd.teamH.entities.Comment</class>
 
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <properties>
