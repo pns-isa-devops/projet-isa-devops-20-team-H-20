@@ -9,7 +9,6 @@ import fr.unice.polytech.isa.dd.teamH.exceptions.UnknownDroneStateException;
 import fr.unice.polytech.isa.dd.teamH.interfaces.DroneFinder;
 import org.jboss.arquillian.transaction.api.annotation.TransactionMode;
 import org.jboss.arquillian.transaction.api.annotation.Transactional;
-import org.junit.After;
 import org.junit.runner.RunWith;
 import cucumber.api.CucumberOptions;
 import cucumber.api.java.en.Given;
@@ -17,45 +16,37 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
 import javax.ejb.EJB;
-import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.transaction.UserTransaction;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 
 import static org.junit.Assert.*;
 
 @RunWith(CukeSpace.class)
-@Transactional(TransactionMode.COMMIT)
+@Transactional(TransactionMode.ROLLBACK)
 @CucumberOptions(features = "src/test/resources/features")
 public class DroneFleetManagementStepdefsTest extends AbstractDroneFleetTest {
     @EJB private fr.unice.polytech.isa.dd.teamH.interfaces.DroneFleetManagement management;
     @EJB private DroneFinder finder;
-    @Inject private UserTransaction utx;
-    @PersistenceContext
-    private EntityManager entityManager;
     private Exception exception = null;
     private Optional<Drone> droneFound;
 
-    private int id1;
-    private int id2;
-    private int id3;
+    Set<Integer> addedDrones = new HashSet<>();
 
     //float ([0-9]*[.][0-9]+)
     @Given("^some drones with ids (\\d+) (\\d+) (\\d+)$")
     public void background(int id1, int id2, int id3) throws Exception{
-        this.id1 = id1;
-        this.id2 = id2;
-        this.id3 = id3;
+        addedDrones.addAll(Arrays.asList(id1, id2, id3));
         management.addDrone(id1, 5.0f);
         management.addDrone(id2, 5.0f);
         management.addDrone(id3, 5.0f);
-        assertEquals(3, finder.findReadyDrones().size());
     }
 
     @When("^the garagiste deletes the drone with id (\\d+)$")
     public void deleteDrone(int id1) throws Exception{
+        addedDrones.remove(id1);
         management.deleteDrone(id1);
     }
 
@@ -63,17 +54,22 @@ public class DroneFleetManagementStepdefsTest extends AbstractDroneFleetTest {
     public void deleteDrone(int id1, int id2) throws Exception{
         management.deleteDrone(id1);
         management.deleteDrone(id2);
+        addedDrones.remove(id1);
+        addedDrones.remove(id2);
     }
 
     @When("^the garagiste adds the drone with id (\\d+)$")
     public void addDrone(int id1) throws Exception{
         management.addDrone(id1, 5.0f);
+        addedDrones.add(id1);
     }
 
     @When("^the garagiste adds the drones with id (\\d+) and (\\d+)$")
     public void addDrone(int id1, int id2) throws Exception{
         management.addDrone(id1, 5.0f);
         management.addDrone(id2, 5.0f);
+        addedDrones.add(id1);
+        addedDrones.add(id2);
     }
 
     @When("^the garagiste search the drone with id (\\d+)$")
@@ -101,6 +97,7 @@ public class DroneFleetManagementStepdefsTest extends AbstractDroneFleetTest {
     public void deleteDroneError(int id){
         try {
             management.deleteDrone(id);
+            addedDrones.add(id);
         }catch (UnknownDroneException e){
             exception = e;
         }
@@ -110,6 +107,7 @@ public class DroneFleetManagementStepdefsTest extends AbstractDroneFleetTest {
     public void addDroneError(int id){
         try {
             management.addDrone(id, 5.0f);
+            addedDrones.add(id);
         }catch (AlreadyExistingDroneException e){
             exception = e;
         }
@@ -120,15 +118,13 @@ public class DroneFleetManagementStepdefsTest extends AbstractDroneFleetTest {
         assertNotNull(exception);
     }
 
-    @Then("^there is (\\d+) items in the drone list and the drone with id (\\d+) is found$")
-    public void checkAddDrone(int number, int id){
-        assertEquals(number, finder.findReadyDrones().size());
+    @Then("^the drone with id (\\d+) is found$")
+    public void checkAddDrone(int id){
         assertTrue(finder.findDroneById(id).isPresent());
     }
 
-    @Then("^there is (\\d+) items in the drone list and the drone with id (\\d+) does not exist anymore$")
-    public void checkDeleteDrone(int number, int id){
-        assertEquals(number, finder.findReadyDrones().size());
+    @Then("^the drone with id (\\d+) does not exist anymore$")
+    public void checkDeleteDrone(int id){
         assertFalse(finder.findDroneById(id).isPresent());
     }
 
@@ -147,17 +143,16 @@ public class DroneFleetManagementStepdefsTest extends AbstractDroneFleetTest {
         assertFalse(droneFound.isPresent());
     }
 
-    @After
+    @cucumber.api.java.After
     public void cleaningUp() throws Exception{
-        utx.begin();
-        Optional<Drone> toDispose = finder.findDroneById(id1);
-        toDispose.ifPresent(d -> { Drone c = entityManager.merge(d); entityManager.remove(c); });
-
-        toDispose = finder.findDroneById(id2);
-        toDispose.ifPresent(d -> { Drone c = entityManager.merge(d); entityManager.remove(c); });
-
-        toDispose = finder.findDroneById(id3);
-        toDispose.ifPresent(d -> { Drone c = entityManager.merge(d); entityManager.remove(c); });
-        utx.commit();
+        addedDrones.forEach(id -> {
+            try {
+                management.deleteDrone(id);
+            } catch (UnknownDroneException e) {
+                e.printStackTrace();
+            }
+        });
+        exception = null;
+        droneFound = Optional.empty();
     }
 }

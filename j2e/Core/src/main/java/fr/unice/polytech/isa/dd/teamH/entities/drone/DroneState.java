@@ -33,7 +33,9 @@ public abstract class DroneState implements Cloneable, Serializable {
 
     public abstract String getStatus();
 
-    abstract boolean is(String name);
+    public boolean is(String name) {
+        return name.equals(this.name);
+    }
 
     public abstract DroneState clone();
 
