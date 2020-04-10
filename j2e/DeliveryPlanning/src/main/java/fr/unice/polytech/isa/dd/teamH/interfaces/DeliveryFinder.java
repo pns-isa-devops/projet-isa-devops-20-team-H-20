@@ -2,7 +2,9 @@ package fr.unice.polytech.isa.dd.teamH.interfaces;
 
 import fr.unice.polytech.isa.dd.teamH.entities.Supplier;
 import fr.unice.polytech.isa.dd.teamH.entities.delivery.Delivery;
+import fr.unice.polytech.isa.dd.teamH.entities.delivery.DeliveryState;
 import fr.unice.polytech.isa.dd.teamH.entities.deliveryplanning.PlanningEntry;
+import fr.unice.polytech.isa.dd.teamH.exceptions.UnknownDeliveryStateException;
 
 import javax.ejb.Local;
 import java.time.LocalDateTime;
@@ -16,4 +18,5 @@ public interface DeliveryFinder {
     Set<PlanningEntry> findCompletedDeliveriesSince(LocalDateTime time);
     Set<PlanningEntry> findCompletedDeliveriesSince(LocalDateTime time, Supplier s);
     Optional<PlanningEntry> findPlanningEntryByTrackingId(String trackingId);
+    DeliveryState checkAndUpdateState(String name) throws UnknownDeliveryStateException;
 }

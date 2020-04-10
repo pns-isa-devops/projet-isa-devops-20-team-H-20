@@ -10,6 +10,7 @@ import fr.unice.polytech.isa.dd.teamH.entities.drone.Drone;
 import fr.unice.polytech.isa.dd.teamH.entities.drone.DroneStateFactory;
 import fr.unice.polytech.isa.dd.teamH.exceptions.AlreadyExistingDroneException;
 import fr.unice.polytech.isa.dd.teamH.exceptions.DeliveryDistanceException;
+import fr.unice.polytech.isa.dd.teamH.exceptions.UnknownDeliveryStateException;
 import fr.unice.polytech.isa.dd.teamH.interfaces.*;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.transaction.api.annotation.TransactionMode;
@@ -76,7 +77,7 @@ public class DeliveryPlanningTest extends AbstractDeliveryPlanningTest {
     }
 
     @Test
-    public void findAllPlannedDeliveries() throws AlreadyExistingDroneException {
+    public void findAllPlannedDeliveries() throws AlreadyExistingDroneException, UnknownDeliveryStateException {
         assertEquals(0, finder.findAllPlannedDeliveries().size());
         droneFleetManagement.addDrone(d.getId(), d.getWeightCapacity());
         try {
@@ -126,7 +127,7 @@ public class DeliveryPlanningTest extends AbstractDeliveryPlanningTest {
     }
 
     @Test
-    public void startDelivery() throws AlreadyExistingDroneException {
+    public void startDelivery() throws AlreadyExistingDroneException, UnknownDeliveryStateException {
         droneFleetManagement.addDrone(d.getId(), d.getWeightCapacity());
         try {
             planner.planDelivery(p, "2020-05-20", "15:30");

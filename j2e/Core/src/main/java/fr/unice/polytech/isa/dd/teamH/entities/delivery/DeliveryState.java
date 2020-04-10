@@ -12,7 +12,7 @@ import java.util.Objects;
 @Entity
 @Inheritance(strategy= InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="delivery_state_type")
-public abstract class DeliveryState implements Serializable {
+public abstract class DeliveryState implements Cloneable, Serializable {
     protected String name;
 
     public abstract boolean isCompleted();
