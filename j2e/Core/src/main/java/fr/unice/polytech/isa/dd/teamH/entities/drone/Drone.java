@@ -1,8 +1,6 @@
 package fr.unice.polytech.isa.dd.teamH.entities.drone;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
@@ -17,7 +15,7 @@ public class Drone implements Serializable {
     private float weightCapacity;
     private DroneState state;
 
-    private final float DRONE_SPEED = (float)(10.0/60.0);
+    public static final float DRONE_SPEED = (float)(10.0/60.0);
 
     public Drone() {
 
@@ -63,6 +61,9 @@ public class Drone implements Serializable {
         this.weightCapacity = weightCapacity;
     }
 
+    @NotNull
+    @Column(name="state")
+    @ManyToOne(cascade = {CascadeType.MERGE})
     public DroneState getState() {
         return state;
     }
@@ -96,10 +97,6 @@ public class Drone implements Serializable {
                 ", weightCapacity=" + getWeightCapacity() +
                 ", state=" + getState() +
                 '}';
-    }
-
-    public float getSpeed() {
-        return DRONE_SPEED;
     }
 
     public boolean isReadyToFly() {

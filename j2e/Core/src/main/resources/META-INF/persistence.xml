@@ -10,6 +10,11 @@
         <class>fr.unice.polytech.isa.dd.teamH.entities.Supplier</class>
         <class>fr.unice.polytech.isa.dd.teamH.entities.Package</class>
         <class>fr.unice.polytech.isa.dd.teamH.entities.drone.Drone</class>
+        <class>fr.unice.polytech.isa.dd.teamH.entities.drone.DroneState</class>
+        <class>fr.unice.polytech.isa.dd.teamH.entities.drone.InChargeDroneState</class>
+        <class>fr.unice.polytech.isa.dd.teamH.entities.drone.InFlightDroneState</class>
+        <class>fr.unice.polytech.isa.dd.teamH.entities.drone.InMaintenanceDroneState</class>
+        <class>fr.unice.polytech.isa.dd.teamH.entities.drone.ReadyDroneState</class>
         <class>fr.unice.polytech.isa.dd.teamH.entities.delivery.Delivery</class>
         <class>fr.unice.polytech.isa.dd.teamH.entities.Invoice</class>
         <class>fr.unice.polytech.isa.dd.teamH.entities.deliveryplanning.PlanningEntry</class>

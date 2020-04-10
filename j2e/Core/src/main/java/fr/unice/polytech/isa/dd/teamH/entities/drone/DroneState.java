@@ -1,6 +1,6 @@
 package fr.unice.polytech.isa.dd.teamH.entities.drone;
 
-import javax.persistence.Embeddable;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import java.io.Serializable;
@@ -10,7 +10,9 @@ import java.util.Objects;
             InFlightDroneState.class,
             InMaintenanceDroneState.class,
             ReadyDroneState.class})
-
+@Entity
+@Inheritance(strategy= InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="drone_state_type")
 public abstract class DroneState implements Cloneable, Serializable {
 
     protected String name;
@@ -35,10 +37,10 @@ public abstract class DroneState implements Cloneable, Serializable {
 
     public abstract DroneState clone();
 
+    @Id
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
@@ -46,7 +48,9 @@ public abstract class DroneState implements Cloneable, Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        return o != null && getClass() == o.getClass();
+        if (o == null || getClass() != o.getClass()) return false;
+        DroneState that = (DroneState) o;
+        return getName().equals(that.getName());
     }
 
     @Override

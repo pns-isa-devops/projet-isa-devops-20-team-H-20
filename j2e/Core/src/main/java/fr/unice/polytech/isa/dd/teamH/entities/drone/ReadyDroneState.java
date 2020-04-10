@@ -1,10 +1,14 @@
 package fr.unice.polytech.isa.dd.teamH.entities.drone;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 import java.util.Objects;
 
+@Entity
+@DiscriminatorValue("R")
 public class ReadyDroneState extends DroneState {
 
-    ReadyDroneState() {
+    public ReadyDroneState() {
         name = "ready";
     }
 
@@ -29,26 +33,5 @@ public class ReadyDroneState extends DroneState {
     @Override
     public ReadyDroneState clone() {
         return new ReadyDroneState();
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        return o != null && getClass() == o.getClass();
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name);
-    }
-
-    @Override
-    public String getName() {
-        return super.getName();
-    }
-
-    @Override
-    public void setName(String name) {
-        super.setName(name);
     }
 }

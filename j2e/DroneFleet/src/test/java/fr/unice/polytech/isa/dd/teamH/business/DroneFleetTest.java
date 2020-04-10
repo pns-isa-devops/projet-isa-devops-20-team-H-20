@@ -46,10 +46,10 @@ public class DroneFleetTest extends AbstractDroneFleetTest {
 
     @After
     public void cleaningUp() throws Exception{
-        management.flush();
-
        utx.begin();
            Optional<Drone> toDispose = finder.findDroneById(drone1.getId());
+           toDispose.ifPresent(d -> { Drone c = entityManager.merge(d); entityManager.remove(c); });
+           toDispose = finder.findDroneById(drone2.getId());
            toDispose.ifPresent(d -> { Drone c = entityManager.merge(d); entityManager.remove(c); });
        utx.commit();
     }
@@ -143,7 +143,7 @@ public class DroneFleetTest extends AbstractDroneFleetTest {
         Drone d = new Drone();
         d.setId(1);
         d.setWeightCapacity(10);
-        d.setState(DroneStateFactory.getInstance().createState("ready"));
+        d.setState(finder.checkAndUpdateState("ready"));
         d.setBattery(100);
         d.setCurrentFlightTime(0);
         entityManager.persist(d);
