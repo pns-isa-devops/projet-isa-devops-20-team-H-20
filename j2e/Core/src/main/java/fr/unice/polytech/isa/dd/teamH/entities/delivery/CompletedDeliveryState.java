@@ -1,8 +1,13 @@
 package fr.unice.polytech.isa.dd.teamH.entities.delivery;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+@Entity
+@DiscriminatorValue("C")
 public class CompletedDeliveryState extends DeliveryState {
     private LocalDateTime shippedAt;
 
@@ -19,11 +24,6 @@ public class CompletedDeliveryState extends DeliveryState {
     @Override
     public boolean isCompleted() {
         return true;
-    }
-
-    @Override
-    boolean is(String name) {
-        return name.equals(this.name);
     }
 
     @Override
@@ -44,20 +44,10 @@ public class CompletedDeliveryState extends DeliveryState {
         return Objects.hash(shippedAt);
     }
 
-    @Override
-    public String getName() {
-        return super.getName();
-    }
-
+    @NotNull
     public LocalDateTime getShippedAt() {
         return shippedAt;
     }
-
-    @Override
-    public void setName(String name) {
-        super.setName(name);
-    }
-
     public void setShippedAt(LocalDateTime shippedAt) {
         this.shippedAt = shippedAt;
     }

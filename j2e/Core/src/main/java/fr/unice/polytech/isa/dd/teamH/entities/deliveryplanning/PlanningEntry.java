@@ -3,31 +3,29 @@ package fr.unice.polytech.isa.dd.teamH.entities.deliveryplanning;
 import fr.unice.polytech.isa.dd.teamH.entities.delivery.Delivery;
 import fr.unice.polytech.isa.dd.teamH.entities.drone.Drone;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.Duration;
 import java.util.*;
 
+@Entity
 public class PlanningEntry implements Serializable {
 
     private Drone drone;
 
+    private int id;
+
     private Set<Delivery> deliveries;
 
     public PlanningEntry(){
-
+        deliveries = new TreeSet<>(Comparator.comparing(Delivery::dateTimeToShip));
     }
 
     public PlanningEntry(Drone drone){
         this.drone = drone;
+        this.id = drone.getId();
         deliveries = new TreeSet<>(Comparator.comparing(Delivery::dateTimeToShip));
-    }
-
-    public Drone getDrone(){
-        return drone;
-    }
-
-    public Set<Delivery> getDeliveries(){
-        return new HashSet<>(deliveries);
     }
 
     public boolean addDelivery(Delivery d){
@@ -70,10 +68,27 @@ public class PlanningEntry implements Serializable {
                 '}';
     }
 
+    @OneToMany
+    public Set<Delivery> getDeliveries(){
+        return new HashSet<>(deliveries);
+    }
     public void setDeliveries(Set<Delivery> deliveries) {
         this.deliveries = deliveries;
     }
 
+    @Id
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @OneToOne
+    @NotNull
+    public Drone getDrone(){
+        return drone;
+    }
     public void setDrone(Drone drone) {
         this.drone = drone;
     }
