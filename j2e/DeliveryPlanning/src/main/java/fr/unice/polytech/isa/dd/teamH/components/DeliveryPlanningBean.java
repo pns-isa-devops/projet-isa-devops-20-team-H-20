@@ -7,19 +7,20 @@ import fr.unice.polytech.isa.dd.teamH.entities.delivery.DeliveryStateFactory;
 import fr.unice.polytech.isa.dd.teamH.entities.deliveryplanning.PlanningEntry;
 import fr.unice.polytech.isa.dd.teamH.entities.drone.Drone;
 import fr.unice.polytech.isa.dd.teamH.entities.Package;
-import fr.unice.polytech.isa.dd.teamH.entities.drone.DroneState;
-import fr.unice.polytech.isa.dd.teamH.entities.drone.DroneStateFactory;
 import fr.unice.polytech.isa.dd.teamH.exceptions.*;
-import fr.unice.polytech.isa.dd.teamH.interfaces.AvailableDroneFinder;
-import fr.unice.polytech.isa.dd.teamH.interfaces.DeliveryFinder;
-import fr.unice.polytech.isa.dd.teamH.interfaces.DeliveryPlanner;
+import fr.unice.polytech.isa.dd.teamH.interfaces.*;
 import fr.unice.polytech.isa.dd.teamH.utils.MapAPI;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.*;
@@ -34,6 +35,9 @@ public class DeliveryPlanningBean implements DeliveryFinder, DeliveryPlanner {
 
     @PersistenceContext
     EntityManager entityManager;
+
+    @EJB
+    private DroneFinder droneFinder;
 
     @EJB
     private AvailableDroneFinder availabilityProcessor;
@@ -108,12 +112,8 @@ public class DeliveryPlanningBean implements DeliveryFinder, DeliveryPlanner {
     @Override
     public boolean startDelivery(Drone drone, Delivery delivery){
         try {
-            DroneState state = DroneStateFactory.getInstance().createState("flight");
-            entityManager.persist(state);
-            drone.setState(state);
-            DeliveryState deliveryState = DeliveryStateFactory.getInstance().createState("in-flight");
-            entityManager.persist(deliveryState);
-            delivery.setState(deliveryState);
+            drone.setState(droneFinder.checkAndUpdateState("flight"));
+            delivery.setState(checkAndUpdateState("in-flight"));
         } catch (UnknownDroneStateException | UnknownDeliveryStateException e) {
             e.printStackTrace();
             return false;
@@ -122,14 +122,13 @@ public class DeliveryPlanningBean implements DeliveryFinder, DeliveryPlanner {
     }
 
     @Override
-    public boolean planDelivery(Package p, String date, String time) throws DeliveryDistanceException {
+    public boolean planDelivery(Package p, String date, String time) throws DeliveryDistanceException, UnknownDeliveryStateException {
         Optional<Drone> od = availabilityProcessor.getAvailableDroneAtTime(findAllPlannedDeliveries(),
                 LocalDateTime.parse(date+"T"+time+":00"));
         if(!od.isPresent())
             return false;
 
         Delivery de = new Delivery();
-
         try {
           de.setDistance(mapService.getDistanceTo(p.getDestination()));
         } catch (ExternalPartnerException e) {
@@ -141,7 +140,7 @@ public class DeliveryPlanningBean implements DeliveryFinder, DeliveryPlanner {
         de.setaPackage(p);
         de.setDate(date);
         de.setTime(time);
-
+        de.setState(checkAndUpdateState("not-sent"));
         boolean res;
         Optional<PlanningEntry> ope = getPlanningEntryForDrone(od.get());
         if(ope.isPresent()){
@@ -195,5 +194,29 @@ public class DeliveryPlanningBean implements DeliveryFinder, DeliveryPlanner {
             log.log(Level.INFO, "Cannot read map.properties file", e);
             throw new UncheckedException(e);
         }
+    }
+
+    @Override
+    public DeliveryState checkAndUpdateState(String name) throws UnknownDeliveryStateException {
+        CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+
+        CriteriaQuery<DeliveryState> criteria = builder.createQuery(DeliveryState.class);
+        Root<DeliveryState> root =  criteria.from(DeliveryState.class);
+
+        criteria.select(root).where(builder.equal(root.get("name"), name));
+        TypedQuery<DeliveryState> query = entityManager.createQuery(criteria);
+
+        try {
+            Optional<DeliveryState> res = Optional.of(query.getSingleResult());
+            return res.get();
+        } catch (NoResultException nre){
+            return createStateInDatabase(name);
+        }
+    }
+
+    private DeliveryState createStateInDatabase(String name) throws UnknownDeliveryStateException {
+        DeliveryState s = DeliveryStateFactory.getInstance().createState(name);
+        entityManager.persist(s);
+        return entityManager.merge(s);
     }
 }

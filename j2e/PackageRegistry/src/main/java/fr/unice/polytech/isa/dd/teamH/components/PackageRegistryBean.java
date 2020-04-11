@@ -35,7 +35,7 @@ public class PackageRegistryBean implements PackageRegistration, PackageFinder {
         aPackage.setSupplier(supplier);
         aPackage.setWeight(weight);
         aPackage.setTrackingNumber(trackingNumber);
-        manager.merge(aPackage);
+        manager.persist(aPackage);
         log.log(Level.INFO, "Package added : " + aPackage.toString());
         return true;
     }

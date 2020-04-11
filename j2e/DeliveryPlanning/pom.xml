@@ -20,6 +20,11 @@
         </dependency>
         <dependency>
             <groupId>fr.polytech.team.h</groupId>
+            <artifactId>DroneFleet</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>fr.polytech.team.h</groupId>
             <artifactId>AvailabilityProcessor</artifactId>
             <version>${project.version}</version>
         </dependency>

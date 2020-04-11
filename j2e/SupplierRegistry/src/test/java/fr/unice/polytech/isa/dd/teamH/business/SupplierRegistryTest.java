@@ -10,16 +10,13 @@ import fr.unice.polytech.isa.dd.teamH.interfaces.SupplierRegistration;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.transaction.api.annotation.TransactionMode;
 import org.jboss.arquillian.transaction.api.annotation.Transactional;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import javax.ejb.EJB;
-import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.transaction.UserTransaction;
 
 import java.util.Optional;
 import java.util.Set;
@@ -28,7 +25,7 @@ import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(Arquillian.class)
-@Transactional(TransactionMode.COMMIT)
+@Transactional(TransactionMode.ROLLBACK)
 public class SupplierRegistryTest extends AbstractSupplierRegistryTest {
 
     @EJB
@@ -36,11 +33,8 @@ public class SupplierRegistryTest extends AbstractSupplierRegistryTest {
     @EJB
     private SupplierFinder finder;
 
-
     @PersistenceContext
     private EntityManager entityManager;
-    @Inject
-    private UserTransaction utx;
 
     private Supplier amazon;
     private Supplier ldlc;
@@ -55,18 +49,6 @@ public class SupplierRegistryTest extends AbstractSupplierRegistryTest {
         fedex = new Supplier("Fedex");
         amazon = new Supplier("Amazon");
         ldlc = new Supplier("LDLC");
-    }
-
-    @After
-    public void cleaningUp() throws Exception {
-        utx.begin();
-            Optional<Supplier> toDispose = finder.findByName(amazon.getName());
-            toDispose.ifPresent(sup -> { Supplier s = entityManager.merge(sup); entityManager.remove(s); });
-            toDispose = finder.findByName(fedex.getName());
-            toDispose.ifPresent(sup -> { Supplier s = entityManager.merge(sup); entityManager.remove(s); });
-            toDispose = finder.findByName(ldlc.getName());
-            toDispose.ifPresent(sup -> { Supplier s = entityManager.merge(sup); entityManager.remove(s); });
-        utx.commit();
     }
 
     @Test

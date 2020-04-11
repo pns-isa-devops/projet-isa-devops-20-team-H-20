@@ -35,7 +35,7 @@ public class PlanningWebServiceImpl implements PlanningWebService {
     }
 
     @Override
-    public boolean planDelivery(String trackingNumber, String date, String time) throws UnknownPackageException, DeliveryDistanceException {
+    public boolean planDelivery(String trackingNumber, String date, String time) throws UnknownPackageException, DeliveryDistanceException, UnknownDeliveryStateException {
         Optional<Package> p = packageFinder.findPackageByTrackingNumber(trackingNumber);
         if(!p.isPresent())
             throw new UnknownPackageException(trackingNumber);
