@@ -144,7 +144,7 @@ public class DroneFleetManagementStepdefsTest extends AbstractDroneFleetTest {
     }
 
     @cucumber.api.java.After
-    public void cleaningUp() throws Exception{
+    public void cleaningUp(){
         addedDrones.forEach(id -> {
             try {
                 management.deleteDrone(id);

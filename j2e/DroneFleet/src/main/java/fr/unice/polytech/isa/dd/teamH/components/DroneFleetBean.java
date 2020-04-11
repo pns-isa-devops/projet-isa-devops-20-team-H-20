@@ -88,7 +88,7 @@ public class DroneFleetBean implements DroneFinder, DroneFleetManagement {
     }
 
     @Override
-    public boolean addDrone(int id, float weightCapacity) throws AlreadyExistingDroneException {
+    public Drone addDrone(int id, float weightCapacity) throws AlreadyExistingDroneException {
         if(findDroneById(id).isPresent())
             throw new AlreadyExistingDroneException(id);
         Drone drone = new Drone();
@@ -105,7 +105,7 @@ public class DroneFleetBean implements DroneFinder, DroneFleetManagement {
         drone.setState(state);
         manager.persist(drone);
         log.log(Level.INFO, "Drone added : " + drone.toString());
-        return true;
+        return manager.merge(drone);
     }
 
     @Override

@@ -26,7 +26,7 @@ import static org.junit.Assert.*;
 
 @RunWith(CukeSpace.class)
 @CucumberOptions(features = "src/test/resources/features")
-@Transactional(TransactionMode.COMMIT)
+@Transactional(TransactionMode.ROLLBACK)
 public class SupplierRegistryStepdefsTest extends AbstractSupplierRegistryTest {
     @EJB private SupplierRegistration management;
     @EJB private SupplierFinder finder;
@@ -157,7 +157,7 @@ public class SupplierRegistryStepdefsTest extends AbstractSupplierRegistryTest {
     }
 
     @cucumber.api.java.After
-    public void cleaningUp() throws Exception{
+    public void cleaningUp(){
         suppliersAdded.forEach(sup -> {
             try {
                 management.delete(sup.getName());

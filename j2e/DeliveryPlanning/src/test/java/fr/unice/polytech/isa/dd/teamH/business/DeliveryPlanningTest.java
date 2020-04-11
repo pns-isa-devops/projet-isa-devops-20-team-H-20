@@ -6,30 +6,22 @@ import fr.unice.polytech.isa.dd.teamH.entities.Package;
 import fr.unice.polytech.isa.dd.teamH.entities.delivery.Delivery;
 import fr.unice.polytech.isa.dd.teamH.entities.delivery.DeliveryStateFactory;
 import fr.unice.polytech.isa.dd.teamH.entities.deliveryplanning.PlanningEntry;
-import fr.unice.polytech.isa.dd.teamH.entities.drone.Drone;
-import fr.unice.polytech.isa.dd.teamH.exceptions.AlreadyExistingDroneException;
-import fr.unice.polytech.isa.dd.teamH.exceptions.DeliveryDistanceException;
-import fr.unice.polytech.isa.dd.teamH.exceptions.UnknownDeliveryStateException;
 import fr.unice.polytech.isa.dd.teamH.interfaces.*;
 import fr.unice.polytech.isa.dd.teamH.utils.MapAPI;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.transaction.api.annotation.TransactionMode;
 import org.jboss.arquillian.transaction.api.annotation.Transactional;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import javax.ejb.EJB;
-import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.transaction.UserTransaction;
+
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 import java.util.Optional;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
 
 @RunWith(Arquillian.class)
 @Transactional(TransactionMode.ROLLBACK)
@@ -38,19 +30,19 @@ public class DeliveryPlanningTest extends AbstractDeliveryPlanningTest {
     private DeliveryFinder finder;
     @EJB
     private DroneFleetManagement droneFleetManagement;
+    @EJB
+    private SupplierRegistration supplierRegistration;
+    @EJB
+    private PackageRegistration packageRegistration;
 
     @PersistenceContext
     private EntityManager entityManager;
-    @Inject
-    private UserTransaction utx;
 
     @EJB private ControlledMap planner;
 
-    Drone d;
-    Drone d2;
-    Package p;
-    Package p2;
-    Supplier s;
+    private Package p;
+    private Package p2;
+    private Package p3;
 
     private void initMock() throws Exception {
         // Mocking the external partner
@@ -58,135 +50,96 @@ public class DeliveryPlanningTest extends AbstractDeliveryPlanningTest {
         planner.useMapReference(mocked);
         when(mocked.getDistanceTo(eq(p.getDestination()))).thenReturn(12.5f);
         when(mocked.getDistanceTo(eq(p2.getDestination()))).thenReturn(13.8f);
+        when(mocked.getDistanceTo(eq(p3.getDestination()))).thenReturn(14.8f);
     }
 
     @Before
     public void setUpContext() throws Exception {
-        d = new Drone(1, 5);
-        d2 = new Drone(2, 5);
-        s = new Supplier("Amazon");
-        p = new Package("1a", 2, "8 Avenue des lilas", s);
-        p2 = new Package("2a", 3.5f, "158 Avenue des lilas", s);
+        droneFleetManagement.addDrone(1, 5);
+        droneFleetManagement.addDrone(2, 5);
+        Supplier supplier = supplierRegistration.register("Nozama", "0649715578");
+        Supplier supplier1 = supplierRegistration.register("Le posta", "0649715588");
+        p = packageRegistration.register("1a", supplier, 5.5f, "Midgard");
+        p2 = packageRegistration.register("2a", supplier, 7.5f, "Asgard");
+        p3 = packageRegistration.register("3a", supplier1, 7.5f, "Jotunheim");
         initMock();
     }
 
-    @After
-    public void cleaningUp() throws Exception{
-        planner.flush();
+    @Test
+    public void findDeliveryById() throws Exception{
+        planner.planDelivery(p, "2020-05-20", "15:30");
+        assertTrue(finder.findDeliveryById(p.getTrackingNumber()).isPresent());
 
-        /*
-        utx.begin();
-        Optional<Delivery> toDispose = finder.findDeliveryById(p.getTrackingNumber());
-        toDispose.ifPresent(del -> { Delivery d = entityManager.merge(del); entityManager.remove(d); });
-        entityManager.remove(d);
-        Optional<PlanningEntry> toDispose2 = finder.findPlanningEntryByTrackingId(p.getTrackingNumber());
-        toDispose2.ifPresent(del -> { PlanningEntry d = entityManager.merge(del); entityManager.remove(d); });
-        utx.commit();
-        */
+        planner.planDelivery(p2, "2020-06-20", "16:30");
+        assertTrue(finder.findDeliveryById(p2.getTrackingNumber()).isPresent());
     }
 
     @Test
-    public void findAllPlannedDeliveries() throws AlreadyExistingDroneException, UnknownDeliveryStateException {
-        assertEquals(0, finder.findAllPlannedDeliveries().size());
-        droneFleetManagement.addDrone(d.getId(), d.getWeightCapacity());
-        try {
-            planner.planDelivery(p, "2020-05-20", "15:30");
-            assertEquals(1, finder.findAllPlannedDeliveries().size());
-            planner.planDelivery(p2, "2020-06-20", "15:30");
-            assertEquals(1, finder.findAllPlannedDeliveries().size());
-            //1 because drone is already assigned but will be changed with algorihtme in second sprint
-        }catch (DeliveryDistanceException e){
-            System.out.println("You have not launched the external mapping system");
-            fail();
-        }
+    public void findPlanningEntryByTrackingIdTest() throws Exception{
+        planner.planDelivery(p, "2021-05-20", "20:30");
+        assertTrue(finder.findPlanningEntryByTrackingId(p.getTrackingNumber()).isPresent());
+
+        planner.planDelivery(p2, "2022-06-20", "18:30");
+        assertTrue(finder.findPlanningEntryByTrackingId(p2.getTrackingNumber()).isPresent());
+    }
+
+    @Test
+    public void findAllPlannedDeliveriesTest() throws Exception {
+        int baseSize = finder.findAllPlannedDeliveries().size();
+        planner.planDelivery(p3, "2018-05-20", "15:30");
+        assertEquals(baseSize, finder.findAllPlannedDeliveries().size());
+        //because it's before now
+        planner.planDelivery(p, "2020-05-20", "15:30");
+        assertEquals(baseSize + 1, finder.findAllPlannedDeliveries().size());
+        planner.planDelivery(p2, "2020-06-20", "15:30");
+        assertEquals(baseSize + 1, finder.findAllPlannedDeliveries().size());
+        //1 because drone is already assigned but will be changed with algorihtme in second sprint
     }
 
     @Test
     public void planDelivery() throws Exception {
-        assertEquals(0, planner.getCompleteDeliveryPlanning().size());
-        droneFleetManagement.addDrone(d.getId(), d.getWeightCapacity());
-        try {
-            planner.planDelivery(p, "2020-05-20", "15:30");
-            Optional<Delivery> delivery = finder.findDeliveryById(p.getTrackingNumber());
-            if(delivery.isPresent()){
-                planner.editDeliveryStatus(delivery.get(), DeliveryStateFactory.getInstance().createState("completed"));
-                assertEquals(1, planner.getCompleteDeliveryPlanning().size());
-            }else{
-                fail("Delivery wasn't present");
-            }
-        }catch (DeliveryDistanceException e){
-            System.out.println("You have not launched the external mapping system");
-            fail();
-        }
+        planner.planDelivery(p, "2020-05-20", "15:30");
+        assertTrue(finder.findPlanningEntryByTrackingId(p.getTrackingNumber()).isPresent());
     }
 
     @Test
     public void editDelivery() throws Exception {
-        droneFleetManagement.addDrone(d.getId(), d.getWeightCapacity());
-        try {
-            planner.planDelivery(p, "2020-05-20", "15:30");
-            Optional<Delivery> delivery = finder.findDeliveryById(p.getTrackingNumber());
-            if (delivery.isPresent()) {
-                planner.editDeliveryStatus(delivery.get(), DeliveryStateFactory.getInstance().createState("completed"));
-                assertEquals("completed", delivery.get().getState().getName());
-            } else {
-                fail("Delivery wasn't present");
-            }
-        }catch (DeliveryDistanceException e){
-            System.out.println("You have not launched the external mapping system");
-            fail();
+        planner.planDelivery(p, "2020-05-20", "15:30");
+        Optional<Delivery> delivery = finder.findDeliveryById(p.getTrackingNumber());
+        if (delivery.isPresent()) {
+            planner.editDeliveryStatus(delivery.get(), DeliveryStateFactory.getInstance().createState("completed"));
+            assertEquals("completed", delivery.get().getState().getName());
+        } else {
+            fail("Delivery wasn't present");
         }
     }
 
     @Test
-    public void startDelivery() throws AlreadyExistingDroneException, UnknownDeliveryStateException {
-        droneFleetManagement.addDrone(d.getId(), d.getWeightCapacity());
-        try {
-            planner.planDelivery(p, "2020-05-20", "15:30");
-            Optional<PlanningEntry> planningEntry = finder.findPlanningEntryByTrackingId(p.getTrackingNumber());
-            Optional<Delivery> delivery = finder.findDeliveryById(p.getTrackingNumber());
-            if (delivery.isPresent() && planningEntry.isPresent()) {
-                planner.startDelivery(planningEntry.get().getDrone(), delivery.get());
-                assertEquals("in-flight", delivery.get().getState().getName());
-                assertEquals("flight", planningEntry.get().getDrone().getState().getName());
-            } else {
-                fail("Delivery and / or PlanningEntry wasn't present");
-            }
-        }catch (DeliveryDistanceException e){
-            System.out.println("You have not launched the external mapping system");
-            fail();
+    public void startDelivery() throws Exception {
+        planner.planDelivery(p, "2020-05-20", "15:30");
+        Optional<PlanningEntry> planningEntry = finder.findPlanningEntryByTrackingId(p.getTrackingNumber());
+        Optional<Delivery> delivery = finder.findDeliveryById(p.getTrackingNumber());
+        if (delivery.isPresent() && planningEntry.isPresent()) {
+            planner.startDelivery(planningEntry.get().getDrone(), delivery.get());
+            assertEquals("in-flight", delivery.get().getState().getName());
+            assertEquals("flight", planningEntry.get().getDrone().getState().getName());
+        } else {
+            fail("Delivery and / or PlanningEntry wasn't present");
         }
     }
 
     @Test
     public void testDeliveryStorage() throws Exception {
         Delivery d = new Delivery();
-        d.setState(DeliveryStateFactory.getInstance().createState("not-sent"));
+        d.setState(finder.checkAndUpdateState("not-sent"));
         d.setFlightTime(10);
         d.setDistance(10);
         d.setDate("2020-05-20");
         d.setTime("15:30");
         d.setaPackage(p);
-        //TODO
-        entityManager.persist(s);
-        entityManager.persist(d.getState());
-        entityManager.persist(p);
         entityManager.persist(d);
         int id = d.getId();
         Delivery stored = entityManager.find(Delivery.class, id);
         assertEquals("Didn't find the right Delivery in the persistence DB", d, stored);
-    }
-
-    @Test
-    public void testPlanningEntryStorage() throws Exception {
-        entityManager.persist(s);
-        entityManager.persist(p);
-        entityManager.persist(d.getState());
-        entityManager.persist(d);
-        PlanningEntry i = new PlanningEntry(d);
-        i.addDelivery(new Delivery("2020-05-20", "15:30", 1, 1, p));
-        entityManager.persist(i);
-        PlanningEntry stored = entityManager.find(PlanningEntry.class, d.getId());
-        assertEquals("Didn't find the right invoice in the persistence DB",i, stored);
     }
 }

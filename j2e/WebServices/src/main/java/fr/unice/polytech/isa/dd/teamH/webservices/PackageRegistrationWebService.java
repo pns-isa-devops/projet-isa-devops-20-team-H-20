@@ -1,5 +1,6 @@
 package fr.unice.polytech.isa.dd.teamH.webservices;
 
+import fr.unice.polytech.isa.dd.teamH.entities.Package;
 import fr.unice.polytech.isa.dd.teamH.exceptions.AlreadyExistingPackageException;
 import fr.unice.polytech.isa.dd.teamH.exceptions.UnknownPackageException;
 import fr.unice.polytech.isa.dd.teamH.exceptions.UnknownSupplierException;
@@ -13,10 +14,10 @@ import javax.jws.WebService;
 public interface PackageRegistrationWebService {
     @WebMethod
     @WebResult(name = "return_code")
-    boolean registerPackage(@WebParam(name="packageTrackingNumber") String packageTrackingNumber,
-                       @WebParam(name="supplierName") String supplierName,
-                       @WebParam(name="weight") float weight,
-                        @WebParam(name="destination") String destination)
+    Package registerPackage(@WebParam(name="packageTrackingNumber") String packageTrackingNumber,
+                            @WebParam(name="supplierName") String supplierName,
+                            @WebParam(name="weight") float weight,
+                            @WebParam(name="destination") String destination)
             throws UnknownSupplierException, AlreadyExistingPackageException;
 
     @WebMethod

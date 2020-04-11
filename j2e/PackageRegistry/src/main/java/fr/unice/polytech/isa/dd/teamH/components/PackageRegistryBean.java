@@ -15,7 +15,9 @@ import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import java.util.*;
+import java.util.HashSet;
+import java.util.Optional;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -27,7 +29,7 @@ public class PackageRegistryBean implements PackageRegistration, PackageFinder {
     private EntityManager manager;
 
     @Override
-    public boolean register(String trackingNumber, Supplier supplier, float weight, String destinationAddress) throws AlreadyExistingPackageException {
+    public Package register(String trackingNumber, Supplier supplier, float weight, String destinationAddress) throws AlreadyExistingPackageException {
         if(findPackageByTrackingNumber(trackingNumber).isPresent())
             throw new AlreadyExistingPackageException(trackingNumber);
         Package aPackage = new Package();
@@ -37,7 +39,7 @@ public class PackageRegistryBean implements PackageRegistration, PackageFinder {
         aPackage.setTrackingNumber(trackingNumber);
         manager.persist(aPackage);
         log.log(Level.INFO, "Package added : " + aPackage.toString());
-        return true;
+        return manager.merge(aPackage);
     }
 
     @Override

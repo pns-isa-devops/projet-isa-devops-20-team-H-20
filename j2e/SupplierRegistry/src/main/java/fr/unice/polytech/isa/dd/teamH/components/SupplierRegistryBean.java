@@ -50,7 +50,7 @@ public class SupplierRegistryBean implements SupplierFinder, SupplierRegistratio
      ******************************************/
 
     @Override
-    public boolean register(String name, String contact) throws AlreadyExistingSupplierException {
+    public Supplier register(String name, String contact) throws AlreadyExistingSupplierException {
         if(findByName(name).isPresent())
             throw new AlreadyExistingSupplierException(name);
         Supplier s = new Supplier();
@@ -59,7 +59,7 @@ public class SupplierRegistryBean implements SupplierFinder, SupplierRegistratio
         s.addContact(contact);
         manager.persist(s);
         log.log(Level.INFO, "Supplier added : " + s.toString());
-        return true;
+        return manager.merge(s);
     }
 
     @Override

@@ -22,7 +22,7 @@ public class DroneFleetManagementWebServiceImpl implements DroneFleetManagementW
     private DroneFleetManagement fleet;
 
     @Override
-    public boolean addDrone(int id, float weightCapacity) throws AlreadyExistingDroneException {
+    public Drone addDrone(int id, float weightCapacity) throws AlreadyExistingDroneException {
         return fleet.addDrone(id, weightCapacity);
     }
 

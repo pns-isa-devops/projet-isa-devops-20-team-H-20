@@ -27,7 +27,7 @@ public class PackageRegistrationWebServiceImpl implements PackageRegistrationWeb
     private PackageRegistration register;
 
     @Override
-    public boolean registerPackage(String packageTrackingNumber, String supplierName, float weight, String destination)
+    public Package registerPackage(String packageTrackingNumber, String supplierName, float weight, String destination)
             throws UnknownSupplierException, AlreadyExistingPackageException {
         try {
             readPackage(packageTrackingNumber);

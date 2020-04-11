@@ -29,7 +29,7 @@ public interface AccountingWebService {
 
     @WebMethod
     @WebResult(name = "return_code")
-    boolean registerSupplier(@WebParam(name="name") String name,
+    Supplier registerSupplier(@WebParam(name="name") String name,
                   @WebParam(name="contact") String contact) throws AlreadyExistingSupplierException;
 
     @WebMethod

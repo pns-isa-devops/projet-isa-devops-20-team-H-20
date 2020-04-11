@@ -35,10 +35,9 @@ import java.util.stream.Collectors;
 @Stateless
 public class DeliveryPlanningBean implements DeliveryFinder, DeliveryPlanner, ControlledMap {
     private static final Logger log = Logger.getLogger(Logger.class.getName());
-    private Set<PlanningEntry> planningEntries = new HashSet<>();
 
     @PersistenceContext
-    EntityManager entityManager;
+    EntityManager manager;
 
     @EJB
     private DroneFinder droneFinder;
@@ -48,47 +47,66 @@ public class DeliveryPlanningBean implements DeliveryFinder, DeliveryPlanner, Co
     private MapAPI mapService;
 
     @Override
-    public Optional<Delivery> findDeliveryById(String id) {
-        for(PlanningEntry pe : planningEntries){
-            for(Delivery d : pe.getDeliveries()){
-                if(d.getaPackage().getTrackingNumber().equals(id))
-                    return Optional.of(d);
-            }
+    public Optional<Delivery> findDeliveryById(String trackingId) {
+        CriteriaBuilder builder = manager.getCriteriaBuilder();
+        CriteriaQuery<Delivery> criteria = builder.createQuery(Delivery.class);
+        Root<Delivery> root =  criteria.from(Delivery.class);
+        criteria.select(root).where(builder.equal(root.get("aPackage").get("trackingNumber"), trackingId));
+        TypedQuery<Delivery> query = manager.createQuery(criteria);
+        try {
+            Optional<Delivery> res = Optional.of(query.getSingleResult());
+            log.log(Level.INFO, "Delivery fetched : " + res.get().toString());
+            return res;
+        } catch (NoResultException nre){
+            return Optional.empty();
         }
-        return Optional.empty();
     }
 
     @Override
     public Optional<PlanningEntry> findPlanningEntryByTrackingId(String trackingId){
-        for(PlanningEntry pe : planningEntries){
-            for(Delivery d : pe.getDeliveries()){
-                if(d.getaPackage().getTrackingNumber().equals(trackingId))
-                    return Optional.of(pe);
-            }
+        CriteriaBuilder builder = manager.getCriteriaBuilder();
+        CriteriaQuery<PlanningEntry> criteria = builder.createQuery(PlanningEntry.class);
+        Root<PlanningEntry> root =  criteria.from(PlanningEntry.class);
+        criteria.select(root).where(builder.equal(root.get("deliveries").get("aPackage").get("trackingNumber"), trackingId));
+        TypedQuery<PlanningEntry> query = manager.createQuery(criteria);
+        try {
+            Optional<PlanningEntry> res = Optional.of(query.getSingleResult());
+            log.log(Level.INFO, "Delivery fetched : " + res.get().toString());
+            return res;
+        } catch (NoResultException nre){
+            return Optional.empty();
         }
-        return Optional.empty();
     }
 
     @Override
     public Set<PlanningEntry> findAllPlannedDeliveries() {
-        Set<PlanningEntry> result = new HashSet<>();
-        for(PlanningEntry pe : planningEntries){
-            PlanningEntry newPE = new PlanningEntry(pe.getDrone());
-            for(Delivery d : pe.getDeliveries().stream().filter(e -> e.dateTimeToShip().isAfter(LocalDateTime.now())).collect(Collectors.toSet())){
-                newPE.addDelivery(d);
+        try {
+            Set<PlanningEntry> result = new HashSet<>();
+            for(PlanningEntry pe : getCompleteDeliveryPlanning()){
+                PlanningEntry newPE = new PlanningEntry(pe.getDrone());
+                for(Delivery d : pe.getDeliveries()){
+                    if(d.dateTimeToShip().isAfter(LocalDateTime.now()))
+                        newPE.addDelivery(d);
+                }
+                if(newPE.getDeliveries().size() > 0)
+                    result.add(newPE);
             }
-            result.add(newPE);
+            log.log(Level.INFO, "Delivery fetched : " + result.toString());
+            return result;
+        } catch (NoResultException nre){
+            return new HashSet<>();
         }
-        return result;
     }
 
     @Override
     public Set<PlanningEntry> findCompletedDeliveriesSince(LocalDateTime time) {
         Set<PlanningEntry> result = new HashSet<>();
+        Set<PlanningEntry> planningEntries = findAllPlannedDeliveries();
         for(PlanningEntry pe : planningEntries){
             PlanningEntry newPE = new PlanningEntry(pe.getDrone());
-            for(Delivery d : pe.getDeliveries().stream().filter(e -> e.dateTimeToShip().isAfter(time) && e.isCompleted()).collect(Collectors.toSet())){
-                newPE.addDelivery(d);
+            for(Delivery d : pe.getDeliveries()){
+                if(d.dateTimeToShip().isAfter(LocalDateTime.now()) && d.isCompleted())
+                    newPE.addDelivery(d);
             }
             result.add(newPE);
         }
@@ -99,6 +117,7 @@ public class DeliveryPlanningBean implements DeliveryFinder, DeliveryPlanner, Co
     @Override
     public Set<PlanningEntry> findCompletedDeliveriesSince(LocalDateTime time, Supplier s) {
         Set<PlanningEntry> result = new HashSet<>();
+        Set<PlanningEntry> planningEntries = findAllPlannedDeliveries();
         for(PlanningEntry pe : planningEntries) {
             PlanningEntry newPE = new PlanningEntry(pe.getDrone());
             for(Delivery d : pe.getDeliveries().stream().filter(e -> e.dateTimeToShip().isAfter(time) && e.isCompleted()).collect(Collectors.toSet())){
@@ -145,14 +164,17 @@ public class DeliveryPlanningBean implements DeliveryFinder, DeliveryPlanner, Co
         de.setDate(date);
         de.setTime(time);
         de.setState(checkAndUpdateState("not-sent"));
+        manager.persist(de);
         boolean res;
         Optional<PlanningEntry> ope = getPlanningEntryForDrone(od.get());
         if(ope.isPresent()){
-            res = ope.get().addDelivery(de);
+            PlanningEntry planningEntryToEdit = manager.merge(ope.get());
+            res = planningEntryToEdit.addDelivery(de);
         }else{
             PlanningEntry newPE = new PlanningEntry(od.get());
             newPE.addDelivery(de);
-            res = planningEntries.add(newPE);
+            manager.persist(newPE);
+            res = true;
         }
         if(res)
             log.log(Level.INFO, "Delivery added : " + de.toString());
@@ -162,24 +184,30 @@ public class DeliveryPlanningBean implements DeliveryFinder, DeliveryPlanner, Co
     }
 
     @Override
-    public boolean editDeliveryStatus(Delivery delivery, DeliveryState state) {
-        delivery.setState(state);
+    public boolean editDeliveryStatus(Delivery delivery, DeliveryState state) throws UnknownDeliveryStateException {
+        delivery.setState(checkAndUpdateState(state.getName()));
         log.log(Level.INFO, "Delivery edited : " + delivery.toString());
         return true;
     }
 
     @Override
     public Set<PlanningEntry> getCompleteDeliveryPlanning() {
-        log.log(Level.INFO, "Getting deliveris : " + planningEntries.toString());
-        return new HashSet<>(planningEntries);
-    }
-
-    @Override
-    public void flush() {
-        planningEntries = new HashSet<>();
+        CriteriaBuilder builder = manager.getCriteriaBuilder();
+        CriteriaQuery<PlanningEntry> criteria = builder.createQuery(PlanningEntry.class);
+        Root<PlanningEntry> root =  criteria.from(PlanningEntry.class);
+        criteria.select(root);
+        TypedQuery<PlanningEntry> query = manager.createQuery(criteria);
+        try {
+            List<PlanningEntry> planningEntries = query.getResultList();
+            log.log(Level.INFO, "Deliveries fetched : " + planningEntries.toString());
+            return new HashSet<>(planningEntries);
+        } catch (NoResultException nre){
+            return new HashSet<>();
+        }
     }
 
     private Optional<PlanningEntry> getPlanningEntryForDrone(Drone d){
+        Set<PlanningEntry> planningEntries = getCompleteDeliveryPlanning();
         for(PlanningEntry pe : planningEntries){
             if(pe.getDrone().equals(d))
                 return Optional.of(pe);
@@ -202,13 +230,13 @@ public class DeliveryPlanningBean implements DeliveryFinder, DeliveryPlanner, Co
 
     @Override
     public DeliveryState checkAndUpdateState(String name) throws UnknownDeliveryStateException {
-        CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+        CriteriaBuilder builder = manager.getCriteriaBuilder();
 
         CriteriaQuery<DeliveryState> criteria = builder.createQuery(DeliveryState.class);
         Root<DeliveryState> root =  criteria.from(DeliveryState.class);
 
         criteria.select(root).where(builder.equal(root.get("name"), name));
-        TypedQuery<DeliveryState> query = entityManager.createQuery(criteria);
+        TypedQuery<DeliveryState> query = manager.createQuery(criteria);
 
         try {
             Optional<DeliveryState> res = Optional.of(query.getSingleResult());
@@ -220,9 +248,10 @@ public class DeliveryPlanningBean implements DeliveryFinder, DeliveryPlanner, Co
 
     private DeliveryState createStateInDatabase(String name) throws UnknownDeliveryStateException {
         DeliveryState s = DeliveryStateFactory.getInstance().createState(name);
-        entityManager.persist(s);
-        return entityManager.merge(s);
+        manager.persist(s);
+        return manager.merge(s);
     }
+
     public void useMapReference(MapAPI mapAPI) {
         this.mapService = mapAPI;
     }

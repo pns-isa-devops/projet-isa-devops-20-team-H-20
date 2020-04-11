@@ -28,7 +28,7 @@ import java.util.Set;
 import static org.junit.Assert.*;
 
 @RunWith(Arquillian.class)
-@Transactional(TransactionMode.COMMIT)
+@Transactional(TransactionMode.ROLLBACK)
 public class AccountingBeanTest extends AbstractAccountingBeanTest {
     @EJB private InvoiceGeneration invoiceGeneration;
     @EJB private InvoiceFinder invoiceFinder;

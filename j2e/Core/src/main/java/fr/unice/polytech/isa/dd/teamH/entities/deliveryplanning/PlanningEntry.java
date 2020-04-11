@@ -68,7 +68,7 @@ public class PlanningEntry implements Serializable {
                 '}';
     }
 
-    @OneToMany
+    @OneToMany(cascade = {CascadeType.MERGE})
     public Set<Delivery> getDeliveries(){
         return new HashSet<>(deliveries);
     }
@@ -84,7 +84,7 @@ public class PlanningEntry implements Serializable {
         this.id = id;
     }
 
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.MERGE})
     @NotNull
     public Drone getDrone(){
         return drone;

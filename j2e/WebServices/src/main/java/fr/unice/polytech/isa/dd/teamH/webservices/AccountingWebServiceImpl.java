@@ -47,7 +47,7 @@ public class AccountingWebServiceImpl implements AccountingWebService{
     }
 
     @Override
-    public boolean registerSupplier(String name, String contact) throws AlreadyExistingSupplierException {
+    public Supplier registerSupplier(String name, String contact) throws AlreadyExistingSupplierException {
         return supplierRegistration.register(name, contact);
     }
 
