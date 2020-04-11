@@ -97,9 +97,4 @@ public class CommentBoardBean implements CommentFinder, CommentPoster {
         manager.remove(deleted);
         log.log(Level.INFO, "Comment deleted : " + deleted.toString());
     }
-
-    @Override
-    public void flush() {
-        comments = new HashSet<>();
-    }
 }

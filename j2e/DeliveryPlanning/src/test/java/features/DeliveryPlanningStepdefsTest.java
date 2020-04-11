@@ -14,6 +14,8 @@ import fr.unice.polytech.isa.dd.teamH.exceptions.DeliveryDistanceException;
 import fr.unice.polytech.isa.dd.teamH.exceptions.ExternalPartnerException;
 import fr.unice.polytech.isa.dd.teamH.interfaces.*;
 import fr.unice.polytech.isa.dd.teamH.utils.MapAPI;
+import org.jboss.arquillian.transaction.api.annotation.TransactionMode;
+import org.jboss.arquillian.transaction.api.annotation.Transactional;
 import org.junit.After;
 import org.junit.runner.RunWith;
 
@@ -27,6 +29,7 @@ import static org.mockito.Mockito.when;
 
 @RunWith(CukeSpace.class)
 @CucumberOptions(features = "src/test/resources/features")
+@Transactional(TransactionMode.ROLLBACK)
 public class DeliveryPlanningStepdefsTest extends AbstractDeliveryPlanningTest {
     @EJB private DeliveryFinder deliveryFinder;
     @EJB private ControlledMap deliveryPlanner;
@@ -55,9 +58,6 @@ public class DeliveryPlanningStepdefsTest extends AbstractDeliveryPlanningTest {
     public void background(String date, String time, String pack, String supplier, int drone, String pack2) throws Exception{
         initMock();
         deliveryPlanner.flush();
-        packageRegistration.flush();
-        supplierRegistration.flush();
-        droneFleetManagement.flush();
         exception = null;
         droneFleetManagement.addDrone(drone, 20);
         supplierRegistration.register(supplier, "");
@@ -111,8 +111,5 @@ public class DeliveryPlanningStepdefsTest extends AbstractDeliveryPlanningTest {
     @After
     public void cleaningUp(){
         deliveryPlanner.flush();
-        packageRegistration.flush();
-        supplierRegistration.flush();
-        droneFleetManagement.flush();
     }
 }

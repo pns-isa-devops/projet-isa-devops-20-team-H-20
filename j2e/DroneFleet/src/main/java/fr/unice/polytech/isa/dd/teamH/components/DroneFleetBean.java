@@ -71,7 +71,20 @@ public class DroneFleetBean implements DroneFinder, DroneFleetManagement {
 
     @Override
     public Set<Drone> findAllDrones() {
-        return drones;
+        CriteriaBuilder builder = manager.getCriteriaBuilder();
+
+        CriteriaQuery<Drone> criteria = builder.createQuery(Drone.class);
+        Root<Drone> root =  criteria.from(Drone.class);
+
+        criteria.select(root);
+
+        TypedQuery<Drone> query = manager.createQuery(criteria);
+
+        try {
+            return  new HashSet<>(query.getResultList());
+        } catch (NoResultException nre){
+            return new HashSet<>();
+        }
     }
 
     @Override
