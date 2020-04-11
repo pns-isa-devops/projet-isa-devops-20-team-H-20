@@ -16,6 +16,11 @@ public class InFlightDeliveryState extends DeliveryState {
         this.shippedAt = LocalDateTime.now();
     }
 
+    public InFlightDeliveryState(LocalDateTime t){
+        name = "in-flight";
+        this.shippedAt = LocalDateTime.now();
+    }
+
     @Override
     public String toString() {
         return "Delivery is shipped since " + shippedAt.toString();
@@ -28,20 +33,21 @@ public class InFlightDeliveryState extends DeliveryState {
 
     @Override
     public DeliveryState clone() {
-        return new InFlightDeliveryState();
+        return new InFlightDeliveryState(this.shippedAt);
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
         InFlightDeliveryState that = (InFlightDeliveryState) o;
-        return shippedAt.equals(that.shippedAt);
+        return getShippedAt().equals(that.getShippedAt());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(shippedAt);
+        return Objects.hash(super.hashCode(), getShippedAt());
     }
 
     @NotNull

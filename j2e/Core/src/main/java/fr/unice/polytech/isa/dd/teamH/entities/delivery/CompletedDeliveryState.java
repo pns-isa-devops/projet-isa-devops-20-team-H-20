@@ -16,6 +16,11 @@ public class CompletedDeliveryState extends DeliveryState {
         this.shippedAt = LocalDateTime.now();
     }
 
+    private CompletedDeliveryState(LocalDateTime t){
+        name = "completed";
+        this.shippedAt = t;
+    }
+
     @Override
     public String toString() {
         return "Delivery already shipped at " + shippedAt.toString();
@@ -28,20 +33,21 @@ public class CompletedDeliveryState extends DeliveryState {
 
     @Override
     public DeliveryState clone() {
-        return new CompletedDeliveryState();
+        return new CompletedDeliveryState(this.shippedAt);
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
         CompletedDeliveryState that = (CompletedDeliveryState) o;
-        return shippedAt.equals(that.shippedAt);
+        return getShippedAt().equals(that.getShippedAt());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(shippedAt);
+        return Objects.hash(super.hashCode(), getShippedAt());
     }
 
     @NotNull

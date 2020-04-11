@@ -97,7 +97,7 @@ public class DroneFleetManagementStepdefsTest extends AbstractDroneFleetTest {
     public void deleteDroneError(int id){
         try {
             management.deleteDrone(id);
-            addedDrones.add(id);
+            addedDrones.remove(id);
         }catch (UnknownDroneException e){
             exception = e;
         }

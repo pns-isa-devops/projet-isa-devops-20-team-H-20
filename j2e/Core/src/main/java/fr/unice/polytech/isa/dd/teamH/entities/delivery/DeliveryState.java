@@ -34,7 +34,9 @@ public abstract class DeliveryState implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        return o != null && getClass() == o.getClass();
+        if (o == null || getClass() != o.getClass()) return false;
+        DeliveryState that = (DeliveryState) o;
+        return getName().equals(that.getName());
     }
 
     @Override

@@ -16,6 +16,11 @@ public class FailedDeliveryState extends DeliveryState {
         this.localDateTime = LocalDateTime.now();
     }
 
+    public FailedDeliveryState(LocalDateTime t){
+        name = "failed";
+        this.localDateTime = t;
+    }
+
     @Override
     public String toString() {
         return "Delivery failed at " + localDateTime.toString();
@@ -28,20 +33,21 @@ public class FailedDeliveryState extends DeliveryState {
 
     @Override
     public DeliveryState clone() {
-        return new FailedDeliveryState();
+        return new FailedDeliveryState(this.localDateTime);
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
         FailedDeliveryState that = (FailedDeliveryState) o;
-        return localDateTime.equals(that.localDateTime);
+        return getLocalDateTime().equals(that.getLocalDateTime());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(localDateTime);
+        return Objects.hash(super.hashCode(), getLocalDateTime());
     }
 
     @NotNull
