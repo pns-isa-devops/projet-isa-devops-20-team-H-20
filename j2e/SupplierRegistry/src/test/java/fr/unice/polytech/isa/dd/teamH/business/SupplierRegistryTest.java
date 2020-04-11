@@ -19,7 +19,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import java.util.Optional;
-import java.util.Set;
 
 import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
@@ -36,9 +35,9 @@ public class SupplierRegistryTest extends AbstractSupplierRegistryTest {
     @PersistenceContext
     private EntityManager entityManager;
 
-    private Supplier amazon;
-    private Supplier ldlc;
-    private Supplier fedex;
+    private Supplier nozama;
+    private Supplier lcld;
+    private Supplier xedef;
     private String contact;
     private String contact2;
 
@@ -46,47 +45,43 @@ public class SupplierRegistryTest extends AbstractSupplierRegistryTest {
     public void setUpContext() {
         contact = "06 00 00 00 00";
         contact2 = "06 06 00 00 00";
-        fedex = new Supplier("Fedex");
-        amazon = new Supplier("Amazon");
-        ldlc = new Supplier("LDLC");
+        xedef = new Supplier("Xedef");
+        nozama = new Supplier("Nozama");
+        lcld = new Supplier("LCLD");
     }
 
     @Test
     public void unknownSupplier() {
-        assertFalse(finder.findByName("La Poste").isPresent());
+        assertFalse(finder.findByName("Le Posta").isPresent());
     }
 
     @Test
     public void deleteSupplier() throws Exception {
-        registry.register(amazon.getName(), contact);
-        registry.delete(amazon.getName());
-        Optional<Supplier> supplier = finder.findByName(amazon.getName());
-        assertFalse(supplier.isPresent());
+        registry.register(nozama.getName(), contact);
+        registry.delete(nozama.getName());
+        assertFalse(finder.findByName(nozama.getName()).isPresent());
 
-        registry.register(amazon.getName(), contact);
-        registry.register(ldlc.getName(), contact);
-        registry.delete(ldlc.getName());
-        supplier = finder.findByName(amazon.getName());
-        assertTrue(supplier.isPresent());
+        registry.register(nozama.getName(), contact);
+        registry.register(lcld.getName(), contact);
+        registry.delete(lcld.getName());
+        assertTrue(finder.findByName(nozama.getName()).isPresent());
     }
 
     @Test
     public void registerSupplier() throws Exception {
-        registry.register(amazon.getName(), contact);
-        Optional<Supplier> supplier = finder.findByName(amazon.getName());
-        assertTrue(supplier.isPresent());
+        registry.register(nozama.getName(), contact);
+        assertTrue(finder.findByName(nozama.getName()).isPresent());
 
-        registry.register(ldlc.getName(), contact2);
-        supplier = finder.findByName(ldlc.getName());
-        assertTrue(supplier.isPresent());
+        registry.register(lcld.getName(), contact2);
+        assertTrue(finder.findByName(lcld.getName()).isPresent());
     }
 
     @Test(expected = AlreadyExistingContactException.class)
     public void addContact() throws Exception {
-        registry.register(amazon.getName(), contact);
+        registry.register(nozama.getName(), contact);
 
-        registry.addContact(amazon.getName(), contact2);
-        Optional<Supplier> supplier = finder.findByName(amazon.getName());
+        registry.addContact(nozama.getName(), contact2);
+        Optional<Supplier> supplier = finder.findByName(nozama.getName());
         if(!supplier.isPresent())
             fail();
         assertEquals(2, supplier.get().getContacts().size());
@@ -94,48 +89,56 @@ public class SupplierRegistryTest extends AbstractSupplierRegistryTest {
         assertTrue(supplier.get().getContacts().contains(contact));
         assertTrue(supplier.get().getContacts().contains(contact2));
 
-        registry.addContact(amazon.getName(), contact2);
+        registry.addContact(nozama.getName(), contact2);
     }
 
     @Test
     public void findByName() throws Exception {
-        Optional<Supplier> supplier = finder.findByName(amazon.getName());
-        assertFalse(supplier.isPresent());
+        assertFalse(finder.findByName(nozama.getName()).isPresent());
 
-        registry.register(amazon.getName(), contact);
-        registry.register(ldlc.getName(), contact);
-        supplier = finder.findByName(amazon.getName());
-        assertTrue(supplier.isPresent());
+        registry.register(nozama.getName(), contact);
+        registry.register(lcld.getName(), contact);
+        assertTrue(finder.findByName(nozama.getName()).isPresent());
+        assertTrue(finder.findByName(lcld.getName()).isPresent());
     }
 
     @Test
     public void findAll() throws Exception {
-        registry.register(amazon.getName(), contact);
-        registry.register(ldlc.getName(), contact);
-        Set<Supplier> findAll = finder.findAll();
-        assertEquals(2, findAll.size());
+        int baseSize = finder.findAll().size();
 
-        registry.register(fedex.getName(), contact);
-        findAll = finder.findAll();
-        assertEquals(3, findAll.size());
+        registry.register(nozama.getName(), contact);
+        registry.register(lcld.getName(), contact);
+        assertEquals(baseSize + 2, finder.findAll().size());
+
+        registry.register(xedef.getName(), contact);
+        assertEquals(baseSize + 3, finder.findAll().size());
+
+        boolean isPresent = false;
+        for(Supplier s : finder.findAll()){
+            if (s.getName().equals(nozama.getName())) {
+                isPresent = true;
+                break;
+            }
+        }
+        assertTrue(isPresent);
     }
 
     @Test(expected = UnknownSupplierException.class)
     public void unknownSupplierAddContact() throws Exception {
-        registry.register(amazon.getName(), contact);
-        registry.addContact(ldlc.getName(), contact);
+        registry.register(nozama.getName(), contact);
+        registry.addContact(lcld.getName(), contact);
     }
 
     @Test(expected = AlreadyExistingSupplierException.class)
     public void cannotRegisterTwice() throws Exception {
-        registry.register(amazon.getName(), contact);
-        registry.register(amazon.getName(), contact);
+        registry.register(nozama.getName(), contact);
+        registry.register(nozama.getName(), contact);
     }
 
     @Test
     public void testSupplierStorage() {
         Supplier s = new Supplier();
-        s.setName(amazon.getName());
+        s.setName(nozama.getName());
         s.addContact(contact);
         entityManager.persist(s);
         String n = s.getName();

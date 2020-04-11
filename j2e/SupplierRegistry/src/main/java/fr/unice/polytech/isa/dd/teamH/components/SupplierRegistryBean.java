@@ -84,13 +84,12 @@ public class SupplierRegistryBean implements SupplierFinder, SupplierRegistratio
         Set<String> newContacts = s.getContacts();
         newContacts.add(contact);
         s.setContacts(newContacts);
-        log.log(Level.INFO, "Supplier contact added : " + contact + " - supp: " + findByName(name).get());
+        log.log(Level.INFO, "Supplier contact added : " + contact + " - supp: " + sup);
         return true;
     }
 
     @Override
-    public Set<Supplier> findAll()
-    {
+    public Set<Supplier> findAll() {
         CriteriaBuilder builder = manager.getCriteriaBuilder();
 
         CriteriaQuery<Supplier> criteria = builder.createQuery(Supplier.class);

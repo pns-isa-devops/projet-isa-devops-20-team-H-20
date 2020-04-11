@@ -80,35 +80,33 @@ public class PackageRegistryTest extends AbstractPackageRegistryTest {
     @Test
     public void registerPackage() throws Exception {
         registry.register(p.getTrackingNumber(), p.getSupplier(), p.getWeight(), p.getDestination());
-        Optional<Package> pack = finder.findPackageByTrackingNumber(p.getTrackingNumber());
-        assertTrue(pack.isPresent());
+        assertTrue(finder.findPackageByTrackingNumber(p.getTrackingNumber()).isPresent());
 
         registry.register(p2.getTrackingNumber(), p2.getSupplier(), p2.getWeight(), p2.getDestination());
-        pack = finder.findPackageByTrackingNumber(p2.getTrackingNumber());
-        assertTrue(pack.isPresent());
+        assertTrue(finder.findPackageByTrackingNumber(p2.getTrackingNumber()).isPresent());
     }
 
     @Test
     public void editPackage() throws Exception {
         registry.edit(p3.getTrackingNumber(), ldlc, 10, "9 Avenue des lilas");
-        Optional<Package> pack = finder.findPackageByTrackingNumber(p.getTrackingNumber());
+        Optional<Package> pack = finder.findPackageByTrackingNumber(p3.getTrackingNumber());
         if(pack.isPresent()) {
             Package newP = pack.get();
             assertEquals(newP.getSupplier(), ldlc);
             assertEquals(newP.getDestination(), "9 Avenue des lilas");
             assertEquals(newP.getWeight(), 10, 0);
+        }else{
+            fail();
         }
     }
 
     @Test
     public void deletePackage() throws Exception {
         registry.delete(p4.getTrackingNumber());
-        Optional<Package> aPackage = finder.findPackageByTrackingNumber(p4.getTrackingNumber());
-        assertFalse(aPackage.isPresent());
+        assertFalse(finder.findPackageByTrackingNumber(p4.getTrackingNumber()).isPresent());
 
         registry.delete(p5.getTrackingNumber());
-        aPackage = finder.findPackageByTrackingNumber(p6.getTrackingNumber());
-        assertTrue(aPackage.isPresent());
+        assertTrue(finder.findPackageByTrackingNumber(p6.getTrackingNumber()).isPresent());
     }
 
     @Test
