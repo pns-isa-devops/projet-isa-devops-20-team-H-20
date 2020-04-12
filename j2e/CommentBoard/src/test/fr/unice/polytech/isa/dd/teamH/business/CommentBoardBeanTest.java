@@ -7,11 +7,9 @@ import fr.unice.polytech.isa.dd.teamH.entities.Supplier;
 import fr.unice.polytech.isa.dd.teamH.entities.delivery.Delivery;
 import fr.unice.polytech.isa.dd.teamH.entities.delivery.DeliveryState;
 import fr.unice.polytech.isa.dd.teamH.entities.delivery.DeliveryStateFactory;
-import fr.unice.polytech.isa.dd.teamH.exceptions.AlreadyExistingDroneException;
-import fr.unice.polytech.isa.dd.teamH.exceptions.DeliveryDistanceException;
-import fr.unice.polytech.isa.dd.teamH.exceptions.UnknownCommentException;
-import fr.unice.polytech.isa.dd.teamH.exceptions.UnknownDeliveryStateException;
+import fr.unice.polytech.isa.dd.teamH.exceptions.*;
 import fr.unice.polytech.isa.dd.teamH.interfaces.*;
+import fr.unice.polytech.isa.dd.teamH.utils.MapAPI;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.transaction.api.annotation.TransactionMode;
 import org.jboss.arquillian.transaction.api.annotation.Transactional;
@@ -33,6 +31,9 @@ import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
+import static org.mockito.Matchers.eq;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 @RunWith(Arquillian.class)
 @Transactional(TransactionMode.ROLLBACK)
@@ -44,7 +45,7 @@ public class CommentBoardBeanTest extends AbstractCommentBoardBeanTest {
     private CommentPoster poster;
 
     @EJB
-    private ControlledMap planner;
+    private ControlledMap deliveryPlanner;
     @EJB
     private DeliveryFinder deliveryFinder;
     @EJB
@@ -62,8 +63,17 @@ public class CommentBoardBeanTest extends AbstractCommentBoardBeanTest {
     private Delivery d3;
     private Delivery d4;
 
+    private void initMock() throws ExternalPartnerException {
+        // Mocking the external partner
+        MapAPI mocked = mock(MapAPI.class);
+        deliveryPlanner.useMapReference(mocked);
+        when(mocked.getDistanceTo(eq("Asgard"))).thenReturn(13.8f);
+        when(mocked.getDistanceTo(eq("Wakanda"))).thenReturn(13.8f);
+    }
+
     @Before
-    public void setUp() throws UnknownDeliveryStateException, DeliveryDistanceException, AlreadyExistingDroneException {
+    public void setUp() throws Exception {
+        initMock();
         droneFleetManagement.addDrone(1, 5.5f);
 
         supplier1 = new Supplier("supplier1");
@@ -74,31 +84,25 @@ public class CommentBoardBeanTest extends AbstractCommentBoardBeanTest {
         entityManager.persist(supplier2);
         entityManager.persist(supplier3);
 
-        p1 = new Package("1",0,"Nice", supplier1);
-        p2 = new Package("2",0,"Nice", supplier1);
-        p3 = new Package("3",0,"Nice", supplier3);
-        p4 = new Package("4", 0, "Nice", supplier3);
+        p1 = new Package("1",0,"Asgard", supplier1);
+        p2 = new Package("2",0,"Asgard", supplier1);
+        p3 = new Package("3",0,"Wakanda", supplier3);
+        p4 = new Package("4", 0, "Wakanda", supplier3);
 
         entityManager.persist(p1);
         entityManager.persist(p2);
         entityManager.persist(p3);
         entityManager.persist(p4);
 
-        planner.planDelivery(p1, "2020-05-20", "15:30");
-        planner.planDelivery(p2, "2020-06-20", "15:30");
-        planner.planDelivery(p3, "2020-07-20", "15:30");
-        planner.planDelivery(p4, "2020-08-20", "15:30");
+        deliveryPlanner.planDelivery(p1, "2020-05-20", "15:30");
+        deliveryPlanner.planDelivery(p2, "2020-06-20", "15:30");
+        deliveryPlanner.planDelivery(p3, "2020-07-20", "15:30");
+        deliveryPlanner.planDelivery(p4, "2020-08-20", "15:30");
 
         Delivery d1 = deliveryFinder.findDeliveryById(p1.getTrackingNumber()).get();
         Delivery d2 = deliveryFinder.findDeliveryById(p2.getTrackingNumber()).get();
         d3 = deliveryFinder.findDeliveryById(p3.getTrackingNumber()).get();
         d4 = deliveryFinder.findDeliveryById(p4.getTrackingNumber()).get();
-
-        //TODO : remove
-        entityManager.persist(d1);
-        entityManager.persist(d2);
-        entityManager.persist(d3);
-        entityManager.persist(d4);
 
         poster.postComment(d1, 5, "a");
         poster.postComment(d2, 5, "b");

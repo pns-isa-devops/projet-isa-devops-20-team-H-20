@@ -4,9 +4,11 @@ import arquillian.AbstractStatisticsBeanTest;
 import fr.unice.polytech.isa.dd.teamH.entities.Package;
 import fr.unice.polytech.isa.dd.teamH.entities.Supplier;
 import fr.unice.polytech.isa.dd.teamH.entities.delivery.Delivery;
+import fr.unice.polytech.isa.dd.teamH.exceptions.ExternalPartnerException;
 import fr.unice.polytech.isa.dd.teamH.exceptions.UnknownDroneException;
 import fr.unice.polytech.isa.dd.teamH.exceptions.UnknownDroneStateException;
 import fr.unice.polytech.isa.dd.teamH.interfaces.*;
+import fr.unice.polytech.isa.dd.teamH.utils.MapAPI;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.transaction.api.annotation.TransactionMode;
 import org.jboss.arquillian.transaction.api.annotation.Transactional;
@@ -22,6 +24,9 @@ import javax.persistence.PersistenceContext;
 import java.time.LocalDateTime;
 
 import static org.junit.Assert.*;
+import static org.mockito.Matchers.eq;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 @RunWith(Arquillian.class)
 @Transactional(TransactionMode.ROLLBACK)
@@ -36,22 +41,30 @@ public class StatisticsBeanTest extends AbstractStatisticsBeanTest {
     private CommentPoster cp;
 
     @EJB
-    private ControlledMap planner;
+    private ControlledMap deliveryPlanner;
 
     @EJB private DeliveryFinder deliveryFinder;
 
     @EJB
     private DroneFleetManagement droneFleetManagement;
 
+    private void initMock() throws ExternalPartnerException {
+        // Mocking the external partner
+        MapAPI mocked = mock(MapAPI.class);
+        deliveryPlanner.useMapReference(mocked);
+        when(mocked.getDistanceTo(eq("Wakanda"))).thenReturn(13.8f);
+    }
+
     @Before
     public void setUp() throws Exception {
+        initMock();
         droneFleetManagement.addDrone(1, 5.5f);
         Supplier s = new Supplier("a");
 
         entityManager.persist(s);
-        Package p = new Package("3",0,"Nice",s);
+        Package p = new Package("3",0,"Wakanda",s);
         entityManager.persist(p);
-        planner.planDelivery(p, "2020-05-20", "15:30");
+        deliveryPlanner.planDelivery(p, "2020-05-20", "15:30");
         Delivery d = deliveryFinder.findDeliveryById(p.getTrackingNumber()).get();
         entityManager.persist(d);
 

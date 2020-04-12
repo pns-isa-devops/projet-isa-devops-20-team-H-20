@@ -252,6 +252,32 @@ public class DeliveryPlanningBean implements DeliveryFinder, DeliveryPlanner, Co
         return manager.merge(s);
     }
 
+    @Override
+    public boolean deleteDelivery(String trackingNumber) throws UnknownDeliveryException{
+        Optional<Delivery> toDelete = findDeliveryById(trackingNumber);
+        if(!toDelete.isPresent()) {
+            throw new UnknownDeliveryException(trackingNumber);
+        }
+
+        Delivery deleted = manager.merge(toDelete.get());
+        manager.remove(deleted);
+        log.log(Level.INFO, "Delivery deleted : " + trackingNumber);
+        return true;
+    }
+
+    @Override
+    public boolean deletePlaningEntry(String trackingNumber) throws UnknownDeliveryException{
+        Optional<PlanningEntry> toDelete = findPlanningEntryByTrackingId(trackingNumber);
+        if(!toDelete.isPresent()) {
+            throw new UnknownDeliveryException(trackingNumber);
+        }
+
+        PlanningEntry deleted = manager.merge(toDelete.get());
+        manager.remove(deleted);
+        log.log(Level.INFO, "Delivery deleted : " + trackingNumber);
+        return true;
+    }
+
     public void useMapReference(MapAPI mapAPI) {
         this.mapService = mapAPI;
     }

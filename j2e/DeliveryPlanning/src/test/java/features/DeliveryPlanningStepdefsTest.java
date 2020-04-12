@@ -11,23 +11,17 @@ import fr.unice.polytech.isa.dd.teamH.entities.Supplier;
 import fr.unice.polytech.isa.dd.teamH.entities.delivery.Delivery;
 import fr.unice.polytech.isa.dd.teamH.entities.deliveryplanning.PlanningEntry;
 import fr.unice.polytech.isa.dd.teamH.entities.drone.Drone;
-import fr.unice.polytech.isa.dd.teamH.exceptions.DeliveryDistanceException;
-import fr.unice.polytech.isa.dd.teamH.exceptions.ExternalPartnerException;
+import fr.unice.polytech.isa.dd.teamH.exceptions.*;
 import fr.unice.polytech.isa.dd.teamH.interfaces.*;
 import fr.unice.polytech.isa.dd.teamH.utils.MapAPI;
 import org.jboss.arquillian.transaction.api.annotation.TransactionMode;
 import org.jboss.arquillian.transaction.api.annotation.Transactional;
-import org.junit.After;
 import org.junit.runner.RunWith;
 
 import javax.ejb.EJB;
-import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.transaction.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 
 import static org.junit.Assert.*;
 import static org.mockito.Matchers.eq;
@@ -50,17 +44,15 @@ public class DeliveryPlanningStepdefsTest extends AbstractDeliveryPlanningTest {
     @EJB private DroneFinder droneFinder;
     @EJB private DroneFleetManagement droneFleetManagement;
 
-    @PersistenceContext private EntityManager entityManager;
-    @Inject private UserTransaction utx;
-
     private Optional<Delivery> deliveryFound;
-    private Exception exception = null;
+    private Optional<PlanningEntry> planningEntryFound;
 
-    private int droneToDelete;
-    private List<String> packagesToDelete;
-    private String supplierToDelete;
+    private Set<Drone> dronesToDelete;
+    private Set<Package> packagesToDelete;
+    private Set<Package> packagesDeliveriesToDelete;
+    private Package packageEntryToDelete;
+    private Set<Supplier> suppliersToDelete;
 
-    //TODO
     private void initMock() throws ExternalPartnerException {
         // Mocking the external partner
         MapAPI mocked = mock(MapAPI.class);
@@ -68,74 +60,183 @@ public class DeliveryPlanningStepdefsTest extends AbstractDeliveryPlanningTest {
         when(mocked.getDistanceTo(eq("Titan"))).thenReturn(13.8f);
         when(mocked.getDistanceTo(eq("Wakanda"))).thenReturn(13.8f);
     }
-//
-//    @Given("^some delivery with date (.*) time ([\\d]{2}:[\\d]{2}) and with (.*) as package with (.*) as Supplier and (\\d+) as drone and a random package (.*)$")
-//    public void background(String date, String time, String pack, String supplier, int drone, String pack2) throws Exception{
-//        initMock();
-//        exception = null;
-//        droneFleetManagement.addDrone(drone, 20);
-//        supplierRegistration.register(supplier, "0649712254");
-//        droneToDelete = drone;
-//        packagesToDelete = new ArrayList<>();
-//        packagesToDelete.add(pack);
-//        packagesToDelete.add(pack2);
-//        supplierToDelete = supplier;
-//
-//        Optional<Drone> d = droneFinder.findDroneById(drone);
-//        assertTrue(d.isPresent());
-//
-//        Optional<Supplier> s = supplierFinder.findByName(supplier);
-//        assertTrue(s.isPresent());
-//
-//        Package p = packageRegistration.register(pack, s.get(), 5, "Titan");
-//        packageRegistration.register(pack2, s.get(), 5.2f, "Wakanda");
-//
-//        try {
-//            deliveryPlanner.planDelivery(p, date, time);
-//        }catch(DeliveryDistanceException e){
-//            fail();
-//        }
-//    }
-//
-//    @When("^the service client adds the delivery with date (\\d\\d\\d\\d-\\d\\d-\\d\\d) time (\\d\\d:\\d\\d) and with (.*) as package$")
-//    public void addDelivery(String date, String time, String pack) throws Exception{
-//        try {
-//            Optional<Package> p;
-//            if ((p = packageFinder.findPackageByTrackingNumber(pack)).isPresent()) {
-//                deliveryPlanner.planDelivery(p.get(),date, time);
-//            } else {
-//                fail();
-//            }
-//        }catch(DeliveryDistanceException e){
-//            fail();
-//        }
-//    }
-//
-//    @Then("^there is an exception$")
-//    public void checkExceptionAdd(){
-//        assertNotNull(exception);
-//    }
-//
-//    @Then("^there is (\\d+) deliveries in the delivery list$")
-//    public void checkAddSupplier(int number){
-//        assertEquals(number, deliveryFinder.findAllPlannedDeliveries().stream().mapToInt(pe -> pe.getDeliveries().size()).sum());
-//    }
 
-//    @After
-//    public void cleaningUp() throws Exception{
-//        utx.begin();
-//        for(String trackingId: packagesToDelete){
-//            Optional<PlanningEntry> toDisposePlanning = deliveryFinder.findPlanningEntryByTrackingId(trackingId);
-//            toDisposePlanning.ifPresent(sup -> { PlanningEntry entity = entityManager.merge(sup); entityManager.remove(entity); });
-//            Optional<Delivery> toDisposeDelivery = deliveryFinder.findDeliveryById(trackingId);
-//            toDisposeDelivery.ifPresent(sup -> { Delivery entity = entityManager.merge(sup); entityManager.remove(entity); });
-//            Optional<Package> toDisposePackage = packageFinder.findPackageByTrackingNumber(trackingId);
-//            toDisposePackage.ifPresent(sup -> { Package entity = entityManager.merge(sup); entityManager.remove(entity); });
-//        }
-//        Optional<Drone> toDisposeDrone = droneFinder.findDroneById(droneToDelete);
-//        toDisposeDrone.ifPresent(sup -> { Drone entity = entityManager.merge(sup); entityManager.remove(entity); });
-//        Optional<Supplier> toDisposeSupplier = supplierFinder.findByName(supplierToDelete);
-//        toDisposeSupplier.ifPresent(sup -> { Supplier entity = entityManager.merge(sup); entityManager.remove(entity); });
-//        utx.commit();
-//    }
+    @Given("^some delivery with date (.*) time ([\\d]{2}:[\\d]{2}) and with (.*) as package with (.*) as Supplier and (\\d+) as drone and randoms packages (.*) and (.*) and (.*)$")
+    public void background(String date, String time, String pack, String supplier, int drone, String pack2, String pack3, String pack4) throws Exception{
+        initMock();
+        packagesToDelete = new HashSet<>();
+        dronesToDelete = new HashSet<>();
+        suppliersToDelete = new HashSet<>();
+        packagesDeliveriesToDelete = new HashSet<>();
+        dronesToDelete.add(droneFleetManagement.addDrone(drone, 20));
+        suppliersToDelete.add(supplierRegistration.register(supplier, "0649712254"));
+
+        Optional<Drone> d = droneFinder.findDroneById(drone);
+        assertTrue(d.isPresent());
+
+        Optional<Supplier> s = supplierFinder.findByName(supplier);
+        assertTrue(s.isPresent());
+
+        Package p = packageRegistration.register(pack, s.get(), 5, "Titan");
+        packagesToDelete.add(p);
+        packagesToDelete.add(packageRegistration.register(pack2, s.get(), 5.2f, "Wakanda"));
+        packagesToDelete.add(packageRegistration.register(pack3, s.get(), 4.2f, "Nowhere"));
+        packagesToDelete.add(packageRegistration.register(pack4, s.get(), 3.2f, "Midgard"));
+
+        deliveryPlanner.planDelivery(p, date, time);
+        packagesDeliveriesToDelete.add(p);
+        packageEntryToDelete = p;
+    }
+
+    @Given("^some deliveries with date (.*) time ([\\d]{2}:[\\d]{2}) and with (.*) as package and with date (.*) time ([\\d]{2}:[\\d]{2}) and with (.*) as package with (.*) as Supplier and (\\d+) as drone and random package (.*)$")
+    public void background2(String date, String time, String package1, String date2, String time2, String package2, String supplier, int drone, String package3) throws Exception{
+        initMock();
+        packagesToDelete = new HashSet<>();
+        dronesToDelete = new HashSet<>();
+        suppliersToDelete = new HashSet<>();
+        packagesDeliveriesToDelete = new HashSet<>();
+        dronesToDelete.add(droneFleetManagement.addDrone(drone, 20));
+        suppliersToDelete.add(supplierRegistration.register(supplier, "0649712254"));
+
+        Optional<Drone> d = droneFinder.findDroneById(drone);
+        assertTrue(d.isPresent());
+
+        Optional<Supplier> s = supplierFinder.findByName(supplier);
+        assertTrue(s.isPresent());
+
+        Package p = packageRegistration.register(package1, s.get(), 5, "Titan");
+        packagesToDelete.add(p);
+        Package p2 = packageRegistration.register(package2, s.get(), 5.2f, "Wakanda");
+        packagesToDelete.add(p2);
+        packagesToDelete.add(packageRegistration.register(package3, s.get(), 4.2f, "Nowhere"));
+
+        deliveryPlanner.planDelivery(p, date, time);
+        packagesDeliveriesToDelete.add(p);
+        deliveryPlanner.planDelivery(p2, date2, time2);
+        packagesDeliveriesToDelete.add(p2);
+        packageEntryToDelete = p;
+    }
+
+    @When("^the service client adds the delivery with date (\\d\\d\\d\\d-\\d\\d-\\d\\d) time (\\d\\d:\\d\\d) and with (.*) as package$")
+    public void addDelivery(String date, String time, String pack) throws Exception{
+        Optional<Package> p;
+        if ((p = packageFinder.findPackageByTrackingNumber(pack)).isPresent()) {
+            boolean planned = deliveryPlanner.planDelivery(p.get(),date, time);
+            if(!planned)
+                fail();
+            packagesDeliveriesToDelete.add(p.get());
+        } else {
+            fail();
+        }
+    }
+
+    @When("^the service client adds the delivery with date (\\d\\d\\d\\d-\\d\\d-\\d\\d) time (\\d\\d:\\d\\d) and (.*) as package and (.*) as other package with date (\\d\\d\\d\\d-\\d\\d-\\d\\d) time (\\d\\d:\\d\\d)$")
+    public void addDeliveries(String date, String time, String package1, String package2, String date2, String time2) throws Exception{
+        Optional<Package> p;
+        if ((p = packageFinder.findPackageByTrackingNumber(package1)).isPresent()) {
+            boolean planned = deliveryPlanner.planDelivery(p.get(),date, time);
+            if(!planned)
+                fail();
+            packagesDeliveriesToDelete.add(p.get());
+        } else {
+            fail();
+        }
+
+        if ((p = packageFinder.findPackageByTrackingNumber(package2)).isPresent()) {
+            boolean planned = deliveryPlanner.planDelivery(p.get(),date2, time2);
+            if(!planned)
+                fail();
+            packagesDeliveriesToDelete.add(p.get());
+        } else {
+            fail();
+        }
+    }
+
+    @When("^the service client edits the delivery with package (.*) and put the status to (.*)$")
+    public void editStatus(String trackingId, String status) throws Exception{
+        deliveryPlanner.editDeliveryStatus(deliveryFinder.findDeliveryById(trackingId).get(), deliveryFinder.checkAndUpdateState(status));
+    }
+
+    @When("^the manutentionnaire starts the delivery with (.*) as package and drone was (\\d+)$")
+    public void startDelivery(String packageId, int droneId){
+        deliveryPlanner.startDelivery(droneFinder.findDroneById(droneId).get(), deliveryFinder.findDeliveryById(packageId).get());
+    }
+
+    @When("^the service client searches the delivery with (.*) as package$")
+    public void findDelivery(String packageId){
+        deliveryFound = deliveryFinder.findDeliveryById(packageId);
+    }
+
+    @When("^the service client searches the planning entry for delivery with (.*) as package$")
+    public void findPlanningEntry(String packageId){
+        planningEntryFound = deliveryFinder.findPlanningEntryByTrackingId(packageId);
+    }
+
+    @Then("^the delivery with package (.*) has a (.*) status$")
+    public void editStatusCheck(String trackingId, String status){
+        assertEquals(status, deliveryFinder.findDeliveryById(trackingId).get().getState().getName());
+    }
+
+    @Then("^the delivery is found$")
+    public void checkDeliveryFound(){
+        assertTrue(deliveryFound.isPresent());
+    }
+
+    @Then("^the planning entry is found$")
+    public void checkPlanningFound(){
+        assertTrue(planningEntryFound.isPresent());
+    }
+
+    @Then("^the delivery is not found$")
+    public void checkDeliveryNotFound(){
+        assertFalse(deliveryFound.isPresent());
+    }
+
+    @Then("^the planning entry is not found$")
+    public void checkPLanningNotFound(){
+        assertFalse(planningEntryFound.isPresent());
+    }
+
+    @Then("^there is a planing entry for the delivery (.*)$")
+    public void checkAddPlaningEntry(String trackingId){
+        assertTrue(deliveryFinder.findPlanningEntryByTrackingId(trackingId).isPresent());
+    }
+
+    @Then("^there is a delivery for package (.*)$")
+    public void checkAddDelivery(String trackingId){
+        assertTrue(deliveryFinder.findDeliveryById(trackingId).isPresent());
+    }
+
+    @cucumber.api.java.After
+    public void cleaningUp() throws Exception{
+        deliveryPlanner.deletePlaningEntry(packageEntryToDelete.getTrackingNumber());
+        packagesDeliveriesToDelete.forEach(entity -> {
+            try {
+                deliveryPlanner.deleteDelivery(entity.getTrackingNumber());
+            } catch (UnknownDeliveryException e) {
+                e.printStackTrace();
+            }
+        });
+        packagesToDelete.forEach(entity -> {
+            try {
+                packageRegistration.delete(entity.getTrackingNumber());
+            } catch (UnknownPackageException e) {
+                e.printStackTrace();
+            }
+        });
+        suppliersToDelete.forEach(entity -> {
+            try {
+                supplierRegistration.delete(entity.getName());
+            } catch (UnknownSupplierException e) {
+                e.printStackTrace();
+            }
+        });
+        dronesToDelete.forEach(entity -> {
+            try {
+                droneFleetManagement.deleteDrone(entity.getId());
+            } catch (UnknownDroneException e) {
+                e.printStackTrace();
+            }
+        });
+    }
 }

@@ -6,6 +6,7 @@ import fr.unice.polytech.isa.dd.teamH.entities.delivery.DeliveryState;
 import fr.unice.polytech.isa.dd.teamH.entities.deliveryplanning.PlanningEntry;
 import fr.unice.polytech.isa.dd.teamH.entities.drone.Drone;
 import fr.unice.polytech.isa.dd.teamH.exceptions.DeliveryDistanceException;
+import fr.unice.polytech.isa.dd.teamH.exceptions.UnknownDeliveryException;
 import fr.unice.polytech.isa.dd.teamH.exceptions.UnknownDeliveryStateException;
 
 import javax.ejb.Local;
@@ -17,4 +18,6 @@ public interface DeliveryPlanner {
     boolean editDeliveryStatus(Delivery delivery, DeliveryState state) throws UnknownDeliveryStateException;
     boolean startDelivery(Drone drone, Delivery delivery);
     Set<PlanningEntry> getCompleteDeliveryPlanning();
+    boolean deleteDelivery(String trackingNumber) throws UnknownDeliveryException;
+    boolean deletePlaningEntry(String trackingNumber) throws UnknownDeliveryException;
 }
