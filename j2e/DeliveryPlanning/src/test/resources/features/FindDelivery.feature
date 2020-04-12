@@ -1,4 +1,4 @@
-Feature: Plan delivery
+Feature: Find delivery
   This feature supports the way a service client finds a delivery
 
   Background:

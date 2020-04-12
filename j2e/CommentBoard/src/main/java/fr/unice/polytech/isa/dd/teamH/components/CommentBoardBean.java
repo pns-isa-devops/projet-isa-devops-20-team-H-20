@@ -70,7 +70,7 @@ public class CommentBoardBean implements CommentFinder, CommentPoster {
     }
 
     @Override
-    public void postComment(Delivery delivery, int rating, String comment) {
+    public Comment postComment(Delivery delivery, int rating, String comment) {
         Optional<Comment> c = findCommentForPackage(delivery.getaPackage().getTrackingNumber());
         // This is in order to properly update the comment if it already exists.
         // Relying on the hash / equals method might be dangerous since we create a new Comment object
@@ -85,6 +85,7 @@ public class CommentBoardBean implements CommentFinder, CommentPoster {
         Comment newComment = new Comment(delivery, rating, comment);
         manager.persist(newComment);
         log.log(Level.INFO, "Comment added : " + newComment.toString());
+        return manager.merge(newComment);
     }
 
     @Override

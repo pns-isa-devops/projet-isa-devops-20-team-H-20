@@ -1,4 +1,4 @@
-Feature: Plan delivery
+Feature: Start delivery
   This feature supports the way a manutentionnaire starts a delivery
 
   Background:

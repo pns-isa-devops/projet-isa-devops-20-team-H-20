@@ -1,4 +1,4 @@
-Feature: Plan delivery
+Feature: Edit delivery
   This feature supports the way a service client edits a delivery
 
   Background:

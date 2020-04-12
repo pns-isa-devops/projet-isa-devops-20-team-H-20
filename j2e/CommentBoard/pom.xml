@@ -30,11 +30,23 @@
             <version>${project.version}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>fr.polytech.team.h</groupId>
+            <artifactId>SupplierRegistry</artifactId>
+            <version>${project.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>fr.polytech.team.h</groupId>
+            <artifactId>PackageRegistry</artifactId>
+            <version>${project.version}</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
         <sourceDirectory>src/main/java</sourceDirectory>
-        <testSourceDirectory>src/test</testSourceDirectory>
+        <testSourceDirectory>src/test/java</testSourceDirectory>
         <finalName>dd-comment-board</finalName>
     </build>
 </project>
