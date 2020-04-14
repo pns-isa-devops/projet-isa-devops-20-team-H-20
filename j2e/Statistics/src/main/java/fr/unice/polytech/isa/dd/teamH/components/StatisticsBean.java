@@ -10,20 +10,31 @@ import fr.unice.polytech.isa.dd.teamH.interfaces.StatisticsGenerator;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.time.LocalDateTime;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 @Stateless
 public class StatisticsBean implements StatisticsGenerator {
-    private Set<DroneStatsEntry> droneEntries = new TreeSet<>(Comparator.comparing(DroneStatsEntry::getEntryTime));
-    private Set<CustomerSatisfactionStatsEntry> customerSatisfactionEntries = new TreeSet<>(Comparator.comparing(CustomerSatisfactionStatsEntry::getEntryTime));
-
     @EJB
     private CommentFinder commentFinder;
-
     @EJB
     private DroneFinder droneFinder;
+
+    @PersistenceContext
+    private EntityManager manager;
+
+    private static final Logger log = Logger.getLogger(StatisticsBean.class.getName());
+
 
     @Override
     public float getAverageCustomerSatisfaction() {
@@ -51,48 +62,94 @@ public class StatisticsBean implements StatisticsGenerator {
     }
 
     @Override
-    public Set<DroneStatsEntry> getDroneStatEntry() {
-        return droneEntries;
+    public Set<DroneStatsEntry> getDroneStatsEntries() {
+        CriteriaBuilder builder = manager.getCriteriaBuilder();
+
+        CriteriaQuery<DroneStatsEntry> criteria = builder.createQuery(DroneStatsEntry.class);
+        Root<DroneStatsEntry> root = criteria.from(DroneStatsEntry.class);
+
+        criteria.select(root);
+        TypedQuery<DroneStatsEntry> query = manager.createQuery(criteria);
+
+        try {
+            return new HashSet<>(query.getResultList());
+        } catch (NoResultException nre){
+            return new HashSet<>();
+        }
     }
 
     @Override
-    public Set<DroneStatsEntry> getDroneStatEntry(LocalDateTime dateTime) {
-        return droneEntries.stream().filter(entry -> LocalDateTime.parse(entry.getEntryTime()).isAfter(dateTime)).collect(Collectors.toSet());
+    public Set<DroneStatsEntry> getDroneStatsEntriesFrom(LocalDateTime dateTime) {
+        CriteriaBuilder builder = manager.getCriteriaBuilder();
+
+        CriteriaQuery<DroneStatsEntry> criteria = builder.createQuery(DroneStatsEntry.class);
+        Root<DroneStatsEntry> root = criteria.from(DroneStatsEntry.class);
+
+        criteria.select(root);
+        TypedQuery<DroneStatsEntry> query = manager.createQuery(criteria);
+
+        try {
+            return query.getResultList().stream().filter(dse -> LocalDateTime.parse(dse.getEntryTime()).isAfter(dateTime)).collect(Collectors.toSet());
+        } catch (NoResultException nre){
+            return new HashSet<>();
+        }
     }
 
     @Override
-    public Set<CustomerSatisfactionStatsEntry> getCustomerStatEntry() {
-        return customerSatisfactionEntries;
+    public Set<CustomerSatisfactionStatsEntry> getCustomerStatsEntries() {
+        CriteriaBuilder builder = manager.getCriteriaBuilder();
+
+        CriteriaQuery<CustomerSatisfactionStatsEntry> criteria = builder.createQuery(CustomerSatisfactionStatsEntry.class);
+        Root<CustomerSatisfactionStatsEntry> root = criteria.from(CustomerSatisfactionStatsEntry.class);
+
+        criteria.select(root);
+        TypedQuery<CustomerSatisfactionStatsEntry> query = manager.createQuery(criteria);
+
+        try {
+            return new HashSet<>(query.getResultList());
+        } catch (NoResultException nre){
+            return new HashSet<>();
+        }
     }
 
     @Override
-    public Set<CustomerSatisfactionStatsEntry> getCustomerStatEntry(LocalDateTime dateTime) {
-        return customerSatisfactionEntries.stream().filter(entry -> LocalDateTime.parse(entry.getEntryTime()).isAfter(dateTime)).collect(Collectors.toSet());
+    public Set<CustomerSatisfactionStatsEntry> getCustomerStatsEntriesFrom(LocalDateTime dateTime) {
+        CriteriaBuilder builder = manager.getCriteriaBuilder();
+
+        CriteriaQuery<CustomerSatisfactionStatsEntry> criteria = builder.createQuery(CustomerSatisfactionStatsEntry.class);
+        Root<CustomerSatisfactionStatsEntry> root = criteria.from(CustomerSatisfactionStatsEntry.class);
+
+        criteria.select(root);
+        TypedQuery<CustomerSatisfactionStatsEntry> query = manager.createQuery(criteria);
+
+        try {
+            return query.getResultList().stream().filter(cse -> LocalDateTime.parse(cse.getEntryTime()).isAfter(dateTime)).collect(Collectors.toSet());
+        } catch (NoResultException nre){
+            return new HashSet<>();
+        }
     }
 
     @Override
-    public void generateNewDroneStatsEntry() {
+    public DroneStatsEntry generateNewDroneStatsEntry() {
         DroneStatsEntry d = new DroneStatsEntry();
 
         d.setDronesUseRate(getAverageDroneUseRate());
         d.setEntryTime(LocalDateTime.now().toString());
 
-        droneEntries.add(d);
+        manager.persist(d);
+        log.log(Level.INFO, "Drone stats generated : " + d.toString());
+        return manager.merge(d);
     }
 
     @Override
-    public void generateNewCustomerSatisfactionEntry() {
+    public CustomerSatisfactionStatsEntry generateNewCustomerSatisfactionEntry() {
         CustomerSatisfactionStatsEntry c = new CustomerSatisfactionStatsEntry();
 
         c.setCustomerSatisfactionRate(getAverageDroneUseRate());
         c.setEntryTime(LocalDateTime.now().toString());
 
-        customerSatisfactionEntries.add(c);
-    }
-
-    @Override
-    public void flush() {
-        droneEntries = new TreeSet<>(Comparator.comparing(DroneStatsEntry::getEntryTime));
-        customerSatisfactionEntries = new TreeSet<>(Comparator.comparing(CustomerSatisfactionStatsEntry::getEntryTime));
+        manager.persist(c);
+        log.log(Level.INFO, "Customer stats generated : " + c.toString());
+        return manager.merge(c);
     }
 }

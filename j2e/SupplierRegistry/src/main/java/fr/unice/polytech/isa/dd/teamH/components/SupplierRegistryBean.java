@@ -93,7 +93,7 @@ public class SupplierRegistryBean implements SupplierFinder, SupplierRegistratio
         CriteriaBuilder builder = manager.getCriteriaBuilder();
 
         CriteriaQuery<Supplier> criteria = builder.createQuery(Supplier.class);
-        Root<Supplier> root =  criteria.from(Supplier.class);
+        Root<Supplier> root = criteria.from(Supplier.class);
 
         criteria.select(root);
         TypedQuery<Supplier> query = manager.createQuery(criteria);

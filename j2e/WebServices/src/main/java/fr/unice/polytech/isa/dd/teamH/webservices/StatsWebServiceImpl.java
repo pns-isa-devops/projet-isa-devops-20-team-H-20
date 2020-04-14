@@ -20,22 +20,22 @@ public class StatsWebServiceImpl implements StatsWebService {
 
     @Override
     public Set<CustomerSatisfactionStatsEntry> getStatsUsers() {
-        return statisticsGenerator.getCustomerStatEntry();
+        return statisticsGenerator.getCustomerStatsEntries();
     }
 
     @Override
     public Set<CustomerSatisfactionStatsEntry> getStatsUsersFrom(String time) throws DateTimeParseException {
-        return statisticsGenerator.getCustomerStatEntry(LocalDateTime.parse(time));
+        return statisticsGenerator.getCustomerStatsEntriesFrom(LocalDateTime.parse(time));
     }
 
     @Override
     public Set<DroneStatsEntry> getStatsDrones() {
-        return statisticsGenerator.getDroneStatEntry();
+        return statisticsGenerator.getDroneStatsEntries();
     }
 
     @Override
     public Set<DroneStatsEntry> getStatsDronesFrom(String time) throws DateTimeParseException {
-        return statisticsGenerator.getDroneStatEntry(LocalDateTime.parse(time));
+        return statisticsGenerator.getDroneStatsEntriesFrom(LocalDateTime.parse(time));
     }
 
     @Override

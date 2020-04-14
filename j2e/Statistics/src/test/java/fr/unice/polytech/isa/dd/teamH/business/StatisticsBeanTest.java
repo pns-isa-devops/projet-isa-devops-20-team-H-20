@@ -73,11 +73,6 @@ public class StatisticsBeanTest extends AbstractStatisticsBeanTest {
         cp.postComment(d, 5, "");
     }
 
-    @After
-    public void cleaningUp() {
-        sg.flush();
-    }
-
     @Test
     public void test(){
         //TODO fix after planingBean persisted
@@ -103,33 +98,33 @@ public class StatisticsBeanTest extends AbstractStatisticsBeanTest {
     @Test
     public void getCustomerStatsEntry() {
         sg.generateNewCustomerSatisfactionEntry();
-        assertEquals("Customer Entry Set isn't the right size", 1, sg.getCustomerStatEntry().size());
+        assertEquals("Customer Entry Set isn't the right size", 1, sg.getCustomerStatsEntries().size());
     }
 
     @Test
     public void getCustomerStatsEntryTime() {
         LocalDateTime now = LocalDateTime.now().minusSeconds(1);
         sg.generateNewCustomerSatisfactionEntry();
-        assertEquals("Customer Entry Set isn't the right size", 1, sg.getCustomerStatEntry(now).size());
+        assertEquals("Customer Entry Set isn't the right size", 1, sg.getCustomerStatsEntriesFrom(now).size());
     }
 
     @Test
     public void getCustomerStatsEntryTimeFail() {
         LocalDateTime now = LocalDateTime.now().plusMonths(1);
         sg.generateNewCustomerSatisfactionEntry();
-        assertEquals("Customer Stat Entry was found despite being the wrong time", 0, sg.getCustomerStatEntry(now).size());
+        assertEquals("Customer Stat Entry was found despite being the wrong time", 0, sg.getCustomerStatsEntriesFrom(now).size());
     }
 
     @Test
     public void getCustomerStatsEntryEmpty() {
-        assertEquals("Should be empty", 0, sg.getCustomerStatEntry().size());
+        assertEquals("Should be empty", 0, sg.getCustomerStatsEntries().size());
     }
 
     @Test
     public void getDroneStatsEntry() throws UnknownDroneStateException, UnknownDroneException {
         droneFleetManagement.editDroneStatus(1, "flight");
         sg.generateNewDroneStatsEntry();
-        assertEquals("Drone Entry Set isn't the right size", 1, sg.getDroneStatEntry().size());
+        assertEquals("Drone Entry Set isn't the right size", 1, sg.getDroneStatsEntries().size());
     }
 
     @Test
@@ -137,7 +132,7 @@ public class StatisticsBeanTest extends AbstractStatisticsBeanTest {
         LocalDateTime now = LocalDateTime.now().minusSeconds(1);
         droneFleetManagement.editDroneStatus(1, "flight");
         sg.generateNewDroneStatsEntry();
-        assertEquals("Drone Entry Set isn't the right size", 1, sg.getDroneStatEntry(now).size());
+        assertEquals("Drone Entry Set isn't the right size", 1, sg.getDroneStatsEntriesFrom(now).size());
     }
 
     @Test
@@ -145,12 +140,12 @@ public class StatisticsBeanTest extends AbstractStatisticsBeanTest {
         LocalDateTime now = LocalDateTime.now().plusMonths(1);
         droneFleetManagement.editDroneStatus(1, "flight");
         sg.generateNewDroneStatsEntry();
-        assertEquals("Drone Stat Entry was found despite being the wrong time", 0, sg.getDroneStatEntry(now).size());
+        assertEquals("Drone Stat Entry was found despite being the wrong time", 0, sg.getDroneStatsEntriesFrom(now).size());
     }
 
     @Test
     public void getDroneStatsEntryEmpty() {
-        assertEquals("Should be empty", 0, sg.getDroneStatEntry().size());
+        assertEquals("Should be empty", 0, sg.getDroneStatsEntries().size());
     }
 
     @Test
