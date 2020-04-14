@@ -59,7 +59,7 @@ public class AccountingBean implements InvoiceFinder, InvoiceGeneration {
         Set<PlanningEntry> planningEntries = deliveryFinder.findCompletedDeliveriesSince(LocalDateTime.now().minusMonths(1), s);
         Invoice invoice = new Invoice();
         float amount = 0.0f;
-        invoice.setCreationDate(LocalDate.now());
+        invoice.setCreationDate(LocalDate.now().toString());
         invoice.setSupplier(s);
         invoice.setPaid(false);
         // Calcul du prix de la facture
@@ -122,7 +122,7 @@ public class AccountingBean implements InvoiceFinder, InvoiceGeneration {
         if(!invoice.isPresent())
             throw new UnkownInvoiceException(invoiceId + "");
         Invoice invoiceEdit = manager.merge(invoice.get());
-        invoiceEdit.pay(LocalDate.now());
+        invoiceEdit.pay(LocalDate.now().toString());
         log.log(Level.INFO, "Invoice edited : " + invoiceEdit.toString());
         return true;
     }

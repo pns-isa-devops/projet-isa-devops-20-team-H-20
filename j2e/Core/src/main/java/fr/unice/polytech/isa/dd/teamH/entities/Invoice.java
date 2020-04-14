@@ -23,9 +23,9 @@ public class Invoice implements Serializable {
     public Invoice(){
     }
 
-    public void pay(LocalDate paymentDate){
+    public void pay(String paymentDate){
         this.paid = true;
-        this.paymentDate = paymentDate.toString();
+        this.paymentDate = paymentDate;
     }
 
 
@@ -55,20 +55,18 @@ public class Invoice implements Serializable {
     }
 
     @NotNull
-    public LocalDate getCreationDate() {
-        return LocalDate.parse(creationDate);
+    public String getCreationDate() {
+        return creationDate;
     }
-    public void setCreationDate(LocalDate creationDate) {
-        this.creationDate = creationDate.toString();
+    public void setCreationDate(String creationDate) {
+        this.creationDate = creationDate;
     }
 
-    public LocalDate getPaymentDate() {
-        if(paymentDate == null)
-            return null;
-        return LocalDate.parse(paymentDate);
+    public String getPaymentDate() {
+        return paymentDate;
     }
-    public void setPaymentDate(LocalDate paymentDate) {
-        this.paymentDate = paymentDate.toString();
+    public void setPaymentDate(String paymentDate) {
+        this.paymentDate = paymentDate;
     }
 
     @ManyToOne(cascade = CascadeType.MERGE)

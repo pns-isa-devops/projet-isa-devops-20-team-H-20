@@ -8,7 +8,11 @@ Feature: Find invoices
     When the gestionnaire finds the invoices unpaid
     Then there are 2 invoices and paid is false
 
-#  Scenario: There are 3 deliveries in the system and we find unpaid invoices but one is paid
-#    When the gestionnaire finds the invoices unpaid but Nozama is paid
-#    Then there are 2 invoices and paid is false for supplier LePosta because for Nozama paid is true
+  Scenario: There are 3 deliveries in the system and we find unpaid invoices but one is paid
+    When the gestionnaire finds the invoices unpaid but Nozama is paid
+    Then there are 1 invoices and paid is false
+
+  Scenario: There are 3 deliveries in the system and we find invoices for a supplier
+    When the gestionnaire finds the invoices for LePosta
+    Then there are 1 invoices and paid is false
 

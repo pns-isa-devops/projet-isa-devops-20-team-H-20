@@ -23,6 +23,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -144,6 +145,39 @@ public class AccountingStepdefsTest extends AbstractAccountingBeanTest {
         invoicesToCheck = invoiceFinder.findAllUnpaidInvoices();
     }
 
+    @When("^the gestionnaire finds the invoices for (.*)")
+    public void findInvoiceForSupplier(String supplierName){
+        invoicesToCheck = invoiceFinder.findInvoicesForSupplier(supplierFinder.findByName(supplierName).get());
+    }
+
+    @When("^the gestionnaire finds the invoices unpaid but (.*) is paid$")
+    public void findUnpaid(String supplierPaid) throws Exception{
+        for(Invoice invoice : invoicesToPay){
+            if(invoice.getSupplier().getName().equals(supplierPaid)){
+                assertTrue(invoiceGeneration.setInvoicePaid(invoice.getId()));
+            }
+        }
+        invoicesToCheck = invoiceFinder.findAllUnpaidInvoices();
+    }
+
+    @When("^the gestionnaire edits the invoice for (.*)$")
+    public void editInvoice(String supplier) throws Exception{
+        for(Invoice invoice : invoicesToPay){
+            if(invoice.getSupplier().getName().equals(supplier))
+                invoiceGeneration.setInvoicePaid(invoice.getId());
+        }
+    }
+
+    @Then("^there invoice for (.*) is now paid$")
+    public void checkEditInvoice(String supplier){
+        boolean paid = false;
+        for(Invoice invoice : invoicesToPay){
+            if(invoice.getSupplier().getName().equals(supplier))
+                paid = invoice.isPaid();
+        }
+        assertTrue(paid);
+    }
+
     @Then("^there are (\\d+) more invoices with 0 as price")
     public void checkNoInvoice(int more){
         Set<Invoice> invoices = invoiceFinder.findAllInvoices();
@@ -160,29 +194,18 @@ public class AccountingStepdefsTest extends AbstractAccountingBeanTest {
         }
     }
 
-//    @When("^the gestionnaire finds the invoices unpaid but (.*) is paid$")
-//    public void findUnpaid(String supplierPaid) throws Exception{
-//        for(Invoice invoice : invoicesToPay){
-//            if(invoice.getSupplier().getName().equals(supplierPaid)){
-//                invoiceGeneration.setInvoicePaid(invoice.getId());
-//            }
-//        }
-//        invoicesToCheck = invoiceFinder.findAllUnpaidInvoices();
-//    }
-
-//    @Then("^there are (\\d+) invoices and paid is (.*) for supplier (.*) because for (.*) paid is (.*)$")
-//    public void checkFindOnePaid(int size, boolean isPaid, String supplier, String supplier2, boolean isPaid2){
-//        assertEquals(size, invoicesToCheck.size());
-//        for(Invoice invoice : invoicesToCheck){
-//            if(invoice.getSupplier().getName().equals(supplier)){
-//                assertEquals(isPaid, invoice.isPaid());
-//            }
-//            if(invoice.getSupplier().getName().equals(supplier2)){
-//                assertEquals(isPaid2, invoice.isPaid());
-//            }
-//        }
-//    }
-
+    @Then("^there are (\\d+) invoices with one paid and paid is (.*) for supplier (.*) because for (.*) paid is (.*)$")
+    public void checkFindOnePaid(int size, boolean isPaid, String supplier, String supplier2, boolean isPaid2){
+        assertEquals(size, invoicesToCheck.size());
+        for(Invoice invoice : invoicesToCheck){
+            if(invoice.getSupplier().getName().equals(supplier)){
+                assertEquals(isPaid, invoice.isPaid());
+            }
+            if(invoice.getSupplier().getName().equals(supplier2)){
+                assertEquals(isPaid2, invoice.isPaid());
+            }
+        }
+    }
 
     @Then("^there are 2 more invoices with (.*) as price for (.*) and (.*) as price for (.*)$")
     public void checkGeneration(float price, String supplier, float price2, String supplier2){
@@ -190,12 +213,6 @@ public class AccountingStepdefsTest extends AbstractAccountingBeanTest {
         assertEquals(1, invoices.size());
         for(Invoice invoice : invoices){
             assertEquals(price, invoice.getAmount(), 0.1);
-        }
-
-        invoices = invoiceFinder.findInvoicesForSupplier(supplierFinder.findByName(supplier2).get());
-        assertEquals(1, invoices.size());
-        for(Invoice invoice : invoices){
-            assertEquals(price2, invoice.getAmount(), 0.1);
         }
     }
 

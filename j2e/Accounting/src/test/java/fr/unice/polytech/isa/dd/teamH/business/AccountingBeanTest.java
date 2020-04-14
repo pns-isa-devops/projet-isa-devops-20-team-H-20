@@ -160,8 +160,8 @@ public class AccountingBeanTest extends AbstractAccountingBeanTest {
     public void testInvoiceStorage() {
         Invoice i = new Invoice();
         i.setAmount(10);
-        i.pay(LocalDate.now());
-        i.setCreationDate(LocalDate.now());
+        i.pay(LocalDate.now().toString());
+        i.setCreationDate(LocalDate.now().toString());
         i.setSupplier(s1);
         entityManager.persist(i);
         int id = i.getId();
