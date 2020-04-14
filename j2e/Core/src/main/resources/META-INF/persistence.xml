@@ -21,6 +21,8 @@
         <class>fr.unice.polytech.isa.dd.teamH.entities.delivery.InFlightDeliveryState</class>
         <class>fr.unice.polytech.isa.dd.teamH.entities.delivery.FailedDeliveryState</class>
         <class>fr.unice.polytech.isa.dd.teamH.entities.delivery.CompletedDeliveryState</class>
+        <class>fr.unice.polytech.isa.dd.teamH.entities.stats.CustomerSatisfactionStatsEntry</class>
+        <class>fr.unice.polytech.isa.dd.teamH.entities.stats.DroneStatsEntry</class>
         <class>fr.unice.polytech.isa.dd.teamH.entities.Invoice</class>
         <class>fr.unice.polytech.isa.dd.teamH.entities.deliveryplanning.PlanningEntry</class>
         <class>fr.unice.polytech.isa.dd.teamH.entities.Comment</class>

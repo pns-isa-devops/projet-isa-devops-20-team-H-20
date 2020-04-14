@@ -1,14 +1,19 @@
 package fr.unice.polytech.isa.dd.teamH.entities.stats;
 
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+@Entity
+@Table(name="drone_stats")
 public class DroneStatsEntry implements Serializable {
 
     private String entryTime;
-
     private float dronesUseRate;
 
     public DroneStatsEntry(){
@@ -20,18 +25,18 @@ public class DroneStatsEntry implements Serializable {
         this.dronesUseRate = dronesUseRate;
     }
 
+    @Id
     public String getEntryTime() {
         return entryTime;
     }
-
     public void setEntryTime(String entryTime) {
         this.entryTime = entryTime;
     }
 
+    @NotNull
     public float getDronesUseRate() {
         return dronesUseRate;
     }
-
     public void setDronesUseRate(float dronesUseRate) {
         this.dronesUseRate = dronesUseRate;
     }
