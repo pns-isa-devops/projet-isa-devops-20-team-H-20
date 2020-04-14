@@ -21,6 +21,9 @@ import javax.persistence.PersistenceContext;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @RunWith(Arquillian.class)
@@ -43,6 +46,8 @@ public class DeliveryPlanningTest extends AbstractDeliveryPlanningTest {
     private Package p;
     private Package p2;
     private Package p3;
+    private Supplier supplier;
+    private Supplier supplier1;
 
     private void initMock() throws Exception {
         // Mocking the external partner
@@ -57,8 +62,8 @@ public class DeliveryPlanningTest extends AbstractDeliveryPlanningTest {
     public void setUpContext() throws Exception {
         droneFleetManagement.addDrone(1, 5);
         droneFleetManagement.addDrone(2, 5);
-        Supplier supplier = supplierRegistration.register("Nozama", "0649715578");
-        Supplier supplier1 = supplierRegistration.register("Le posta", "0649715588");
+        supplier = supplierRegistration.register("Nozama", "0649715578");
+        supplier1 = supplierRegistration.register("Le posta", "0649715588");
         p = packageRegistration.register("1a", supplier, 5.5f, "Midgard");
         p2 = packageRegistration.register("2a", supplier, 7.5f, "Asgard");
         p3 = packageRegistration.register("3a", supplier1, 7.5f, "Jotunheim");
@@ -94,6 +99,40 @@ public class DeliveryPlanningTest extends AbstractDeliveryPlanningTest {
         planner.planDelivery(p2, "2020-06-20", "15:30");
         assertEquals(baseSize + 1, finder.findAllPlannedDeliveries().size());
         //1 because drone is already assigned but will be changed with algorihtme in second sprint
+    }
+
+    @Test
+    public void findCompletedDeliveriesSinceSupplierTest() throws Exception {
+        planner.planDelivery(p3, LocalDate.now().minusDays(20).toString(), "15:30");
+        assertEquals(0, finder.findCompletedDeliveriesSince(LocalDateTime.now().minusMonths(1), supplier1).size());
+        planner.editDeliveryStatus(finder.findDeliveryById(p3.getTrackingNumber()).get(), finder.checkAndUpdateState("completed"));
+        assertEquals(1, finder.findCompletedDeliveriesSince(LocalDateTime.now().minusMonths(1), supplier1).size());
+
+        planner.planDelivery(p, LocalDate.now().minusDays(21).toString(), "15:30");
+        planner.editDeliveryStatus(finder.findDeliveryById(p.getTrackingNumber()).get(), finder.checkAndUpdateState("completed"));
+        assertEquals(+ 1, finder.findCompletedDeliveriesSince(LocalDateTime.now().minusMonths(1), supplier).size());
+
+        planner.planDelivery(p2, LocalDate.now().minusDays(22).toString(), "15:30");
+        planner.editDeliveryStatus(finder.findDeliveryById(p2.getTrackingNumber()).get(), finder.checkAndUpdateState("completed"));
+        assertEquals( 1, finder.findCompletedDeliveriesSince(LocalDateTime.now().minusMonths(1), supplier).size());
+    }
+
+    @Test
+    public void findCompletedDeliveriesSinceTest() throws Exception {
+        int baseSize = finder.findCompletedDeliveriesSince(LocalDateTime.now().minusMonths(1)).size();
+
+        planner.planDelivery(p3, LocalDate.now().minusDays(20).toString(), "15:30");
+        assertEquals(baseSize, finder.findCompletedDeliveriesSince(LocalDateTime.now().minusMonths(1)).size());
+        planner.editDeliveryStatus(finder.findDeliveryById(p3.getTrackingNumber()).get(), finder.checkAndUpdateState("completed"));
+        assertEquals(baseSize+1, finder.findCompletedDeliveriesSince(LocalDateTime.now().minusMonths(1)).size());
+
+        //because it's before now
+        planner.planDelivery(p, LocalDate.now().minusDays(21).toString(), "15:30");
+        planner.editDeliveryStatus(finder.findDeliveryById(p.getTrackingNumber()).get(), finder.checkAndUpdateState("completed"));
+        assertEquals(baseSize + 1, finder.findCompletedDeliveriesSince(LocalDateTime.now().minusMonths(1)).size());
+        planner.planDelivery(p2, LocalDate.now().minusDays(22).toString(), "15:30");
+        planner.editDeliveryStatus(finder.findDeliveryById(p2.getTrackingNumber()).get(), finder.checkAndUpdateState("completed"));
+        assertEquals(baseSize + 1, finder.findCompletedDeliveriesSince(LocalDateTime.now().minusMonths(1)).size());
     }
 
     @Test

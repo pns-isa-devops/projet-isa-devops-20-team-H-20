@@ -38,10 +38,10 @@ public class Invoice implements Serializable {
         this.id = id;
     }
 
-    @NotNull
     public void setPaid(boolean paid) {
         this.paid = paid;
     }
+    @NotNull
     public boolean isPaid() {
         return paid;
     }
@@ -115,8 +115,8 @@ public class Invoice implements Serializable {
         return "Invoice{" +
                 "\npaid=" + paid +
                 "\namount=" + amount +
-                "\ncreationDate=" + creationDate.toString() +
-                ((paymentDate == null) ? "" : "\npaymentDate=" + paymentDate.toString()) +
+                "\ncreationDate=" + creationDate +
+                ((paymentDate == null) ? "" : "\npaymentDate=" + paymentDate) +
                 "\nsupplier=" + supplier.toString() +
                 "\n}\n";
     }

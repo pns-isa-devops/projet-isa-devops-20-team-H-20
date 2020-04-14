@@ -59,6 +59,7 @@ public class DeliveryPlanningStepdefsTest extends AbstractDeliveryPlanningTest {
         deliveryPlanner.useMapReference(mocked);
         when(mocked.getDistanceTo(eq("Titan"))).thenReturn(13.8f);
         when(mocked.getDistanceTo(eq("Wakanda"))).thenReturn(13.8f);
+        when(mocked.getDistanceTo(eq("Nowhere"))).thenReturn(14.8f);
     }
 
     @Given("^some delivery with date (.*) time ([\\d]{2}:[\\d]{2}) and with (.*) as package with (.*) as Supplier and (\\d+) as drone and randoms packages (.*) and (.*) and (.*)$")

@@ -27,10 +27,10 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.io.IOException;
 import java.time.LocalDateTime;
+
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
 @Stateless
 public class DeliveryPlanningBean implements DeliveryFinder, DeliveryPlanner, ControlledMap {
@@ -79,6 +79,25 @@ public class DeliveryPlanningBean implements DeliveryFinder, DeliveryPlanner, Co
     }
 
     @Override
+    public Set<PlanningEntry> findAllPlannedDeliveriesBeforeAfterNow() {
+        try {
+            Set<PlanningEntry> result = new HashSet<>();
+            for(PlanningEntry pe : getCompleteDeliveryPlanning()){
+                PlanningEntry newPE = new PlanningEntry(pe.getDrone());
+                for(Delivery d : pe.getDeliveries()){
+                    newPE.addDelivery(d);
+                }
+                if(newPE.getDeliveries().size() > 0)
+                    result.add(newPE);
+            }
+            log.log(Level.INFO, "Delivery fetched : " + result.toString());
+            return result;
+        } catch (NoResultException nre){
+            return new HashSet<>();
+        }
+    }
+
+    @Override
     public Set<PlanningEntry> findAllPlannedDeliveries() {
         try {
             Set<PlanningEntry> result = new HashSet<>();
@@ -101,33 +120,32 @@ public class DeliveryPlanningBean implements DeliveryFinder, DeliveryPlanner, Co
     @Override
     public Set<PlanningEntry> findCompletedDeliveriesSince(LocalDateTime time) {
         Set<PlanningEntry> result = new HashSet<>();
-        Set<PlanningEntry> planningEntries = findAllPlannedDeliveries();
+        Set<PlanningEntry> planningEntries = findAllPlannedDeliveriesBeforeAfterNow();
         for(PlanningEntry pe : planningEntries){
             PlanningEntry newPE = new PlanningEntry(pe.getDrone());
             for(Delivery d : pe.getDeliveries()){
-                if(d.dateTimeToShip().isAfter(LocalDateTime.now()) && d.isCompleted())
+                if(d.dateTimeToShip().isAfter(time) && d.isCompleted())
                     newPE.addDelivery(d);
             }
-            result.add(newPE);
+            if(!newPE.getDeliveries().isEmpty())
+                result.add(newPE);
         }
-
         return result;
     }
 
     @Override
     public Set<PlanningEntry> findCompletedDeliveriesSince(LocalDateTime time, Supplier s) {
         Set<PlanningEntry> result = new HashSet<>();
-        Set<PlanningEntry> planningEntries = findAllPlannedDeliveries();
+        Set<PlanningEntry> planningEntries = findAllPlannedDeliveriesBeforeAfterNow();
         for(PlanningEntry pe : planningEntries) {
             PlanningEntry newPE = new PlanningEntry(pe.getDrone());
-            for(Delivery d : pe.getDeliveries().stream().filter(e -> e.dateTimeToShip().isAfter(time) && e.isCompleted()).collect(Collectors.toSet())){
-                if(d.getaPackage().getSupplier().equals(s)) {
+            for(Delivery d : pe.getDeliveries()){
+                if(d.getaPackage().getSupplier().equals(s) && d.isCompleted() && d.dateTimeToShip().isAfter(time)) {
                     newPE.addDelivery(d);
                 }
             }
-            if(!newPE.getDeliveries().isEmpty()) {
+            if(!newPE.getDeliveries().isEmpty())
                 result.add(newPE);
-            }
         }
         return result;
     }

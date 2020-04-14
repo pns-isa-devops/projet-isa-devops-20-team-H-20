@@ -2,7 +2,9 @@ package fr.unice.polytech.isa.dd.teamH.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.*;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
 
 @Entity
 public class Supplier implements Serializable {

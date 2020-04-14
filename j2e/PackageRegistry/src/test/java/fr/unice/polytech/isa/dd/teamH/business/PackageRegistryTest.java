@@ -46,8 +46,8 @@ public class PackageRegistryTest extends AbstractPackageRegistryTest {
 
     @Before
     public void setUpContext() {
-        amazon = new Supplier("Amazon");
-        ldlc = new Supplier("LDLC");
+        amazon = new Supplier("Nozama");
+        ldlc = new Supplier("LCLD");
         p = new Package("1a", 5, "8 Avenue des lilas", amazon);
         p2 = new Package("1b", 5, "8 Avenue des lilas", amazon);
         p3 = new Package("3e", 5, "8 Avenue des lilas", amazon);
