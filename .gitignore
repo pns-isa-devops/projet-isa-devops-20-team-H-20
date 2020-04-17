@@ -5,12 +5,4 @@ out/
 .vs/
 bin/
 obj/
-DroneDeliveryClient/src/main/java/stubs/*
-!DroneDeliveryClient/src/main/java/stubs/accounting/package-info.java
-!DroneDeliveryClient/src/main/java/stubs/drone/package-info.java
-!DroneDeliveryClient/src/main/java/stubs/packages/package-info.java
-!DroneDeliveryClient/src/main/java/stubs/planning/package-info.java
-
-
-DroneDeliveryClient/src/main/java/fr/unice/polytech/si/_4a/isa/dd/*
 *.iml___jb_tmp___
