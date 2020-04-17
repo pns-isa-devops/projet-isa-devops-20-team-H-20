@@ -114,7 +114,7 @@ public class StatisticsBeanStepDefsTest extends AbstractStatisticsBeanTest {
     }
 
     @cucumber.api.java.After
-    public void cleaningUp() throws Exception {
+    public void cleaningUp() {
 
         commentsAdded.forEach(c -> {
             try {

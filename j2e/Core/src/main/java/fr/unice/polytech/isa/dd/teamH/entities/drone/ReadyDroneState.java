@@ -2,7 +2,6 @@ package fr.unice.polytech.isa.dd.teamH.entities.drone;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import java.util.Objects;
 
 @Entity
 @DiscriminatorValue("R")

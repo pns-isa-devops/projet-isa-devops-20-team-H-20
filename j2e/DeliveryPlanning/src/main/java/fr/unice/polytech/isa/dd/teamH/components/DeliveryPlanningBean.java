@@ -9,10 +9,6 @@ import fr.unice.polytech.isa.dd.teamH.entities.drone.Drone;
 import fr.unice.polytech.isa.dd.teamH.entities.Package;
 import fr.unice.polytech.isa.dd.teamH.exceptions.*;
 import fr.unice.polytech.isa.dd.teamH.interfaces.*;
-import fr.unice.polytech.isa.dd.teamH.interfaces.AvailableDroneFinder;
-import fr.unice.polytech.isa.dd.teamH.interfaces.ControlledMap;
-import fr.unice.polytech.isa.dd.teamH.interfaces.DeliveryFinder;
-import fr.unice.polytech.isa.dd.teamH.interfaces.DeliveryPlanner;
 import fr.unice.polytech.isa.dd.teamH.utils.MapAPI;
 
 import javax.annotation.PostConstruct;

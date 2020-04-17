@@ -2,24 +2,16 @@ package fr.unice.polytech.isa.dd.teamH.business;
 
 import arquillian.AbstractAvailabilityProcessorTest;
 import fr.unice.polytech.isa.dd.teamH.entities.drone.Drone;
-import fr.unice.polytech.isa.dd.teamH.interfaces.AvailableDroneFinder;
-import fr.unice.polytech.isa.dd.teamH.interfaces.DroneFleetManagement;
 import org.jboss.arquillian.junit.Arquillian;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import javax.ejb.EJB;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.UserTransaction;
-import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Optional;
-
-import static org.junit.Assert.assertTrue;
 
 @RunWith(Arquillian.class)
 public class AvailabilityProcessorTest extends AbstractAvailabilityProcessorTest {

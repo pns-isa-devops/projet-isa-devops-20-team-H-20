@@ -21,7 +21,6 @@ import javax.persistence.PersistenceContext;
 import java.util.Optional;
 
 import static org.junit.Assert.*;
-import static org.junit.Assert.assertEquals;
 
 @RunWith(Arquillian.class)
 @Transactional(TransactionMode.ROLLBACK)

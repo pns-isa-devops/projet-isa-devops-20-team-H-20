@@ -164,7 +164,7 @@ public class CommentBoardStepdefsTest extends AbstractCommentBoardBeanTest {
         assertFalse(commentFound.isPresent());
     }
 
-    @Then("^^there is a comment for the delivery (.*) and the comment is (.*)$")
+    @Then("^there is a comment for the delivery (.*) and the comment is (.*)$")
     public void checkComment(String packageId, String comment){
         Optional<Comment> commentObject = commentFinder.findCommentForPackage(packageId);
         assertTrue(commentObject.isPresent());

@@ -5,7 +5,6 @@ import fr.unice.polytech.isa.dd.teamH.entities.stats.DroneStatsEntry;
 
 import javax.ejb.Local;
 import java.time.LocalDateTime;
-import java.util.Optional;
 import java.util.Set;
 
 @Local

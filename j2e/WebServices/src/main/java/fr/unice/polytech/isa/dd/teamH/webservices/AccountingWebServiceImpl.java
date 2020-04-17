@@ -65,12 +65,12 @@ public class AccountingWebServiceImpl implements AccountingWebService{
     }
 
     @Override
-    public Set<Invoice> findInvoicesForSupplier(Supplier supplier) throws UnknownSupplierException {
+    public Set<Invoice> findInvoicesForSupplier(Supplier supplier) {
         return invoiceFinder.findInvoicesForSupplier(supplier);
     }
 
     @Override
-    public void generateInvoiceFor(Supplier supplier) throws UnknownSupplierException {
+    public void generateInvoiceFor(Supplier supplier) {
         invoiceGeneration.generateInvoiceFor(supplier);
     }
 

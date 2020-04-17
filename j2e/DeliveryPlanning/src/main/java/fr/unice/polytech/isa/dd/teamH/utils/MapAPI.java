@@ -7,7 +7,7 @@ import org.json.JSONObject;
 import javax.ws.rs.core.MediaType;
 
 public class MapAPI {
-    private String url;
+    private final String url;
 
     public MapAPI(String host, String port) {
         this.url = "http://" + host + ":" + port;

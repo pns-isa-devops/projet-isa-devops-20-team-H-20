@@ -31,5 +31,5 @@ public interface PlanningWebService {
 
     @WebMethod
     @WebResult(name = "return_code")
-    boolean startDelivery(@WebParam(name="tracking-number") String trackingId) throws UnknownDeliveryStateException, UnknownDeliveryException;
+    boolean startDelivery(@WebParam(name="tracking-number") String trackingId) throws UnknownDeliveryException;
 }

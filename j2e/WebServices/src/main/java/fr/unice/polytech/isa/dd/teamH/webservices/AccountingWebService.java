@@ -43,10 +43,10 @@ public interface AccountingWebService {
 
     @WebMethod
     @WebResult(name = "invoice_list")
-    Set<Invoice> findInvoicesForSupplier(@WebParam(name="supplier")Supplier supplier) throws UnknownSupplierException;
+    Set<Invoice> findInvoicesForSupplier(@WebParam(name="supplier")Supplier supplier);
 
     @WebMethod
-    void generateInvoiceFor(@WebParam(name="supplier") Supplier supplier) throws UnknownSupplierException;
+    void generateInvoiceFor(@WebParam(name="supplier") Supplier supplier);
 
     @WebMethod
     void generateInvoicesForAllSuppliers();

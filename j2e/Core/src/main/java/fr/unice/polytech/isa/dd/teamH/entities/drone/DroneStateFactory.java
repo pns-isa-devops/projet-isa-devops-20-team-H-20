@@ -2,13 +2,11 @@ package fr.unice.polytech.isa.dd.teamH.entities.drone;
 
 import fr.unice.polytech.isa.dd.teamH.exceptions.UnknownDroneStateException;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class DroneStateFactory {
-    private List<DroneState> states;
+    private final List<DroneState> states;
     private static final DroneStateFactory instance = new DroneStateFactory();
 
     private DroneStateFactory() {
@@ -26,7 +24,7 @@ public class DroneStateFactory {
     public String getCommands() {
         StringBuilder s = new StringBuilder("available commands : \n");
         for(DroneState state : states) {
-            s.append(state.name + "\n");
+            s.append(state.name).append("\n");
         }
         return s.toString();
     }

@@ -11,8 +11,6 @@ import org.jboss.shrinkwrap.api.asset.ClassLoaderAsset;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 
-import static org.junit.Assert.*;
-
 public abstract class AbstractAccountingBeanTest {
 
     @Deployment

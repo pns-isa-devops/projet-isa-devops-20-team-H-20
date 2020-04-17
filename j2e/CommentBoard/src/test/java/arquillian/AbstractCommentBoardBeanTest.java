@@ -4,7 +4,6 @@ import fr.unice.polytech.isa.dd.teamH.components.CommentBoardBean;
 import fr.unice.polytech.isa.dd.teamH.entities.Comment;
 import fr.unice.polytech.isa.dd.teamH.entities.Supplier;
 import fr.unice.polytech.isa.dd.teamH.entities.delivery.Delivery;
-import fr.unice.polytech.isa.dd.teamH.exceptions.AlreadyExistingDroneException;
 import fr.unice.polytech.isa.dd.teamH.exceptions.UnknownCommentException;
 import fr.unice.polytech.isa.dd.teamH.interfaces.CommentFinder;
 import fr.unice.polytech.isa.dd.teamH.interfaces.CommentPoster;

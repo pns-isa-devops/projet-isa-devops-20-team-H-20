@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class DeliveryStateFactory implements Serializable {
-    private List<DeliveryState> states;
+    private final List<DeliveryState> states;
     private static final DeliveryStateFactory instance = new DeliveryStateFactory();
 
     private DeliveryStateFactory() {

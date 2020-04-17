@@ -33,11 +33,12 @@ public class DroneFleetManagementStepdefsTest extends AbstractDroneFleetTest {
     private Exception exception = null;
     private Optional<Drone> droneFound;
 
-    Set<Integer> addedDrones = new HashSet<>();
+    private Set<Integer> addedDrones;
 
     //float ([0-9]*[.][0-9]+)
     @Given("^some drones with ids (\\d+) (\\d+) (\\d+)$")
     public void background(int id1, int id2, int id3) throws Exception{
+        addedDrones = new HashSet<>();
         addedDrones.addAll(Arrays.asList(id1, id2, id3));
         management.addDrone(id1, 5.0f);
         management.addDrone(id2, 5.0f);
