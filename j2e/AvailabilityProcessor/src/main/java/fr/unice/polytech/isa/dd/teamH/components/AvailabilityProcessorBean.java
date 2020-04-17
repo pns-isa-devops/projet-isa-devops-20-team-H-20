@@ -45,7 +45,9 @@ public class AvailabilityProcessorBean implements AvailableDroneFinder {
 //                }
 //            }
 //        }
-//        return possibleDrones.stream().findFirst();
+//        return possibleDrones.stream()
+//                .filter(dr -> dr.getWeightCapacity() == possibleDrones.stream().min((dr1, dr2) -> (int)(dr1.getWeightCapacity() - dr2.getWeightCapacity())).get().getWeightCapacity())
+//                .findFirst();
         return droneFinder.findAllDrones().stream().findFirst();
     }
 
