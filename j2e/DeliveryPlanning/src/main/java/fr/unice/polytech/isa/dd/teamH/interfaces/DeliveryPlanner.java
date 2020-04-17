@@ -5,17 +5,15 @@ import fr.unice.polytech.isa.dd.teamH.entities.delivery.Delivery;
 import fr.unice.polytech.isa.dd.teamH.entities.delivery.DeliveryState;
 import fr.unice.polytech.isa.dd.teamH.entities.deliveryplanning.PlanningEntry;
 import fr.unice.polytech.isa.dd.teamH.entities.drone.Drone;
-import fr.unice.polytech.isa.dd.teamH.exceptions.DeliveryDistanceException;
-import fr.unice.polytech.isa.dd.teamH.exceptions.NoReadyDroneException;
-import fr.unice.polytech.isa.dd.teamH.exceptions.UnknownDeliveryException;
-import fr.unice.polytech.isa.dd.teamH.exceptions.UnknownDeliveryStateException;
+import fr.unice.polytech.isa.dd.teamH.exceptions.*;
 
 import javax.ejb.Local;
 import java.util.Set;
 
 @Local
 public interface DeliveryPlanner {
-    Delivery planDelivery(Package p, String date, String time) throws DeliveryDistanceException, UnknownDeliveryStateException, NoReadyDroneException;
+    Delivery planDelivery(Package p, String date, String time) throws DeliveryDistanceException, UnknownDeliveryStateException,
+            NoReadyDroneException, DeliveryPastTimeException;
     boolean editDeliveryStatus(Delivery delivery, DeliveryState state) throws UnknownDeliveryStateException;
     boolean startDelivery(Drone drone, Delivery delivery);
     Set<PlanningEntry> getCompleteDeliveryPlanning();

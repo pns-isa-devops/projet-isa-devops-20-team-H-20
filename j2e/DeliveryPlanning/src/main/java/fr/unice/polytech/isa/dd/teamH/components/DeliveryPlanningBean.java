@@ -100,7 +100,7 @@ public class DeliveryPlanningBean implements DeliveryFinder, DeliveryPlanner, Co
             for(PlanningEntry pe : getCompleteDeliveryPlanning()){
                 PlanningEntry newPE = new PlanningEntry(pe.getDrone());
                 for(Delivery d : pe.getDeliveries()){
-                    if(d.dateTimeToShip().isAfter(LocalDateTime.now()))
+                    if(d.dateTimeToShip().isAfter(LocalDateTime.now()) && !d.isCompleted())
                         newPE.addDelivery(d);
                 }
                 if(newPE.getDeliveries().size() > 0)
@@ -159,7 +159,11 @@ public class DeliveryPlanningBean implements DeliveryFinder, DeliveryPlanner, Co
     }
 
     @Override
-    public Delivery planDelivery(Package p, String date, String time) throws DeliveryDistanceException, NoReadyDroneException, UnknownDeliveryStateException {
+    public Delivery planDelivery(Package p, String date, String time) throws DeliveryDistanceException, NoReadyDroneException,
+            UnknownDeliveryStateException, DeliveryPastTimeException {
+        LocalDateTime planTime = LocalDateTime.parse(date+"T"+time+":00");
+        if(planTime.isBefore(LocalDateTime.now()))
+            throw new DeliveryPastTimeException(date+"T"+time+":00");
         Delivery de = new Delivery();
         try {
           de.setDistance(mapService.getDistanceTo(p.getDestination()));
@@ -169,7 +173,7 @@ public class DeliveryPlanningBean implements DeliveryFinder, DeliveryPlanner, Co
         }
 
         Optional<Drone> od = availabilityProcessor.getAvailableDroneAtTime(findAllPlannedDeliveries(),
-                LocalDateTime.parse(date+"T"+time+":00"), p.getWeight(), de.getDistance());
+                planTime, p.getWeight(), de.getDistance());
         if(!od.isPresent())
             throw new NoReadyDroneException(date+"T"+time+":00");
 

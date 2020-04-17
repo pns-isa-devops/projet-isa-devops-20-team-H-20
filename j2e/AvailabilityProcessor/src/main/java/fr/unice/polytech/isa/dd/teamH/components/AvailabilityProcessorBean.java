@@ -30,21 +30,28 @@ public class AvailabilityProcessorBean implements AvailableDroneFinder {
     @Override
     public Optional<Drone> getAvailableDroneAtTime(Set<PlanningEntry> alreadyPlannedDeliveries, LocalDateTime timeToDeliverThePackage, float packageWeight, float packageDistance) {
         //keep drones that can support weight
-//        Set<Drone> possibleDrones = droneFinder.findAllDrones().stream().filter(e -> e.getWeightCapacity() >= packageWeight).collect(Collectors.toSet());
-//        for(PlanningEntry planningEntry : alreadyPlannedDeliveries){
-//            for(Delivery delivery : planningEntry.getDeliveries()){
-//                // remove drones that have delivery at the same time
-//                if(delivery.dateTimeToShip().isEqual(timeToDeliverThePackage)){
-//                    deleteDroneFromSet(possibleDrones, planningEntry.getDrone().getId());
-//                    break;
-//                }
-//                //remove drones that have delivery between the ship time
-//                if(timeToDeliverThePackage.isAfter(delivery.dateTimeToShip()) && timeToDeliverThePackage.isBefore(delivery.dateTimeToShip().plusMinutes((long) delivery.getFlightTime()))){
-//                    deleteDroneFromSet(possibleDrones, planningEntry.getDrone().getId());
-//                    break;
-//                }
-//            }
-//        }
+        Set<Drone> possibleDrones = droneFinder.findAllDrones().stream().filter(e -> e.getWeightCapacity() >= packageWeight).collect(Collectors.toSet());
+        for(PlanningEntry planningEntry : alreadyPlannedDeliveries){
+            for(Delivery delivery : planningEntry.getDeliveries()){
+                // remove drones that have delivery at the same time
+                if(delivery.dateTimeToShip().isEqual(timeToDeliverThePackage)){
+                    deleteDroneFromSet(possibleDrones, planningEntry.getDrone().getId());
+                    break;
+                }
+                //remove drones that have delivery between the ship time
+                if(timeToDeliverThePackage.isAfter(delivery.dateTimeToShip()) && timeToDeliverThePackage.isBefore(delivery.dateTimeToShip().plusMinutes((long) delivery.getFlightTime()))){
+                    deleteDroneFromSet(possibleDrones, planningEntry.getDrone().getId());
+                    break;
+                }
+                //remove drones if delivery empiette sur le planning
+                if(timeToDeliverThePackage.isBefore(delivery.dateTimeToShip())
+                        && timeToDeliverThePackage.plusMinutes((long) ((packageDistance / planningEntry.getDrone().getSpeed()) * 60)).isAfter(delivery.dateTimeToShip())){
+                    deleteDroneFromSet(possibleDrones, planningEntry.getDrone().getId());
+                    break;
+                }
+            }
+        }
+        //TODO finish this part
 //        return possibleDrones.stream().findFirst();
         return droneFinder.findAllDrones().stream().findFirst();
     }

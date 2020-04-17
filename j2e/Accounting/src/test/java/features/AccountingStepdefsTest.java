@@ -80,11 +80,11 @@ public class AccountingStepdefsTest extends AbstractAccountingBeanTest {
         Package p3 = packageRegistration.register(package3, supplier2Object, 4.2f, "Nowhere");
         packagesToDelete.add(p3);
 
-        deliveryPlanner.planDelivery(p, LocalDate.now().minusDays(2).toString(), "12:00");
+        deliveryPlanner.planDelivery(p, LocalDate.now().plusDays(2).toString(), "12:00");
         packagesDeliveriesToDelete.add(p);
-        deliveryPlanner.planDelivery(p2, LocalDate.now().minusDays(4).toString(), "13:30");
+        deliveryPlanner.planDelivery(p2, LocalDate.now().plusDays(4).toString(), "13:30");
         packagesDeliveriesToDelete.add(p2);
-        deliveryPlanner.planDelivery(p3, LocalDate.now().minusDays(5).toString(), "15:30");
+        deliveryPlanner.planDelivery(p3, LocalDate.now().plusDays(5).toString(), "15:30");
         packagesDeliveriesToDelete.add(p3);
         packageEntryToDelete = p;
     }
@@ -111,11 +111,11 @@ public class AccountingStepdefsTest extends AbstractAccountingBeanTest {
         Package p3 = packageRegistration.register(package3, supplier2Object, 4.2f, "Nowhere");
         packagesToDelete.add(p3);
 
-        deliveryPlanner.planDelivery(p, LocalDate.now().minusDays(2).toString(), "12:00");
+        deliveryPlanner.planDelivery(p, LocalDate.now().plusDays(2).toString(), "12:00");
         packagesDeliveriesToDelete.add(p);
-        deliveryPlanner.planDelivery(p2, LocalDate.now().minusDays(4).toString(), "13:30");
+        deliveryPlanner.planDelivery(p2, LocalDate.now().plusDays(4).toString(), "13:30");
         packagesDeliveriesToDelete.add(p2);
-        deliveryPlanner.planDelivery(p3, LocalDate.now().minusDays(5).toString(), "15:30");
+        deliveryPlanner.planDelivery(p3, LocalDate.now().plusDays(5).toString(), "15:30");
         packagesDeliveriesToDelete.add(p3);
         packageEntryToDelete = p;
 

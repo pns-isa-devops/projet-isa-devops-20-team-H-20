@@ -19,7 +19,8 @@ public interface PlanningWebService {
     @WebMethod
     @WebResult(name = "delivery")
     Delivery planDelivery(@WebParam(name="tracking-number") String trackingNumber,
-                      @WebParam(name="shipping-date") String date, @WebParam(name="shipping-time") String time) throws UnknownPackageException, DeliveryDistanceException, UnknownDeliveryStateException, NoReadyDroneException;
+                      @WebParam(name="shipping-date") String date, @WebParam(name="shipping-time") String time) throws
+            UnknownPackageException, DeliveryDistanceException, UnknownDeliveryStateException, NoReadyDroneException, DeliveryPastTimeException;
 
     @WebMethod
     @WebResult(name = "return_code")

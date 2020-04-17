@@ -66,13 +66,13 @@ public class AccountingBeanTest extends AbstractAccountingBeanTest {
         Package p6 = packageRegistration.register("pack6", s2, 5.0f, "Asgard");
         Package p7 = packageRegistration.register("pack7", s2, 5.0f, "Jotunheim");
 
-        deliveryPlanner.planDelivery(p1, LocalDate.now().minusDays(5).toString(), "10:00");
-        deliveryPlanner.planDelivery(p2, LocalDate.now().minusDays(2).toString(), "12:00");
-        deliveryPlanner.planDelivery(p3, LocalDate.now().minusDays(4).toString(), "14:00");
-        deliveryPlanner.planDelivery(p4, LocalDate.now().minusDays(3).toString(), "16:00");
-        deliveryPlanner.planDelivery(p5, LocalDate.now().minusDays(5).toString(), "16:00");
-        deliveryPlanner.planDelivery(p6, LocalDate.now().plusDays(3).toString(), "16:00");
-        deliveryPlanner.planDelivery(p7, LocalDate.now().plusDays(2).toString(), "16:00");
+        deliveryPlanner.planDelivery(p1, LocalDate.now().plusDays(5).toString(), "10:00");
+        deliveryPlanner.planDelivery(p2, LocalDate.now().plusDays(2).toString(), "12:00");
+        deliveryPlanner.planDelivery(p3, LocalDate.now().plusDays(4).toString(), "14:00");
+        deliveryPlanner.planDelivery(p4, LocalDate.now().plusDays(3).toString(), "16:00");
+        deliveryPlanner.planDelivery(p5, LocalDate.now().plusDays(5).toString(), "16:00");
+        deliveryPlanner.planDelivery(p6, LocalDate.now().plusDays(10).toString(), "16:00");
+        deliveryPlanner.planDelivery(p7, LocalDate.now().plusDays(15).toString(), "16:00");
 
         Optional<Delivery> deliveryOptional = deliveryFinder.findDeliveryById("pack1");
         if(!deliveryOptional.isPresent())
