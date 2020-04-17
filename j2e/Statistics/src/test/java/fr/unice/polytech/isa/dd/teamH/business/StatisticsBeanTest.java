@@ -59,7 +59,7 @@ public class StatisticsBeanTest extends AbstractStatisticsBeanTest {
     @Before
     public void setUp() throws Exception {
         initMock();
-        droneFleetManagement.addDrone(1, 5.5f);
+        droneFleetManagement.addDrone(1, 5.5f, 10.5f);
         Supplier s = new Supplier("a");
 
         entityManager.persist(s);

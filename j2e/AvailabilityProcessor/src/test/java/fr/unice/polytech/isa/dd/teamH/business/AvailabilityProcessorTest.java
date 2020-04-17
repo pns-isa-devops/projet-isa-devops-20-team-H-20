@@ -29,7 +29,7 @@ public class AvailabilityProcessorTest extends AbstractAvailabilityProcessorTest
 
     @Before
     public void setUpContext() {
-        drone1 = new Drone(1, 5);
+        drone1 = new Drone(1, 5, 20.5f);
     }
 
     @After

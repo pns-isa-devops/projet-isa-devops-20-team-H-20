@@ -160,11 +160,6 @@ public class DeliveryPlanningBean implements DeliveryFinder, DeliveryPlanner, Co
 
     @Override
     public Delivery planDelivery(Package p, String date, String time) throws DeliveryDistanceException, NoReadyDroneException, UnknownDeliveryStateException {
-        Optional<Drone> od = availabilityProcessor.getAvailableDroneAtTime(findAllPlannedDeliveries(),
-                LocalDateTime.parse(date+"T"+time+":00"));
-        if(!od.isPresent())
-            throw new NoReadyDroneException(date+"T"+time+":00");
-
         Delivery de = new Delivery();
         try {
           de.setDistance(mapService.getDistanceTo(p.getDestination()));
@@ -173,7 +168,12 @@ public class DeliveryPlanningBean implements DeliveryFinder, DeliveryPlanner, Co
             throw new DeliveryDistanceException(p.getTrackingNumber(), p.getDestination(), e);
         }
 
-        de.setFlightTime(de.getDistance() / Drone.DRONE_SPEED);
+        Optional<Drone> od = availabilityProcessor.getAvailableDroneAtTime(findAllPlannedDeliveries(),
+                LocalDateTime.parse(date+"T"+time+":00"), p.getWeight(), de.getDistance());
+        if(!od.isPresent())
+            throw new NoReadyDroneException(date+"T"+time+":00");
+
+        de.setFlightTime((de.getDistance() / od.get().getSpeed()) * 60);
         de.setaPackage(p);
         de.setDate(date);
         de.setTime(time);

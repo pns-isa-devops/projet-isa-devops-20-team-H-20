@@ -54,7 +54,7 @@ public class AccountingBeanTest extends AbstractAccountingBeanTest {
     @Before
     public void setUp() throws Exception {
         initMock();
-        droneFleetManagement.addDrone(1,5);
+        droneFleetManagement.addDrone(1,5, 10.5f);
         s1 = supplierRegistration.register("Xedef", "0649715587");
         s2 = supplierRegistration.register("LCLD", "0649712258");
 

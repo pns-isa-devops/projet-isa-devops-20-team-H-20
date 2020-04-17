@@ -59,7 +59,7 @@ public class CommentBoardBeanTest extends AbstractCommentBoardBeanTest {
     @Before
     public void setUp() throws Exception {
         initMock();
-        droneFleetManagement.addDrone(1, 5.5f);
+        droneFleetManagement.addDrone(1, 5.5f, 10.5f);
         supplier1 = supplierRegistration.register("Nozama", "0649712248");
         supplierRegistration.register("Xedef", "0649712242");
         supplier3 = supplierRegistration.register("LCLD", "0649712241");

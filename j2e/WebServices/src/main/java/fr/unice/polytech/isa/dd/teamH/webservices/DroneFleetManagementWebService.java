@@ -16,7 +16,8 @@ public interface DroneFleetManagementWebService {
     @WebMethod
     @WebResult(name = "return_code")
     Drone addDrone(@WebParam(name="id") int id,
-                       @WebParam(name="weightCapacity") float weightCapacity) throws AlreadyExistingDroneException;
+                       @WebParam(name="weightCapacity") float weightCapacity,
+                   @WebParam(name="speed") float speed) throws AlreadyExistingDroneException;
 
     @WebMethod
     @WebResult(name = "return_code")

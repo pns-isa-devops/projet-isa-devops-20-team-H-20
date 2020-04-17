@@ -60,8 +60,8 @@ public class DeliveryPlanningTest extends AbstractDeliveryPlanningTest {
 
     @Before
     public void setUpContext() throws Exception {
-        droneFleetManagement.addDrone(1, 5);
-        droneFleetManagement.addDrone(2, 5);
+        droneFleetManagement.addDrone(1, 5, 15.5f);
+        droneFleetManagement.addDrone(2, 5, 20.5f);
         supplier = supplierRegistration.register("Nozama", "0649715578");
         supplier1 = supplierRegistration.register("Le posta", "0649715588");
         p = packageRegistration.register("1a", supplier, 5.5f, "Midgard");

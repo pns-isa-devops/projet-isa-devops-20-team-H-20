@@ -88,11 +88,12 @@ public class DroneFleetBean implements DroneFinder, DroneFleetManagement {
     }
 
     @Override
-    public Drone addDrone(int id, float weightCapacity) throws AlreadyExistingDroneException {
+    public Drone addDrone(int id, float weightCapacity, float speed) throws AlreadyExistingDroneException {
         if(findDroneById(id).isPresent())
             throw new AlreadyExistingDroneException(id);
         Drone drone = new Drone();
         drone.setId(id);
+        drone.setSpeed(speed);
         drone.setWeightCapacity(weightCapacity);
         drone.setCurrentFlightTime(0);
         drone.setBattery(100);

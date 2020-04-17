@@ -11,21 +11,31 @@ public class Drone implements Serializable {
 
     private int id;
     private float currentFlightTime;
+    /**
+     * Battery is a percent, 0 - 100
+     */
     private int battery;
+    /**
+     * kg
+     */
     private float weightCapacity;
     private DroneState state;
 
-    public static final float DRONE_SPEED = (float)(10.0/60.0);
+    /**
+     * km/hour
+     */
+    private float droneSpeed;
 
     public Drone() {
 
     }
 
-    public Drone(int id, float weightCapacity) {
+    public Drone(int id, float weightCapacity, float droneSpeed) {
         this.id = id;
         this.currentFlightTime = 0;
         this.battery = 100;
         this.weightCapacity = weightCapacity;
+        this.droneSpeed = droneSpeed;
         this.state = new ReadyDroneState();
     }
 
@@ -59,6 +69,14 @@ public class Drone implements Serializable {
     }
     public void setWeightCapacity(float weightCapacity) {
         this.weightCapacity = weightCapacity;
+    }
+
+    @NotNull
+    public float getSpeed() {
+        return droneSpeed;
+    }
+    public void setSpeed(float speed) {
+        this.droneSpeed = speed;
     }
 
     @NotNull

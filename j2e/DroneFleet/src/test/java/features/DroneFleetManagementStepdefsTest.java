@@ -40,9 +40,9 @@ public class DroneFleetManagementStepdefsTest extends AbstractDroneFleetTest {
     public void background(int id1, int id2, int id3) throws Exception{
         addedDrones = new HashSet<>();
         addedDrones.addAll(Arrays.asList(id1, id2, id3));
-        management.addDrone(id1, 5.0f);
-        management.addDrone(id2, 5.0f);
-        management.addDrone(id3, 5.0f);
+        management.addDrone(id1, 5.0f, 10.5f);
+        management.addDrone(id2, 5.0f, 10.5f);
+        management.addDrone(id3, 5.0f, 10.5f);
     }
 
     @When("^the garagiste deletes the drone with id (\\d+)$")
@@ -61,14 +61,14 @@ public class DroneFleetManagementStepdefsTest extends AbstractDroneFleetTest {
 
     @When("^the garagiste adds the drone with id (\\d+)$")
     public void addDrone(int id1) throws Exception{
-        management.addDrone(id1, 5.0f);
+        management.addDrone(id1, 5.0f, 10.5f);
         addedDrones.add(id1);
     }
 
     @When("^the garagiste adds the drones with id (\\d+) and (\\d+)$")
     public void addDrone(int id1, int id2) throws Exception{
-        management.addDrone(id1, 5.0f);
-        management.addDrone(id2, 5.0f);
+        management.addDrone(id1, 5.0f, 10.5f);
+        management.addDrone(id2, 5.0f, 10.5f);
         addedDrones.add(id1);
         addedDrones.add(id2);
     }
@@ -107,7 +107,7 @@ public class DroneFleetManagementStepdefsTest extends AbstractDroneFleetTest {
     @When("^the garagiste wants to add the drone with id (\\d+) there is an error$")
     public void addDroneError(int id){
         try {
-            management.addDrone(id, 5.0f);
+            management.addDrone(id, 5.0f, 10.5f);
             addedDrones.add(id);
         }catch (AlreadyExistingDroneException e){
             exception = e;

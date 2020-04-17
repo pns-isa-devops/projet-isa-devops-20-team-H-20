@@ -67,7 +67,7 @@ public class AccountingStepdefsTest extends AbstractAccountingBeanTest {
         dronesToDelete = new HashSet<>();
         suppliersToDelete = new HashSet<>();
         packagesDeliveriesToDelete = new HashSet<>();
-        dronesToDelete.add(droneFleetManagement.addDrone(drone, 20));
+        dronesToDelete.add(droneFleetManagement.addDrone(drone, 20, 10.5f));
         Supplier supplier1Object = supplierRegistration.register(supplier, "0649712254");
         suppliersToDelete.add(supplier1Object);
         Supplier supplier2Object = supplierRegistration.register(supplier2, "0649712252");
@@ -98,7 +98,7 @@ public class AccountingStepdefsTest extends AbstractAccountingBeanTest {
         dronesToDelete = new HashSet<>();
         suppliersToDelete = new HashSet<>();
         packagesDeliveriesToDelete = new HashSet<>();
-        dronesToDelete.add(droneFleetManagement.addDrone(drone, 20));
+        dronesToDelete.add(droneFleetManagement.addDrone(drone, 20, 10.5f));
         Supplier supplier1Object = supplierRegistration.register(supplier, "0649712254");
         suppliersToDelete.add(supplier1Object);
         Supplier supplier2Object = supplierRegistration.register(supplier2, "0649712252");

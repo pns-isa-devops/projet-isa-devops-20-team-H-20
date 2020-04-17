@@ -62,14 +62,14 @@ public class StatisticsBeanStepDefsTest extends AbstractStatisticsBeanTest {
     @Given("^some drones with IDs (\\d+) and (\\d+)$")
     public void background(int id1, int id2) throws Exception{
         initMock();
-       dronesAdded.add(droneFleetManagement.addDrone(id1, 10));
-       dronesAdded.add(droneFleetManagement.addDrone(id2, 10));
+       dronesAdded.add(droneFleetManagement.addDrone(id1, 10, 10.5f));
+       dronesAdded.add(droneFleetManagement.addDrone(id2, 10, 10.5f));
     }
 
     @Given("^some delivery with date (.*) time (.*) and with (.*) as package with (.*) as Supplier and (\\d+) as drone$")
     public void background(String date, String time, String trackingId, String suppName, int droneId) throws Exception {
         initMock();
-        dronesAdded.add(droneFleetManagement.addDrone(droneId, 10));
+        dronesAdded.add(droneFleetManagement.addDrone(droneId, 10, 10.5f));
         Supplier tmpS = supplierRegistration.register(suppName, "contact bidon");
         suppliersAdded.add(tmpS);
         Package tmpP = packageRegistration.register(trackingId, tmpS, 2.0f, "destination bidon");

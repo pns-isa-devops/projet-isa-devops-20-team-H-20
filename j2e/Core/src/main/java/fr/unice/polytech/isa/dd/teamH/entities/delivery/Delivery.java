@@ -20,6 +20,9 @@ public class Delivery implements Serializable {
      * hh:mm
      */
     private String time;
+    /**
+     * minutes
+     */
     private float flightTime;
     private float distance;
     private Package aPackage;

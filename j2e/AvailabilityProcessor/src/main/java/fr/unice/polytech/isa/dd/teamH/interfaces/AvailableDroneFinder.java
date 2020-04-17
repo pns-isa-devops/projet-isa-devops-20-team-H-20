@@ -10,5 +10,5 @@ import java.util.Set;
 
 @Local
 public interface AvailableDroneFinder {
-    Optional<Drone> getAvailableDroneAtTime(Set<PlanningEntry> alreadyPlannedDeliveries, LocalDateTime ldt);
+    Optional<Drone> getAvailableDroneAtTime(Set<PlanningEntry> alreadyPlannedDeliveries, LocalDateTime timeToDeliverThePackage, float packageWeight, float packageDistance);
 }

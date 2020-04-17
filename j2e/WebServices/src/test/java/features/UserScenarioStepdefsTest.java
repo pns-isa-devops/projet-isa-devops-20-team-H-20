@@ -36,9 +36,9 @@ public class UserScenarioStepdefsTest extends AbstractDroneDeliveryTest {
     @EJB private CommentFinder commentFinder;
     @EJB private DeliveryFinder deliveryFinder;
 
-    @When("^the graragiste adds the drone with id (\\d+) and (.*) kg capacity$")
-    public void addDrone(int drone, float weight) throws AlreadyExistingDroneException {
-        dronesToDelete.add(droneFleetManagement.addDrone(drone, weight));
+    @When("^the graragiste adds the drone with id (\\d+) and (.*) kg capacity and (.*) km/h speed$")
+    public void addDrone(int drone, float weight, float speed) throws AlreadyExistingDroneException {
+        dronesToDelete.add(droneFleetManagement.addDrone(drone, weight, speed));
     }
 
     @And("^the gestionnaire adds a supplier with name (.*) and contact (.*)$")

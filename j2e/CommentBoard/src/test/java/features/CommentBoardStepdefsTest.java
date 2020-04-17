@@ -67,7 +67,7 @@ public class CommentBoardStepdefsTest extends AbstractCommentBoardBeanTest {
         suppliersToDelete = new HashSet<>();
         packagesDeliveriesToDelete = new HashSet<>();
         commentsToDelete = new HashSet<>();
-        dronesToDelete.add(droneFleetManagement.addDrone(drone, 20));
+        dronesToDelete.add(droneFleetManagement.addDrone(drone, 20, 10.5f));
         suppliersToDelete.add(supplierRegistration.register(supplier, "0649712254"));
 
         Optional<Drone> d = droneFinder.findDroneById(drone);
@@ -96,7 +96,7 @@ public class CommentBoardStepdefsTest extends AbstractCommentBoardBeanTest {
         suppliersToDelete = new HashSet<>();
         packagesDeliveriesToDelete = new HashSet<>();
         commentsToDelete = new HashSet<>();
-        dronesToDelete.add(droneFleetManagement.addDrone(drone, 20));
+        dronesToDelete.add(droneFleetManagement.addDrone(drone, 20, 10.5f));
         suppliersToDelete.add(supplierRegistration.register(supplier, "0649712254"));
 
         Optional<Drone> d = droneFinder.findDroneById(drone);
