@@ -59,4 +59,13 @@ public abstract class DroneState implements Cloneable, Serializable {
     public int hashCode() {
         return Objects.hash(name);
     }
+
+    @Override
+    public String toString(){
+        return "DroneState{name=" +
+                getName() +
+                " ready=" +
+                isReadyToFly() +
+                "}";
+    }
 }

@@ -17,9 +17,9 @@ public interface PlanningWebService {
     Set<PlanningEntry> getCompleteDeliveryPlanning();
 
     @WebMethod
-    @WebResult(name = "return_code")
-    boolean planDelivery(@WebParam(name="tracking-number") String trackingNumber,
-                      @WebParam(name="shipping-date") String date, @WebParam(name="shipping-time") String time) throws UnknownPackageException, DeliveryDistanceException, UnknownDeliveryStateException;
+    @WebResult(name = "delivery")
+    Delivery planDelivery(@WebParam(name="tracking-number") String trackingNumber,
+                      @WebParam(name="shipping-date") String date, @WebParam(name="shipping-time") String time) throws UnknownPackageException, DeliveryDistanceException, UnknownDeliveryStateException, NoReadyDroneException;
 
     @WebMethod
     @WebResult(name = "return_code")

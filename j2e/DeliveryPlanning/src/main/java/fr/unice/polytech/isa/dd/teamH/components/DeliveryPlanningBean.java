@@ -163,11 +163,11 @@ public class DeliveryPlanningBean implements DeliveryFinder, DeliveryPlanner, Co
     }
 
     @Override
-    public boolean planDelivery(Package p, String date, String time) throws DeliveryDistanceException, UnknownDeliveryStateException {
+    public Delivery planDelivery(Package p, String date, String time) throws DeliveryDistanceException, NoReadyDroneException, UnknownDeliveryStateException {
         Optional<Drone> od = availabilityProcessor.getAvailableDroneAtTime(findAllPlannedDeliveries(),
                 LocalDateTime.parse(date+"T"+time+":00"));
         if(!od.isPresent())
-            return false;
+            throw new NoReadyDroneException(date+"T"+time+":00");
 
         Delivery de = new Delivery();
         try {
@@ -198,7 +198,7 @@ public class DeliveryPlanningBean implements DeliveryFinder, DeliveryPlanner, Co
             log.log(Level.INFO, "Delivery added : " + de.toString());
         else
             log.log(Level.INFO, "Delivery not added : " + de.toString());
-        return res;
+        return manager.merge(de);
     }
 
     @Override

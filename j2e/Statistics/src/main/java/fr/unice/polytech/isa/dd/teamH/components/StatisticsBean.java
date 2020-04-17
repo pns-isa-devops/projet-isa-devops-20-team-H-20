@@ -39,26 +39,28 @@ public class StatisticsBean implements StatisticsGenerator {
     @Override
     public float getAverageCustomerSatisfaction() {
         int totalRating = 0;
-        float averageRating = 0;
         Set<Comment> comments = commentFinder.findAllComments();
+        if(comments.size() == 0)
+            return 0;
         for(Comment c: comments){
             totalRating+=c.getRating();
         }
-        averageRating = (float) totalRating/comments.size();
-        return averageRating;
+        return (float)totalRating/(float)comments.size();
     }
 
     @Override
     public float getAverageDroneUseRate() {
         // Version simplifiée qui permet de retourner le pourcentage de drones actuellement utilisés
         Set<Drone> drones = droneFinder.findAllDrones();
-        int dronesReady = 0;
+        if(drones.size() == 0)
+            return 0;
+        int dronesUsed = 0;
         for(Drone drone : drones) {
             if(!drone.isReadyToFly()) {
-                dronesReady++;
+                dronesUsed++;
             }
         }
-        return (float) dronesReady/drones.size();
+        return (float)dronesUsed/(float)drones.size();
     }
 
     @Override
@@ -145,7 +147,7 @@ public class StatisticsBean implements StatisticsGenerator {
     public CustomerSatisfactionStatsEntry generateNewCustomerSatisfactionEntry() {
         CustomerSatisfactionStatsEntry c = new CustomerSatisfactionStatsEntry();
 
-        c.setCustomerSatisfactionRate(getAverageDroneUseRate());
+        c.setCustomerSatisfactionRate(getAverageCustomerSatisfaction());
         c.setEntryTime(LocalDateTime.now().toString());
 
         manager.persist(c);

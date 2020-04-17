@@ -22,7 +22,7 @@
     </container>
 
     <extension qualifier="cucumber">
-        <!--<property name="persistenceEventsActivated">true</property>-->
+        <property name="persistenceEventsActivated">true</property>
     </extension>
 
 </arquillian>

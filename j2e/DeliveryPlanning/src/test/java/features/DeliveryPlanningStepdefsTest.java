@@ -122,9 +122,7 @@ public class DeliveryPlanningStepdefsTest extends AbstractDeliveryPlanningTest {
     public void addDelivery(String date, String time, String pack) throws Exception{
         Optional<Package> p;
         if ((p = packageFinder.findPackageByTrackingNumber(pack)).isPresent()) {
-            boolean planned = deliveryPlanner.planDelivery(p.get(),date, time);
-            if(!planned)
-                fail();
+            deliveryPlanner.planDelivery(p.get(),date, time);
             packagesDeliveriesToDelete.add(p.get());
         } else {
             fail();
@@ -135,18 +133,14 @@ public class DeliveryPlanningStepdefsTest extends AbstractDeliveryPlanningTest {
     public void addDeliveries(String date, String time, String package1, String package2, String date2, String time2) throws Exception{
         Optional<Package> p;
         if ((p = packageFinder.findPackageByTrackingNumber(package1)).isPresent()) {
-            boolean planned = deliveryPlanner.planDelivery(p.get(),date, time);
-            if(!planned)
-                fail();
+            deliveryPlanner.planDelivery(p.get(),date, time);
             packagesDeliveriesToDelete.add(p.get());
         } else {
             fail();
         }
 
         if ((p = packageFinder.findPackageByTrackingNumber(package2)).isPresent()) {
-            boolean planned = deliveryPlanner.planDelivery(p.get(),date2, time2);
-            if(!planned)
-                fail();
+            deliveryPlanner.planDelivery(p.get(),date2, time2);
             packagesDeliveriesToDelete.add(p.get());
         } else {
             fail();
