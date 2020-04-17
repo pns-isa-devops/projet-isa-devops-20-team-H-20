@@ -8,8 +8,6 @@ import fr.unice.polytech.isa.dd.teamH.interfaces.DroneFinder;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.Set;
@@ -18,11 +16,7 @@ import java.util.stream.Collectors;
 
 @Stateless
 public class AvailabilityProcessorBean implements AvailableDroneFinder {
-
     private static final Logger log = Logger.getLogger(Logger.class.getName());
-
-    @PersistenceContext
-    private EntityManager manager;
 
     @EJB
     private DroneFinder droneFinder;
@@ -52,7 +46,9 @@ public class AvailabilityProcessorBean implements AvailableDroneFinder {
             }
         }
         //TODO finish this part
-//        return possibleDrones.stream().findFirst();
+//        return possibleDrones.stream()
+//                .filter(dr -> dr.getWeightCapacity() == possibleDrones.stream().min((dr1, dr2) -> (int)(dr1.getWeightCapacity() - dr2.getWeightCapacity())).get().getWeightCapacity())
+//                .findFirst();
         return droneFinder.findAllDrones().stream().findFirst();
     }
 
