@@ -55,9 +55,9 @@ public class AccountingStepdefsTest extends AbstractAccountingBeanTest {
         // Mocking the external partner
         MapAPI mocked = mock(MapAPI.class);
         deliveryPlanner.useMapReference(mocked);
-        when(mocked.getDistanceTo(eq("Titan"))).thenReturn(13.8f);
-        when(mocked.getDistanceTo(eq("Wakanda"))).thenReturn(13.8f);
-        when(mocked.getDistanceTo(eq("Nowhere"))).thenReturn(14.8f);
+        when(mocked.getDistanceTo(eq("Titan"))).thenReturn(0.8f);
+        when(mocked.getDistanceTo(eq("Wakanda"))).thenReturn(0.7f);
+        when(mocked.getDistanceTo(eq("Nowhere"))).thenReturn(0.6f);
     }
 
     @Given("^some deliveries with (.*) and (.*) as package with (.*) as supplier and (.*) as package with (.*) as supplier and (\\d+) as drone$")

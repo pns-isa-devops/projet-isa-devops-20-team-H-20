@@ -55,8 +55,8 @@ public class CommentBoardStepdefsTest extends AbstractCommentBoardBeanTest {
         // Mocking the external partner
         MapAPI mocked = mock(MapAPI.class);
         deliveryPlanner.useMapReference(mocked);
-        when(mocked.getDistanceTo(eq("Titan"))).thenReturn(13.8f);
-        when(mocked.getDistanceTo(eq("Wakanda"))).thenReturn(13.8f);
+        when(mocked.getDistanceTo(eq("Titan"))).thenReturn(0.8f);
+        when(mocked.getDistanceTo(eq("Wakanda"))).thenReturn(0.6f);
     }
 
     @Given("^some deliveries with date (.*) time ([\\d]{2}:[\\d]{2}) and with (.*) as package and with date (.*) time ([\\d]{2}:[\\d]{2}) and with (.*) as package with (.*) as Supplier and (\\d+) as drone$")

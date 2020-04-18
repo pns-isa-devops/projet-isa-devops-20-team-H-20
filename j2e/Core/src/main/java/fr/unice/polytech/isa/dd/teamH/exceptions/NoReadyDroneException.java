@@ -13,6 +13,7 @@ public class NoReadyDroneException extends Exception {
 
     public NoReadyDroneException(String time){
         super(time);
+        this.time = time;
     }
 
     public String getTime() {
@@ -25,6 +26,6 @@ public class NoReadyDroneException extends Exception {
 
     @Override
     public String toString() {
-        return "No existing drone available for time "+getTime();
+        return "No existing drone available for time "+ getTime();
     }
 }

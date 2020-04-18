@@ -49,7 +49,7 @@ public class DeliveryPlanningStepdefsTest extends AbstractDeliveryPlanningTest {
 
     private Set<Drone> dronesToDelete;
     private Set<Package> packagesToDelete;
-    private Set<Package> packagesDeliveriesToDelete;
+    private Set<Delivery> deliveriesToDelete;
     private Package packageEntryToDelete;
     private Set<Supplier> suppliersToDelete;
 
@@ -57,9 +57,9 @@ public class DeliveryPlanningStepdefsTest extends AbstractDeliveryPlanningTest {
         // Mocking the external partner
         MapAPI mocked = mock(MapAPI.class);
         deliveryPlanner.useMapReference(mocked);
-        when(mocked.getDistanceTo(eq("Titan"))).thenReturn(13.8f);
-        when(mocked.getDistanceTo(eq("Wakanda"))).thenReturn(13.8f);
-        when(mocked.getDistanceTo(eq("Nowhere"))).thenReturn(14.8f);
+        when(mocked.getDistanceTo(eq("Titan"))).thenReturn(0.8f);
+        when(mocked.getDistanceTo(eq("Wakanda"))).thenReturn(0.5f);
+        when(mocked.getDistanceTo(eq("Nowhere"))).thenReturn(0.7f);
     }
 
     @Given("^some delivery with date (.*) time ([\\d]{2}:[\\d]{2}) and with (.*) as package with (.*) as Supplier and (\\d+) as drone and randoms packages (.*) and (.*) and (.*)$")
@@ -68,7 +68,7 @@ public class DeliveryPlanningStepdefsTest extends AbstractDeliveryPlanningTest {
         packagesToDelete = new HashSet<>();
         dronesToDelete = new HashSet<>();
         suppliersToDelete = new HashSet<>();
-        packagesDeliveriesToDelete = new HashSet<>();
+        deliveriesToDelete = new HashSet<>();
         dronesToDelete.add(droneFleetManagement.addDrone(drone, 20, 10.5f));
         suppliersToDelete.add(supplierRegistration.register(supplier, "0649712254"));
 
@@ -84,8 +84,7 @@ public class DeliveryPlanningStepdefsTest extends AbstractDeliveryPlanningTest {
         packagesToDelete.add(packageRegistration.register(pack3, s.get(), 4.2f, "Nowhere"));
         packagesToDelete.add(packageRegistration.register(pack4, s.get(), 3.2f, "Midgard"));
 
-        deliveryPlanner.planDelivery(p, date, time);
-        packagesDeliveriesToDelete.add(p);
+        deliveriesToDelete.add(deliveryPlanner.planDelivery(p, date, time));
         packageEntryToDelete = p;
     }
 
@@ -95,7 +94,7 @@ public class DeliveryPlanningStepdefsTest extends AbstractDeliveryPlanningTest {
         packagesToDelete = new HashSet<>();
         dronesToDelete = new HashSet<>();
         suppliersToDelete = new HashSet<>();
-        packagesDeliveriesToDelete = new HashSet<>();
+        deliveriesToDelete = new HashSet<>();
         dronesToDelete.add(droneFleetManagement.addDrone(drone, 20, 10.5f));
         suppliersToDelete.add(supplierRegistration.register(supplier, "0649712254"));
 
@@ -111,10 +110,8 @@ public class DeliveryPlanningStepdefsTest extends AbstractDeliveryPlanningTest {
         packagesToDelete.add(p2);
         packagesToDelete.add(packageRegistration.register(package3, s.get(), 4.2f, "Nowhere"));
 
-        deliveryPlanner.planDelivery(p, date, time);
-        packagesDeliveriesToDelete.add(p);
-        deliveryPlanner.planDelivery(p2, date2, time2);
-        packagesDeliveriesToDelete.add(p2);
+        deliveriesToDelete.add(deliveryPlanner.planDelivery(p, date, time));
+        deliveriesToDelete.add(deliveryPlanner.planDelivery(p2, date2, time2));
         packageEntryToDelete = p;
     }
 
@@ -122,8 +119,7 @@ public class DeliveryPlanningStepdefsTest extends AbstractDeliveryPlanningTest {
     public void addDelivery(String date, String time, String pack) throws Exception{
         Optional<Package> p;
         if ((p = packageFinder.findPackageByTrackingNumber(pack)).isPresent()) {
-            deliveryPlanner.planDelivery(p.get(),date, time);
-            packagesDeliveriesToDelete.add(p.get());
+            deliveriesToDelete.add(deliveryPlanner.planDelivery(p.get(),date, time));
         } else {
             fail();
         }
@@ -133,15 +129,13 @@ public class DeliveryPlanningStepdefsTest extends AbstractDeliveryPlanningTest {
     public void addDeliveries(String date, String time, String package1, String package2, String date2, String time2) throws Exception{
         Optional<Package> p;
         if ((p = packageFinder.findPackageByTrackingNumber(package1)).isPresent()) {
-            deliveryPlanner.planDelivery(p.get(),date, time);
-            packagesDeliveriesToDelete.add(p.get());
+            deliveriesToDelete.add(deliveryPlanner.planDelivery(p.get(),date, time));
         } else {
             fail();
         }
 
         if ((p = packageFinder.findPackageByTrackingNumber(package2)).isPresent()) {
-            deliveryPlanner.planDelivery(p.get(),date2, time2);
-            packagesDeliveriesToDelete.add(p.get());
+            deliveriesToDelete.add(deliveryPlanner.planDelivery(p.get(),date2, time2));
         } else {
             fail();
         }
@@ -205,9 +199,9 @@ public class DeliveryPlanningStepdefsTest extends AbstractDeliveryPlanningTest {
     @cucumber.api.java.After
     public void cleaningUp() throws Exception{
         deliveryPlanner.deletePlaningEntry(packageEntryToDelete.getTrackingNumber());
-        packagesDeliveriesToDelete.forEach(entity -> {
+        deliveriesToDelete.forEach(entity -> {
             try {
-                deliveryPlanner.deleteDelivery(entity.getTrackingNumber());
+                deliveryPlanner.deleteDelivery(entity.getaPackage().getTrackingNumber());
             } catch (UnknownDeliveryException e) {
                 e.printStackTrace();
             }

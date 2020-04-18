@@ -150,6 +150,7 @@ public class DeliveryPlanningBean implements DeliveryFinder, DeliveryPlanner, Co
     public boolean startDelivery(Drone drone, Delivery delivery){
         try {
             drone.setState(droneFinder.checkAndUpdateState("flight"));
+            drone.setCurrentFlightTime(drone.getCurrentFlightTime() + delivery.getFlightTime());
             delivery.setState(checkAndUpdateState("in-flight"));
         } catch (UnknownDroneStateException | UnknownDeliveryStateException e) {
             e.printStackTrace();
