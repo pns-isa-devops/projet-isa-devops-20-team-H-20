@@ -24,6 +24,9 @@ public class Delivery implements Serializable {
      * minutes
      */
     private float flightTime;
+    /**
+     * km
+     */
     private float distance;
     private Package aPackage;
     private DeliveryState state;

@@ -12,7 +12,7 @@ public class Drone implements Serializable {
     private int id;
     private float currentFlightTime;
     /**
-     * Battery is a percent, 0 - 100
+     * Battery is a percentage, 0 - 100
      */
     private int battery;
     /**
