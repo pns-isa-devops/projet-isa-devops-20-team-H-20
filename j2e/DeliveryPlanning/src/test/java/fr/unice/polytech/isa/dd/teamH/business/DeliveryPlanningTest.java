@@ -53,15 +53,15 @@ public class DeliveryPlanningTest extends AbstractDeliveryPlanningTest {
         // Mocking the external partner
         MapAPI mocked = mock(MapAPI.class);
         planner.useMapReference(mocked);
-        when(mocked.getDistanceTo(eq(p.getDestination()))).thenReturn(12.5f);
-        when(mocked.getDistanceTo(eq(p2.getDestination()))).thenReturn(13.8f);
-        when(mocked.getDistanceTo(eq(p3.getDestination()))).thenReturn(14.8f);
+        when(mocked.getDistanceTo(eq(p.getDestination()))).thenReturn(0.5f);
+        when(mocked.getDistanceTo(eq(p2.getDestination()))).thenReturn(0.2f);
+        when(mocked.getDistanceTo(eq(p3.getDestination()))).thenReturn(0.3f);
     }
 
     @Before
     public void setUpContext() throws Exception {
-        droneFleetManagement.addDrone(1, 5, 15.5f);
-        droneFleetManagement.addDrone(2, 5, 20.5f);
+        droneFleetManagement.addDrone(1, 10, 15.5f);
+        droneFleetManagement.addDrone(2, 15, 20.5f);
         supplier = supplierRegistration.register("Nozama", "0649715578");
         supplier1 = supplierRegistration.register("Le posta", "0649715588");
         p = packageRegistration.register("1a", supplier, 5.5f, "Midgard");
@@ -72,7 +72,7 @@ public class DeliveryPlanningTest extends AbstractDeliveryPlanningTest {
 
     @Test
     public void findDeliveryById() throws Exception{
-        planner.planDelivery(p, "2020-05-20", "15:30");
+        planner.planDelivery(p, "2020-05-20", "14:30");
         assertTrue(finder.findDeliveryById(p.getTrackingNumber()).isPresent());
 
         planner.planDelivery(p2, "2020-06-20", "16:30");
@@ -95,7 +95,7 @@ public class DeliveryPlanningTest extends AbstractDeliveryPlanningTest {
         planner.editDeliveryStatus(finder.findDeliveryById(p3.getTrackingNumber()).get(), finder.checkAndUpdateState("completed"));
         assertEquals(baseSize, finder.findAllPlannedDeliveries().size());
         //because it's before now
-        planner.planDelivery(p, "2020-05-20", "15:30");
+        planner.planDelivery(p, "2020-05-20", "20:30");
         assertEquals(baseSize + 1, finder.findAllPlannedDeliveries().size());
         planner.planDelivery(p2, "2020-06-20", "15:30");
         assertEquals(baseSize + 1, finder.findAllPlannedDeliveries().size());
@@ -138,13 +138,13 @@ public class DeliveryPlanningTest extends AbstractDeliveryPlanningTest {
 
     @Test
     public void planDelivery() throws Exception {
-        planner.planDelivery(p, "2020-05-20", "15:30");
+        planner.planDelivery(p, "2020-05-20", "11:30");
         assertTrue(finder.findPlanningEntryByTrackingId(p.getTrackingNumber()).isPresent());
     }
 
     @Test
     public void editDelivery() throws Exception {
-        planner.planDelivery(p, "2020-05-20", "15:30");
+        planner.planDelivery(p, "2020-05-20", "12:30");
         Optional<Delivery> delivery = finder.findDeliveryById(p.getTrackingNumber());
         if (delivery.isPresent()) {
             planner.editDeliveryStatus(delivery.get(), DeliveryStateFactory.getInstance().createState("completed"));
@@ -156,7 +156,7 @@ public class DeliveryPlanningTest extends AbstractDeliveryPlanningTest {
 
     @Test
     public void startDelivery() throws Exception {
-        planner.planDelivery(p, "2020-05-20", "15:30");
+        planner.planDelivery(p, "2020-05-20", "10:30");
         Optional<PlanningEntry> planningEntry = finder.findPlanningEntryByTrackingId(p.getTrackingNumber());
         Optional<Delivery> delivery = finder.findDeliveryById(p.getTrackingNumber());
         if (delivery.isPresent() && planningEntry.isPresent()) {

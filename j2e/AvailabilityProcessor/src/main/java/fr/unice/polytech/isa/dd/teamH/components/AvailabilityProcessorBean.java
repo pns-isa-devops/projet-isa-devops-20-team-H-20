@@ -5,7 +5,6 @@ import fr.unice.polytech.isa.dd.teamH.entities.deliveryplanning.PlanningEntry;
 import fr.unice.polytech.isa.dd.teamH.entities.drone.Drone;
 import fr.unice.polytech.isa.dd.teamH.interfaces.AvailableDroneFinder;
 import fr.unice.polytech.isa.dd.teamH.interfaces.DroneFinder;
-import javafx.util.Pair;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -23,6 +22,7 @@ public class AvailabilityProcessorBean implements AvailableDroneFinder {
 
     @Override
     public Optional<Drone> getAvailableDroneAtTime(Set<PlanningEntry> alreadyPlannedDeliveries, LocalDateTime timeToDeliverThePackage, float packageWeight, float packageDistance) {
+
         /// FILTER DRONE THAT CANNOT DELIVER THE PACKAGE WHATSOEVER
 
         //keep drones that can support weight
@@ -144,7 +144,6 @@ public class AvailabilityProcessorBean implements AvailableDroneFinder {
                 //TODO: also check flight time for unavailability
             }
         }
-
         if(possibleDrones.isEmpty())
             return Optional.empty();
 

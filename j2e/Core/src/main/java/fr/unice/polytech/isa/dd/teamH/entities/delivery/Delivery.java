@@ -106,6 +106,9 @@ public class Delivery implements Serializable {
         this.aPackage = aPackage;
     }
 
+    /**
+     * tume in minutes
+     */
     @NotNull
     public float getFlightTime() {
         return flightTime;

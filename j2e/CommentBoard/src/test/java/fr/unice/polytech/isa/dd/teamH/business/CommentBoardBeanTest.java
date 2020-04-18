@@ -52,8 +52,8 @@ public class CommentBoardBeanTest extends AbstractCommentBoardBeanTest {
         // Mocking the external partner
         MapAPI mocked = mock(MapAPI.class);
         deliveryPlanner.useMapReference(mocked);
-        when(mocked.getDistanceTo(eq("Asgard"))).thenReturn(13.8f);
-        when(mocked.getDistanceTo(eq("Wakanda"))).thenReturn(13.8f);
+        when(mocked.getDistanceTo(eq("Asgard"))).thenReturn(0.3f);
+        when(mocked.getDistanceTo(eq("Wakanda"))).thenReturn(0.1f);
     }
 
     @Before
@@ -69,10 +69,10 @@ public class CommentBoardBeanTest extends AbstractCommentBoardBeanTest {
         p3 = packageRegistration.register("UID3", supplier3, 7.0f, "Asgard");
         p4 = packageRegistration.register("UID4", supplier3, 8.0f, "Wakanda");
 
-        deliveryPlanner.planDelivery(p1, "2020-05-20", "15:30");
+        deliveryPlanner.planDelivery(p1, "2020-05-20", "13:30");
         deliveryPlanner.planDelivery(p2, "2020-06-20", "15:30");
-        deliveryPlanner.planDelivery(p3, "2020-07-20", "15:30");
-        deliveryPlanner.planDelivery(p4, "2020-08-20", "15:30");
+        deliveryPlanner.planDelivery(p3, "2020-07-20", "16:30");
+        deliveryPlanner.planDelivery(p4, "2020-08-20", "18:30");
 
         Delivery d1 = deliveryFinder.findDeliveryById(p1.getTrackingNumber()).get();
         Delivery d2 = deliveryFinder.findDeliveryById(p2.getTrackingNumber()).get();

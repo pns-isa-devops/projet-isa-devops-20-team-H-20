@@ -10,6 +10,9 @@ import java.util.Objects;
 public class Drone implements Serializable {
 
     private int id;
+    /**
+     * tume in minutes
+     */
     private float currentFlightTime;
     /**
      * Battery is a percentage, 0 - 100

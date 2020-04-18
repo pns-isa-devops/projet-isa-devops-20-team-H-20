@@ -45,10 +45,10 @@ public class AccountingBeanTest extends AbstractAccountingBeanTest {
         // Mocking the external partner
         MapAPI mocked = mock(MapAPI.class);
         deliveryPlanner.useMapReference(mocked);
-        when(mocked.getDistanceTo(eq("Asgard"))).thenReturn(12.5f);
-        when(mocked.getDistanceTo(eq("Vormir"))).thenReturn(13.8f);
-        when(mocked.getDistanceTo(eq("Midgard"))).thenReturn(14.8f);
-        when(mocked.getDistanceTo(eq("Jotunheim"))).thenReturn(15.8f);
+        when(mocked.getDistanceTo(eq("Asgard"))).thenReturn(0.5f);
+        when(mocked.getDistanceTo(eq("Vormir"))).thenReturn(0.8f);
+        when(mocked.getDistanceTo(eq("Midgard"))).thenReturn(0.4f);
+        when(mocked.getDistanceTo(eq("Jotunheim"))).thenReturn(0.6f);
     }
 
     @Before

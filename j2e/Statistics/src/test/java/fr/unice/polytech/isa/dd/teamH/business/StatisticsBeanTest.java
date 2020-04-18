@@ -53,7 +53,7 @@ public class StatisticsBeanTest extends AbstractStatisticsBeanTest {
         // Mocking the external partner
         MapAPI mocked = mock(MapAPI.class);
         deliveryPlanner.useMapReference(mocked);
-        when(mocked.getDistanceTo(eq("Wakanda"))).thenReturn(13.8f);
+        when(mocked.getDistanceTo(eq("Wakanda"))).thenReturn(0.4f);
     }
 
     @Before
@@ -65,7 +65,7 @@ public class StatisticsBeanTest extends AbstractStatisticsBeanTest {
         entityManager.persist(s);
         Package p = new Package("3",0,"Wakanda",s);
         entityManager.persist(p);
-        deliveryPlanner.planDelivery(p, "2020-05-20", "15:30");
+        deliveryPlanner.planDelivery(p, "2020-05-20", "09:30");
         Delivery d = deliveryFinder.findDeliveryById(p.getTrackingNumber()).get();
         entityManager.persist(d);
 
