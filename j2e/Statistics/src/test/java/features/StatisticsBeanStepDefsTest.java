@@ -56,7 +56,7 @@ public class StatisticsBeanStepDefsTest extends AbstractStatisticsBeanTest {
         // Mocking the external partner
         MapAPI mocked = mock(MapAPI.class);
         deliveryPlanner.useMapReference(mocked);
-        when(mocked.getDistanceTo(eq("destination bidon"))).thenReturn(13.8f);
+        when(mocked.getDistanceTo(eq("destination bidon"))).thenReturn(0.1f);
     }
 
     @Given("^some drones with IDs (\\d+) and (\\d+)$")
@@ -66,10 +66,10 @@ public class StatisticsBeanStepDefsTest extends AbstractStatisticsBeanTest {
        dronesAdded.add(droneFleetManagement.addDrone(id2, 10, 10.5f));
     }
 
-    @Given("^some delivery with date (.*) time (.*) and with (.*) as package with (.*) as Supplier and (\\d+) as drone$")
-    public void background(String date, String time, String trackingId, String suppName, int droneId) throws Exception {
+    @Given("^some delivery with date (.*) time (.*) and with (.*) as package with (.*) as Supplier$")
+    public void background(String date, String time, String trackingId, String suppName) throws Exception {
         initMock();
-        dronesAdded.add(droneFleetManagement.addDrone(droneId, 10, 10.5f));
+        dronesAdded.add(droneFleetManagement.addDrone(dronesAdded.size()+1, 10, 10.5f));
         Supplier tmpS = supplierRegistration.register(suppName, "contact bidon");
         suppliersAdded.add(tmpS);
         Package tmpP = packageRegistration.register(trackingId, tmpS, 2.0f, "destination bidon");
@@ -127,6 +127,7 @@ public class StatisticsBeanStepDefsTest extends AbstractStatisticsBeanTest {
         deliveriesAdded.forEach(de -> {
             try {
                 deliveryPlanner.deletePlaningEntry(de.getaPackage().getTrackingNumber());
+                deliveryPlanner.deleteDelivery(de.getaPackage().getTrackingNumber());
             } catch (UnknownDeliveryException e) {
                 e.printStackTrace();
             }

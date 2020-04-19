@@ -10,12 +10,15 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import java.time.LocalDateTime;
 import java.util.*;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 @Stateless
 public class AvailabilityProcessorBean implements AvailableDroneFinder {
     private static final Logger log = Logger.getLogger(Logger.class.getName());
+
+    private boolean logging = false;
 
     @EJB
     private DroneFinder droneFinder;
@@ -27,7 +30,10 @@ public class AvailabilityProcessorBean implements AvailableDroneFinder {
 
         //keep drones that can support weight
         Set<Drone> allDrones = droneFinder.findAllDrones();
+        loginfo("AVAILABILITY CHECK - ALL DRONES --- " + allDrones);
+        loginfo("AVAILABILITY CHECK - PLANNED ENTRIES --- " + alreadyPlannedDeliveries);
         Set<Drone> possibleDrones = allDrones.stream().filter(e -> e.getWeightCapacity() >= packageWeight).collect(Collectors.toSet());
+        loginfo("AVAILABILITY CHECK - FILTERED WEAK DRONES --- " + possibleDrones);
         for(PlanningEntry planningEntry : alreadyPlannedDeliveries){
             for(Delivery delivery : planningEntry.getDeliveries()){
                 // remove drones that have delivery at the same time
@@ -44,6 +50,8 @@ public class AvailabilityProcessorBean implements AvailableDroneFinder {
             }
         }
 
+        loginfo("AVAILABILITY CHECK - FILTERED BUSY DRONES --- " + possibleDrones);
+
         /// CHECK VALIDITY REGARDING PREVIOUS DELIVERIES -- Simulation
         /// We generate the simulation map to get the state of each possible drone
         /// at the given DateTime of delivery
@@ -55,26 +63,28 @@ public class AvailabilityProcessorBean implements AvailableDroneFinder {
 
         for(PlanningEntry planningEntry : alreadyPlannedDeliveries){
             Drone tmpD = planningEntry.getDrone();
-            for(Delivery delivery : planningEntry.getDeliveries()){
-                if(LocalDateTime.parse(delivery.getTime())
-                    .isBefore(timeToDeliverThePackage)) {
-                    //if there was an charging unavailability for that drone and it is finished, delete it and refill the drone's battery
-                    if (chargingUnavailabilities.containsKey(tmpD.getId())) {
-//                        if (chargingUnavailabilities.get(tmpD.getId())
-//                                .plusMinutes(45) // Charging time
-//                                .isAfter(LocalDateTime.parse(delivery.getTime())))
-//                            throw new CorruptedPlanningException(delivery, "drone unavailable");
-                        tmpD.setBattery(100);
-                        chargingUnavailabilities.remove(tmpD.getId());
-                    }
+            if(simulationMap.containsKey(tmpD.getId())) {
+                for (Delivery delivery : planningEntry.getDeliveries()) {
+                    if (LocalDateTime.parse(delivery.getDate() + "T" + delivery.getTime() + ":00")
+                            .isBefore(timeToDeliverThePackage)) {
+                        //if there was an charging unavailability for that drone and it is finished, delete it and refill the drone's battery
+                        if (chargingUnavailabilities.containsKey(tmpD.getId())) {
+                            //                        if (chargingUnavailabilities.get(tmpD.getId())
+                            //                                .plusMinutes(45) // Charging time
+                            //                                .isAfter(LocalDateTime.parse(delivery.getDate()+"T"+delivery.getTime()+":00")))
+                            //                            throw new CorruptedPlanningException(delivery, "drone unavailable");
+                            tmpD.setBattery(100);
+                            chargingUnavailabilities.remove(tmpD.getId());
+                        }
 
-                    //the drone is available at this point
-                    DroneAttributes tmpDA = simulationMap.get(tmpD.getId());
-                    updateTmpDA(chargingUnavailabilities, tmpD, tmpDA, delivery);
-                }else{
-                    break;
+                        //the drone is available at this point
+                        DroneAttributes tmpDA = simulationMap.get(tmpD.getId());
+                        updateTmpDA(chargingUnavailabilities, tmpD, tmpDA, delivery);
+                    } else {
+                        break;
+                    }
+                    //TODO: also check flight time for unavailability
                 }
-                //TODO: also check flight time for unavailability
             }
         }
 
@@ -87,6 +97,8 @@ public class AvailabilityProcessorBean implements AvailableDroneFinder {
                             && simulationMap.get(dr.getId()).flighttime + flightTime < 1200; // Drone does not exceed 20h of flight
                 }).collect(Collectors.toSet());
 
+        loginfo("AVAILABILITY CHECK - AFTER FIRST SIMULATION --- " + possibleDrones + " SMAP - " + simulationMap);
+
 
         /// Now that we have the possible drones for the current time, we should check if it is compatible with the rest
         /// of the planning if some deliveries have already been planned at an ulterior time
@@ -95,53 +107,55 @@ public class AvailabilityProcessorBean implements AvailableDroneFinder {
 
         for(PlanningEntry planningEntry : alreadyPlannedDeliveries){
             Drone tmpD = planningEntry.getDrone();
-            DroneAttributes tmpDA = simulationMap.get(tmpD.getId());
-            float flightTime = (packageDistance/tmpD.getSpeed()) * 60;
-            /// Initialization for all the deliveries
-            /// We simulate the fact that the delivery is planned in each planning entry
-            if((chargingUnavailabilities.containsKey(tmpD.getId()) && chargingUnavailabilities.get(tmpD.getId())
-                                                                   .plusMinutes(45) // Charging time
-                                                                   .isAfter(timeToDeliverThePackage)) // delivery happens when drone is charging
-                || tmpDA.battery < (int) Math.ceil(flightTime) * 100 / 45 // drone does not have enough battery
-                /*|| tmpDA.flighttime + delivery.getFlightTime() > 1200 // drone exceeds flight time*/){
-                deleteDroneFromSet(possibleDrones, tmpD.getId());
-                break;
-            }
+            if(simulationMap.containsKey(tmpD.getId())) {
+                DroneAttributes tmpDA = simulationMap.get(tmpD.getId());
+                float flightTime = (packageDistance / tmpD.getSpeed()) * 60;
+                /// Initialization for all the deliveries
+                /// We simulate the fact that the delivery is planned in each planning entry
+                if ((chargingUnavailabilities.containsKey(tmpD.getId()) && chargingUnavailabilities.get(tmpD.getId())
+                        .plusMinutes(45) // Charging time
+                        .isAfter(timeToDeliverThePackage)) // delivery happens when drone is charging
+                        || tmpDA.battery < (int) Math.ceil(flightTime) * 100 / 45 // drone does not have enough battery
+                    /*|| tmpDA.flighttime + delivery.getFlightTime() > 1200 // drone exceeds flight time*/) {
+                    deleteDroneFromSet(possibleDrones, tmpD.getId());
+                    break;
+                }
 
-            tmpDA.removeBattery((int) Math.ceil(flightTime) * 100 / 45);
-            tmpDA.addFlightTime(flightTime);
+                tmpDA.removeBattery((int) Math.ceil(flightTime) * 100 / 45);
+                tmpDA.addFlightTime(flightTime);
 
-            if(tmpDA.battery <= 10){
-                chargingUnavailabilities.put(tmpD.getId(), timeToDeliverThePackage.plusMinutes((int)Math.ceil(flightTime)));
-            }
+                if (tmpDA.battery <= 10) {
+                    chargingUnavailabilities.put(tmpD.getId(), timeToDeliverThePackage.plusMinutes((int) Math.ceil(flightTime)));
+                }
 
-            /// And then we go on with the simulation
-            for(Delivery delivery : planningEntry.getDeliveries()){
-                if(LocalDateTime.parse(delivery.getTime())
-                        .isAfter(timeToDeliverThePackage)) {
-                    //if there was an charging unavailability for that drone and it is finished, delete it and refill the drone's battery
-                    if (chargingUnavailabilities.containsKey(tmpD.getId())) {
-                        if (chargingUnavailabilities.get(tmpD.getId())
-                                .plusMinutes(45) // Charging time
-                                .isAfter(LocalDateTime.parse(delivery.getTime()))) {
+                /// And then we go on with the simulation
+                for (Delivery delivery : planningEntry.getDeliveries()) {
+                    if (LocalDateTime.parse(delivery.getDate() + "T" + delivery.getTime() + ":00")
+                            .isAfter(timeToDeliverThePackage)) {
+                        //if there was an charging unavailability for that drone and it is finished, delete it and refill the drone's battery
+                        if (chargingUnavailabilities.containsKey(tmpD.getId())) {
+                            if (chargingUnavailabilities.get(tmpD.getId())
+                                    .plusMinutes(45) // Charging time
+                                    .isAfter(LocalDateTime.parse(delivery.getDate() + "T" + delivery.getTime() + ":00"))) {
+                                deleteDroneFromSet(possibleDrones, tmpD.getId());
+                                break;
+                            }
+                            tmpD.setBattery(100);
+                            chargingUnavailabilities.remove(tmpD.getId());
+                        }
+
+                        //the drone is available at this point
+                        if (tmpDA.battery < (int) Math.ceil(delivery.getFlightTime()) * 100 / 45
+                                || tmpDA.flighttime + delivery.getFlightTime() > 1200) {
                             deleteDroneFromSet(possibleDrones, tmpD.getId());
                             break;
                         }
-                        tmpD.setBattery(100);
-                        chargingUnavailabilities.remove(tmpD.getId());
-                    }
-
-                    //the drone is available at this point
-                    if(tmpDA.battery < (int) Math.ceil(delivery.getFlightTime()) * 100 / 45
-                        || tmpDA.flighttime + delivery.getFlightTime() > 1200){
-                        deleteDroneFromSet(possibleDrones, tmpD.getId());
+                        updateTmpDA(chargingUnavailabilities, tmpD, tmpDA, delivery);
+                    } else {
                         break;
                     }
-                    updateTmpDA(chargingUnavailabilities, tmpD, tmpDA, delivery);
-                }else{
-                    break;
+                    //TODO: also check flight time for unavailability
                 }
-                //TODO: also check flight time for unavailability
             }
         }
         if(possibleDrones.isEmpty())
@@ -150,6 +164,8 @@ public class AvailabilityProcessorBean implements AvailableDroneFinder {
         float minWeightCapacity = possibleDrones.stream()
                                 .min((dr1, dr2) -> Float.compare(dr1.getWeightCapacity(), dr2.getWeightCapacity()))
                                 .get().getWeightCapacity();
+
+        loginfo("AVAILABILITY CHECK - AFTER SECOND SIMULATION --- " + possibleDrones);
 
         // Return the possible drone with the lowest weight capacity, and then with the highest flight time
         return possibleDrones.stream()
@@ -163,12 +179,17 @@ public class AvailabilityProcessorBean implements AvailableDroneFinder {
         tmpDA.addFlightTime(delivery.getFlightTime());
 
         if(tmpDA.battery <= 10){
-            chargingUnavailabilities.put(tmpD.getId(), LocalDateTime.parse(delivery.getTime()).plusMinutes((int)Math.ceil(delivery.getFlightTime())));
+            chargingUnavailabilities.put(tmpD.getId(), LocalDateTime.parse(delivery.getDate()+"T"+delivery.getTime()+":00").plusMinutes((int)Math.ceil(delivery.getFlightTime())));
         }
     }
 
     private void deleteDroneFromSet(Set<Drone> drones, int droneId){
         drones.removeIf(e -> e.getId() == droneId);
+    }
+
+    private void loginfo(String param){
+        if(logging)
+            log.log(Level.INFO, param);
     }
 
     private class DroneAttributes{
@@ -193,6 +214,14 @@ public class AvailabilityProcessorBean implements AvailableDroneFinder {
             if(flighttime > 1200) { // the drone flight time exceeds 20 hours
                 //throw new CorruptedPlanningException(delivery, "Too much flight time");
             }
+        }
+
+        @Override
+        public String toString() {
+            return "DroneAttributes{" +
+                    "battery=" + battery +
+                    ", flighttime=" + flighttime +
+                    '}';
         }
     }
 }
