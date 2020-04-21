@@ -161,7 +161,7 @@ public class DeliveryPlanningBean implements DeliveryFinder, DeliveryPlanner, Co
 
     @Override
     public Delivery planDelivery(Package p, String date, String time) throws DeliveryDistanceException, NoReadyDroneException,
-            UnknownDeliveryStateException, DeliveryPastTimeException {
+            UnknownDeliveryStateException, DeliveryPastTimeException, CorruptedPlanningException {
         LocalDateTime planTime = LocalDateTime.parse(date+"T"+time+":00");
         if(planTime.isBefore(LocalDateTime.now()))
             throw new DeliveryPastTimeException(date+"T"+time+":00");

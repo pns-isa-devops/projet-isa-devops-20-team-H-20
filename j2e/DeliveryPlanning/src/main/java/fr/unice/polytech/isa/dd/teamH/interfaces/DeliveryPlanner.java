@@ -13,7 +13,7 @@ import java.util.Set;
 @Local
 public interface DeliveryPlanner {
     Delivery planDelivery(Package p, String date, String time) throws DeliveryDistanceException, UnknownDeliveryStateException,
-            NoReadyDroneException, DeliveryPastTimeException;
+            NoReadyDroneException, DeliveryPastTimeException, CorruptedPlanningException;
     boolean editDeliveryStatus(Delivery delivery, DeliveryState state) throws UnknownDeliveryStateException;
     boolean startDelivery(Drone drone, Delivery delivery);
     Set<PlanningEntry> getCompleteDeliveryPlanning();

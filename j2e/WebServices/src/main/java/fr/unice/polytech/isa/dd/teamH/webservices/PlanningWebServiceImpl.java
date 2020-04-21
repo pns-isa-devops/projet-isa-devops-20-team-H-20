@@ -36,7 +36,7 @@ public class PlanningWebServiceImpl implements PlanningWebService {
 
     @Override
     public Delivery planDelivery(String trackingNumber, String date, String time) throws
-            UnknownPackageException, DeliveryDistanceException, UnknownDeliveryStateException, NoReadyDroneException, DeliveryPastTimeException {
+            UnknownPackageException, DeliveryDistanceException, UnknownDeliveryStateException, NoReadyDroneException, DeliveryPastTimeException, CorruptedPlanningException {
         Optional<Package> p = packageFinder.findPackageByTrackingNumber(trackingNumber);
         if(!p.isPresent())
             throw new UnknownPackageException(trackingNumber);

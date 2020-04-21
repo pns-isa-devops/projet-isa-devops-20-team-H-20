@@ -3,6 +3,7 @@ package fr.unice.polytech.isa.dd.teamH.components;
 import fr.unice.polytech.isa.dd.teamH.entities.delivery.Delivery;
 import fr.unice.polytech.isa.dd.teamH.entities.deliveryplanning.PlanningEntry;
 import fr.unice.polytech.isa.dd.teamH.entities.drone.Drone;
+import fr.unice.polytech.isa.dd.teamH.exceptions.CorruptedPlanningException;
 import fr.unice.polytech.isa.dd.teamH.interfaces.AvailableDroneFinder;
 import fr.unice.polytech.isa.dd.teamH.interfaces.DroneFinder;
 
@@ -24,7 +25,7 @@ public class AvailabilityProcessorBean implements AvailableDroneFinder {
     private DroneFinder droneFinder;
 
     @Override
-    public Optional<Drone> getAvailableDroneAtTime(Set<PlanningEntry> alreadyPlannedDeliveries, LocalDateTime timeToDeliverThePackage, float packageWeight, float packageDistance) {
+    public Optional<Drone> getAvailableDroneAtTime(Set<PlanningEntry> alreadyPlannedDeliveries, LocalDateTime timeToDeliverThePackage, float packageWeight, float packageDistance) throws CorruptedPlanningException {
 
         /// FILTER DRONE THAT CANNOT DELIVER THE PACKAGE WHATSOEVER
 
@@ -69,10 +70,10 @@ public class AvailabilityProcessorBean implements AvailableDroneFinder {
                             .isBefore(timeToDeliverThePackage)) {
                         //if there was an charging unavailability for that drone and it is finished, delete it and refill the drone's battery
                         if (chargingUnavailabilities.containsKey(tmpD.getId())) {
-                            //                        if (chargingUnavailabilities.get(tmpD.getId())
-                            //                                .plusMinutes(45) // Charging time
-                            //                                .isAfter(LocalDateTime.parse(delivery.getDate()+"T"+delivery.getTime()+":00")))
-                            //                            throw new CorruptedPlanningException(delivery, "drone unavailable");
+                            if (chargingUnavailabilities.get(tmpD.getId())
+                                    .plusMinutes(45) // Charging time
+                                    .isAfter(LocalDateTime.parse(delivery.getDate()+"T"+delivery.getTime()+":00")))
+                                throw new CorruptedPlanningException(delivery, "drone unavailable");
                             tmpD.setBattery(100);
                             chargingUnavailabilities.remove(tmpD.getId());
                         }
@@ -116,7 +117,7 @@ public class AvailabilityProcessorBean implements AvailableDroneFinder {
                         .plusMinutes(45) // Charging time
                         .isAfter(timeToDeliverThePackage)) // delivery happens when drone is charging
                         || tmpDA.battery < (int) Math.ceil(flightTime) * 100 / 45 // drone does not have enough battery
-                    /*|| tmpDA.flighttime + delivery.getFlightTime() > 1200 // drone exceeds flight time*/) {
+                        || tmpDA.flighttime + flightTime > 1200 /*drone exceeds flight time*/) {
                     deleteDroneFromSet(possibleDrones, tmpD.getId());
                     break;
                 }
@@ -174,9 +175,15 @@ public class AvailabilityProcessorBean implements AvailableDroneFinder {
 
     }
 
-    private void updateTmpDA(Map<Integer, LocalDateTime> chargingUnavailabilities, Drone tmpD, DroneAttributes tmpDA, Delivery delivery) {
+    private void updateTmpDA(Map<Integer, LocalDateTime> chargingUnavailabilities, Drone tmpD, DroneAttributes tmpDA, Delivery delivery) throws CorruptedPlanningException {
         tmpDA.removeBattery((int) Math.ceil(delivery.getFlightTime()) * 100 / 45);
+        if(tmpDA.battery < 0) { // the drone does not have enough battery
+            throw new CorruptedPlanningException(delivery, "Not enough battery");
+        }
         tmpDA.addFlightTime(delivery.getFlightTime());
+        if(tmpDA.flighttime > 1200) { // the drone flight time exceeds 20 hours
+            throw new CorruptedPlanningException(delivery, "Too much flight time");
+        }
 
         if(tmpDA.battery <= 10){
             chargingUnavailabilities.put(tmpD.getId(), LocalDateTime.parse(delivery.getDate()+"T"+delivery.getTime()+":00").plusMinutes((int)Math.ceil(delivery.getFlightTime())));
@@ -204,16 +211,10 @@ public class AvailabilityProcessorBean implements AvailableDroneFinder {
 
         private void removeBattery(int val){
             battery -= val;
-            if(battery < 0) { // the drone does not have enough battery
-                //throw new CorruptedPlanningException(delivery, "Not enough battery");
-            }
         }
 
         private void addFlightTime(float val){
             flighttime += val;
-            if(flighttime > 1200) { // the drone flight time exceeds 20 hours
-                //throw new CorruptedPlanningException(delivery, "Too much flight time");
-            }
         }
 
         @Override
