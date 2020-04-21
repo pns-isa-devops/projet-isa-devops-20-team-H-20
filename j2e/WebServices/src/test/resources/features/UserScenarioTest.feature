@@ -1,16 +1,40 @@
 Feature: Testing the whole Drone Delivery system
   This feature test le entire Drone Delivery system by using every component
 
-  Scenario: Every actor will configure the first drone delivery system
-    When the graragiste adds the drone with id 1 and 8.0 kg capacity and 10.5 km/h speed
+  Scenario: Planing two deliveries with one drone at not at same time
+    When the graragiste adds the drone with id 1 and 10.0 kg capacity and 60.0 km/h speed
     And the gestionnaire adds a supplier with name Nozama and contact adressebidon@truc.ouaideouf
-#    And the manutentionnaire adds a package with tracking number numerobidon and with weight 10 and with destination Wakanda and with Nozama as supplier
-#    And the service client plans a delivery for the package numerobidon with date 2020-12-12 time 12:12
-#    And the manutentionnaire sends the delivery for package numerobidon
-#    And the delivery for package numerobidon is failed
-#    And the service client plans a delivery for the package numerobidon with date 2020-12-15 time 15:15 and with 1 as drone
-#    And the manutentionnaire sends the delivery for package numerobidon
-#    And a drone statistics entry is generated
-#    And the delivery for package numerobidon is successful
-#    And the customer adds a comment on the delivery for package numberobidon with rating 8 and comment very good delivery thx m8
-#    And a customer satisfaction entry is generated
+    And the manutentionnaire adds a package with tracking number A7X and with weight 5.0 and with destination Wakanda and with Nozama as supplier
+    And the manutentionnaire adds a package with tracking number SUM41 and with weight 5.0 and with destination Wakanda and with Nozama as supplier
+    And the service client plan a delivery for package A7X date 2020-10-10 at 10:10
+    And the service client tries to plan a delivery for package SUM41 date 2020-10-10 at 15:15
+    Then the delivery with package A7X as 1 as drone id
+    And the delivery with package SUM41 as 1 as drone id
+
+  Scenario: Planing two deliveries with one drone at almost same time
+    When the graragiste adds the drone with id 1 and 10.0 kg capacity and 60.0 km/h speed
+    And the gestionnaire adds a supplier with name Nozama and contact adressebidon@truc.ouaideouf
+    And the manutentionnaire adds a package with tracking number A7X and with weight 5.0 and with destination Wakanda and with Nozama as supplier
+    And the manutentionnaire adds a package with tracking number SUM41 and with weight 5.0 and with destination Wakanda and with Nozama as supplier
+    And the service client plan a delivery for package A7X date 2020-10-10 at 10:10
+    And the service client tries to plan a delivery for package SUM41 date 2020-10-10 at 10:15
+    Then the delivery with package A7X as 1 as drone id
+    But the delivery with package SUM41 has not been planned
+
+  Scenario: Planing two deliveries with two drone but one is too weak
+    When the graragiste adds the drone with id 1 and 10.0 kg capacity and 60.0 km/h speed
+    And the graragiste adds the drone with id 2 and 2.0 kg capacity and 60.0 km/h speed
+    And the gestionnaire adds a supplier with name Nozama and contact adressebidon@truc.ouaideouf
+    And the manutentionnaire adds a package with tracking number A7X and with weight 5.0 and with destination Wakanda and with Nozama as supplier
+    And the manutentionnaire adds a package with tracking number SUM41 and with weight 5.0 and with destination Wakanda and with Nozama as supplier
+    And the service client plan a delivery for package A7X date 2020-10-10 at 10:10
+    And the service client tries to plan a delivery for package SUM41 date 2020-10-10 at 10:15
+    Then the delivery with package A7X as 1 as drone id
+    But the delivery with package SUM41 has not been planned
+
+  Scenario: Planing one delivery without drone
+    When the gestionnaire adds a supplier with name Nozama and contact adressebidon@truc.ouaideouf
+    And the manutentionnaire adds a package with tracking number A7X and with weight 5.0 and with destination Wakanda and with Nozama as supplier
+    And the manutentionnaire adds a package with tracking number SUM41 and with weight 5.0 and with destination Wakanda and with Nozama as supplier
+    And the service client tries to plan a delivery for package A7X date 2020-10-10 at 10:15
+    But the delivery with package A7X has not been planned
