@@ -203,8 +203,8 @@ public class DeliveryPlanningBean implements DeliveryFinder, DeliveryPlanner, Co
     }
 
     @Override
-    public boolean editDeliveryStatus(Delivery delivery, DeliveryState state) throws UnknownDeliveryStateException {
-        delivery.setState(checkAndUpdateState(state.getName()));
+    public boolean editDeliveryStatus(Delivery delivery, String state) throws UnknownDeliveryStateException {
+        delivery.setState(checkAndUpdateState(state));
         log.log(Level.INFO, "Delivery edited : " + delivery.toString());
         return true;
     }
@@ -293,7 +293,7 @@ public class DeliveryPlanningBean implements DeliveryFinder, DeliveryPlanner, Co
 
         PlanningEntry deleted = manager.merge(toDelete.get());
         manager.remove(deleted);
-        log.log(Level.INFO, "Delivery deleted : " + trackingNumber);
+        log.log(Level.INFO, "Planning entry deleted : " + trackingNumber);
         return true;
     }
 

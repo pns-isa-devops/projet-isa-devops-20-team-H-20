@@ -74,6 +74,7 @@ Feature: Testing the whole Drone Delivery system
   Scenario: A client post a comment
     When the garagiste adds the drone with id 1 and 10.0 kg capacity and 60.0 km/h speed
     And the gestionnaire adds a supplier with name Nozama and contact adressebidon@truc.ouaideouf
+    And the gestionnaire adds a supplier with name LePosta and contact leposta@mysupramail.com
     And the manutentionnaire adds a package with tracking number A7X and with weight 5.0 and with destination Wakanda and with Nozama as supplier
     And the manutentionnaire adds a package with tracking number SUM41 and with weight 5.0 and with destination Wakanda and with Nozama as supplier
     And the manutentionnaire adds a package with tracking number 5FDP and with weight 1.0 and with destination Wakanda and with Nozama as supplier
@@ -89,10 +90,12 @@ Feature: Testing the whole Drone Delivery system
     And the client adds a comment for the delivery A7X with rate 2 and comment ""
     And the boss generates the statistics for ratings
     And the gestionnaire generates the invoice for Nozama
+    And the gestionnaire generates the invoice for LePosta
     And the supplier Nozama pay the invoice
     Then there is a comment for the package SUM41 with rate 5 and comment "Not enough quality"
     And there is a comment for the package 5FDP with rate 8 and comment ""
     And there is a comment for the package A7X with rate 2 and comment ""
     And the rating statistics entry as 5 as average
     And the invoice for Nozama is about 3€
+    And the invoice for LePosta is about 0€
 

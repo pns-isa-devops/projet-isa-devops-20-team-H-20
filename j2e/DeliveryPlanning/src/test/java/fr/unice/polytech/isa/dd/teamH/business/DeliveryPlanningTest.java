@@ -92,7 +92,7 @@ public class DeliveryPlanningTest extends AbstractDeliveryPlanningTest {
     public void findAllPlannedDeliveriesTest() throws Exception {
         int baseSize = finder.findAllPlannedDeliveries().size();
         planner.planDelivery(p3, "2021-05-20", "15:30");
-        planner.editDeliveryStatus(finder.findDeliveryById(p3.getTrackingNumber()).get(), finder.checkAndUpdateState("completed"));
+        planner.editDeliveryStatus(finder.findDeliveryById(p3.getTrackingNumber()).get(), "completed");
         assertEquals(baseSize, finder.findAllPlannedDeliveries().size());
         //because it's before now
         planner.planDelivery(p, "2020-05-20", "20:30");
@@ -106,15 +106,15 @@ public class DeliveryPlanningTest extends AbstractDeliveryPlanningTest {
     public void findCompletedDeliveriesSinceSupplierTest() throws Exception {
         planner.planDelivery(p3, LocalDate.now().plusDays(20).toString(), "15:30");
         assertEquals(0, finder.findCompletedDeliveriesSince(LocalDateTime.now().minusMonths(1), supplier1).size());
-        planner.editDeliveryStatus(finder.findDeliveryById(p3.getTrackingNumber()).get(), finder.checkAndUpdateState("completed"));
+        planner.editDeliveryStatus(finder.findDeliveryById(p3.getTrackingNumber()).get(), "completed");
         assertEquals(1, finder.findCompletedDeliveriesSince(LocalDateTime.now().minusMonths(1), supplier1).size());
 
         planner.planDelivery(p, LocalDate.now().plusDays(21).toString(), "15:30");
-        planner.editDeliveryStatus(finder.findDeliveryById(p.getTrackingNumber()).get(), finder.checkAndUpdateState("completed"));
+        planner.editDeliveryStatus(finder.findDeliveryById(p.getTrackingNumber()).get(), "completed");
         assertEquals(+ 1, finder.findCompletedDeliveriesSince(LocalDateTime.now().minusMonths(1), supplier).size());
 
         planner.planDelivery(p2, LocalDate.now().plusDays(22).toString(), "15:30");
-        planner.editDeliveryStatus(finder.findDeliveryById(p2.getTrackingNumber()).get(), finder.checkAndUpdateState("completed"));
+        planner.editDeliveryStatus(finder.findDeliveryById(p2.getTrackingNumber()).get(), "completed");
         assertEquals( 1, finder.findCompletedDeliveriesSince(LocalDateTime.now().minusMonths(1), supplier).size());
     }
 
@@ -124,15 +124,15 @@ public class DeliveryPlanningTest extends AbstractDeliveryPlanningTest {
 
         planner.planDelivery(p3, LocalDate.now().plusDays(20).toString(), "15:30");
         assertEquals(baseSize, finder.findCompletedDeliveriesSince(LocalDateTime.now().minusMonths(1)).size());
-        planner.editDeliveryStatus(finder.findDeliveryById(p3.getTrackingNumber()).get(), finder.checkAndUpdateState("completed"));
+        planner.editDeliveryStatus(finder.findDeliveryById(p3.getTrackingNumber()).get(), "completed");
         assertEquals(baseSize+1, finder.findCompletedDeliveriesSince(LocalDateTime.now().minusMonths(1)).size());
 
         //because it's before now
         planner.planDelivery(p, LocalDate.now().plusDays(21).toString(), "15:30");
-        planner.editDeliveryStatus(finder.findDeliveryById(p.getTrackingNumber()).get(), finder.checkAndUpdateState("completed"));
+        planner.editDeliveryStatus(finder.findDeliveryById(p.getTrackingNumber()).get(), "completed");
         assertEquals(baseSize + 1, finder.findCompletedDeliveriesSince(LocalDateTime.now().minusMonths(1)).size());
         planner.planDelivery(p2, LocalDate.now().plusDays(22).toString(), "15:30");
-        planner.editDeliveryStatus(finder.findDeliveryById(p2.getTrackingNumber()).get(), finder.checkAndUpdateState("completed"));
+        planner.editDeliveryStatus(finder.findDeliveryById(p2.getTrackingNumber()).get(), "completed");
         assertEquals(baseSize + 1, finder.findCompletedDeliveriesSince(LocalDateTime.now().minusMonths(1)).size());
     }
 
@@ -147,7 +147,7 @@ public class DeliveryPlanningTest extends AbstractDeliveryPlanningTest {
         planner.planDelivery(p, "2020-05-20", "12:30");
         Optional<Delivery> delivery = finder.findDeliveryById(p.getTrackingNumber());
         if (delivery.isPresent()) {
-            planner.editDeliveryStatus(delivery.get(), DeliveryStateFactory.getInstance().createState("completed"));
+            planner.editDeliveryStatus(delivery.get(), "completed");
             assertEquals("completed", delivery.get().getState().getName());
         } else {
             fail("Delivery wasn't present");

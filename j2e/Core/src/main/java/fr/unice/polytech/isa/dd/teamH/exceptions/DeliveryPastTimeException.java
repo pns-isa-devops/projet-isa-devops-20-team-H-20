@@ -13,6 +13,7 @@ public class DeliveryPastTimeException extends Exception {
 
     public DeliveryPastTimeException(String time){
         super(time);
+        this.time = time;
     }
 
     public String getTime() {

@@ -143,7 +143,7 @@ public class DeliveryPlanningStepdefsTest extends AbstractDeliveryPlanningTest {
 
     @When("^the service client edits the delivery with package (.*) and put the status to (.*)$")
     public void editStatus(String trackingId, String status) throws Exception{
-        deliveryPlanner.editDeliveryStatus(deliveryFinder.findDeliveryById(trackingId).get(), deliveryFinder.checkAndUpdateState(status));
+        deliveryPlanner.editDeliveryStatus(deliveryFinder.findDeliveryById(trackingId).get(), status);
     }
 
     @When("^the manutentionnaire starts the delivery with (.*) as package and drone was (\\d+)$")

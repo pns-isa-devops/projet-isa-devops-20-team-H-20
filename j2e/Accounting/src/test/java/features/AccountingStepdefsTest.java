@@ -119,9 +119,9 @@ public class AccountingStepdefsTest extends AbstractAccountingBeanTest {
         packagesDeliveriesToDelete.add(p3);
         packageEntryToDelete = p;
 
-        deliveryPlanner.editDeliveryStatus(deliveryFinder.findDeliveryById(p.getTrackingNumber()).get(), deliveryFinder.checkAndUpdateState("completed"));
-        deliveryPlanner.editDeliveryStatus(deliveryFinder.findDeliveryById(p2.getTrackingNumber()).get(), deliveryFinder.checkAndUpdateState("completed"));
-        deliveryPlanner.editDeliveryStatus(deliveryFinder.findDeliveryById(p3.getTrackingNumber()).get(), deliveryFinder.checkAndUpdateState("completed"));
+        deliveryPlanner.editDeliveryStatus(deliveryFinder.findDeliveryById(p.getTrackingNumber()).get(), "completed");
+        deliveryPlanner.editDeliveryStatus(deliveryFinder.findDeliveryById(p2.getTrackingNumber()).get(), "completed");
+        deliveryPlanner.editDeliveryStatus(deliveryFinder.findDeliveryById(p3.getTrackingNumber()).get(), "completed");
         invoicesToPay.add(invoiceGeneration.generateInvoiceFor(supplier1Object));
         invoicesToPay.add(invoiceGeneration.generateInvoiceFor(supplier2Object));
     }
@@ -135,7 +135,7 @@ public class AccountingStepdefsTest extends AbstractAccountingBeanTest {
     @When("^the gestionnaire generates the invoices$")
     public void generateInvoice2() throws Exception{
         for(Package aPackage : packagesDeliveriesToDelete){
-            deliveryPlanner.editDeliveryStatus(deliveryFinder.findDeliveryById(aPackage.getTrackingNumber()).get(), deliveryFinder.checkAndUpdateState("completed"));
+            deliveryPlanner.editDeliveryStatus(deliveryFinder.findDeliveryById(aPackage.getTrackingNumber()).get(), "completed");
         }
         invoiceGeneration.generateInvoicesForAllSuppliers();
     }
