@@ -2,11 +2,9 @@ package features;
 
 import arquillian.AbstractDroneDeliveryTest;
 import cucumber.api.CucumberOptions;
-import cucumber.api.java.en.And;
-import cucumber.api.java.en.But;
-import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
+import cucumber.api.java.en.*;
 import cucumber.runtime.arquillian.CukeSpace;
+import fr.unice.polytech.isa.dd.teamH.entities.Comment;
 import fr.unice.polytech.isa.dd.teamH.entities.Package;
 import fr.unice.polytech.isa.dd.teamH.entities.Supplier;
 import fr.unice.polytech.isa.dd.teamH.entities.delivery.Delivery;
@@ -47,8 +45,18 @@ public class UserScenarioStepdefsTest extends AbstractDroneDeliveryTest {
     @EJB private CommentFinder commentFinder;
     @EJB private ControlledMap deliveryPlanner;
     @EJB private DeliveryFinder deliveryFinder;
+    @EJB private StatisticsGenerator statisticsGenerator;
 
     private String packageFailedDelivery;
+
+    @Given("^some lists to remove things$")
+    public void given(){
+        dronesToDelete = new HashSet<>();
+        suppliersToDelete = new HashSet<>();
+        packagesToDelete = new HashSet<>();
+        deliveriesToDelete = new HashSet<>();
+        planningEntriesToDelete = new HashSet<>();
+    }
 
     private void initMock() throws ExternalPartnerException {
         MapAPI mocked = mock(MapAPI.class);
@@ -56,7 +64,7 @@ public class UserScenarioStepdefsTest extends AbstractDroneDeliveryTest {
         when(mocked.getDistanceTo(eq("Wakanda"))).thenReturn(10.0f);
     }
 
-    @When("^the graragiste adds the drone with id (\\d+) and (.*) kg capacity and (.*) km/h speed$")
+    @When("^the garagiste adds the drone with id (\\d+) and (.*) kg capacity and (.*) km/h speed$")
     public void addDrone(int drone, float weight, float speed) throws AlreadyExistingDroneException, ExternalPartnerException {
         initMock();
         dronesToDelete.add(droneFleetManagement.addDrone(drone, weight, speed));
@@ -87,6 +95,38 @@ public class UserScenarioStepdefsTest extends AbstractDroneDeliveryTest {
         }
     }
 
+    @And("^the garagiste edits the drone with id (\\d+) and set the status to (.*)$")
+    public void changeDroneStatus(int droneId, String droneStatus) throws Exception{
+        droneFleetManagement.editDroneStatus(droneId, droneStatus);
+    }
+
+    @And("^the boss generates the statistics for drones$")
+    public void generateStatsDrone(){
+        statisticsGenerator.generateNewDroneStatsEntry();
+    }
+
+    @And("^the boss generates the statistics for ratings$")
+    public void generateStatsRating(){
+        statisticsGenerator.generateNewCustomerSatisfactionEntry();
+    }
+
+    @And("^the manutentionnaire edits the delivery status to (.*) for tracking id (.*)$")
+    public void editsDeliveryStatus(String status, String packageId) throws Exception{
+        deliveryPlanner.editDeliveryStatus(deliveryFinder.findDeliveryById(packageId).get(), status);
+    }
+
+    @And("^the client adds a comment for the delivery (.*) with rate (\\d+) and comment \"(.*)\"$")
+    public void addComment(String packageId, int rate, String comment){
+        commentPoster.postComment(deliveryFinder.findDeliveryById(packageId).get(), rate, comment);
+    }
+
+    @Then("^there is a comment for the package (.*) with rate (\\d+) and comment \"(.*)\"$")
+    public void checkAddComment(String packageId, int rate, String comment){
+        Comment commentObject = commentFinder.findCommentForPackage(packageId).get();
+        assertEquals(rate, commentObject.getRating());
+        assertEquals(comment, commentObject.getContent());
+    }
+
     @Then("^the delivery with package (.*) as (\\d+) as drone id$")
     public void testPlanDelivery(String packageId, int droneId){
         assertEquals(droneId, deliveryFinder.findPlanningEntryByTrackingId(packageId).get().getDrone().getId());
@@ -95,6 +135,16 @@ public class UserScenarioStepdefsTest extends AbstractDroneDeliveryTest {
     @But("^the delivery with package (.*) has not been planned$")
     public void testPlanDelivery2(String packageId){
         assertEquals(packageFailedDelivery, packageId);
+    }
+
+    @Then("^the drone statistics entry as a use rate (.*)%$")
+    public void checkDroneStatistics(float rate){
+        assertEquals(rate, statisticsGenerator.getAverageDroneUseRate(), 0.01);
+    }
+
+    @And("^the rating statistics entry as (\\d+) as average$")
+    public void checkRatingStatistics(int rating){
+        assertEquals(rating, statisticsGenerator.getAverageCustomerSatisfaction(), 0.01);
     }
 
     @cucumber.api.java.After
