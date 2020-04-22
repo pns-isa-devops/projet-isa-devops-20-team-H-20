@@ -83,12 +83,16 @@ Feature: Testing the whole Drone Delivery system
     And the service client plan a delivery for package 5FDP date 2020-10-11 at 10:55
     And the manutentionnaire edits the delivery status to completed for tracking id SUM41
     And the manutentionnaire edits the delivery status to completed for tracking id 5FDP
+    And the manutentionnaire edits the delivery status to completed for tracking id A7X
     And the client adds a comment for the delivery SUM41 with rate 5 and comment "Not enough quality"
     And the client adds a comment for the delivery 5FDP with rate 8 and comment ""
     And the client adds a comment for the delivery A7X with rate 2 and comment ""
     And the boss generates the statistics for ratings
+    And the gestionnaire generates the invoice for Nozama
+    And the supplier Nozama pay the invoice
     Then there is a comment for the package SUM41 with rate 5 and comment "Not enough quality"
     And there is a comment for the package 5FDP with rate 8 and comment ""
     And there is a comment for the package A7X with rate 2 and comment ""
     And the rating statistics entry as 5 as average
+    And the invoice for Nozama is about 3€
 

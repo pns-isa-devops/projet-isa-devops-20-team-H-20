@@ -5,6 +5,7 @@ import cucumber.api.CucumberOptions;
 import cucumber.api.java.en.*;
 import cucumber.runtime.arquillian.CukeSpace;
 import fr.unice.polytech.isa.dd.teamH.entities.Comment;
+import fr.unice.polytech.isa.dd.teamH.entities.Invoice;
 import fr.unice.polytech.isa.dd.teamH.entities.Package;
 import fr.unice.polytech.isa.dd.teamH.entities.Supplier;
 import fr.unice.polytech.isa.dd.teamH.entities.delivery.Delivery;
@@ -38,7 +39,6 @@ public class UserScenarioStepdefsTest extends AbstractDroneDeliveryTest {
     @EJB private PackageRegistration packageRegistration;
     @EJB private PackageFinder packageFinder;
     @EJB private DroneFleetManagement droneFleetManagement;
-    @EJB private DroneFinder droneFinder;
     @EJB private SupplierRegistration supplierRegistration;
     @EJB private SupplierFinder supplierFinder;
     @EJB private CommentPoster commentPoster;
@@ -46,8 +46,11 @@ public class UserScenarioStepdefsTest extends AbstractDroneDeliveryTest {
     @EJB private ControlledMap deliveryPlanner;
     @EJB private DeliveryFinder deliveryFinder;
     @EJB private StatisticsGenerator statisticsGenerator;
+    @EJB private InvoiceGeneration invoiceGeneration;
+    @EJB private InvoiceFinder invoiceFinder;
 
     private String packageFailedDelivery;
+    private int invoiceId;
 
     @Given("^some lists to remove things$")
     public void given(){
@@ -120,6 +123,17 @@ public class UserScenarioStepdefsTest extends AbstractDroneDeliveryTest {
         commentPoster.postComment(deliveryFinder.findDeliveryById(packageId).get(), rate, comment);
     }
 
+    @And("^the gestionnaire generates the invoice for (.*)$")
+    public void generateInvoice(String supplier){
+        Invoice invoice = invoiceGeneration.generateInvoiceFor(supplierFinder.findByName(supplier).get());
+        invoiceId = invoice.getId();
+    }
+
+    @And("^the supplier (.*) pay the invoice$")
+    public void payInvoice(String supplier) throws UnkownInvoiceException {
+        invoiceGeneration.setInvoicePaid(invoiceId);
+    }
+
     @Then("^there is a comment for the package (.*) with rate (\\d+) and comment \"(.*)\"$")
     public void checkAddComment(String packageId, int rate, String comment){
         Comment commentObject = commentFinder.findCommentForPackage(packageId).get();
@@ -145,6 +159,12 @@ public class UserScenarioStepdefsTest extends AbstractDroneDeliveryTest {
     @And("^the rating statistics entry as (\\d+) as average$")
     public void checkRatingStatistics(int rating){
         assertEquals(rating, statisticsGenerator.getAverageCustomerSatisfaction(), 0.01);
+    }
+
+    @And("^the invoice for (.*) is about (\\d+)€$")
+    public void checkGenerateInvoice(String supplier, int price){
+        Set<Invoice> invoices = invoiceFinder.findInvoicesForSupplier(supplierFinder.findByName(supplier).get());
+        assertEquals(price, invoices.stream().findFirst().get().getAmount(), 0.01);
     }
 
     @cucumber.api.java.After
