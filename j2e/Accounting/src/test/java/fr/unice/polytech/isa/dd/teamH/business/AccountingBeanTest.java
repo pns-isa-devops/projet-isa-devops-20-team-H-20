@@ -77,23 +77,23 @@ public class AccountingBeanTest extends AbstractAccountingBeanTest {
         Optional<Delivery> deliveryOptional = deliveryFinder.findDeliveryById("pack1");
         if(!deliveryOptional.isPresent())
             fail();
-        deliveryPlanner.editDeliveryStatus(deliveryOptional.get(), deliveryFinder.checkAndUpdateState("completed"));
+        deliveryPlanner.editDeliveryStatus(deliveryOptional.get(), "completed");
         deliveryOptional = deliveryFinder.findDeliveryById("pack2");
         if(!deliveryOptional.isPresent())
             fail();
-        deliveryPlanner.editDeliveryStatus(deliveryOptional.get(), deliveryFinder.checkAndUpdateState("completed"));
+        deliveryPlanner.editDeliveryStatus(deliveryOptional.get(), "completed");
         deliveryOptional = deliveryFinder.findDeliveryById("pack3");
         if(!deliveryOptional.isPresent())
             fail();
-        deliveryPlanner.editDeliveryStatus(deliveryOptional.get(), deliveryFinder.checkAndUpdateState("completed"));
+        deliveryPlanner.editDeliveryStatus(deliveryOptional.get(),"completed");
         deliveryOptional = deliveryFinder.findDeliveryById("pack4");
         if(!deliveryOptional.isPresent())
             fail();
-        deliveryPlanner.editDeliveryStatus(deliveryOptional.get(), deliveryFinder.checkAndUpdateState("completed"));
+        deliveryPlanner.editDeliveryStatus(deliveryOptional.get(), "completed");
         deliveryOptional = deliveryFinder.findDeliveryById("pack5");
         if(!deliveryOptional.isPresent())
             fail();
-        deliveryPlanner.editDeliveryStatus(deliveryOptional.get(), deliveryFinder.checkAndUpdateState("completed"));
+        deliveryPlanner.editDeliveryStatus(deliveryOptional.get(), "completed");
         invoiceGeneration.generateInvoicesForAllSuppliers();
     }
 

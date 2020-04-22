@@ -49,7 +49,7 @@ public class PlanningWebServiceImpl implements PlanningWebService {
         if(!d.isPresent()) {
             throw new UnknownDeliveryException();
         }
-        return deliveryPlanner.editDeliveryStatus(d.get(), DeliveryStateFactory.getInstance().createState(status));
+        return deliveryPlanner.editDeliveryStatus(d.get(), status);
     }
 
     @Override

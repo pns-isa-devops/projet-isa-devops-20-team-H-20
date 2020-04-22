@@ -68,7 +68,8 @@ public class PlanningEntry implements Serializable {
                 '}';
     }
 
-    @OneToMany(cascade = {CascadeType.MERGE, CascadeType.REMOVE})
+    //CascadeType.REMOVE
+    @OneToMany(cascade = {CascadeType.MERGE})
     public Set<Delivery> getDeliveries(){
         return new HashSet<>(deliveries);
     }
