@@ -11,13 +11,33 @@ public class Main extends Shell<DronePublicAPI> {
         this.system  = new DronePublicAPI(host, port);
         this.invite  = "DD";
         register(
+                AddDelivery.class,
+                AddDrone.class,
+                AddPackage.class,
+                AddSupplier.class,
+                AddSupplierContact.class,
                 Bye.class,
+                EditDeliveryStatus.class,
+                EditDroneStatus.class,
+                EditPackage.class,
+                FindInvoicesSupplier.class,
+                GenerateInvoices.class,
+                GenerateInvoiceSupplier.class,
                 GenerateStatsDrones.class,
                 GenerateStatsUsers.class,
+                GetDeliveries.class,
+                GetDelivery.class,
+                GetDrone.class,
                 GetStatsDroneFrom.class,
                 GetStatsDrones.class,
                 GetStatsUsers.class,
-                GetStatsUsersFrom.class
+                GetStatsUsersFrom.class,
+                GetSupplier.class,
+                GetSuppliers.class,
+                RemoveDrone.class,
+                RemovePackage.class,
+                RemoveSupplier.class,
+                StartDelivery.class
         );
     }
 

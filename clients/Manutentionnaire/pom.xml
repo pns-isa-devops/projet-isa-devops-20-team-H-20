@@ -70,7 +70,7 @@
                                     <wsdl>${basedir}/src/main/resources/DroneWS.wsdl</wsdl>
                                     <extraargs>
                                         <extraarg>-p</extraarg>
-                                        <extraarg>http://www.polytech.unice.fr/si/4a/isa/dd/team-h/drones=stubs.drone</extraarg>
+                                        <extraarg>http://www.polytech.unice.fr/si/4a/isa/dd/team-h/drones=stubs.drones</extraarg>
                                     </extraargs>
                                 </wsdlOption>
                             </wsdlOptions>

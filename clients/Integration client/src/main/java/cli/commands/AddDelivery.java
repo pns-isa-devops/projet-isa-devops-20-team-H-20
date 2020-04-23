@@ -2,6 +2,7 @@ package cli.commands;
 
 import api.DronePublicAPI;
 import cli.framework.Command;
+import stubs.planning.Delivery;
 
 import java.util.List;
 
@@ -24,8 +25,8 @@ public class AddDelivery extends Command<DronePublicAPI> {
 
     @Override
     public void execute() throws Exception {
-        boolean res = shell.system.getPlanningWebService().planDelivery(trackingId, date , time);
-        if(res){
+        Delivery res = shell.system.getPlanningWebService().planDelivery(trackingId, date , time);
+        if(res != null){
             System.out.println("Delivery added");
         }else{
             System.out.println("Error delivery not added");

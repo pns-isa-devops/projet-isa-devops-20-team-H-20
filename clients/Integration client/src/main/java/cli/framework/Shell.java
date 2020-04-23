@@ -107,14 +107,14 @@ public class Shell<T> {
 
     private void help() {
         List<Class<? extends Command>> avail = new ArrayList<>(instructions());
-        Collections.sort(avail, (o1, o2) -> { return o1.getCanonicalName().compareTo(o2.getCanonicalName()); });
+        avail.sort(Comparator.comparing(Class::getCanonicalName));
         for(Class<? extends Command> c:  avail) {
             try {
                 Command instance = c.newInstance();
                 System.out.println("  - " + instance.identifier()+": " + instance.describe());
             }
             catch(InstantiationException|IllegalAccessException e) {
-                System.err.println("Unable to print help for registered command " + c);
+                System.err.println("Unable to print help for reged command " + c);
                 e.printStackTrace();
             }
         }

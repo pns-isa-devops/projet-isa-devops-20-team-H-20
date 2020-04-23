@@ -53,10 +53,38 @@
                             <!-- ADD WSDL FILES TO THE CONFIG BELOW -->
                             <wsdlOptions>
                                 <wsdlOption>
+                                    <wsdl>${basedir}/src/main/resources/AccountingWS.wsdl</wsdl>
+                                    <extraargs>
+                                        <extraarg>-p</extraarg>
+                                        <extraarg>http://www.polytech.unice.fr/si/4a/isa/dd/team-h/accounting=stubs.accounting</extraarg>
+                                    </extraargs>
+                                </wsdlOption>
+                                <wsdlOption>
+                                    <wsdl>${basedir}/src/main/resources/DroneWS.wsdl</wsdl>
+                                    <extraargs>
+                                        <extraarg>-p</extraarg>
+                                        <extraarg>http://www.polytech.unice.fr/si/4a/isa/dd/team-h/drones=stubs.drones</extraarg>
+                                    </extraargs>
+                                </wsdlOption>
+                                <wsdlOption>
+                                    <wsdl>${basedir}/src/main/resources/PackageWS.wsdl</wsdl>
+                                    <extraargs>
+                                        <extraarg>-p</extraarg>
+                                        <extraarg>http://www.polytech.unice.fr/si/4a/isa/dd/team-h/packages=stubs.packages</extraarg>
+                                    </extraargs>
+                                </wsdlOption>
+                                <wsdlOption>
+                                    <wsdl>${basedir}/src/main/resources/PlanningWS.wsdl</wsdl>
+                                    <extraargs>
+                                        <extraarg>-p</extraarg>
+                                        <extraarg>http://www.polytech.unice.fr/si/4a/isa/dd/team-h/planning=stubs.planning</extraarg>
+                                    </extraargs>
+                                </wsdlOption>
+                                <wsdlOption>
                                     <wsdl>${basedir}/src/main/resources/StatsWebServiceImpl.wsdl</wsdl>
                                     <extraargs>
                                         <extraarg>-p</extraarg>
-                                        <extraarg>http://www.polytech.unice.fr/si/4a/isa/dd/team-h/drones=stubs.stats</extraarg>
+                                        <extraarg>http://www.polytech.unice.fr/si/4a/isa/dd/team-h/stats=stubs.stats</extraarg>
                                     </extraargs>
                                 </wsdlOption>
                             </wsdlOptions>

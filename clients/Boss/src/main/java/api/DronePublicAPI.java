@@ -1,8 +1,8 @@
 package api;
 
 
-import fr.unice.polytech.si._4a.isa.dd.team_h.stats.StatsWebService;
-import fr.unice.polytech.si._4a.isa.dd.team_h.stats.StatsWebServiceImplService;
+import stubs.stats.StatsWebService;
+import stubs.stats.StatsWebServiceImplService;
 
 import javax.xml.ws.BindingProvider;
 import java.net.URL;
