@@ -15,7 +15,7 @@ According to our use case the "Garagiste" can do the following things :
 ```
 DD > ?
   - bye: Exit Cookie on Demand
-  - add-drone (id weightCapacity)
+  - add-drone (id weightCapacity speed)
   - edit-drone-status (id status[charge|maintenance|ready])
   - remove-drone (id)
   - get-drone (id)

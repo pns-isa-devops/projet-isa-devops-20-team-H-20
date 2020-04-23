@@ -18,7 +18,7 @@ public class GenerateStatsUsers extends Command<DronePublicAPI> {
     }
 
     @Override
-    public void execute() throws Exception {
+    public void execute() {
         shell.system.getStatisticsWebService().generateStatsUsers();
     }
 

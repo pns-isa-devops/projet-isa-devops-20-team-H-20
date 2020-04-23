@@ -53,7 +53,7 @@
                             <!-- ADD WSDL FILES TO THE CONFIG BELOW -->
                             <wsdlOptions>
                                 <wsdlOption>
-                                    <wsdl>${basedir}/src/main/resources/AccountingWebServiceImpl.wsdl</wsdl>
+                                    <wsdl>${basedir}/src/main/resources/AccountingWS.wsdl</wsdl>
                                     <extraargs>
                                         <extraarg>-p</extraarg>
                                         <extraarg>http://www.polytech.unice.fr/si/4a/isa/dd/team-h/accounting=stubs.accounting</extraarg>

@@ -65,13 +65,19 @@ public class AccountingWebServiceImpl implements AccountingWebService{
     }
 
     @Override
-    public Set<Invoice> findInvoicesForSupplier(Supplier supplier) {
-        return invoiceFinder.findInvoicesForSupplier(supplier);
+    public Set<Invoice> findInvoicesForSupplier(String name) throws UnknownSupplierException {
+        Optional<Supplier> s = supplierFinder.findByName(name);
+        if(!s.isPresent())
+            throw new UnknownSupplierException(name);
+        return invoiceFinder.findInvoicesForSupplier(s.get());
     }
 
     @Override
-    public void generateInvoiceFor(Supplier supplier) {
-        invoiceGeneration.generateInvoiceFor(supplier);
+    public void generateInvoiceFor(String name) throws UnknownSupplierException {
+        Optional<Supplier> s = supplierFinder.findByName(name);
+        if(!s.isPresent())
+            throw new UnknownSupplierException(name);
+        invoiceGeneration.generateInvoiceFor(s.get());
     }
 
     @Override

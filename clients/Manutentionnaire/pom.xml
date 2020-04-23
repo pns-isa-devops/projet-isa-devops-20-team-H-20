@@ -53,21 +53,21 @@
                             <!-- ADD WSDL FILES TO THE CONFIG BELOW -->
                             <wsdlOptions>
                                 <wsdlOption>
-                                    <wsdl>${basedir}/src/main/resources/PlanningWebServiceImpl.wsdl</wsdl>
+                                    <wsdl>${basedir}/src/main/resources/PlanningWS.wsdl</wsdl>
                                     <extraargs>
                                         <extraarg>-p</extraarg>
                                         <extraarg>http://www.polytech.unice.fr/si/4a/isa/dd/team-h/planning=stubs.planning</extraarg>
                                     </extraargs>
                                 </wsdlOption>
                                 <wsdlOption>
-                                    <wsdl>${basedir}/src/main/resources/PackageRegistrationWebServiceImpl.wsdl</wsdl>
+                                    <wsdl>${basedir}/src/main/resources/PackageWS.wsdl</wsdl>
                                     <extraargs>
                                         <extraarg>-p</extraarg>
                                         <extraarg>http://www.polytech.unice.fr/si/4a/isa/dd/team-h/packages=stubs.packages</extraarg>
                                     </extraargs>
                                 </wsdlOption>
                                 <wsdlOption>
-                                    <wsdl>${basedir}/src/main/resources/DroneFleetManagementWebServiceImpl.wsdl</wsdl>
+                                    <wsdl>${basedir}/src/main/resources/DroneWS.wsdl</wsdl>
                                     <extraargs>
                                         <extraarg>-p</extraarg>
                                         <extraarg>http://www.polytech.unice.fr/si/4a/isa/dd/team-h/drones=stubs.drone</extraarg>

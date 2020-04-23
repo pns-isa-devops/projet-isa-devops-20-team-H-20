@@ -16,7 +16,10 @@ public class Main extends Shell<DronePublicAPI> {
                 AddSupplierContact.class,
                 GetSupplier.class,
                 GetSuppliers.class,
-                RemoveSupplier.class
+                RemoveSupplier.class,
+                GenerateInvoices.class,
+                GenerateInvoiceSupplier.class,
+                FindInvoicesSupplier.class
         );
     }
 

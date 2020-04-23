@@ -2,6 +2,7 @@ package cli.commands;
 
 import api.DronePublicAPI;
 import cli.framework.Command;
+import stubs.packages.Package;
 
 import java.util.List;
 
@@ -27,12 +28,8 @@ public class AddPackage extends Command<DronePublicAPI> {
 
     @Override
     public void execute() throws Exception {
-        boolean res = shell.system.getPackageRegistrationWebService().registerPackage(trackingId, supplierName, packageWeight, destinationAddress);
-        if(res){
-            System.out.println("Package added");
-        }else{
-            System.out.println("Error package not added");
-        }
+        Package res = shell.system.getPackageRegistrationWebService().registerPackage(trackingId, supplierName, packageWeight, destinationAddress);
+        System.out.println("Package added : " + res);
     }
 
     @Override

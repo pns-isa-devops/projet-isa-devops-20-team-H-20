@@ -20,7 +20,7 @@ public class GetStatsUsersFrom extends Command<DronePublicAPI> {
     }
 
     @Override
-    public void execute() throws Exception {
+    public void execute() {
         List<CustomerSatisfactionStatsEntry> customerSatisfactionStatsEntries = shell.system.getStatisticsWebService().getStatsUsers();
         for(CustomerSatisfactionStatsEntry customerSatisfactionStatsEntry : customerSatisfactionStatsEntries){
             displayResult(customerSatisfactionStatsEntry);

@@ -43,8 +43,8 @@ After the first installation :
   - Docker path: `localhost`
 
 To perform operations related to the artifactory by using `mvn` command. i.e:
- - `mvn install -s ..\settings.xml` 
- - `mvn deploy -s ..\settings.xml`
+ - `mvn install -s ./settings.xml` 
+ - `mvn deploy -s ./settings.xml`
 
 ### Jenkins installation
 

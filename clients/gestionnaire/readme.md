@@ -18,7 +18,9 @@ DD > ?
   - get-supplier (name)
   - remove-supplier (name)
   - get-suppliers ()
-  - get-paid-invoices
+  - generate-invoice-supplier (supplier)
+  - generate-invoices
+  - get-invoices-supplier (supplier)
   - get-notpaid-invoices
 ```
 

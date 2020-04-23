@@ -15,7 +15,7 @@ public class GetStatsDrones extends Command<DronePublicAPI> {
     }
 
     @Override
-    public void execute() throws Exception {
+    public void execute() {
         List<DroneStatsEntry> droneStatsEntries = shell.system.getStatisticsWebService().getStatsDrones();
         for(DroneStatsEntry droneStatsEntry : droneStatsEntries){
             displayResult(droneStatsEntry);
