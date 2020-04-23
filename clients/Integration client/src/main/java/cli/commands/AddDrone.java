@@ -21,6 +21,7 @@ public class AddDrone extends Command<DronePublicAPI> {
     public void load(List<String> args) {
         id = Integer.parseInt(args.get(0));
         weightCapacity = Float.parseFloat(args.get(1));
+        speed = Float.parseFloat(args.get(2));
     }
 
     @Override
@@ -35,6 +36,6 @@ public class AddDrone extends Command<DronePublicAPI> {
 
     @Override
     public String describe() {
-        return identifier() + " (id weightCapacity)";
+        return identifier() + " (id weightCapacity speed)";
     }
 }

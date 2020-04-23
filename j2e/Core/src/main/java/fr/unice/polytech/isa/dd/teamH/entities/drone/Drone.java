@@ -106,7 +106,7 @@ public class Drone implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getCurrentFlightTime(), getBattery(), getWeightCapacity(), getState());
+        return Objects.hash(getId(), getCurrentFlightTime(), getBattery(), getWeightCapacity(), getSpeed(),getState());
     }
 
     @Override
@@ -116,6 +116,7 @@ public class Drone implements Serializable {
                 ", currentFlightTime=" + getCurrentFlightTime() +
                 ", battery=" + getBattery() +
                 ", weightCapacity=" + getWeightCapacity() +
+                ", speed=" + getSpeed() +
                 ", state=" + getState() +
                 '}';
     }
