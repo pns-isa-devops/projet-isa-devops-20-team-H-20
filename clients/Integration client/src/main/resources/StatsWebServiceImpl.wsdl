@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="StatsWebServiceImplService" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/stats" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/stats" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+<xs:schema xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/stats" xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/stats">
+  <xs:element name="generateStatsDrones" type="tns:generateStatsDrones"/>
+  <xs:element name="generateStatsDronesResponse" type="tns:generateStatsDronesResponse"/>
+  <xs:element name="generateStatsUsers" type="tns:generateStatsUsers"/>
+  <xs:element name="generateStatsUsersResponse" type="tns:generateStatsUsersResponse"/>
+  <xs:element name="getStatsDrones" type="tns:getStatsDrones"/>
+  <xs:element name="getStatsDronesFrom" type="tns:getStatsDronesFrom"/>
+  <xs:element name="getStatsDronesFromResponse" type="tns:getStatsDronesFromResponse"/>
+  <xs:element name="getStatsDronesResponse" type="tns:getStatsDronesResponse"/>
+  <xs:element name="getStatsUsers" type="tns:getStatsUsers"/>
+  <xs:element name="getStatsUsersFrom" type="tns:getStatsUsersFrom"/>
+  <xs:element name="getStatsUsersFromResponse" type="tns:getStatsUsersFromResponse"/>
+  <xs:element name="getStatsUsersResponse" type="tns:getStatsUsersResponse"/>
+  <xs:complexType name="generateStatsDrones">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:complexType name="generateStatsDronesResponse">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:complexType name="getStatsUsers">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:complexType name="getStatsUsersResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="stats_users" type="tns:customerSatisfactionStatsEntry"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="customerSatisfactionStatsEntry">
+    <xs:sequence>
+      <xs:element name="customerSatisfactionRate" type="xs:float"/>
+      <xs:element minOccurs="0" name="entryTime" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getStatsDrones">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:complexType name="getStatsDronesResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="stats_drones" type="tns:droneStatsEntry"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="droneStatsEntry">
+    <xs:sequence>
+      <xs:element name="dronesUseRate" type="xs:float"/>
+      <xs:element minOccurs="0" name="entryTime" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getStatsDronesFrom">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="time" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getStatsDronesFromResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="stats_drones" type="tns:droneStatsEntry"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getStatsUsersFrom">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="time" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getStatsUsersFromResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="stats_users" type="tns:customerSatisfactionStatsEntry"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="generateStatsUsers">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:complexType name="generateStatsUsersResponse">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:element name="DateTimeParseException" type="tns:DateTimeParseException"/>
+  <xs:complexType name="DateTimeParseException">
+    <xs:sequence>
+      <xs:element name="errorIndex" nillable="true" type="xs:int"/>
+      <xs:element name="parsedString" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="generateStatsDrones">
+    <wsdl:part name="parameters" element="tns:generateStatsDrones">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getStatsDrones">
+    <wsdl:part name="parameters" element="tns:getStatsDrones">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getStatsDronesFrom">
+    <wsdl:part name="parameters" element="tns:getStatsDronesFrom">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getStatsUsersFromResponse">
+    <wsdl:part name="parameters" element="tns:getStatsUsersFromResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="generateStatsDronesResponse">
+    <wsdl:part name="parameters" element="tns:generateStatsDronesResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getStatsUsersResponse">
+    <wsdl:part name="parameters" element="tns:getStatsUsersResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getStatsDronesFromResponse">
+    <wsdl:part name="parameters" element="tns:getStatsDronesFromResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getStatsUsers">
+    <wsdl:part name="parameters" element="tns:getStatsUsers">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getStatsDronesResponse">
+    <wsdl:part name="parameters" element="tns:getStatsDronesResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getStatsUsersFrom">
+    <wsdl:part name="parameters" element="tns:getStatsUsersFrom">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="generateStatsUsersResponse">
+    <wsdl:part name="parameters" element="tns:generateStatsUsersResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="DateTimeParseException">
+    <wsdl:part name="DateTimeParseException" element="tns:DateTimeParseException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="generateStatsUsers">
+    <wsdl:part name="parameters" element="tns:generateStatsUsers">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="StatsWebService">
+    <wsdl:operation name="generateStatsDrones">
+      <wsdl:input name="generateStatsDrones" message="tns:generateStatsDrones">
+    </wsdl:input>
+      <wsdl:output name="generateStatsDronesResponse" message="tns:generateStatsDronesResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getStatsUsers">
+      <wsdl:input name="getStatsUsers" message="tns:getStatsUsers">
+    </wsdl:input>
+      <wsdl:output name="getStatsUsersResponse" message="tns:getStatsUsersResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getStatsDrones">
+      <wsdl:input name="getStatsDrones" message="tns:getStatsDrones">
+    </wsdl:input>
+      <wsdl:output name="getStatsDronesResponse" message="tns:getStatsDronesResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getStatsDronesFrom">
+      <wsdl:input name="getStatsDronesFrom" message="tns:getStatsDronesFrom">
+    </wsdl:input>
+      <wsdl:output name="getStatsDronesFromResponse" message="tns:getStatsDronesFromResponse">
+    </wsdl:output>
+      <wsdl:fault name="DateTimeParseException" message="tns:DateTimeParseException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getStatsUsersFrom">
+      <wsdl:input name="getStatsUsersFrom" message="tns:getStatsUsersFrom">
+    </wsdl:input>
+      <wsdl:output name="getStatsUsersFromResponse" message="tns:getStatsUsersFromResponse">
+    </wsdl:output>
+      <wsdl:fault name="DateTimeParseException" message="tns:DateTimeParseException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="generateStatsUsers">
+      <wsdl:input name="generateStatsUsers" message="tns:generateStatsUsers">
+    </wsdl:input>
+      <wsdl:output name="generateStatsUsersResponse" message="tns:generateStatsUsersResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="StatsWebServiceImplServiceSoapBinding" type="tns:StatsWebService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="generateStatsDrones">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="generateStatsDrones">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="generateStatsDronesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getStatsUsers">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getStatsUsers">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getStatsUsersResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getStatsDrones">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getStatsDrones">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getStatsDronesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getStatsDronesFrom">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getStatsDronesFrom">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getStatsDronesFromResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="DateTimeParseException">
+        <soap:fault name="DateTimeParseException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getStatsUsersFrom">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getStatsUsersFrom">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getStatsUsersFromResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="DateTimeParseException">
+        <soap:fault name="DateTimeParseException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="generateStatsUsers">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="generateStatsUsers">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="generateStatsUsersResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="StatsWebServiceImplService">
+    <wsdl:port name="StatsWebServiceImplPort" binding="tns:StatsWebServiceImplServiceSoapBinding">
+      <soap:address location="http://localhost:9090/StatsWebServiceImplPort"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -11,7 +11,7 @@ public class Drone implements Serializable {
 
     private int id;
     /**
-     * tume in minutes
+     * time in minutes
      */
     private float currentFlightTime;
     /**

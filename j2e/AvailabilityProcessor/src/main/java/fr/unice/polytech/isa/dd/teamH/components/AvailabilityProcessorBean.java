@@ -29,6 +29,8 @@ public class AvailabilityProcessorBean implements AvailableDroneFinder {
 
         /// FILTER DRONE THAT CANNOT DELIVER THE PACKAGE WHATSOEVER
 
+        // TODO: ADD MULTIPLICATIONS BY 2, USE THE NEW UTILITY CLASS
+
         //keep drones that can support weight
         Set<Drone> allDrones = droneFinder.findAllDrones();
         loginfo("AVAILABILITY CHECK - ALL DRONES --- " + allDrones);
@@ -73,16 +75,23 @@ public class AvailabilityProcessorBean implements AvailableDroneFinder {
 
         for(Delivery delivery : deliveriesInOrder.keySet()){
             Drone tmpD = deliveriesInOrder.get(delivery);
-            if(simulationMap.containsKey(tmpD.getId())){
+            // TODO: update the maintenance queue, and set the flighttime of all the exitted drones to 0
+            if(simulationMap.containsKey(tmpD.getId())){ // TODO delete this condition because drones that are already eliminated still influence the maintenance order
                 if (LocalDateTime.parse(delivery.getDate() + "T" + delivery.getTime() + ":00")
                         .isBefore(timeToDeliverThePackage)) {
+
+                    // TODO: Check if the drone is not in maintenance, or waiting for a maintenance.
+                    //  If so, planning is corrupted (throw exception).
+
+
                     //if there was an charging unavailability for that drone and it is finished, delete it and refill the drone's battery
-                    if (chargingUnavailabilities.containsKey(tmpD.getId())) {
+                    if (chargingUnavailabilities.containsKey(tmpD.getId()) /* TODO: AND MAINTENANCE QUEUE DOES NOT CONTAIN THE DRONE */) {
                         if (chargingUnavailabilities.get(tmpD.getId())
                                 .plusMinutes(45) // Charging time
                                 .isAfter(LocalDateTime.parse(delivery.getDate()+"T"+delivery.getTime()+":00")))
-                            throw new CorruptedPlanningException(delivery, "drone unavailable");
+                            throw new CorruptedPlanningException(delivery, "drone unavailable, charging");
                         tmpD.setBattery(100);
+                        simulationMap.get(tmpD.getId()).battery = 100;
                         chargingUnavailabilities.remove(tmpD.getId());
                     }
 
@@ -92,7 +101,6 @@ public class AvailabilityProcessorBean implements AvailableDroneFinder {
                 } else {
                     break;
                 }
-                //TODO: also check flight time for unavailability
             }
         }
 
@@ -100,6 +108,7 @@ public class AvailabilityProcessorBean implements AvailableDroneFinder {
         /// So we just remove the impossible ones from the possibleDrones list
         possibleDrones = possibleDrones.stream()
                 .filter(dr -> {
+                    // TODO: Also check if drone is currently not in maintenance OR charging
                     float flightTime = (packageDistance/dr.getSpeed()) * 60;
                     return simulationMap.get(dr.getId()).battery > flightTime*100/45 // Drone has enough battery
                             && simulationMap.get(dr.getId()).flighttime + flightTime < 1200; // Drone does not exceed 20h of flight
@@ -115,11 +124,10 @@ public class AvailabilityProcessorBean implements AvailableDroneFinder {
 
         for(Delivery delivery : deliveriesInOrder.keySet()){
             Drone tmpD = deliveriesInOrder.get(delivery);
-            if(simulationMap.containsKey(tmpD.getId())) {
+            // TODO: update the maintenance queue, and set the flighttime of all the exitted drones to 0
+            if(simulationMap.containsKey(tmpD.getId())) { // TODO delete this condition because drones that are already eliminated still influence the maintenance order
                 DroneAttributes tmpDA = simulationMap.get(tmpD.getId());
                 float flightTime = (packageDistance / tmpD.getSpeed()) * 60;
-                /// Initialization for all the deliveries
-                /// We simulate the fact that the delivery is planned in each planning entry
                 if ((chargingUnavailabilities.containsKey(tmpD.getId()) && chargingUnavailabilities.get(tmpD.getId())
                         .plusMinutes(45) // Charging time
                         .isAfter(timeToDeliverThePackage)) // delivery happens when drone is charging
@@ -132,13 +140,18 @@ public class AvailabilityProcessorBean implements AvailableDroneFinder {
                 tmpDA.removeBattery((int) Math.ceil(flightTime) * 100 / 45);
                 tmpDA.addFlightTime(flightTime);
 
+                /// TODO: GET EVERYTHING BEFORE THIS OUT OF THE LOOP
+                //   We need to eliminate drones once regarding their future constraints,
+                //   And then go on with the simulation. It should be placed in a loop over
+                //   All possible drones before looping over the next deliveries
+
                 if (tmpDA.battery <= 10) {
                     chargingUnavailabilities.put(tmpD.getId(), timeToDeliverThePackage.plusMinutes((int) Math.ceil(flightTime)));
                 }
 
-                /// And then we go on with the simulation
                 if (LocalDateTime.parse(delivery.getDate() + "T" + delivery.getTime() + ":00")
-                        .isAfter(timeToDeliverThePackage)) {
+                        .isAfter(timeToDeliverThePackage)) /* TODO: After or simultaneously (influence on maintenance) */{
+                    // TODO: Manage maintenance queue just as for the first simulation
                     //if there was an charging unavailability for that drone and it is finished, delete it and refill the drone's battery
                     if (chargingUnavailabilities.containsKey(tmpD.getId())) {
                         if (chargingUnavailabilities.get(tmpD.getId())
@@ -148,6 +161,7 @@ public class AvailabilityProcessorBean implements AvailableDroneFinder {
                             break;
                         }
                         tmpD.setBattery(100);
+                        simulationMap.get(tmpD.getId()).battery = 100;
                         chargingUnavailabilities.remove(tmpD.getId());
                     }
 
@@ -161,7 +175,6 @@ public class AvailabilityProcessorBean implements AvailableDroneFinder {
                 } else {
                     break;
                 }
-                //TODO: also check flight time for unavailability
             }
         }
         if(possibleDrones.isEmpty())
