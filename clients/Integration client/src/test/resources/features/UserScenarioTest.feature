@@ -11,8 +11,8 @@ Feature: Testing the whole Drone Delivery system
     And the manutentionnaire adds a package with tracking number SUM41 and with weight 5.0 and with destination Wakanda and with Nozama as supplier
     And the service client plan a delivery for package A7X date 2020-10-10 at 10:10
     And the service client plan a delivery for package SUM41 date 2020-10-10 at 15:15
-#    Then the delivery with package A7X as 1 as drone id
-#    And the delivery with package SUM41 as 1 as drone id
+    Then the delivery with package A7X as 1 as drone id
+    And the delivery with package SUM41 as 1 as drone id
 
 #  Scenario: Planing two deliveries with one drone at almost same time
 #    When the garagiste adds the drone with id 1 and 10.0 kg capacity and 60.0 km/h speed
