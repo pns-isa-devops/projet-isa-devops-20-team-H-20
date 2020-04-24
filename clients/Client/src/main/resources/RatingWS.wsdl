@@ -1,0 +1,328 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/rating" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns3="http://schemas.xmlsoap.org/soap/http" xmlns:ns2="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/packages" xmlns:ns1="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/accounting" name="CommentPostingWebServiceImplService" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/rating">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/rating" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/rating">
+  <xs:element name="createComment" type="tns:createComment"/>
+  <xs:element name="createCommentResponse" type="tns:createCommentResponse"/>
+  <xs:element name="deleteComment" type="tns:deleteComment"/>
+  <xs:element name="deleteCommentResponse" type="tns:deleteCommentResponse"/>
+  <xs:element name="findAllComments" type="tns:findAllComments"/>
+  <xs:element name="findAllCommentsResponse" type="tns:findAllCommentsResponse"/>
+  <xs:element name="findCommentForPackage" type="tns:findCommentForPackage"/>
+  <xs:element name="findCommentForPackageResponse" type="tns:findCommentForPackageResponse"/>
+  <xs:element name="findCommentForSupplier" type="tns:findCommentForSupplier"/>
+  <xs:element name="findCommentForSupplierResponse" type="tns:findCommentForSupplierResponse"/>
+  <xs:complexType name="findAllComments">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:complexType name="findAllCommentsResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="comment_list" type="tns:comment"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="comment">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="content" type="xs:string"/>
+      <xs:element minOccurs="0" name="delivery" type="tns:delivery"/>
+      <xs:element name="id" type="xs:int"/>
+      <xs:element name="rating" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="delivery">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="date" type="xs:string"/>
+      <xs:element name="distance" type="xs:float"/>
+      <xs:element name="flightTime" type="xs:float"/>
+      <xs:element name="id" type="xs:int"/>
+      <xs:element minOccurs="0" name="state" type="tns:deliveryState"/>
+      <xs:element minOccurs="0" name="time" type="xs:string"/>
+      <xs:element minOccurs="0" name="aPackage" type="tns:package"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType abstract="true" name="deliveryState">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="name" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="completedDeliveryState">
+    <xs:complexContent>
+      <xs:extension base="tns:deliveryState">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="shippedAt" type="tns:localDateTime"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType final="extension restriction" name="localDateTime">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:complexType name="failedDeliveryState">
+    <xs:complexContent>
+      <xs:extension base="tns:deliveryState">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="localDateTime" type="tns:localDateTime"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="inFlightDeliveryState">
+    <xs:complexContent>
+      <xs:extension base="tns:deliveryState">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="shippedAt" type="tns:localDateTime"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="notSentDeliveryState">
+    <xs:complexContent>
+      <xs:extension base="tns:deliveryState">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="package">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="destination" type="xs:string"/>
+      <xs:element minOccurs="0" name="supplier" type="tns:supplier"/>
+      <xs:element minOccurs="0" name="trackingNumber" type="xs:string"/>
+      <xs:element name="weight" type="xs:float"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="supplier">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="contacts" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="name" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="createComment">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="packageTrackingNumber" type="xs:string"/>
+      <xs:element name="rating" type="xs:int"/>
+      <xs:element minOccurs="0" name="content" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="createCommentResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:comment"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="deleteComment">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="packageTrackingNumber" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="deleteCommentResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="findCommentForPackage">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="packageId" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="findCommentForPackageResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="comment" type="tns:comment"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="findCommentForSupplier">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="supplierName" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="findCommentForSupplierResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="supplier_comments" type="tns:comment"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UnknownCommentException" type="tns:UnknownCommentException"/>
+  <xs:complexType name="UnknownCommentException">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="id" type="xs:string"/>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/accounting" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/accounting">
+  <xsd:element name="UnknownDeliveryException" type="tns:UnknownDeliveryException"/>
+  <xsd:complexType name="UnknownDeliveryException">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="id" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="message" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/packages" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/packages">
+  <xsd:element name="UnknownSupplierException" type="tns:UnknownSupplierException"/>
+  <xsd:complexType name="UnknownSupplierException">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="name" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="message" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="deleteComment">
+    <wsdl:part element="tns:deleteComment" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findCommentForPackage">
+    <wsdl:part element="tns:findCommentForPackage" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="UnknownSupplierException">
+    <wsdl:part element="ns2:UnknownSupplierException" name="UnknownSupplierException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findAllComments">
+    <wsdl:part element="tns:findAllComments" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createComment">
+    <wsdl:part element="tns:createComment" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findCommentForPackageResponse">
+    <wsdl:part element="tns:findCommentForPackageResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findCommentForSupplierResponse">
+    <wsdl:part element="tns:findCommentForSupplierResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="UnknownDeliveryException">
+    <wsdl:part element="ns1:UnknownDeliveryException" name="UnknownDeliveryException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findAllCommentsResponse">
+    <wsdl:part element="tns:findAllCommentsResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="UnknownCommentException">
+    <wsdl:part element="tns:UnknownCommentException" name="UnknownCommentException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createCommentResponse">
+    <wsdl:part element="tns:createCommentResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteCommentResponse">
+    <wsdl:part element="tns:deleteCommentResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findCommentForSupplier">
+    <wsdl:part element="tns:findCommentForSupplier" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="CommentPostingWebService">
+    <wsdl:operation name="findAllComments">
+      <wsdl:input message="tns:findAllComments" name="findAllComments">
+    </wsdl:input>
+      <wsdl:output message="tns:findAllCommentsResponse" name="findAllCommentsResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="createComment">
+      <wsdl:input message="tns:createComment" name="createComment">
+    </wsdl:input>
+      <wsdl:output message="tns:createCommentResponse" name="createCommentResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:UnknownDeliveryException" name="UnknownDeliveryException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="deleteComment">
+      <wsdl:input message="tns:deleteComment" name="deleteComment">
+    </wsdl:input>
+      <wsdl:output message="tns:deleteCommentResponse" name="deleteCommentResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:UnknownDeliveryException" name="UnknownDeliveryException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:UnknownCommentException" name="UnknownCommentException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="findCommentForPackage">
+      <wsdl:input message="tns:findCommentForPackage" name="findCommentForPackage">
+    </wsdl:input>
+      <wsdl:output message="tns:findCommentForPackageResponse" name="findCommentForPackageResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:UnknownCommentException" name="UnknownCommentException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="findCommentForSupplier">
+      <wsdl:input message="tns:findCommentForSupplier" name="findCommentForSupplier">
+    </wsdl:input>
+      <wsdl:output message="tns:findCommentForSupplierResponse" name="findCommentForSupplierResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:UnknownSupplierException" name="UnknownSupplierException">
+    </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CommentPostingWebServiceImplServiceSoapBinding" type="tns:CommentPostingWebService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="findAllComments">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="findAllComments">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="findAllCommentsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="createComment">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="createComment">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="createCommentResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="UnknownDeliveryException">
+        <soap:fault name="UnknownDeliveryException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="deleteComment">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="deleteComment">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="deleteCommentResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="UnknownDeliveryException">
+        <soap:fault name="UnknownDeliveryException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UnknownCommentException">
+        <soap:fault name="UnknownCommentException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="findCommentForPackage">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="findCommentForPackage">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="findCommentForPackageResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="UnknownCommentException">
+        <soap:fault name="UnknownCommentException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="findCommentForSupplier">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="findCommentForSupplier">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="findCommentForSupplierResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="UnknownSupplierException">
+        <soap:fault name="UnknownSupplierException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CommentPostingWebServiceImplService">
+    <wsdl:port binding="tns:CommentPostingWebServiceImplServiceSoapBinding" name="CommentPostingWebServiceImplPort">
+      <soap:address location="http://localhost:8080/drone-delivery-backend/webservices/RatingWS"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
