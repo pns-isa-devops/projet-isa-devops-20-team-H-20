@@ -1,5 +1,5 @@
 
-package fr.unice.polytech.si._4a.isa.dd.team_h.rating;
+package stubs.rating;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -9,18 +9,18 @@ import javax.xml.bind.annotation.XmlType;
 /**
  * <p>Classe Java pour inFlightDeliveryState complex type.
  * 
- * <p>Le fragment de schÃ©ma suivant indique le contenu attendu figurant dans cette classe.
+ * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
- * &lt;complexType name="inFlightDeliveryState"&gt;
- *   &lt;complexContent&gt;
- *     &lt;extension base="{http://www.polytech.unice.fr/si/4a/isa/dd/team-h/rating}deliveryState"&gt;
- *       &lt;sequence&gt;
- *         &lt;element name="shippedAt" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
- *       &lt;/sequence&gt;
- *     &lt;/extension&gt;
- *   &lt;/complexContent&gt;
- * &lt;/complexType&gt;
+ * &lt;complexType name="inFlightDeliveryState">
+ *   &lt;complexContent>
+ *     &lt;extension base="{http://www.polytech.unice.fr/si/4a/isa/dd/team-h/rating}deliveryState">
+ *       &lt;sequence>
+ *         &lt;element name="shippedAt" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *       &lt;/sequence>
+ *     &lt;/extension>
+ *   &lt;/complexContent>
+ * &lt;/complexType>
  * </pre>
  * 
  * 
@@ -36,7 +36,7 @@ public class InFlightDeliveryState
     protected String shippedAt;
 
     /**
-     * Obtient la valeur de la propriÃ©tÃ© shippedAt.
+     * Obtient la valeur de la propriété shippedAt.
      * 
      * @return
      *     possible object is
@@ -48,7 +48,7 @@ public class InFlightDeliveryState
     }
 
     /**
-     * DÃ©finit la valeur de la propriÃ©tÃ© shippedAt.
+     * Définit la valeur de la propriété shippedAt.
      * 
      * @param value
      *     allowed object is

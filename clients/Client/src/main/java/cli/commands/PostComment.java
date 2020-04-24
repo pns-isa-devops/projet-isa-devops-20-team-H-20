@@ -2,7 +2,7 @@ package cli.commands;
 
 import api.DronePublicAPI;
 import cli.framework.Command;
-import stubs.ratings.Comment;
+import stubs.rating.Comment;
 
 import java.util.List;
 
@@ -30,9 +30,9 @@ public class PostComment extends Command<DronePublicAPI> {
     public void execute() throws Exception {
         Comment res = shell.system.getRatingWebService().createComment(trackingId, rating, message);
         if(res != null){
-            System.out.println("Package added");
+            System.out.println("Comment added");
         }else{
-            System.out.println("Error package not added");
+            System.out.println("Error comment not added");
         }
     }
 
