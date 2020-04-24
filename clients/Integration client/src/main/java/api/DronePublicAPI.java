@@ -1,8 +1,5 @@
 package api;
 
-
-import fr.unice.polytech.si._4a.isa.dd.team_h.stats.StatsWebService;
-import fr.unice.polytech.si._4a.isa.dd.team_h.stats.StatsWebServiceImplService;
 import stubs.accounting.AccountingWebService;
 import stubs.accounting.AccountingWebServiceImplService;
 import stubs.drones.DroneFleetManagementWebService;
@@ -11,6 +8,8 @@ import stubs.packages.PackageRegistrationWebService;
 import stubs.packages.PackageRegistrationWebServiceImplService;
 import stubs.planning.PlanningWebService;
 import stubs.planning.PlanningWebServiceImplService;
+import stubs.stats.StatsWebService;
+import stubs.stats.StatsWebServiceImplService;
 
 import javax.xml.ws.BindingProvider;
 import java.net.URL;

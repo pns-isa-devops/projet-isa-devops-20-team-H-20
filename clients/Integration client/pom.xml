@@ -15,7 +15,17 @@
         <cxf.version>3.1.10</cxf.version>
         <versions.java>1.8</versions.java>
         <versions.mojo>1.5.0</versions.mojo>
+        <versions.cucumber>5.6.0</versions.cucumber>
     </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>${versions.cucumber}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 
     <build>
         <plugins>
