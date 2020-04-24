@@ -126,7 +126,7 @@ public class StatisticsBeanStepDefsTest extends AbstractStatisticsBeanTest {
 
         deliveriesAdded.forEach(de -> {
             try {
-                deliveryPlanner.deletePlaningEntry(de.getaPackage().getTrackingNumber());
+                deliveryPlanner.deletePlanningEntry(de.getaPackage().getTrackingNumber());
                 deliveryPlanner.deleteDelivery(de.getaPackage().getTrackingNumber());
             } catch (UnknownDeliveryException e) {
                 e.printStackTrace();

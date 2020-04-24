@@ -11,6 +11,7 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.jws.WebService;
 import java.util.Optional;
+import java.util.Set;
 
 @WebService(targetNamespace = "http://www.polytech.unice.fr/si/4a/isa/dd/team-h/drones")
 @Stateless(name = "DroneWS")
@@ -38,6 +39,11 @@ public class DroneFleetManagementWebServiceImpl implements DroneFleetManagementW
             throw new UnknownDroneException();
         }
         return drone.get();
+    }
+
+    @Override
+    public Set<Drone> getAllDrones() {
+        return droneFinder.findAllDrones();
     }
 
     @Override

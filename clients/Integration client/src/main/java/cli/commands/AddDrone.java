@@ -2,12 +2,14 @@ package cli.commands;
 
 import api.DronePublicAPI;
 import cli.framework.Command;
+import stubs.drones.Drone;
 
 import java.util.List;
 
 public class AddDrone extends Command<DronePublicAPI> {
     private int id;
     private float weightCapacity;
+    private float speed;
 
 
     @Override
@@ -19,12 +21,13 @@ public class AddDrone extends Command<DronePublicAPI> {
     public void load(List<String> args) {
         id = Integer.parseInt(args.get(0));
         weightCapacity = Float.parseFloat(args.get(1));
+        speed = Float.parseFloat(args.get(2));
     }
 
     @Override
     public void execute() throws Exception {
-        boolean res = shell.system.getDroneFleetManagementWebService().addDrone(id, weightCapacity);
-        if(res){
+        Drone res = shell.system.getDroneFleetManagementWebService().addDrone(id, weightCapacity, speed);
+        if(res != null){
             System.out.println("Drone added");
         }else{
             System.out.println("Error drone not added");
@@ -33,6 +36,6 @@ public class AddDrone extends Command<DronePublicAPI> {
 
     @Override
     public String describe() {
-        return identifier() + " (id weightCapacity)";
+        return identifier() + " (id weightCapacity speed)";
     }
 }

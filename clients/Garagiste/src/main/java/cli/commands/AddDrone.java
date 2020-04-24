@@ -2,7 +2,7 @@ package cli.commands;
 
 import api.DronePublicAPI;
 import cli.framework.Command;
-import stubs.drone.Drone;
+import stubs.drones.Drone;
 
 import java.util.List;
 

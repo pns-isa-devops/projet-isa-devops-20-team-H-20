@@ -9,21 +9,21 @@ import java.util.Objects;
 @Entity
 @DiscriminatorValue("F")
 public class FailedDeliveryState extends DeliveryState {
-    private LocalDateTime localDateTime;
+    private String dateTime;
 
     public FailedDeliveryState(){
         name = "failed";
-        this.localDateTime = LocalDateTime.now();
+        dateTime = LocalDateTime.now().toString();
     }
 
-    public FailedDeliveryState(LocalDateTime t){
+    public FailedDeliveryState(String dateTime){
         name = "failed";
-        this.localDateTime = t;
+        this.dateTime = dateTime;
     }
 
     @Override
     public String toString() {
-        return "Delivery failed at " + localDateTime.toString();
+        return "Delivery failed at " + dateTime;
     }
 
     @Override
@@ -33,7 +33,7 @@ public class FailedDeliveryState extends DeliveryState {
 
     @Override
     public DeliveryState clone() {
-        return new FailedDeliveryState(this.localDateTime);
+        return new FailedDeliveryState(this.dateTime);
     }
 
     @Override
@@ -51,10 +51,10 @@ public class FailedDeliveryState extends DeliveryState {
     }
 
     @NotNull
-    public LocalDateTime getLocalDateTime() {
-        return localDateTime;
+    public String getLocalDateTime() {
+        return dateTime;
     }
-    public void setLocalDateTime(LocalDateTime localDateTime) {
-        this.localDateTime = localDateTime;
+    public void setLocalDateTime(String dateTime) {
+        this.dateTime = dateTime;
     }
 }

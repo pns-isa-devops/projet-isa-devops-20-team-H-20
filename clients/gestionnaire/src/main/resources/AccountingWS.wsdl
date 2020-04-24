@@ -21,13 +21,7 @@
   <xs:element name="registerSupplierResponse" type="tns:registerSupplierResponse"/>
   <xs:complexType name="findInvoicesForSupplier">
     <xs:sequence>
-      <xs:element minOccurs="0" name="supplier" type="tns:supplier"/>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="supplier">
-    <xs:sequence>
-      <xs:element maxOccurs="unbounded" minOccurs="0" name="contacts" nillable="true" type="xs:string"/>
-      <xs:element minOccurs="0" name="name" type="xs:string"/>
+      <xs:element minOccurs="0" name="supplier" type="xs:string"/>
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="findInvoicesForSupplierResponse">
@@ -43,6 +37,12 @@
       <xs:element name="paid" type="xs:boolean"/>
       <xs:element minOccurs="0" name="paymentDate" type="xs:string"/>
       <xs:element minOccurs="0" name="supplier" type="tns:supplier"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="supplier">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="contacts" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="name" type="xs:string"/>
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="generateInvoicesForAllSuppliers">
@@ -71,7 +71,7 @@
   </xs:complexType>
   <xs:complexType name="generateInvoiceFor">
     <xs:sequence>
-      <xs:element minOccurs="0" name="supplier" type="tns:supplier"/>
+      <xs:element minOccurs="0" name="supplier" type="xs:string"/>
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="generateInvoiceForResponse">
@@ -189,12 +189,12 @@
     <wsdl:part element="tns:generateInvoicesForAllSuppliers" name="parameters">
     </wsdl:part>
   </wsdl:message>
-  <wsdl:message name="findAllSuppliers">
-    <wsdl:part element="tns:findAllSuppliers" name="parameters">
-    </wsdl:part>
-  </wsdl:message>
   <wsdl:message name="UnknownSupplierException">
     <wsdl:part element="ns1:UnknownSupplierException" name="UnknownSupplierException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findAllSuppliers">
+    <wsdl:part element="tns:findAllSuppliers" name="parameters">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="addSupplierContactResponse">
@@ -235,6 +235,8 @@
     </wsdl:input>
       <wsdl:output message="tns:findInvoicesForSupplierResponse" name="findInvoicesForSupplierResponse">
     </wsdl:output>
+      <wsdl:fault message="tns:UnknownSupplierException" name="UnknownSupplierException">
+    </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="generateInvoicesForAllSuppliers">
       <wsdl:input message="tns:generateInvoicesForAllSuppliers" name="generateInvoicesForAllSuppliers">
@@ -261,6 +263,8 @@
     </wsdl:input>
       <wsdl:output message="tns:generateInvoiceForResponse" name="generateInvoiceForResponse">
     </wsdl:output>
+      <wsdl:fault message="tns:UnknownSupplierException" name="UnknownSupplierException">
+    </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="addSupplierContact">
       <wsdl:input message="tns:addSupplierContact" name="addSupplierContact">
@@ -305,6 +309,9 @@
       <wsdl:output name="findInvoicesForSupplierResponse">
         <soap:body use="literal"/>
       </wsdl:output>
+      <wsdl:fault name="UnknownSupplierException">
+        <soap:fault name="UnknownSupplierException" use="literal"/>
+      </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="generateInvoicesForAllSuppliers">
       <soap:operation soapAction="" style="document"/>
@@ -344,6 +351,9 @@
       <wsdl:output name="generateInvoiceForResponse">
         <soap:body use="literal"/>
       </wsdl:output>
+      <wsdl:fault name="UnknownSupplierException">
+        <soap:fault name="UnknownSupplierException" use="literal"/>
+      </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="addSupplierContact">
       <soap:operation soapAction="" style="document"/>

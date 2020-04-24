@@ -15,13 +15,13 @@ import java.util.Set;
 public interface CommentPostingWebService {
 
     @WebMethod
-    void createComment(@WebParam(name="packageTrackingNumber") String packageTrackingNumber,
+    Comment createComment(@WebParam(name="packageTrackingNumber") String packageTrackingNumber,
                        @WebParam(name="rating") int rating,
                        @WebParam(name="content") String content)
             throws UnknownDeliveryException;
 
     @WebMethod
-    void deleteComment(@WebParam(name="packageTrackingNumber") String packageTrackingNumber) throws UnknownCommentException, UnknownDeliveryException;
+    boolean deleteComment(@WebParam(name="packageTrackingNumber") String packageTrackingNumber) throws UnknownCommentException, UnknownDeliveryException;
 
     @WebMethod
     @WebResult(name = "comment")

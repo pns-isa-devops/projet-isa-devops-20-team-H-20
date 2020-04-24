@@ -9,6 +9,7 @@ import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebResult;
 import javax.jws.WebService;
+import java.util.Set;
 
 @WebService(targetNamespace = "http://www.polytech.unice.fr/si/4a/isa/dd/team-h/drones")
 public interface DroneFleetManagementWebService {
@@ -26,6 +27,10 @@ public interface DroneFleetManagementWebService {
     @WebMethod
     @WebResult(name = "drone")
     Drone getDrone(@WebParam(name="id") int id) throws UnknownDroneException;
+
+    @WebMethod
+    @WebResult(name = "drone-list")
+    Set<Drone> getAllDrones();
 
     @WebMethod
     @WebResult(name = "return_code")

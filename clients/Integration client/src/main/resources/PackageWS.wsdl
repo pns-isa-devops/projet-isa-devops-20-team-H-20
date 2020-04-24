@@ -1,0 +1,274 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/packages" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns2="http://schemas.xmlsoap.org/soap/http" xmlns:ns1="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/planning" name="PackageRegistrationWebServiceImplService" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/packages">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/packages" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/packages">
+  <xs:element name="deletePackage" type="tns:deletePackage"/>
+  <xs:element name="deletePackageResponse" type="tns:deletePackageResponse"/>
+  <xs:element name="editPackage" type="tns:editPackage"/>
+  <xs:element name="editPackageResponse" type="tns:editPackageResponse"/>
+  <xs:element name="getAllPackages" type="tns:getAllPackages"/>
+  <xs:element name="getAllPackagesResponse" type="tns:getAllPackagesResponse"/>
+  <xs:element name="getPackage" type="tns:getPackage"/>
+  <xs:element name="getPackageResponse" type="tns:getPackageResponse"/>
+  <xs:element name="registerPackage" type="tns:registerPackage"/>
+  <xs:element name="registerPackageResponse" type="tns:registerPackageResponse"/>
+  <xs:complexType name="getPackage">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="trackingNumber" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getPackageResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="result" type="tns:package"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="package">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="destination" type="xs:string"/>
+      <xs:element minOccurs="0" name="supplier" type="tns:supplier"/>
+      <xs:element minOccurs="0" name="trackingNumber" type="xs:string"/>
+      <xs:element name="weight" type="xs:float"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="supplier">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="contacts" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="name" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="registerPackage">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="packageTrackingNumber" type="xs:string"/>
+      <xs:element minOccurs="0" name="supplierName" type="xs:string"/>
+      <xs:element name="weight" type="xs:float"/>
+      <xs:element minOccurs="0" name="destination" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="registerPackageResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return_code" type="tns:package"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="deletePackage">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="packageTrackingNumber" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="deletePackageResponse">
+    <xs:sequence>
+      <xs:element name="return_code" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="editPackage">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="packageTrackingNumber" type="xs:string"/>
+      <xs:element minOccurs="0" name="supplierName" type="xs:string"/>
+      <xs:element name="weight" type="xs:float"/>
+      <xs:element minOccurs="0" name="destination" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="editPackageResponse">
+    <xs:sequence>
+      <xs:element name="return_code" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getAllPackages">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:complexType name="getAllPackagesResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="result" type="tns:package"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UnknownSupplierException" type="tns:UnknownSupplierException"/>
+  <xs:complexType name="UnknownSupplierException">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="name" type="xs:string"/>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AlreadyExistingPackageException" type="tns:AlreadyExistingPackageException"/>
+  <xs:complexType name="AlreadyExistingPackageException">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="conflictingTrackingNumber" type="xs:string"/>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/planning" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/planning">
+  <xsd:element name="UnknownPackageException" type="tns:UnknownPackageException"/>
+  <xsd:complexType name="UnknownPackageException">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="trackingNumber" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="message" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="registerPackage">
+    <wsdl:part element="tns:registerPackage" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="UnknownPackageException">
+    <wsdl:part element="ns1:UnknownPackageException" name="UnknownPackageException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="AlreadyExistingPackageException">
+    <wsdl:part element="tns:AlreadyExistingPackageException" name="AlreadyExistingPackageException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="editPackageResponse">
+    <wsdl:part element="tns:editPackageResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="editPackage">
+    <wsdl:part element="tns:editPackage" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPackage">
+    <wsdl:part element="tns:getPackage" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="UnknownSupplierException">
+    <wsdl:part element="tns:UnknownSupplierException" name="UnknownSupplierException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deletePackageResponse">
+    <wsdl:part element="tns:deletePackageResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="registerPackageResponse">
+    <wsdl:part element="tns:registerPackageResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPackageResponse">
+    <wsdl:part element="tns:getPackageResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deletePackage">
+    <wsdl:part element="tns:deletePackage" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllPackagesResponse">
+    <wsdl:part element="tns:getAllPackagesResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllPackages">
+    <wsdl:part element="tns:getAllPackages" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="PackageRegistrationWebService">
+    <wsdl:operation name="getPackage">
+      <wsdl:input message="tns:getPackage" name="getPackage">
+    </wsdl:input>
+      <wsdl:output message="tns:getPackageResponse" name="getPackageResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:UnknownPackageException" name="UnknownPackageException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="registerPackage">
+      <wsdl:input message="tns:registerPackage" name="registerPackage">
+    </wsdl:input>
+      <wsdl:output message="tns:registerPackageResponse" name="registerPackageResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:UnknownSupplierException" name="UnknownSupplierException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:AlreadyExistingPackageException" name="AlreadyExistingPackageException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="deletePackage">
+      <wsdl:input message="tns:deletePackage" name="deletePackage">
+    </wsdl:input>
+      <wsdl:output message="tns:deletePackageResponse" name="deletePackageResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:UnknownPackageException" name="UnknownPackageException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="editPackage">
+      <wsdl:input message="tns:editPackage" name="editPackage">
+    </wsdl:input>
+      <wsdl:output message="tns:editPackageResponse" name="editPackageResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:UnknownSupplierException" name="UnknownSupplierException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:UnknownPackageException" name="UnknownPackageException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAllPackages">
+      <wsdl:input message="tns:getAllPackages" name="getAllPackages">
+    </wsdl:input>
+      <wsdl:output message="tns:getAllPackagesResponse" name="getAllPackagesResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PackageRegistrationWebServiceImplServiceSoapBinding" type="tns:PackageRegistrationWebService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getPackage">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getPackage">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getPackageResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="UnknownPackageException">
+        <soap:fault name="UnknownPackageException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="registerPackage">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="registerPackage">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="registerPackageResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="UnknownSupplierException">
+        <soap:fault name="UnknownSupplierException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="AlreadyExistingPackageException">
+        <soap:fault name="AlreadyExistingPackageException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="deletePackage">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="deletePackage">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="deletePackageResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="UnknownPackageException">
+        <soap:fault name="UnknownPackageException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="editPackage">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="editPackage">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="editPackageResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="UnknownSupplierException">
+        <soap:fault name="UnknownSupplierException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UnknownPackageException">
+        <soap:fault name="UnknownPackageException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAllPackages">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getAllPackages">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getAllPackagesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PackageRegistrationWebServiceImplService">
+    <wsdl:port binding="tns:PackageRegistrationWebServiceImplServiceSoapBinding" name="PackageRegistrationWebServiceImplPort">
+      <soap:address location="http://localhost:8080/drone-delivery-backend/webservices/PackageWS"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

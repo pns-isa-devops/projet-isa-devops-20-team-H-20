@@ -13,6 +13,7 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.jws.WebService;
 import java.util.Optional;
+import java.util.Set;
 
 @WebService(targetNamespace = "http://www.polytech.unice.fr/si/4a/isa/dd/team-h/packages")
 @Stateless(name = "PackageWS")
@@ -45,6 +46,16 @@ public class PackageRegistrationWebServiceImpl implements PackageRegistrationWeb
     @Override
     public boolean deletePackage(String packageTrackingNumber) throws UnknownPackageException {
         return register.delete(packageTrackingNumber);
+    }
+
+    @Override
+    public Package getPackage(String trackingNumber) throws UnknownPackageException {
+        return readPackage(trackingNumber);
+    }
+
+    @Override
+    public Set<Package> getAllPackages() {
+        return packageFinder.findAllPackages();
     }
 
     private Supplier readSupplier(String customerName)

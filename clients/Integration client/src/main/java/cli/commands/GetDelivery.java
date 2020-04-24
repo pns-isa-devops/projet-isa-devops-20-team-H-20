@@ -32,6 +32,6 @@ public class GetDelivery extends Command<DronePublicAPI> {
 
     @Override
     public String describe() {
-        return identifier() + " (name)";
+        return identifier() + " (id)";
     }
 }

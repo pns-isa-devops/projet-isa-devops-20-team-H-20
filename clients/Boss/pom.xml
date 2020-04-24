@@ -56,7 +56,7 @@
                                     <wsdl>${basedir}/src/main/resources/StatsWS.wsdl</wsdl>
                                     <extraargs>
                                         <extraarg>-p</extraarg>
-                                        <extraarg>http://www.polytech.unice.fr/si/4a/isa/dd/team-h/drones=stubs.stats</extraarg>
+                                        <extraarg>http://www.polytech.unice.fr/si/4a/isa/dd/team-h/stats=stubs.stats</extraarg>
                                     </extraargs>
                                 </wsdlOption>
                             </wsdlOptions>

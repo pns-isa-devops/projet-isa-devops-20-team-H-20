@@ -219,7 +219,7 @@ public class AccountingStepdefsTest extends AbstractAccountingBeanTest {
     @cucumber.api.java.After
     public void cleaningUp() throws Exception{
         suppliersToDelete.forEach(entity -> invoiceGeneration.deleteInvoicesForSupplier(entity));
-        deliveryPlanner.deletePlaningEntry(packageEntryToDelete.getTrackingNumber());
+        deliveryPlanner.deletePlanningEntry(packageEntryToDelete.getTrackingNumber());
         packagesDeliveriesToDelete.forEach(entity -> {
             try {
                 deliveryPlanner.deleteDelivery(entity.getTrackingNumber());

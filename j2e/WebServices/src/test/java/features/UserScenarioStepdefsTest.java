@@ -173,7 +173,7 @@ public class UserScenarioStepdefsTest extends AbstractDroneDeliveryTest {
 
         planningEntriesToDelete.forEach(entity -> {
             try {
-                deliveryPlanner.deletePlaningEntry(entity);
+                deliveryPlanner.deletePlanningEntry(entity);
             } catch (UnknownDeliveryException e) {
                 e.printStackTrace();
             }

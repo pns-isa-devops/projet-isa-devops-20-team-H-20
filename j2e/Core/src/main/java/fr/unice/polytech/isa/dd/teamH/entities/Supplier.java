@@ -28,7 +28,8 @@ public class Supplier implements Serializable {
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
 
-    @ElementCollection(targetClass=String.class)
+    //@OneToMany(cascade = CascadeType.PERSIST)
+    @ElementCollection(targetClass=String.class, fetch=FetchType.EAGER)
     @Column(name="contacts")
     @CollectionTable(name="contacts_table", joinColumns=@JoinColumn(name="contacts_id"))
     public Set<String> getContacts() {

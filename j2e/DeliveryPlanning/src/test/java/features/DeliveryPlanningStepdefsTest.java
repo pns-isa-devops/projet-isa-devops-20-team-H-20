@@ -198,7 +198,7 @@ public class DeliveryPlanningStepdefsTest extends AbstractDeliveryPlanningTest {
 
     @cucumber.api.java.After
     public void cleaningUp() throws Exception{
-        deliveryPlanner.deletePlaningEntry(packageEntryToDelete.getTrackingNumber());
+        deliveryPlanner.deletePlanningEntry(packageEntryToDelete.getTrackingNumber());
         deliveriesToDelete.forEach(entity -> {
             try {
                 deliveryPlanner.deleteDelivery(entity.getaPackage().getTrackingNumber());

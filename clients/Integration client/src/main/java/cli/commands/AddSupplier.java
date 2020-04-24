@@ -2,6 +2,7 @@ package cli.commands;
 
 import api.DronePublicAPI;
 import cli.framework.Command;
+import stubs.accounting.Supplier;
 
 import java.util.List;
 
@@ -23,8 +24,8 @@ public class AddSupplier extends Command<DronePublicAPI> {
 
     @Override
     public void execute() throws Exception {
-        boolean res = shell.system.getAccountingWebService().registerSupplier(name, contact);
-        if(res){
+        Supplier res = shell.system.getAccountingWebService().registerSupplier(name, contact);
+        if(res != null){
             System.out.println("Supplier added");
         }else{
             System.out.println("Error supplier not added");

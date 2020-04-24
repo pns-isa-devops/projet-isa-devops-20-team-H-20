@@ -53,6 +53,16 @@ public class PlanningWebServiceImpl implements PlanningWebService {
     }
 
     @Override
+    public boolean deleteDelivery(String trackingNumber) throws UnknownDeliveryException {
+        return deliveryPlanner.deleteDelivery(trackingNumber);
+    }
+
+    @Override
+    public boolean deletePlanningEntry(String trackingNumber) throws UnknownDeliveryException {
+        return deliveryPlanner.deletePlanningEntry(trackingNumber);
+    }
+
+    @Override
     public boolean startDelivery(String trackingId) throws UnknownDeliveryException {
         Optional<PlanningEntry> planningEntry = deliveryFinder.findPlanningEntryByTrackingId(trackingId);
         if(!planningEntry.isPresent()) {
@@ -68,5 +78,13 @@ public class PlanningWebServiceImpl implements PlanningWebService {
         if(!delivery.isPresent())
             throw new UnknownDeliveryException(id);
         return delivery.get();
+    }
+
+    @Override
+    public PlanningEntry findPlanningEntryById(String id) throws UnknownDeliveryException {
+        Optional<PlanningEntry> res = deliveryFinder.findPlanningEntryByTrackingId(id);
+        if(!res.isPresent())
+            throw new UnknownDeliveryException(id);
+        return res.get();
     }
 }

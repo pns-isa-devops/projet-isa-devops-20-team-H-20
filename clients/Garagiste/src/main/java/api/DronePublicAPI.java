@@ -1,7 +1,7 @@
 package api;
 
-import stubs.drone.DroneFleetManagementWebService;
-import stubs.drone.DroneFleetManagementWebServiceImplService;
+import stubs.drones.DroneFleetManagementWebService;
+import stubs.drones.DroneFleetManagementWebServiceImplService;
 
 import javax.xml.ws.BindingProvider;
 import java.net.URL;

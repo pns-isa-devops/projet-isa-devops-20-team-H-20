@@ -29,6 +29,6 @@ public class GetSuppliers extends Command<DronePublicAPI> {
 
     @Override
     public String describe() {
-        return identifier() + " (name)";
+        return identifier();
     }
 }

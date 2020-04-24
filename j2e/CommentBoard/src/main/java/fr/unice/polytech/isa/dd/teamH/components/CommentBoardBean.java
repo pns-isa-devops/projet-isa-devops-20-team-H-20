@@ -89,7 +89,7 @@ public class CommentBoardBean implements CommentFinder, CommentPoster {
     }
 
     @Override
-    public void deleteComment(Delivery d) throws UnknownCommentException {
+    public boolean deleteComment(Delivery d) throws UnknownCommentException {
         Optional<Comment> toDelete = findCommentForPackage(d.getaPackage().getTrackingNumber());
         if(!toDelete.isPresent()) {
             throw new UnknownCommentException(d.getaPackage().getTrackingNumber());
@@ -97,5 +97,6 @@ public class CommentBoardBean implements CommentFinder, CommentPoster {
         Comment deleted = manager.merge(toDelete.get());
         manager.remove(deleted);
         log.log(Level.INFO, "Comment deleted : " + deleted.toString());
+        return true;
     }
 }

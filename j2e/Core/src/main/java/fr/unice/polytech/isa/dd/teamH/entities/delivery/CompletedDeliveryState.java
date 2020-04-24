@@ -9,21 +9,21 @@ import java.util.Objects;
 @Entity
 @DiscriminatorValue("C")
 public class CompletedDeliveryState extends DeliveryState {
-    private LocalDateTime shippedAt;
+    private String dateTime;
 
     public CompletedDeliveryState(){
         name = "completed";
-        this.shippedAt = LocalDateTime.now();
+        dateTime = LocalDateTime.now().toString();
     }
 
-    private CompletedDeliveryState(LocalDateTime t){
+    private CompletedDeliveryState(String dateTime){
         name = "completed";
-        this.shippedAt = t;
+        this.dateTime = dateTime;
     }
 
     @Override
     public String toString() {
-        return "Delivery already shipped at " + shippedAt.toString();
+        return "Delivery already shipped at " + dateTime;
     }
 
     @Override
@@ -33,7 +33,7 @@ public class CompletedDeliveryState extends DeliveryState {
 
     @Override
     public DeliveryState clone() {
-        return new CompletedDeliveryState(this.shippedAt);
+        return new CompletedDeliveryState(this.dateTime);
     }
 
     @Override
@@ -51,10 +51,10 @@ public class CompletedDeliveryState extends DeliveryState {
     }
 
     @NotNull
-    public LocalDateTime getShippedAt() {
-        return shippedAt;
+    public String getShippedAt() {
+        return dateTime;
     }
-    public void setShippedAt(LocalDateTime shippedAt) {
-        this.shippedAt = shippedAt;
+    public void setShippedAt(String dateTime) {
+        this.dateTime = dateTime;
     }
 }

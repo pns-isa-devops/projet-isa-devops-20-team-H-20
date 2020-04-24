@@ -285,7 +285,7 @@ public class DeliveryPlanningBean implements DeliveryFinder, DeliveryPlanner, Co
     }
 
     @Override
-    public boolean deletePlaningEntry(String trackingNumber) throws UnknownDeliveryException{
+    public boolean deletePlanningEntry(String trackingNumber) throws UnknownDeliveryException{
         Optional<PlanningEntry> toDelete = findPlanningEntryByTrackingId(trackingNumber);
         if(!toDelete.isPresent()) {
             throw new UnknownDeliveryException(trackingNumber);
