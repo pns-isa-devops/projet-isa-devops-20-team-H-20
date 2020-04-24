@@ -11,5 +11,6 @@ import javax.ejb.Local;
 public interface DroneFleetManagement {
     Drone addDrone(int id, float weightCapacity, float speed) throws AlreadyExistingDroneException;
     boolean editDroneStatus(int id, String newStatus) throws UnknownDroneException, UnknownDroneStateException;
+    Drone editDrone(int id, int battery, float flightTime) throws UnknownDroneException;
     boolean deleteDrone(int id) throws UnknownDroneException;
 }

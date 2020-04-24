@@ -122,6 +122,18 @@ public class DroneFleetBean implements DroneFinder, DroneFleetManagement {
     }
 
     @Override
+    public Drone editDrone(int id, int battery, float flightTime) throws UnknownDroneException {
+        Optional<Drone> d = findDroneById(id);
+        if(!d.isPresent())
+            throw new UnknownDroneException(Integer.toString(id));
+        Drone drone = d.get();
+        drone.setBattery(battery);
+        drone.setCurrentFlightTime(flightTime);
+        log.log(Level.INFO, "Drone edited : " + drone.toString());
+        return drone;
+    }
+
+    @Override
     public boolean deleteDrone(int id) throws UnknownDroneException {
         if(!findDroneById(id).isPresent())
             throw new UnknownDroneException(Integer.toString(id));
