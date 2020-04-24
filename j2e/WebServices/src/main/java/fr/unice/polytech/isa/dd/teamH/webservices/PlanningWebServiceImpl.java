@@ -53,6 +53,16 @@ public class PlanningWebServiceImpl implements PlanningWebService {
     }
 
     @Override
+    public boolean deleteDelivery(String trackingNumber) throws UnknownDeliveryException {
+        return deliveryPlanner.deleteDelivery(trackingNumber);
+    }
+
+    @Override
+    public boolean deletePlanningEntry(String trackingNumber) throws UnknownDeliveryException {
+        return deliveryPlanner.deletePlanningEntry(trackingNumber);
+    }
+
+    @Override
     public boolean startDelivery(String trackingId) throws UnknownDeliveryException {
         Optional<PlanningEntry> planningEntry = deliveryFinder.findPlanningEntryByTrackingId(trackingId);
         if(!planningEntry.isPresent()) {

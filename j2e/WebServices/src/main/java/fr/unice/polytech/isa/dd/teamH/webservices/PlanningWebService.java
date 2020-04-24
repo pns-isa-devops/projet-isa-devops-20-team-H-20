@@ -27,6 +27,14 @@ public interface PlanningWebService {
     boolean editDeliveryStatus(@WebParam(name="id") String id, @WebParam(name="status") String status) throws UnknownDeliveryStateException, UnknownDeliveryException;
 
     @WebMethod
+    @WebResult(name = "return_code")
+    boolean deleteDelivery(@WebParam(name="tracking-number") String trackingNumber) throws UnknownDeliveryException;
+
+    @WebMethod
+    @WebResult(name = "return_code")
+    boolean deletePlanningEntry(@WebParam(name="tracking-number") String trackingNumber) throws UnknownDeliveryException;
+
+    @WebMethod
     @WebResult(name = "delivery")
     Delivery findDeliveryById(@WebParam(name="id") String id) throws UnknownDeliveryException;
 

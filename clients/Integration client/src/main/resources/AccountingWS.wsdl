@@ -3,6 +3,8 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/accounting" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/accounting">
   <xs:element name="addSupplierContact" type="tns:addSupplierContact"/>
   <xs:element name="addSupplierContactResponse" type="tns:addSupplierContactResponse"/>
+  <xs:element name="deleteInvoicesForSupplier" type="tns:deleteInvoicesForSupplier"/>
+  <xs:element name="deleteInvoicesForSupplierResponse" type="tns:deleteInvoicesForSupplierResponse"/>
   <xs:element name="deleteSupplier" type="tns:deleteSupplier"/>
   <xs:element name="deleteSupplierResponse" type="tns:deleteSupplierResponse"/>
   <xs:element name="findAllSuppliers" type="tns:findAllSuppliers"/>
@@ -50,6 +52,16 @@
   </xs:complexType>
   <xs:complexType name="generateInvoicesForAllSuppliersResponse">
     <xs:sequence/>
+  </xs:complexType>
+  <xs:complexType name="deleteInvoicesForSupplier">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="name" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="deleteInvoicesForSupplierResponse">
+    <xs:sequence>
+      <xs:element name="return_code" type="xs:boolean"/>
+    </xs:sequence>
   </xs:complexType>
   <xs:complexType name="findAllSuppliers">
     <xs:sequence/>
@@ -153,6 +165,10 @@
     <wsdl:part element="tns:generateInvoiceForResponse" name="parameters">
     </wsdl:part>
   </wsdl:message>
+  <wsdl:message name="deleteInvoicesForSupplier">
+    <wsdl:part element="tns:deleteInvoicesForSupplier" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
   <wsdl:message name="findInvoicesForSupplierResponse">
     <wsdl:part element="tns:findInvoicesForSupplierResponse" name="parameters">
     </wsdl:part>
@@ -187,6 +203,10 @@
   </wsdl:message>
   <wsdl:message name="generateInvoicesForAllSuppliers">
     <wsdl:part element="tns:generateInvoicesForAllSuppliers" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteInvoicesForSupplierResponse">
+    <wsdl:part element="tns:deleteInvoicesForSupplierResponse" name="parameters">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="UnknownSupplierException">
@@ -243,6 +263,14 @@
     </wsdl:input>
       <wsdl:output message="tns:generateInvoicesForAllSuppliersResponse" name="generateInvoicesForAllSuppliersResponse">
     </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteInvoicesForSupplier">
+      <wsdl:input message="tns:deleteInvoicesForSupplier" name="deleteInvoicesForSupplier">
+    </wsdl:input>
+      <wsdl:output message="tns:deleteInvoicesForSupplierResponse" name="deleteInvoicesForSupplierResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:UnknownSupplierException" name="UnknownSupplierException">
+    </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="findAllSuppliers">
       <wsdl:input message="tns:findAllSuppliers" name="findAllSuppliers">
@@ -321,6 +349,18 @@
       <wsdl:output name="generateInvoicesForAllSuppliersResponse">
         <soap:body use="literal"/>
       </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteInvoicesForSupplier">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="deleteInvoicesForSupplier">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="deleteInvoicesForSupplierResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="UnknownSupplierException">
+        <soap:fault name="UnknownSupplierException" use="literal"/>
+      </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="findAllSuppliers">
       <soap:operation soapAction="" style="document"/>

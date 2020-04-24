@@ -42,6 +42,14 @@ public class AccountingWebServiceImpl implements AccountingWebService{
     }
 
     @Override
+    public boolean deleteInvoicesForSupplier(String name) throws UnknownSupplierException {
+        Optional<Supplier> s = supplierFinder.findByName(name);
+        if(!s.isPresent())
+            throw new UnknownSupplierException(name);
+        return invoiceGeneration.deleteInvoicesForSupplier(s.get());
+    }
+
+    @Override
     public Set<Supplier> findAllSuppliers(){
         return supplierFinder.findAll();
     }
@@ -53,9 +61,6 @@ public class AccountingWebServiceImpl implements AccountingWebService{
 
     @Override
     public boolean addSupplierContact(String name, String contact) throws UnknownSupplierException, AlreadyExistingContactException {
-        Optional<Supplier> s = supplierFinder.findByName(name);
-        if(!s.isPresent())
-            throw new UnknownSupplierException(name);
         return supplierRegistration.addContact(name, contact);
     }
 

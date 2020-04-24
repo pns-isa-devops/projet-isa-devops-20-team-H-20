@@ -24,6 +24,10 @@ public interface AccountingWebService {
     boolean deleteSupplier(@WebParam(name="name") String name) throws UnknownSupplierException;
 
     @WebMethod
+    @WebResult(name = "return_code")
+    boolean deleteInvoicesForSupplier(@WebParam(name="name") String name) throws UnknownSupplierException;
+
+    @WebMethod
     @WebResult(name = "supplier")
     Set<Supplier> findAllSuppliers();
 

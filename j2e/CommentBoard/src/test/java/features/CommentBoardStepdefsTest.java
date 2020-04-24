@@ -180,7 +180,7 @@ public class CommentBoardStepdefsTest extends AbstractCommentBoardBeanTest {
                 e.printStackTrace();
             }
         });
-        deliveryPlanner.deletePlaningEntry(packageEntryToDelete.getTrackingNumber());
+        deliveryPlanner.deletePlanningEntry(packageEntryToDelete.getTrackingNumber());
         packagesDeliveriesToDelete.forEach(entity -> {
             try {
                 deliveryPlanner.deleteDelivery(entity.getTrackingNumber());

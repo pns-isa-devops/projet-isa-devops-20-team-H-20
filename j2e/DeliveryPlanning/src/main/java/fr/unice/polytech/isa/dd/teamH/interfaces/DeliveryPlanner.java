@@ -17,5 +17,5 @@ public interface DeliveryPlanner {
     boolean startDelivery(Drone drone, Delivery delivery);
     Set<PlanningEntry> getCompleteDeliveryPlanning();
     boolean deleteDelivery(String trackingNumber) throws UnknownDeliveryException;
-    boolean deletePlaningEntry(String trackingNumber) throws UnknownDeliveryException;
+    boolean deletePlanningEntry(String trackingNumber) throws UnknownDeliveryException;
 }
