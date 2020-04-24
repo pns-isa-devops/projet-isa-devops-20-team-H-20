@@ -111,11 +111,11 @@ public class Invoice implements Serializable {
     @Override
     public String toString() {
         return "Invoice{" +
-                "\npaid=" + paid +
-                "\namount=" + amount +
-                "\ncreationDate=" + creationDate +
-                ((paymentDate == null) ? "" : "\npaymentDate=" + paymentDate) +
-                "\nsupplier=" + supplier.toString() +
+                "\npaid=" + isPaid() +
+                "\namount=" + getAmount() +
+                "\ncreationDate=" + getCreationDate() +
+                ((getPaymentDate() == null) ? "" : "\npaymentDate=" + getPaymentDate()) +
+                "\nsupplier=" + getSupplier().toString() +
                 "\n}\n";
     }
 }
