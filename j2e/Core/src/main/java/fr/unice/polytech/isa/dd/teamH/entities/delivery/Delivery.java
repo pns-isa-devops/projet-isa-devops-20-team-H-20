@@ -143,20 +143,21 @@ public class Delivery implements Serializable {
         Delivery delivery = (Delivery) o;
         return Float.compare(delivery.getFlightTime(), getFlightTime()) == 0 &&
                 Float.compare(delivery.getDistance(), getDistance()) == 0 &&
-                dateTimeToShip().equals(delivery.dateTimeToShip()) &&
+                getDate().equals(delivery.getDate()) &&
+                getTime().equals(delivery.getTime()) &&
                 getaPackage().equals(delivery.getaPackage()) &&
                 getState().equals(delivery.getState());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(dateTimeToShip(), getFlightTime(), getDistance(), getaPackage(), getState());
+        return Objects.hash(getDate(), getTime(), getFlightTime(), getDistance(), getaPackage(), getState());
     }
 
     @Override
     public String toString() {
         return "Delivery{" +
-                "dateTimeToShip=" + dateTimeToShip() +
+                "dateTimeToShip=" + date + " " + time +
                 ", flightTime=" + flightTime +
                 ", distance=" + distance +
                 ", aPackage=" + aPackage +
