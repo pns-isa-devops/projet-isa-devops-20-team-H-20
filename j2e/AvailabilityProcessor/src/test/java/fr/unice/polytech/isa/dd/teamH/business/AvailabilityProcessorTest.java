@@ -76,6 +76,26 @@ public class AvailabilityProcessorTest extends AbstractAvailabilityProcessorTest
 //        Optional<Customer> toDispose = finder.findByName(john.getName());
 //        toDispose.ifPresent(cust -> { Customer c = entityManager.merge(cust); entityManager.delete(c); });
 //        utx.commit();
+
+        try {
+            supplierRegistration.delete(s.getName());
+        } catch (UnknownSupplierException e) {
+            e.printStackTrace();
+        }
+        packages.forEach(entity -> {
+            try {
+                packageRegistration.delete(entity.getTrackingNumber());
+            } catch (UnknownPackageException e) {
+                e.printStackTrace();
+            }
+        });
+        drones.forEach(entity -> {
+            try {
+                droneFleetManagement.deleteDrone(entity.getId());
+            } catch (UnknownDroneException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     @Test
@@ -89,9 +109,10 @@ public class AvailabilityProcessorTest extends AbstractAvailabilityProcessorTest
 
     @Test
     public void simpleAlgorithmWork() throws CorruptedPlanningException {
+        Drone first = droneFinder.findAllDrones().stream().findFirst().get();
         Optional<Drone> drone = availableDroneFinder.getAvailableDroneAtTime(new HashSet<PlanningEntry>(), LocalDateTime.now(), 1, 5);
 
-        assertEquals("Wrong drone was found to carry the delivery", 1, drone.get().getId());
+        assertEquals("Wrong drone was found to carry the delivery", first.getId(), drone.get().getId());
     }
 
     @Test
