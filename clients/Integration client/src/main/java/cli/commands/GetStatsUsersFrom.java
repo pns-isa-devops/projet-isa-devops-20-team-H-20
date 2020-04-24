@@ -2,7 +2,7 @@ package cli.commands;
 
 import api.DronePublicAPI;
 import cli.framework.Command;
-import fr.unice.polytech.si._4a.isa.dd.team_h.stats.CustomerSatisfactionStatsEntry;
+import stubs.stats.CustomerSatisfactionStatsEntry;
 
 import java.util.List;
 

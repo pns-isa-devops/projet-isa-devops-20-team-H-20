@@ -2,7 +2,8 @@ package cli.commands;
 
 import api.DronePublicAPI;
 import cli.framework.Command;
-import fr.unice.polytech.si._4a.isa.dd.team_h.stats.DroneStatsEntry;
+import stubs.stats.DroneStatsEntry;
+
 
 import java.util.List;
 
