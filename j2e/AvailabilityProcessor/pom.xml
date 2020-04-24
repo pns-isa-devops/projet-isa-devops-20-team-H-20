@@ -23,6 +23,24 @@
             <artifactId>DroneFleet</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>fr.polytech.team.h</groupId>
+            <artifactId>SupplierRegistry</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>fr.polytech.team.h</groupId>
+            <artifactId>SupplierRegistry</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>fr.polytech.team.h</groupId>
+            <artifactId>PackageRegistry</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
