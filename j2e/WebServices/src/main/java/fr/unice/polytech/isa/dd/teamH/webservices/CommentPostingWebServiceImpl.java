@@ -34,21 +34,21 @@ public class CommentPostingWebServiceImpl implements CommentPostingWebService {
     private SupplierFinder supplierFinder;
 
     @Override
-    public void createComment(String packageTrackingNumber, int rating, String content) throws UnknownDeliveryException {
+    public Comment createComment(String packageTrackingNumber, int rating, String content) throws UnknownDeliveryException {
         Optional<Delivery> d = finder.findDeliveryById(packageTrackingNumber);
         if(!d.isPresent()) {
             throw new UnknownDeliveryException(packageTrackingNumber);
         }
-        poster.postComment(d.get(), rating, content);
+        return poster.postComment(d.get(), rating, content);
     }
 
     @Override
-    public void deleteComment(String packageTrackingNumber) throws UnknownCommentException, UnknownDeliveryException {
+    public boolean deleteComment(String packageTrackingNumber) throws UnknownCommentException, UnknownDeliveryException {
         Optional<Delivery> d = finder.findDeliveryById(packageTrackingNumber);
         if(!d.isPresent()) {
             throw new UnknownDeliveryException(packageTrackingNumber);
         }
-        poster.deleteComment(d.get());
+        return poster.deleteComment(d.get());
     }
 
     @Override
