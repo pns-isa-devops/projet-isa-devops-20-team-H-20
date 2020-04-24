@@ -70,18 +70,20 @@ public class AvailabilityProcessorTest extends AbstractAvailabilityProcessorTest
         s = supplierRegistration.register("Amadon", "00");
     }
 
-//    @After
-//    public void cleaningUp() {
+    @After
+    public void cleaningUp() {
 //        utx.begin();
 //        Optional<Customer> toDispose = finder.findByName(john.getName());
 //        toDispose.ifPresent(cust -> { Customer c = entityManager.merge(cust); entityManager.delete(c); });
 //        utx.commit();
-//    }
+    }
 
     @Test
     public void algorithmIsWorking() throws Exception {
         Optional<Drone> drone = availableDroneFinder.getAvailableDroneAtTime(new HashSet<PlanningEntry>(), LocalDateTime.now(), 1, 5);
 
+        System.out.println("OMEGA TEST" + drones);
+        System.out.println("OMEGA TEST2" + droneFinder.findAllDrones());
         assertTrue("Algorithm isn't working properly", drone.isPresent());
     }
 
@@ -89,13 +91,16 @@ public class AvailabilityProcessorTest extends AbstractAvailabilityProcessorTest
     public void simpleAlgorithmWork() throws CorruptedPlanningException {
         Optional<Drone> drone = availableDroneFinder.getAvailableDroneAtTime(new HashSet<PlanningEntry>(), LocalDateTime.now(), 1, 5);
 
-        assertEquals("Wrong drone was found to carry the delivery", 0, drone.get().getId());
+        assertEquals("Wrong drone was found to carry the delivery", 1, drone.get().getId());
     }
 
     @Test
     public void simpleAlgorithmWork2() throws CorruptedPlanningException, UnknownDroneException, AlreadyExistingPackageException, UnknownDeliveryStateException {
+
+        System.out.println("OMEGA TEST 0 "+droneFinder.findAllDrones());
         editDrone(0, 10, 20);
         editDrone(1, 10, 20);
+        System.out.println("OMEGA TEST 0 "+droneFinder.findAllDrones());
         Package p = createPackage("masaka", s, 1, "Biot");
         createDelivery(p, "2020-10-10", "10:10", 10, 10);
 
