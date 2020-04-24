@@ -1,22 +1,40 @@
-<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/planning" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns4="http://schemas.xmlsoap.org/soap/http" xmlns:ns3="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/accounting" xmlns:ns2="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/accounting/planning" xmlns:ns1="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/plannings" name="PlanningWebServiceImplService" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/planning">
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/planning" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns4="http://schemas.xmlsoap.org/soap/http" xmlns:ns3="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/accounting/planning" xmlns:ns2="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/plannings" xmlns:ns1="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/accounting" name="PlanningWebServiceImplService" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/planning">
   <wsdl:types>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/planning" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/planning">
+  <xs:element name="deleteDelivery" type="tns:deleteDelivery"/>
+  <xs:element name="deleteDeliveryResponse" type="tns:deleteDeliveryResponse"/>
+  <xs:element name="deletePlanningEntry" type="tns:deletePlanningEntry"/>
+  <xs:element name="deletePlanningEntryResponse" type="tns:deletePlanningEntryResponse"/>
   <xs:element name="editDeliveryStatus" type="tns:editDeliveryStatus"/>
   <xs:element name="editDeliveryStatusResponse" type="tns:editDeliveryStatusResponse"/>
   <xs:element name="findDeliveryById" type="tns:findDeliveryById"/>
   <xs:element name="findDeliveryByIdResponse" type="tns:findDeliveryByIdResponse"/>
+  <xs:element name="findPlanningEntryById" type="tns:findPlanningEntryById"/>
+  <xs:element name="findPlanningEntryByIdResponse" type="tns:findPlanningEntryByIdResponse"/>
   <xs:element name="getCompleteDeliveryPlanning" type="tns:getCompleteDeliveryPlanning"/>
   <xs:element name="getCompleteDeliveryPlanningResponse" type="tns:getCompleteDeliveryPlanningResponse"/>
   <xs:element name="planDelivery" type="tns:planDelivery"/>
   <xs:element name="planDeliveryResponse" type="tns:planDeliveryResponse"/>
   <xs:element name="startDelivery" type="tns:startDelivery"/>
   <xs:element name="startDeliveryResponse" type="tns:startDeliveryResponse"/>
-  <xs:complexType name="getCompleteDeliveryPlanning">
-    <xs:sequence/>
-  </xs:complexType>
-  <xs:complexType name="getCompleteDeliveryPlanningResponse">
+  <xs:complexType name="deleteDelivery">
     <xs:sequence>
-      <xs:element maxOccurs="unbounded" minOccurs="0" name="delivery-planning" type="tns:planningEntry"/>
+      <xs:element minOccurs="0" name="tracking-number" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="deleteDeliveryResponse">
+    <xs:sequence>
+      <xs:element name="return_code" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="findPlanningEntryById">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="id" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="findPlanningEntryByIdResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="planning" type="tns:planningEntry"/>
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="planningEntry">
@@ -136,29 +154,6 @@
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-  <xs:complexType name="planDelivery">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="tracking-number" type="xs:string"/>
-      <xs:element minOccurs="0" name="shipping-date" type="xs:string"/>
-      <xs:element minOccurs="0" name="shipping-time" type="xs:string"/>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="planDeliveryResponse">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="delivery" type="tns:delivery"/>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="editDeliveryStatus">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="id" type="xs:string"/>
-      <xs:element minOccurs="0" name="status" type="xs:string"/>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="editDeliveryStatusResponse">
-    <xs:sequence>
-      <xs:element name="return_code" type="xs:boolean"/>
-    </xs:sequence>
-  </xs:complexType>
   <xs:complexType name="findDeliveryById">
     <xs:sequence>
       <xs:element minOccurs="0" name="id" type="xs:string"/>
@@ -175,6 +170,47 @@
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="startDeliveryResponse">
+    <xs:sequence>
+      <xs:element name="return_code" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getCompleteDeliveryPlanning">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:complexType name="getCompleteDeliveryPlanningResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="delivery-planning" type="tns:planningEntry"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="planDelivery">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="tracking-number" type="xs:string"/>
+      <xs:element minOccurs="0" name="shipping-date" type="xs:string"/>
+      <xs:element minOccurs="0" name="shipping-time" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="planDeliveryResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="delivery" type="tns:delivery"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="deletePlanningEntry">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="tracking-number" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="deletePlanningEntryResponse">
+    <xs:sequence>
+      <xs:element name="return_code" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="editDeliveryStatus">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="id" type="xs:string"/>
+      <xs:element minOccurs="0" name="status" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="editDeliveryStatusResponse">
     <xs:sequence>
       <xs:element name="return_code" type="xs:boolean"/>
     </xs:sequence>
@@ -209,6 +245,15 @@
     </xs:sequence>
   </xs:complexType>
 </xs:schema>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/accounting" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/accounting">
+  <xsd:element name="UnknownDeliveryException" type="tns:UnknownDeliveryException"/>
+  <xsd:complexType name="UnknownDeliveryException">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="id" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="message" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/plannings" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/plannings">
   <xsd:element name="UnknownDeliveryStateException" type="tns:UnknownDeliveryStateException"/>
   <xsd:complexType name="UnknownDeliveryStateException">
@@ -224,15 +269,6 @@
     <xsd:sequence>
       <xsd:element minOccurs="0" name="destination" type="xsd:string"/>
       <xsd:element minOccurs="0" name="trackingNumber" type="xsd:string"/>
-      <xsd:element minOccurs="0" name="message" type="xsd:string"/>
-    </xsd:sequence>
-  </xsd:complexType>
-</xsd:schema>
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/accounting" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/accounting">
-  <xsd:element name="UnknownDeliveryException" type="tns:UnknownDeliveryException"/>
-  <xsd:complexType name="UnknownDeliveryException">
-    <xsd:sequence>
-      <xsd:element minOccurs="0" name="id" type="xsd:string"/>
       <xsd:element minOccurs="0" name="message" type="xsd:string"/>
     </xsd:sequence>
   </xsd:complexType>
@@ -258,12 +294,12 @@
     <wsdl:part element="tns:startDelivery" name="parameters">
     </wsdl:part>
   </wsdl:message>
-  <wsdl:message name="getCompleteDeliveryPlanning">
-    <wsdl:part element="tns:getCompleteDeliveryPlanning" name="parameters">
+  <wsdl:message name="UnknownDeliveryException">
+    <wsdl:part element="ns1:UnknownDeliveryException" name="UnknownDeliveryException">
     </wsdl:part>
   </wsdl:message>
-  <wsdl:message name="UnknownDeliveryException">
-    <wsdl:part element="ns3:UnknownDeliveryException" name="UnknownDeliveryException">
+  <wsdl:message name="getCompleteDeliveryPlanning">
+    <wsdl:part element="tns:getCompleteDeliveryPlanning" name="parameters">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="planDeliveryResponse">
@@ -291,11 +327,27 @@
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="DeliveryDistanceException">
-    <wsdl:part element="ns2:DeliveryDistanceException" name="DeliveryDistanceException">
+    <wsdl:part element="ns3:DeliveryDistanceException" name="DeliveryDistanceException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findPlanningEntryByIdResponse">
+    <wsdl:part element="tns:findPlanningEntryByIdResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteDelivery">
+    <wsdl:part element="tns:deleteDelivery" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findPlanningEntryById">
+    <wsdl:part element="tns:findPlanningEntryById" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteDeliveryResponse">
+    <wsdl:part element="tns:deleteDeliveryResponse" name="parameters">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="UnknownDeliveryStateException">
-    <wsdl:part element="ns1:UnknownDeliveryStateException" name="UnknownDeliveryStateException">
+    <wsdl:part element="ns2:UnknownDeliveryStateException" name="UnknownDeliveryStateException">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="planDelivery">
@@ -306,7 +358,47 @@
     <wsdl:part element="tns:NoReadyDroneException" name="NoReadyDroneException">
     </wsdl:part>
   </wsdl:message>
+  <wsdl:message name="deletePlanningEntry">
+    <wsdl:part element="tns:deletePlanningEntry" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deletePlanningEntryResponse">
+    <wsdl:part element="tns:deletePlanningEntryResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
   <wsdl:portType name="PlanningWebService">
+    <wsdl:operation name="deleteDelivery">
+      <wsdl:input message="tns:deleteDelivery" name="deleteDelivery">
+    </wsdl:input>
+      <wsdl:output message="tns:deleteDeliveryResponse" name="deleteDeliveryResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:UnknownDeliveryException" name="UnknownDeliveryException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="findPlanningEntryById">
+      <wsdl:input message="tns:findPlanningEntryById" name="findPlanningEntryById">
+    </wsdl:input>
+      <wsdl:output message="tns:findPlanningEntryByIdResponse" name="findPlanningEntryByIdResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:UnknownDeliveryException" name="UnknownDeliveryException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="findDeliveryById">
+      <wsdl:input message="tns:findDeliveryById" name="findDeliveryById">
+    </wsdl:input>
+      <wsdl:output message="tns:findDeliveryByIdResponse" name="findDeliveryByIdResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:UnknownDeliveryException" name="UnknownDeliveryException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="startDelivery">
+      <wsdl:input message="tns:startDelivery" name="startDelivery">
+    </wsdl:input>
+      <wsdl:output message="tns:startDeliveryResponse" name="startDeliveryResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:UnknownDeliveryException" name="UnknownDeliveryException">
+    </wsdl:fault>
+    </wsdl:operation>
     <wsdl:operation name="getCompleteDeliveryPlanning">
       <wsdl:input message="tns:getCompleteDeliveryPlanning" name="getCompleteDeliveryPlanning">
     </wsdl:input>
@@ -331,6 +423,14 @@
       <wsdl:fault message="tns:CorruptedPlanningException" name="CorruptedPlanningException">
     </wsdl:fault>
     </wsdl:operation>
+    <wsdl:operation name="deletePlanningEntry">
+      <wsdl:input message="tns:deletePlanningEntry" name="deletePlanningEntry">
+    </wsdl:input>
+      <wsdl:output message="tns:deletePlanningEntryResponse" name="deletePlanningEntryResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:UnknownDeliveryException" name="UnknownDeliveryException">
+    </wsdl:fault>
+    </wsdl:operation>
     <wsdl:operation name="editDeliveryStatus">
       <wsdl:input message="tns:editDeliveryStatus" name="editDeliveryStatus">
     </wsdl:input>
@@ -341,25 +441,57 @@
       <wsdl:fault message="tns:UnknownDeliveryException" name="UnknownDeliveryException">
     </wsdl:fault>
     </wsdl:operation>
-    <wsdl:operation name="findDeliveryById">
-      <wsdl:input message="tns:findDeliveryById" name="findDeliveryById">
-    </wsdl:input>
-      <wsdl:output message="tns:findDeliveryByIdResponse" name="findDeliveryByIdResponse">
-    </wsdl:output>
-      <wsdl:fault message="tns:UnknownDeliveryException" name="UnknownDeliveryException">
-    </wsdl:fault>
-    </wsdl:operation>
-    <wsdl:operation name="startDelivery">
-      <wsdl:input message="tns:startDelivery" name="startDelivery">
-    </wsdl:input>
-      <wsdl:output message="tns:startDeliveryResponse" name="startDeliveryResponse">
-    </wsdl:output>
-      <wsdl:fault message="tns:UnknownDeliveryException" name="UnknownDeliveryException">
-    </wsdl:fault>
-    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="PlanningWebServiceImplServiceSoapBinding" type="tns:PlanningWebService">
     <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="deleteDelivery">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="deleteDelivery">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="deleteDeliveryResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="UnknownDeliveryException">
+        <soap:fault name="UnknownDeliveryException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="findPlanningEntryById">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="findPlanningEntryById">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="findPlanningEntryByIdResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="UnknownDeliveryException">
+        <soap:fault name="UnknownDeliveryException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="findDeliveryById">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="findDeliveryById">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="findDeliveryByIdResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="UnknownDeliveryException">
+        <soap:fault name="UnknownDeliveryException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="startDelivery">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="startDelivery">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="startDeliveryResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="UnknownDeliveryException">
+        <soap:fault name="UnknownDeliveryException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
     <wsdl:operation name="getCompleteDeliveryPlanning">
       <soap:operation soapAction="" style="document"/>
       <wsdl:input name="getCompleteDeliveryPlanning">
@@ -396,6 +528,18 @@
         <soap:fault name="CorruptedPlanningException" use="literal"/>
       </wsdl:fault>
     </wsdl:operation>
+    <wsdl:operation name="deletePlanningEntry">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="deletePlanningEntry">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="deletePlanningEntryResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="UnknownDeliveryException">
+        <soap:fault name="UnknownDeliveryException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
     <wsdl:operation name="editDeliveryStatus">
       <soap:operation soapAction="" style="document"/>
       <wsdl:input name="editDeliveryStatus">
@@ -407,30 +551,6 @@
       <wsdl:fault name="UnknownDeliveryStateException">
         <soap:fault name="UnknownDeliveryStateException" use="literal"/>
       </wsdl:fault>
-      <wsdl:fault name="UnknownDeliveryException">
-        <soap:fault name="UnknownDeliveryException" use="literal"/>
-      </wsdl:fault>
-    </wsdl:operation>
-    <wsdl:operation name="findDeliveryById">
-      <soap:operation soapAction="" style="document"/>
-      <wsdl:input name="findDeliveryById">
-        <soap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output name="findDeliveryByIdResponse">
-        <soap:body use="literal"/>
-      </wsdl:output>
-      <wsdl:fault name="UnknownDeliveryException">
-        <soap:fault name="UnknownDeliveryException" use="literal"/>
-      </wsdl:fault>
-    </wsdl:operation>
-    <wsdl:operation name="startDelivery">
-      <soap:operation soapAction="" style="document"/>
-      <wsdl:input name="startDelivery">
-        <soap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output name="startDeliveryResponse">
-        <soap:body use="literal"/>
-      </wsdl:output>
       <wsdl:fault name="UnknownDeliveryException">
         <soap:fault name="UnknownDeliveryException" use="literal"/>
       </wsdl:fault>
