@@ -54,6 +54,7 @@ public class AvailabilityProcessorStepDefsTest extends AbstractAvailabilityProce
     private Exception exception = null;
 
     private Optional<Drone> lastDroneFound;
+    private Optional<Drone> temp;
 
     private Set<Package> packagesToDelete;
     private Set<Supplier> suppliersToDelete;
@@ -95,6 +96,7 @@ public class AvailabilityProcessorStepDefsTest extends AbstractAvailabilityProce
         Optional<PlanningEntry> ope = getPlanningEntryForDrone(drone.get());
 
         updatePlanningEntry(delivery, ope, drone.get(), planningEntriesToDelete);
+        //updatePlanningEntry(delivery, ope, lastDroneFound.get());
     }
 
     @When("^nothing$")
@@ -122,6 +124,7 @@ public class AvailabilityProcessorStepDefsTest extends AbstractAvailabilityProce
         delivery.setState(DeliveryStateFactory.getInstance().createState("not-sent"));
         deliveriesToDelete.add(delivery);
 
+        temp = droneFinder.findDroneById(1);
         try {
             lastDroneFound = availableDroneFinder.getAvailableDroneAtTime(planningEntriesToDelete, LocalDateTime.parse(date + "T" + time), aPackage.getWeight(), delivery.getDistance());
         } catch (CorruptedPlanningException e) {
@@ -134,6 +137,10 @@ public class AvailabilityProcessorStepDefsTest extends AbstractAvailabilityProce
             updatePlanningEntry(delivery, ope, lastDroneFound.get(), planningEntriesToDelete);
 
             updateDrone(delivery, lastDroneFound.get(), dronesToDelete, droneFleetManagement);
+
+            //updatePlanningEntry(delivery, ope, lastDroneFound.get());
+
+            //updateDrone(delivery, lastDroneFound.get());
         }
     }
 
@@ -143,17 +150,22 @@ public class AvailabilityProcessorStepDefsTest extends AbstractAvailabilityProce
     }
 
     @Then("^a drone can deliver the package$")
-    public void droneFound() throws CorruptedPlanningException {
+    public void droneFound() {
         assertTrue("No drone has been found for this delivery", lastDroneFound.isPresent());
     }
 
+    @Then("^the first drone of the fleet should deliver the package$")
+    public void firstDroneFound() {
+        assertEquals("The wrong drone is assuming the delivery" + temp.get(), temp.get().getId(), lastDroneFound.get().getId());
+    }
+
     @Then("^the drone (\\d+) will deliver the package$")
-    public void droneFoundWithId(int drone) throws CorruptedPlanningException {
+    public void droneFoundWithId(int drone) {
         assertEquals("The wrong drone is assuming the delivery", drone, lastDroneFound.get().getId());
     }
 
     @Then("^no drones can deliver the package$")
-    public void droneNotFound() throws CorruptedPlanningException {
+    public void droneNotFound() {
         assertFalse("A drone has been found for this delivery and shouldn't happen", lastDroneFound.isPresent());
     }
 
@@ -200,9 +212,9 @@ public class AvailabilityProcessorStepDefsTest extends AbstractAvailabilityProce
             newPE.addDelivery(delivery);
             planningEntriesToDelete.add(newPE);
         }
-    }*/
+    }
 
-    /*private void updateDrone(Delivery delivery, Drone drone) throws UnknownDroneException {
+    private void updateDrone(Delivery delivery, Drone drone) throws UnknownDroneException {
         dronesToDelete.remove(drone);
         drone.setCurrentFlightTime(drone.getCurrentFlightTime() + delivery.getFlightTime());
         drone.setBattery(Utils.predictExpandedBattery(drone, delivery));
