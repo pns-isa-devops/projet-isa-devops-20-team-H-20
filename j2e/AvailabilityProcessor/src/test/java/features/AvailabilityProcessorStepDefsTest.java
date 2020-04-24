@@ -7,6 +7,7 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import cucumber.runtime.arquillian.CukeSpace;
+import fr.unice.polytech.isa.dd.teamH.business.AvailabilityProcessorTest;
 import fr.unice.polytech.isa.dd.teamH.entities.Supplier;
 import fr.unice.polytech.isa.dd.teamH.entities.Package;
 import fr.unice.polytech.isa.dd.teamH.entities.delivery.Delivery;
@@ -26,6 +27,8 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
+import static fr.unice.polytech.isa.dd.teamH.business.AvailabilityProcessorTest.updateDrone;
+import static fr.unice.polytech.isa.dd.teamH.business.AvailabilityProcessorTest.updatePlanningEntry;
 import static org.junit.Assert.*;
 
 @RunWith(CukeSpace.class)
@@ -87,9 +90,11 @@ public class AvailabilityProcessorStepDefsTest extends AbstractAvailabilityProce
         delivery.setState(DeliveryStateFactory.getInstance().createState("not-sent"));
         deliveriesToDelete.add(delivery);
 
-        Optional<PlanningEntry> ope = getPlanningEntryForDrone(lastDroneFound.get());
+        Optional<Drone> drone = droneFinder.findDroneById(idDrone);
 
-        updatePlanningEntry(delivery, ope);
+        Optional<PlanningEntry> ope = getPlanningEntryForDrone(drone.get());
+
+        updatePlanningEntry(delivery, ope, drone.get(), planningEntriesToDelete);
     }
 
     @When("^nothing$")
@@ -126,9 +131,9 @@ public class AvailabilityProcessorStepDefsTest extends AbstractAvailabilityProce
         if(lastDroneFound.isPresent()) {
             Optional<PlanningEntry> ope = getPlanningEntryForDrone(lastDroneFound.get());
 
-            updatePlanningEntry(delivery, ope);
+            updatePlanningEntry(delivery, ope, lastDroneFound.get(), planningEntriesToDelete);
 
-            updateDrone(delivery, lastDroneFound.get());
+            updateDrone(delivery, lastDroneFound.get(), dronesToDelete, droneFleetManagement);
         }
     }
 
@@ -186,24 +191,24 @@ public class AvailabilityProcessorStepDefsTest extends AbstractAvailabilityProce
         return Optional.empty();
     }
 
-    private void updatePlanningEntry(Delivery delivery, Optional<PlanningEntry> ope) {
+    /*private void updatePlanningEntry(Delivery delivery, Optional<PlanningEntry> ope, Drone drone) {
         if (ope.isPresent()) {
             PlanningEntry planningEntryToEdit = ope.get();
             planningEntryToEdit.addDelivery(delivery);
         } else {
-            PlanningEntry newPE = new PlanningEntry(lastDroneFound.get());
+            PlanningEntry newPE = new PlanningEntry(drone);
             newPE.addDelivery(delivery);
             planningEntriesToDelete.add(newPE);
         }
-    }
+    }*/
 
-    private void updateDrone(Delivery delivery, Drone drone) throws UnknownDroneException {
+    /*private void updateDrone(Delivery delivery, Drone drone) throws UnknownDroneException {
         dronesToDelete.remove(drone);
         drone.setCurrentFlightTime(drone.getCurrentFlightTime() + delivery.getFlightTime());
         drone.setBattery(Utils.predictExpandedBattery(drone, delivery));
         droneFleetManagement.editDrone(drone.getId(), drone.getBattery(), drone.getCurrentFlightTime());
         dronesToDelete.add(drone);
-    }
+    }*/
 
 
 }
