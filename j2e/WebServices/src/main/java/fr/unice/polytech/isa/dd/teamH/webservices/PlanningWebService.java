@@ -39,6 +39,10 @@ public interface PlanningWebService {
     Delivery findDeliveryById(@WebParam(name="id") String id) throws UnknownDeliveryException;
 
     @WebMethod
+    @WebResult(name = "planning")
+    PlanningEntry findPlanningEntryById(@WebParam(name="id") String id) throws UnknownDeliveryException;
+
+    @WebMethod
     @WebResult(name = "return_code")
     boolean startDelivery(@WebParam(name="tracking-number") String trackingId) throws UnknownDeliveryException;
 }

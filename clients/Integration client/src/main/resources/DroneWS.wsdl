@@ -5,6 +5,8 @@
   <xs:element name="addDroneResponse" type="tns:addDroneResponse"/>
   <xs:element name="editDroneStatus" type="tns:editDroneStatus"/>
   <xs:element name="editDroneStatusResponse" type="tns:editDroneStatusResponse"/>
+  <xs:element name="getAllDrones" type="tns:getAllDrones"/>
+  <xs:element name="getAllDronesResponse" type="tns:getAllDronesResponse"/>
   <xs:element name="getDrone" type="tns:getDrone"/>
   <xs:element name="getDroneResponse" type="tns:getDroneResponse"/>
   <xs:element name="removeDrone" type="tns:removeDrone"/>
@@ -95,6 +97,14 @@
       <xs:element name="return_code" type="xs:boolean"/>
     </xs:sequence>
   </xs:complexType>
+  <xs:complexType name="getAllDrones">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:complexType name="getAllDronesResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="drone-list" type="tns:drone"/>
+    </xs:sequence>
+  </xs:complexType>
   <xs:element name="AlreadyExistingDroneException" type="tns:AlreadyExistingDroneException"/>
   <xs:complexType name="AlreadyExistingDroneException">
     <xs:sequence>
@@ -120,20 +130,16 @@
   </xsd:complexType>
 </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="addDrone">
-    <wsdl:part element="tns:addDrone" name="parameters">
-    </wsdl:part>
-  </wsdl:message>
   <wsdl:message name="UnknownDroneStateException">
     <wsdl:part element="tns:UnknownDroneStateException" name="UnknownDroneStateException">
     </wsdl:part>
   </wsdl:message>
-  <wsdl:message name="addDroneResponse">
-    <wsdl:part element="tns:addDroneResponse" name="parameters">
-    </wsdl:part>
-  </wsdl:message>
   <wsdl:message name="editDroneStatus">
     <wsdl:part element="tns:editDroneStatus" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllDrones">
+    <wsdl:part element="tns:getAllDrones" name="parameters">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="getDrone">
@@ -148,16 +154,28 @@
     <wsdl:part element="tns:editDroneStatusResponse" name="parameters">
     </wsdl:part>
   </wsdl:message>
+  <wsdl:message name="getDroneResponse">
+    <wsdl:part element="tns:getDroneResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addDrone">
+    <wsdl:part element="tns:addDrone" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addDroneResponse">
+    <wsdl:part element="tns:addDroneResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllDronesResponse">
+    <wsdl:part element="tns:getAllDronesResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
   <wsdl:message name="AlreadyExistingDroneException">
     <wsdl:part element="tns:AlreadyExistingDroneException" name="AlreadyExistingDroneException">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="removeDroneResponse">
     <wsdl:part element="tns:removeDroneResponse" name="parameters">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="getDroneResponse">
-    <wsdl:part element="tns:getDroneResponse" name="parameters">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="UnknownDroneException">
@@ -198,6 +216,12 @@
     </wsdl:fault>
       <wsdl:fault message="tns:UnknownDroneStateException" name="UnknownDroneStateException">
     </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAllDrones">
+      <wsdl:input message="tns:getAllDrones" name="getAllDrones">
+    </wsdl:input>
+      <wsdl:output message="tns:getAllDronesResponse" name="getAllDronesResponse">
+    </wsdl:output>
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="DroneFleetManagementWebServiceImplServiceSoapBinding" type="tns:DroneFleetManagementWebService">
@@ -252,6 +276,15 @@
       <wsdl:fault name="UnknownDroneStateException">
         <soap:fault name="UnknownDroneStateException" use="literal"/>
       </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAllDrones">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getAllDrones">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getAllDronesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
     </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="DroneFleetManagementWebServiceImplService">

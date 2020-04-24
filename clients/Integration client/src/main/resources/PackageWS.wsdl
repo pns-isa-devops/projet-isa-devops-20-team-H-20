@@ -5,19 +5,20 @@
   <xs:element name="deletePackageResponse" type="tns:deletePackageResponse"/>
   <xs:element name="editPackage" type="tns:editPackage"/>
   <xs:element name="editPackageResponse" type="tns:editPackageResponse"/>
+  <xs:element name="getAllPackages" type="tns:getAllPackages"/>
+  <xs:element name="getAllPackagesResponse" type="tns:getAllPackagesResponse"/>
+  <xs:element name="getPackage" type="tns:getPackage"/>
+  <xs:element name="getPackageResponse" type="tns:getPackageResponse"/>
   <xs:element name="registerPackage" type="tns:registerPackage"/>
   <xs:element name="registerPackageResponse" type="tns:registerPackageResponse"/>
-  <xs:complexType name="registerPackage">
+  <xs:complexType name="getPackage">
     <xs:sequence>
-      <xs:element minOccurs="0" name="packageTrackingNumber" type="xs:string"/>
-      <xs:element minOccurs="0" name="supplierName" type="xs:string"/>
-      <xs:element name="weight" type="xs:float"/>
-      <xs:element minOccurs="0" name="destination" type="xs:string"/>
+      <xs:element minOccurs="0" name="trackingNumber" type="xs:string"/>
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="registerPackageResponse">
+  <xs:complexType name="getPackageResponse">
     <xs:sequence>
-      <xs:element minOccurs="0" name="return_code" type="tns:package"/>
+      <xs:element minOccurs="0" name="result" type="tns:package"/>
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="package">
@@ -32,6 +33,19 @@
     <xs:sequence>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="contacts" nillable="true" type="xs:string"/>
       <xs:element minOccurs="0" name="name" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="registerPackage">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="packageTrackingNumber" type="xs:string"/>
+      <xs:element minOccurs="0" name="supplierName" type="xs:string"/>
+      <xs:element name="weight" type="xs:float"/>
+      <xs:element minOccurs="0" name="destination" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="registerPackageResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return_code" type="tns:package"/>
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="deletePackage">
@@ -55,6 +69,14 @@
   <xs:complexType name="editPackageResponse">
     <xs:sequence>
       <xs:element name="return_code" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getAllPackages">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:complexType name="getAllPackagesResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="result" type="tns:package"/>
     </xs:sequence>
   </xs:complexType>
   <xs:element name="UnknownSupplierException" type="tns:UnknownSupplierException"/>
@@ -86,28 +108,12 @@
     <wsdl:part element="tns:registerPackage" name="parameters">
     </wsdl:part>
   </wsdl:message>
-  <wsdl:message name="UnknownSupplierException">
-    <wsdl:part element="tns:UnknownSupplierException" name="UnknownSupplierException">
-    </wsdl:part>
-  </wsdl:message>
   <wsdl:message name="UnknownPackageException">
     <wsdl:part element="ns1:UnknownPackageException" name="UnknownPackageException">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="AlreadyExistingPackageException">
     <wsdl:part element="tns:AlreadyExistingPackageException" name="AlreadyExistingPackageException">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="deletePackageResponse">
-    <wsdl:part element="tns:deletePackageResponse" name="parameters">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="registerPackageResponse">
-    <wsdl:part element="tns:registerPackageResponse" name="parameters">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="deletePackage">
-    <wsdl:part element="tns:deletePackage" name="parameters">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="editPackageResponse">
@@ -118,7 +124,47 @@
     <wsdl:part element="tns:editPackage" name="parameters">
     </wsdl:part>
   </wsdl:message>
+  <wsdl:message name="getPackage">
+    <wsdl:part element="tns:getPackage" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="UnknownSupplierException">
+    <wsdl:part element="tns:UnknownSupplierException" name="UnknownSupplierException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deletePackageResponse">
+    <wsdl:part element="tns:deletePackageResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="registerPackageResponse">
+    <wsdl:part element="tns:registerPackageResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPackageResponse">
+    <wsdl:part element="tns:getPackageResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deletePackage">
+    <wsdl:part element="tns:deletePackage" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllPackagesResponse">
+    <wsdl:part element="tns:getAllPackagesResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllPackages">
+    <wsdl:part element="tns:getAllPackages" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
   <wsdl:portType name="PackageRegistrationWebService">
+    <wsdl:operation name="getPackage">
+      <wsdl:input message="tns:getPackage" name="getPackage">
+    </wsdl:input>
+      <wsdl:output message="tns:getPackageResponse" name="getPackageResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:UnknownPackageException" name="UnknownPackageException">
+    </wsdl:fault>
+    </wsdl:operation>
     <wsdl:operation name="registerPackage">
       <wsdl:input message="tns:registerPackage" name="registerPackage">
     </wsdl:input>
@@ -147,9 +193,27 @@
       <wsdl:fault message="tns:UnknownPackageException" name="UnknownPackageException">
     </wsdl:fault>
     </wsdl:operation>
+    <wsdl:operation name="getAllPackages">
+      <wsdl:input message="tns:getAllPackages" name="getAllPackages">
+    </wsdl:input>
+      <wsdl:output message="tns:getAllPackagesResponse" name="getAllPackagesResponse">
+    </wsdl:output>
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="PackageRegistrationWebServiceImplServiceSoapBinding" type="tns:PackageRegistrationWebService">
     <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getPackage">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getPackage">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getPackageResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="UnknownPackageException">
+        <soap:fault name="UnknownPackageException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
     <wsdl:operation name="registerPackage">
       <soap:operation soapAction="" style="document"/>
       <wsdl:input name="registerPackage">
@@ -191,6 +255,15 @@
       <wsdl:fault name="UnknownPackageException">
         <soap:fault name="UnknownPackageException" use="literal"/>
       </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAllPackages">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getAllPackages">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getAllPackagesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
     </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="PackageRegistrationWebServiceImplService">

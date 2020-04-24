@@ -79,4 +79,12 @@ public class PlanningWebServiceImpl implements PlanningWebService {
             throw new UnknownDeliveryException(id);
         return delivery.get();
     }
+
+    @Override
+    public PlanningEntry findPlanningEntryById(String id) throws UnknownDeliveryException {
+        Optional<PlanningEntry> res = deliveryFinder.findPlanningEntryByTrackingId(id);
+        if(!res.isPresent())
+            throw new UnknownDeliveryException(id);
+        return res.get();
+    }
 }
