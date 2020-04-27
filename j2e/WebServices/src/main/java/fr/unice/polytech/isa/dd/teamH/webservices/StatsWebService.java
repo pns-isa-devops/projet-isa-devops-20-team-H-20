@@ -30,9 +30,11 @@ public interface StatsWebService {
     Set<DroneStatsEntry> getStatsDronesFrom(@WebParam(name = "time") String time) throws DateTimeParseException;
 
     @WebMethod
-    void generateStatsDrones();
+    @WebResult(name = "stats_entry")
+    DroneStatsEntry generateStatsDrones();
 
     @WebMethod
-    void generateStatsUsers();
+    @WebResult(name = "stats_entry")
+    CustomerSatisfactionStatsEntry generateStatsUsers();
 
 }

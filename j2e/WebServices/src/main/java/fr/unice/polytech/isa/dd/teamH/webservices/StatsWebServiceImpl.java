@@ -39,12 +39,12 @@ public class StatsWebServiceImpl implements StatsWebService {
     }
 
     @Override
-    public void generateStatsDrones() {
-        statisticsGenerator.generateNewDroneStatsEntry();
+    public DroneStatsEntry generateStatsDrones() {
+        return statisticsGenerator.generateNewDroneStatsEntry();
     }
 
     @Override
-    public void generateStatsUsers() {
-        statisticsGenerator.generateNewCustomerSatisfactionEntry();
+    public CustomerSatisfactionStatsEntry generateStatsUsers() {
+        return statisticsGenerator.generateNewCustomerSatisfactionEntry();
     }
 }

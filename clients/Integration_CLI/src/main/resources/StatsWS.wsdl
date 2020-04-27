@@ -17,7 +17,15 @@
     <xs:sequence/>
   </xs:complexType>
   <xs:complexType name="generateStatsDronesResponse">
-    <xs:sequence/>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="stats_entry" type="tns:droneStatsEntry"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="droneStatsEntry">
+    <xs:sequence>
+      <xs:element name="dronesUseRate" type="xs:float"/>
+      <xs:element minOccurs="0" name="entryTime" type="xs:string"/>
+    </xs:sequence>
   </xs:complexType>
   <xs:complexType name="getStatsUsers">
     <xs:sequence/>
@@ -39,12 +47,6 @@
   <xs:complexType name="getStatsDronesResponse">
     <xs:sequence>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="stats_drones" type="tns:droneStatsEntry"/>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="droneStatsEntry">
-    <xs:sequence>
-      <xs:element name="dronesUseRate" type="xs:float"/>
-      <xs:element minOccurs="0" name="entryTime" type="xs:string"/>
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="getStatsDronesFrom">
@@ -71,7 +73,9 @@
     <xs:sequence/>
   </xs:complexType>
   <xs:complexType name="generateStatsUsersResponse">
-    <xs:sequence/>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="stats_entry" type="tns:customerSatisfactionStatsEntry"/>
+    </xs:sequence>
   </xs:complexType>
   <xs:element name="DateTimeParseException" type="tns:DateTimeParseException"/>
   <xs:complexType name="DateTimeParseException">

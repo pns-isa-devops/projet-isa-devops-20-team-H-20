@@ -56,19 +56,19 @@ Feature: Testing the whole Drone Delivery system
     And the manutentionnaire adds a package with tracking number SUM41 and with weight 5.0 and with destination Wakanda and with Nozama as supplier
     And the service client tries to plan a delivery for package A7X date 2020-10-10 at 10:15
     But the delivery with package A7X has not been planned
-#
-#  Scenario: Set drone in flight to verify statistics
-#    When the garagiste adds the drone with id 1 and 10.0 kg capacity and 60.0 km/h speed
-#    And the garagiste edits the drone with id 1 and set the status to flight
-#    And the boss generates the statistics for drones
-#    Then the drone statistics entry as a use rate 1.0%
-#
-#  Scenario: Set one drone in flight to verify statistics
-#    When the garagiste adds the drone with id 1 and 10.0 kg capacity and 60.0 km/h speed
-#    And the garagiste adds the drone with id 2 and 10.0 kg capacity and 60.0 km/h speed
-#    And the garagiste edits the drone with id 1 and set the status to flight
-#    And the boss generates the statistics for drones
-#    Then the drone statistics entry as a use rate 0.50%
+
+  Scenario: Set drone in flight to verify statistics
+    When the garagiste adds the drone with id 1 and 10.0 kg capacity and 60.0 km/h speed
+    And the garagiste edits the drone with id 1 and set the status to flight
+    And the boss generates the statistics for drones
+    Then the drone statistics entry has a use rate 1.0
+
+  Scenario: Set one drone in flight to verify statistics
+    When the garagiste adds the drone with id 1 and 10.0 kg capacity and 60.0 km/h speed
+    And the garagiste adds the drone with id 2 and 10.0 kg capacity and 60.0 km/h speed
+    And the garagiste edits the drone with id 1 and set the status to flight
+    And the boss generates the statistics for drones
+    Then the drone statistics entry has a use rate 0.50
 #
 #    # good scenario
 #  Scenario: A client post a comment

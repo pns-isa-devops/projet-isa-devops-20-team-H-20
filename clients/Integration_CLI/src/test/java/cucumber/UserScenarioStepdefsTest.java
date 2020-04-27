@@ -4,6 +4,7 @@ import api.DronePublicAPI;
 import io.cucumber.java.After;
 import io.cucumber.java.en.*;
 import stubs.planning.*;
+import stubs.stats.DroneStatsEntry;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -20,6 +21,8 @@ public class UserScenarioStepdefsTest {
     private Set<String> planningEntriesToDelete = new HashSet<>();
 
     private Exception catchedException;
+
+    DroneStatsEntry dse;
 
     @Given("^some lists to remove things$")
     public void given(){
@@ -59,7 +62,22 @@ public class UserScenarioStepdefsTest {
         planningEntriesToDelete.add(packageId);
     }
 
-    @Then("^the delivery with package (.*) as (\\d+) as drone id$")
+    @And("^the garagiste edits the drone with id (\\d+) and set the status to (.*)")
+    public void setDroneStatus(int droneId, String status) throws Exception {
+        dronePublicAPI.getDroneFleetManagementWebService().editDroneStatus(droneId, status);
+    }
+
+    @And("^the boss generates the statistics for drones$")
+    public void generateDroneStats(){
+        dse = dronePublicAPI.getStatisticsWebService().generateStatsDrones();
+    }
+
+    @Then("^the drone statistics entry has a use rate (.*)$")
+    public void testDroneStatsValue(float value){
+        assertEquals(dse.getDronesUseRate(), value, 0.0);
+    }
+
+    @Then("^the delivery with package (.*) has (\\d+) as drone id$")
     public void testPlanDelivery(String packageId, int droneId) throws Exception {
         dronePublicAPI.getPlanningWebService().findDeliveryById(packageId);
         PlanningEntry planningEntry = dronePublicAPI.getPlanningWebService().findPlanningEntryById(packageId);
@@ -118,5 +136,6 @@ public class UserScenarioStepdefsTest {
             }
         }
         catchedException = null;
+        dse = null;
     }
 }
