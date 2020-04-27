@@ -97,3 +97,15 @@ services:
         condition: service_healthy
     stdin_open: true
     tty: true
+
+  dd_client_integration_cli:
+    image: livrair/dd-client-integration_cli
+    container_name: dd_client_integration_cli
+    command: "dd_system 8080"
+    volumes:
+      - .:/host
+    depends_on:
+      dd_system:
+        condition: service_healthy
+    stdin_open: true
+    tty: true

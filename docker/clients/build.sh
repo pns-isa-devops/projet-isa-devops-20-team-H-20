@@ -23,3 +23,7 @@ cd ..
 cd service_client
 ./build.sh
 cd ..
+
+cd integration_cli
+./build.sh
+cd ..
