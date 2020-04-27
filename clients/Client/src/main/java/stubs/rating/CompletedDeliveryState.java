@@ -1,5 +1,5 @@
 
-package stubs.ratings;
+package stubs.rating;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -7,16 +7,16 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Classe Java pour failedDeliveryState complex type.
+ * <p>Classe Java pour completedDeliveryState complex type.
  * 
  * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
- * &lt;complexType name="failedDeliveryState">
+ * &lt;complexType name="completedDeliveryState">
  *   &lt;complexContent>
  *     &lt;extension base="{http://www.polytech.unice.fr/si/4a/isa/dd/team-h/rating}deliveryState">
  *       &lt;sequence>
- *         &lt;element name="localDateTime" type="{http://www.polytech.unice.fr/si/4a/isa/dd/team-h/rating}localDateTime" minOccurs="0"/>
+ *         &lt;element name="shippedAt" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/extension>
  *   &lt;/complexContent>
@@ -26,37 +26,37 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "failedDeliveryState", propOrder = {
-    "localDateTime"
+@XmlType(name = "completedDeliveryState", propOrder = {
+    "shippedAt"
 })
-public class FailedDeliveryState
+public class CompletedDeliveryState
     extends DeliveryState
 {
 
-    protected LocalDateTime localDateTime;
+    protected String shippedAt;
 
     /**
-     * Obtient la valeur de la propriété localDateTime.
+     * Obtient la valeur de la propriété shippedAt.
      * 
      * @return
      *     possible object is
-     *     {@link LocalDateTime }
+     *     {@link String }
      *     
      */
-    public LocalDateTime getLocalDateTime() {
-        return localDateTime;
+    public String getShippedAt() {
+        return shippedAt;
     }
 
     /**
-     * Définit la valeur de la propriété localDateTime.
+     * Définit la valeur de la propriété shippedAt.
      * 
      * @param value
      *     allowed object is
-     *     {@link LocalDateTime }
+     *     {@link String }
      *     
      */
-    public void setLocalDateTime(LocalDateTime value) {
-        this.localDateTime = value;
+    public void setShippedAt(String value) {
+        this.shippedAt = value;
     }
 
 }

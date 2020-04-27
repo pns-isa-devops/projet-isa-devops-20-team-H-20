@@ -1,5 +1,6 @@
 import api.DronePublicAPI;
 import cli.commands.Bye;
+import cli.commands.GetAllComments;
 import cli.commands.PostComment;
 import cli.commands.RemoveComment;
 import cli.framework.Shell;
@@ -12,7 +13,8 @@ public class Main extends Shell<DronePublicAPI> {
         register(
                 Bye.class,
                 PostComment.class,
-                RemoveComment.class
+                RemoveComment.class,
+                GetAllComments.class
         );
     }
 

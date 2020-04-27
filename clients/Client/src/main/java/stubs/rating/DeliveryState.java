@@ -1,22 +1,23 @@
 
-package stubs.ratings;
+package stubs.rating;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Classe Java pour findCommentForPackage complex type.
+ * <p>Classe Java pour deliveryState complex type.
  * 
  * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
- * &lt;complexType name="findCommentForPackage">
+ * &lt;complexType name="deliveryState">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="packageId" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -26,35 +27,41 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "findCommentForPackage", propOrder = {
-    "packageId"
+@XmlType(name = "deliveryState", propOrder = {
+    "name"
 })
-public class FindCommentForPackage {
+@XmlSeeAlso({
+    NotSentDeliveryState.class,
+    CompletedDeliveryState.class,
+    InFlightDeliveryState.class,
+    FailedDeliveryState.class
+})
+public abstract class DeliveryState {
 
-    protected String packageId;
+    protected String name;
 
     /**
-     * Obtient la valeur de la propriété packageId.
+     * Obtient la valeur de la propriété name.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getPackageId() {
-        return packageId;
+    public String getName() {
+        return name;
     }
 
     /**
-     * Définit la valeur de la propriété packageId.
+     * Définit la valeur de la propriété name.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setPackageId(String value) {
-        this.packageId = value;
+    public void setName(String value) {
+        this.name = value;
     }
 
 }

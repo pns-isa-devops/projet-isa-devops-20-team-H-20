@@ -1,5 +1,5 @@
 
-package stubs.ratings;
+package stubs.rating;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -7,16 +7,16 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Classe Java pour completedDeliveryState complex type.
+ * <p>Classe Java pour inFlightDeliveryState complex type.
  * 
  * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
- * &lt;complexType name="completedDeliveryState">
+ * &lt;complexType name="inFlightDeliveryState">
  *   &lt;complexContent>
  *     &lt;extension base="{http://www.polytech.unice.fr/si/4a/isa/dd/team-h/rating}deliveryState">
  *       &lt;sequence>
- *         &lt;element name="shippedAt" type="{http://www.polytech.unice.fr/si/4a/isa/dd/team-h/rating}localDateTime" minOccurs="0"/>
+ *         &lt;element name="shippedAt" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/extension>
  *   &lt;/complexContent>
@@ -26,24 +26,24 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "completedDeliveryState", propOrder = {
+@XmlType(name = "inFlightDeliveryState", propOrder = {
     "shippedAt"
 })
-public class CompletedDeliveryState
+public class InFlightDeliveryState
     extends DeliveryState
 {
 
-    protected LocalDateTime shippedAt;
+    protected String shippedAt;
 
     /**
      * Obtient la valeur de la propriété shippedAt.
      * 
      * @return
      *     possible object is
-     *     {@link LocalDateTime }
+     *     {@link String }
      *     
      */
-    public LocalDateTime getShippedAt() {
+    public String getShippedAt() {
         return shippedAt;
     }
 
@@ -52,10 +52,10 @@ public class CompletedDeliveryState
      * 
      * @param value
      *     allowed object is
-     *     {@link LocalDateTime }
+     *     {@link String }
      *     
      */
-    public void setShippedAt(LocalDateTime value) {
+    public void setShippedAt(String value) {
         this.shippedAt = value;
     }
 

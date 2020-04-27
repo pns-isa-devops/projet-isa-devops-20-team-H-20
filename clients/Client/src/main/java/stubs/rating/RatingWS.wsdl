@@ -47,19 +47,16 @@
     <xs:complexContent>
       <xs:extension base="tns:deliveryState">
         <xs:sequence>
-          <xs:element minOccurs="0" name="shippedAt" type="tns:localDateTime"/>
+          <xs:element minOccurs="0" name="shippedAt" type="xs:string"/>
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
-  </xs:complexType>
-  <xs:complexType final="extension restriction" name="localDateTime">
-    <xs:sequence/>
   </xs:complexType>
   <xs:complexType name="failedDeliveryState">
     <xs:complexContent>
       <xs:extension base="tns:deliveryState">
         <xs:sequence>
-          <xs:element minOccurs="0" name="localDateTime" type="tns:localDateTime"/>
+          <xs:element minOccurs="0" name="localDateTime" type="xs:string"/>
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
@@ -68,7 +65,7 @@
     <xs:complexContent>
       <xs:extension base="tns:deliveryState">
         <xs:sequence>
-          <xs:element minOccurs="0" name="shippedAt" type="tns:localDateTime"/>
+          <xs:element minOccurs="0" name="shippedAt" type="xs:string"/>
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>

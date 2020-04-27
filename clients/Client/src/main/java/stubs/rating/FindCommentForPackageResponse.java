@@ -1,5 +1,5 @@
 
-package stubs.ratings;
+package stubs.rating;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -7,16 +7,16 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Classe Java pour findCommentForSupplier complex type.
+ * <p>Classe Java pour findCommentForPackageResponse complex type.
  * 
  * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
- * &lt;complexType name="findCommentForSupplier">
+ * &lt;complexType name="findCommentForPackageResponse">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="supplierName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="comment" type="{http://www.polytech.unice.fr/si/4a/isa/dd/team-h/rating}comment" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -26,35 +26,35 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "findCommentForSupplier", propOrder = {
-    "supplierName"
+@XmlType(name = "findCommentForPackageResponse", propOrder = {
+    "comment"
 })
-public class FindCommentForSupplier {
+public class FindCommentForPackageResponse {
 
-    protected String supplierName;
+    protected Comment comment;
 
     /**
-     * Obtient la valeur de la propriété supplierName.
+     * Obtient la valeur de la propriété comment.
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link Comment }
      *     
      */
-    public String getSupplierName() {
-        return supplierName;
+    public Comment getComment() {
+        return comment;
     }
 
     /**
-     * Définit la valeur de la propriété supplierName.
+     * Définit la valeur de la propriété comment.
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link Comment }
      *     
      */
-    public void setSupplierName(String value) {
-        this.supplierName = value;
+    public void setComment(Comment value) {
+        this.comment = value;
     }
 
 }

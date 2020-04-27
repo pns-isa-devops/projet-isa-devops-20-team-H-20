@@ -1,5 +1,5 @@
 
-package stubs.ratings;
+package stubs.rating;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -7,12 +7,12 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Classe Java pour UnknownCommentException complex type.
+ * <p>Classe Java pour UnknownDeliveryException complex type.
  * 
  * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
- * &lt;complexType name="UnknownCommentException">
+ * &lt;complexType name="UnknownDeliveryException">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
@@ -27,11 +27,11 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "UnknownCommentException", propOrder = {
+@XmlType(name = "UnknownDeliveryException", namespace = "http://www.polytech.unice.fr/si/4a/isa/dd/team-h/accounting", propOrder = {
     "id",
     "message"
 })
-public class UnknownCommentException {
+public class UnknownDeliveryException {
 
     protected String id;
     protected String message;

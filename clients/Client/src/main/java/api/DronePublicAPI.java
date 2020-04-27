@@ -1,7 +1,7 @@
 package api;
 
-import stubs.ratings.CommentPostingWebService;
-import stubs.ratings.CommentPostingWebServiceImplService;
+import stubs.rating.CommentPostingWebService;
+import stubs.rating.CommentPostingWebServiceImplService;
 
 import javax.xml.ws.BindingProvider;
 import java.net.URL;

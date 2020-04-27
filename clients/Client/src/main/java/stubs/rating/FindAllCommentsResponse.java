@@ -1,5 +1,5 @@
 
-package stubs.ratings;
+package stubs.rating;
 
 import java.util.ArrayList;
 import java.util.List;

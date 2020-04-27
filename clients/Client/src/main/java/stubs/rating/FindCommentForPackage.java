@@ -1,5 +1,5 @@
 
-package stubs.ratings;
+package stubs.rating;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -7,16 +7,16 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Classe Java pour deleteComment complex type.
+ * <p>Classe Java pour findCommentForPackage complex type.
  * 
  * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
- * &lt;complexType name="deleteComment">
+ * &lt;complexType name="findCommentForPackage">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="packageTrackingNumber" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="packageId" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -26,35 +26,35 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "deleteComment", propOrder = {
-    "packageTrackingNumber"
+@XmlType(name = "findCommentForPackage", propOrder = {
+    "packageId"
 })
-public class DeleteComment {
+public class FindCommentForPackage {
 
-    protected String packageTrackingNumber;
+    protected String packageId;
 
     /**
-     * Obtient la valeur de la propriété packageTrackingNumber.
+     * Obtient la valeur de la propriété packageId.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getPackageTrackingNumber() {
-        return packageTrackingNumber;
+    public String getPackageId() {
+        return packageId;
     }
 
     /**
-     * Définit la valeur de la propriété packageTrackingNumber.
+     * Définit la valeur de la propriété packageId.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setPackageTrackingNumber(String value) {
-        this.packageTrackingNumber = value;
+    public void setPackageId(String value) {
+        this.packageId = value;
     }
 
 }

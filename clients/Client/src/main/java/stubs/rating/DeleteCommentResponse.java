@@ -1,5 +1,5 @@
 
-package stubs.ratings;
+package stubs.rating;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -8,16 +8,16 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Classe Java pour createCommentResponse complex type.
+ * <p>Classe Java pour deleteCommentResponse complex type.
  * 
  * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
- * &lt;complexType name="createCommentResponse">
+ * &lt;complexType name="deleteCommentResponse">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="return" type="{http://www.polytech.unice.fr/si/4a/isa/dd/team-h/rating}comment" minOccurs="0"/>
+ *         &lt;element name="return" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -27,35 +27,27 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "createCommentResponse", propOrder = {
+@XmlType(name = "deleteCommentResponse", propOrder = {
     "_return"
 })
-public class CreateCommentResponse {
+public class DeleteCommentResponse {
 
     @XmlElement(name = "return")
-    protected Comment _return;
+    protected boolean _return;
 
     /**
      * Obtient la valeur de la propriété return.
      * 
-     * @return
-     *     possible object is
-     *     {@link Comment }
-     *     
      */
-    public Comment getReturn() {
+    public boolean isReturn() {
         return _return;
     }
 
     /**
      * Définit la valeur de la propriété return.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link Comment }
-     *     
      */
-    public void setReturn(Comment value) {
+    public void setReturn(boolean value) {
         this._return = value;
     }
 

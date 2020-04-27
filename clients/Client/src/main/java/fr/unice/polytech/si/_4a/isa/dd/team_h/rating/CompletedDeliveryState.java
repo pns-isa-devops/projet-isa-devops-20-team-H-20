@@ -16,7 +16,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent&gt;
  *     &lt;extension base="{http://www.polytech.unice.fr/si/4a/isa/dd/team-h/rating}deliveryState"&gt;
  *       &lt;sequence&gt;
- *         &lt;element name="shippedAt" type="{http://www.polytech.unice.fr/si/4a/isa/dd/team-h/rating}localDateTime" minOccurs="0"/&gt;
+ *         &lt;element name="shippedAt" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/extension&gt;
  *   &lt;/complexContent&gt;
@@ -33,17 +33,17 @@ public class CompletedDeliveryState
     extends DeliveryState
 {
 
-    protected LocalDateTime shippedAt;
+    protected String shippedAt;
 
     /**
      * Obtient la valeur de la propriété shippedAt.
      * 
      * @return
      *     possible object is
-     *     {@link LocalDateTime }
+     *     {@link String }
      *     
      */
-    public LocalDateTime getShippedAt() {
+    public String getShippedAt() {
         return shippedAt;
     }
 
@@ -52,10 +52,10 @@ public class CompletedDeliveryState
      * 
      * @param value
      *     allowed object is
-     *     {@link LocalDateTime }
+     *     {@link String }
      *     
      */
-    public void setShippedAt(LocalDateTime value) {
+    public void setShippedAt(String value) {
         this.shippedAt = value;
     }
 
