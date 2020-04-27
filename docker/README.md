@@ -26,7 +26,7 @@ The internal implementation of the DD system will relies on the following assump
 
 [See the Dockerfile](dd/Dockerfile)
 
-#### In case of problem with start-dd.sh on windows
+#### In case of problem with start-dd.sh on windows or when runing container problem with file not found exception 
 
 Open the file with intellij, and change the file content to LF instead CRLF (bottom right)
 
