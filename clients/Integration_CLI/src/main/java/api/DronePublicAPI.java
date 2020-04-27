@@ -41,7 +41,7 @@ public class DronePublicAPI {
     }
 
     private void initAccounting(String host, String port){
-        URL wsdlLocation = DronePublicAPI.class.getResource("/AccountingWebServiceImpl.wsdl");
+        URL wsdlLocation = DronePublicAPI.class.getResource("/AccountingWS.wsdl");
         AccountingWebServiceImplService factory = new AccountingWebServiceImplService(wsdlLocation);
         this.accountingWebService = factory.getAccountingWebServiceImplPort();
         String address = "http://" + host + ":" + port + "/drone-delivery-backend/webservices/AccountingWS";
@@ -49,7 +49,7 @@ public class DronePublicAPI {
     }
 
     private void initDroneFleet(String host, String port){
-        URL wsdlLocation = DronePublicAPI.class.getResource("/DroneFleetManagementWebServiceImpl.wsdl");
+        URL wsdlLocation = DronePublicAPI.class.getResource("/DroneWS.wsdl");
         DroneFleetManagementWebServiceImplService factory = new DroneFleetManagementWebServiceImplService(wsdlLocation);
         this.droneFleetManagementWebService = factory.getDroneFleetManagementWebServiceImplPort();
         String address = "http://" + host + ":" + port + "/drone-delivery-backend/webservices/DroneWS";
@@ -57,7 +57,7 @@ public class DronePublicAPI {
     }
 
     private void initPackageRegistration(String host, String port){
-        URL wsdlLocation = DronePublicAPI.class.getResource("/PackageRegistrationWebServiceImpl.wsdl");
+        URL wsdlLocation = DronePublicAPI.class.getResource("/PackageWS.wsdl");
         PackageRegistrationWebServiceImplService factory = new PackageRegistrationWebServiceImplService(wsdlLocation);
         this.packageRegistrationWebService = factory.getPackageRegistrationWebServiceImplPort();
         String address = "http://" + host + ":" + port + "/drone-delivery-backend/webservices/PackageWS";
@@ -65,7 +65,7 @@ public class DronePublicAPI {
     }
 
     private void initPlanning(String host, String port){
-        URL wsdlLocation = DronePublicAPI.class.getResource("/PlanningWebServiceImpl.wsdl");
+        URL wsdlLocation = DronePublicAPI.class.getResource("/PlanningWS.wsdl");
         PlanningWebServiceImplService factory = new PlanningWebServiceImplService(wsdlLocation);
         this.planningWebService = factory.getPlanningWebServiceImplPort();
         String address = "http://" + host + ":" + port + "/drone-delivery-backend/webservices/PlanningWS";
@@ -73,7 +73,7 @@ public class DronePublicAPI {
     }
 
     private void initStatistics(String host, String port){
-        URL wsdlLocation = DronePublicAPI.class.getResource("/StatsWebServiceImpl.wsdl");
+        URL wsdlLocation = DronePublicAPI.class.getResource("/StatsWS.wsdl");
         StatsWebServiceImplService factory = new StatsWebServiceImplService(wsdlLocation);
         this.statisticsWebService = factory.getStatsWebServiceImplPort();
         String address = "http://" + host + ":" + port + "/drone-delivery-backend/webservices/StatsWS";

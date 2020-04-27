@@ -14,7 +14,7 @@ public class DronePublicAPI {
     }
 
     private void initPlanning(String host, String port){
-        URL wsdlLocation = DronePublicAPI.class.getResource("/PlanningWebServiceImpl.wsdl");
+        URL wsdlLocation = DronePublicAPI.class.getResource("/PlanningWS.wsdl");
         PlanningWebServiceImplService factory = new PlanningWebServiceImplService(wsdlLocation);
         this.planningWebService = factory.getPlanningWebServiceImplPort();
         String address = "http://" + host + ":" + port + "/drone-delivery-backend/webservices/PlanningWS";

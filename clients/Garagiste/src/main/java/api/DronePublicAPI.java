@@ -14,7 +14,7 @@ public class DronePublicAPI {
     }
 
     private void initDroneFleet(String host, String port){
-        URL wsdlLocation = DronePublicAPI.class.getResource("/DroneFleetManagementWebServiceImpl.wsdl");
+        URL wsdlLocation = DronePublicAPI.class.getResource("/DroneWS.wsdl");
         DroneFleetManagementWebServiceImplService factory = new DroneFleetManagementWebServiceImplService(wsdlLocation);
         this.droneFleetManagementWebService = factory.getDroneFleetManagementWebServiceImplPort();
         String address = "http://" + host + ":" + port + "/drone-delivery-backend/webservices/DroneWS";

@@ -15,7 +15,7 @@ public class DronePublicAPI {
     }
 
     private void initStatistics(String host, String port){
-        URL wsdlLocation = DronePublicAPI.class.getResource("/StatsWebServiceImpl.wsdl");
+        URL wsdlLocation = DronePublicAPI.class.getResource("/StatsWS.wsdl");
         StatsWebServiceImplService factory = new StatsWebServiceImplService(wsdlLocation);
         this.statisticsWebService = factory.getStatsWebServiceImplPort();
         String address = "http://" + host + ":" + port + "/drone-delivery-backend/webservices/StatsWS";

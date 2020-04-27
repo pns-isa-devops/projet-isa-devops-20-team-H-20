@@ -14,7 +14,7 @@ public class DronePublicAPI {
     }
 
     private void initAccounting(String host, String port){
-        URL wsdlLocation = DronePublicAPI.class.getResource("/AccountingWebServiceImpl.wsdl");
+        URL wsdlLocation = DronePublicAPI.class.getResource("/AccountingWS.wsdl");
         AccountingWebServiceImplService factory = new AccountingWebServiceImplService(wsdlLocation);
         this.accountingWebService = factory.getAccountingWebServiceImplPort();
         String address = "http://" + host + ":" + port + "/drone-delivery-backend/webservices/AccountingWS";
