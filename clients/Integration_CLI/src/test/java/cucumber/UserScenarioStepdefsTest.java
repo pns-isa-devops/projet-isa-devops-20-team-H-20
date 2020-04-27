@@ -2,16 +2,14 @@ package cucumber;
 
 import api.DronePublicAPI;
 import io.cucumber.java.After;
-import io.cucumber.java.en.And;
-import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
-import stubs.planning.PlanningEntry;
+import io.cucumber.java.en.*;
+import stubs.planning.*;
 
 import java.util.HashSet;
 import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class UserScenarioStepdefsTest {
     private DronePublicAPI dronePublicAPI = new DronePublicAPI("localhost", "8080");
@@ -20,6 +18,8 @@ public class UserScenarioStepdefsTest {
     private Set<String> packagesToDelete = new HashSet<>();
     private Set<String> deliveriesToDelete = new HashSet<>();
     private Set<String> planningEntriesToDelete = new HashSet<>();
+
+    private Exception catchedException;
 
     @Given("^some lists to remove things$")
     public void given(){
@@ -50,16 +50,34 @@ public class UserScenarioStepdefsTest {
 
     @And("^the service client plan a delivery for package (.*) date (.*) at (.*)$")
     public void planDelivery(String packageId, String date, String time) throws Exception {
-        dronePublicAPI.getPlanningWebService().planDelivery(packageId, date, time);
+        try {
+            dronePublicAPI.getPlanningWebService().planDelivery(packageId, date, time);
+        }catch(NoReadyDroneException_Exception e){
+            catchedException = e;
+        }
         deliveriesToDelete.add(packageId);
         planningEntriesToDelete.add(packageId);
     }
 
     @Then("^the delivery with package (.*) as (\\d+) as drone id$")
-    public void testPlanDelivery(String packageId, int droneId) throws Exception{
+    public void testPlanDelivery(String packageId, int droneId) throws Exception {
         dronePublicAPI.getPlanningWebService().findDeliveryById(packageId);
         PlanningEntry planningEntry = dronePublicAPI.getPlanningWebService().findPlanningEntryById(packageId);
         assertEquals(droneId, planningEntry.getDrone().getId());
+    }
+
+    @But("^the delivery with package (.*) has not been planned because there was no ready drone$")
+    public void deliveryNotPlanned(String packageId) throws Exception {
+        assertTrue(catchedException instanceof NoReadyDroneException_Exception);
+
+        try {
+            Delivery d = dronePublicAPI.getPlanningWebService().findDeliveryById(packageId);
+            assertEquals(new NotSentDeliveryState().getName(), d.getState().getName());
+        }catch(UnknownDeliveryException e){
+            catchedException = e;
+        }
+
+        assertTrue(catchedException instanceof UnknownDeliveryException);
     }
 
     @After
@@ -99,5 +117,6 @@ public class UserScenarioStepdefsTest {
                 e.printStackTrace();
             }
         }
+        catchedException = null;
     }
 }
