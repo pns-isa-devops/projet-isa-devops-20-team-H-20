@@ -2,7 +2,7 @@ package cli.commands;
 
 import api.DronePublicAPI;
 import cli.framework.Command;
-import stubs.rating.Comment;
+import fr.unice.polytech.si._4a.isa.dd.team_h.rating.Comment;
 
 import java.util.List;
 
@@ -14,7 +14,7 @@ public class GetAllComments extends Command<DronePublicAPI> {
     }
 
     @Override
-    public void execute() throws Exception {
+    public void execute() {
         displayResult(shell.system.getRatingWebService().findAllComments());
     }
 

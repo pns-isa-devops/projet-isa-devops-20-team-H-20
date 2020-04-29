@@ -1,7 +1,7 @@
 package api;
 
-import stubs.rating.CommentPostingWebService;
-import stubs.rating.CommentPostingWebServiceImplService;
+import fr.unice.polytech.si._4a.isa.dd.team_h.rating.CommentPostingWebService;
+import fr.unice.polytech.si._4a.isa.dd.team_h.rating.CommentPostingWebServiceImplService;
 
 import javax.xml.ws.BindingProvider;
 import java.net.URL;
