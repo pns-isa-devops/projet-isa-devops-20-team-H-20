@@ -128,7 +128,7 @@ public class StatisticsBeanStepDefsTest extends AbstractStatisticsBeanTest {
             try {
                 deliveryPlanner.deletePlanningEntry(de.getaPackage().getTrackingNumber());
                 deliveryPlanner.deleteDelivery(de.getaPackage().getTrackingNumber());
-            } catch (UnknownDeliveryException e) {
+            } catch (UnknownDeliveryException | UnknownPlanningEntryException e) {
                 e.printStackTrace();
             }
         });

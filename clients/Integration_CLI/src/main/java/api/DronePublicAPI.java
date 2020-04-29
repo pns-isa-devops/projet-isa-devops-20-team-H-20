@@ -1,6 +1,8 @@
 package api;
 
 
+import fr.unice.polytech.si._4a.isa.dd.team_h.rating.CommentPostingWebService;
+import fr.unice.polytech.si._4a.isa.dd.team_h.rating.CommentPostingWebServiceImplService;
 import stubs.accounting.AccountingWebService;
 import stubs.accounting.AccountingWebServiceImplService;
 import stubs.drones.DroneFleetManagementWebService;
@@ -21,8 +23,11 @@ public class DronePublicAPI {
     private PackageRegistrationWebService packageRegistrationWebService;
     private PlanningWebService planningWebService;
     private StatsWebService statisticsWebService;
+    private CommentPostingWebService ratingWebService;
 
-
+    public CommentPostingWebService getRatingWebService(){
+        return ratingWebService;
+    }
     public AccountingWebService getAccountingWebService() {
         return accountingWebService;
     }
@@ -80,12 +85,21 @@ public class DronePublicAPI {
         ((BindingProvider) statisticsWebService).getRequestContext().put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY, address);
     }
 
+    private void initRating(String host, String port){
+        URL wsdlLocation = DronePublicAPI.class.getResource("/RatingWS.wsdl");
+        CommentPostingWebServiceImplService factory = new CommentPostingWebServiceImplService(wsdlLocation);
+        this.ratingWebService = factory.getCommentPostingWebServiceImplPort();
+        String address = "http://" + host + ":" + port + "/drone-delivery-backend/webservices/RatingWS";
+        ((BindingProvider) ratingWebService).getRequestContext().put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY, address);
+    }
+
     public DronePublicAPI(String host, String port) {
         initAccounting(host, port);
         initDroneFleet(host, port);
         initPackageRegistration(host, port);
         initPlanning(host, port);
         initStatistics(host, port);
+        initRating(host, port);
     }
 
 

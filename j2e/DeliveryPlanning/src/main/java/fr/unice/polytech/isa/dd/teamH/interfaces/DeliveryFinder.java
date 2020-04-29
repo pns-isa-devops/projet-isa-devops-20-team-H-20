@@ -18,6 +18,7 @@ public interface DeliveryFinder {
     Set<PlanningEntry> findCompletedDeliveriesSince(LocalDateTime time);
     Set<PlanningEntry> findCompletedDeliveriesSince(LocalDateTime time, Supplier s);
     Optional<PlanningEntry> findPlanningEntryByTrackingId(String trackingId);
+    Optional<PlanningEntry> findPlanningEntryByDroneId(int droneId);
     Set<PlanningEntry> findAllPlannedDeliveriesBeforeAfterNow();
     DeliveryState checkAndUpdateState(String name) throws UnknownDeliveryStateException;
 }

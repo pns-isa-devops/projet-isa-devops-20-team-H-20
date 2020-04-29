@@ -58,8 +58,13 @@ public class PlanningWebServiceImpl implements PlanningWebService {
     }
 
     @Override
-    public boolean deletePlanningEntry(String trackingNumber) throws UnknownDeliveryException {
+    public boolean deletePlanningEntry(String trackingNumber) throws UnknownPlanningEntryException {
         return deliveryPlanner.deletePlanningEntry(trackingNumber);
+    }
+
+    @Override
+    public boolean deletePlanningEntryByDroneId(int droneId) throws UnknownPlanningEntryException {
+        return deliveryPlanner.deletePlanningEntry(droneId);
     }
 
     @Override

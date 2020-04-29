@@ -1,5 +1,4 @@
 <project>
-
     <parent>
         <groupId>fr.polytech.team.h</groupId>
         <artifactId>drone-delivery-backend</artifactId>

@@ -75,6 +75,22 @@ public class DeliveryPlanningBean implements DeliveryFinder, DeliveryPlanner, Co
     }
 
     @Override
+    public Optional<PlanningEntry> findPlanningEntryByDroneId(int droneId){
+        CriteriaBuilder builder = manager.getCriteriaBuilder();
+        CriteriaQuery<PlanningEntry> criteria = builder.createQuery(PlanningEntry.class);
+        Root<PlanningEntry> root =  criteria.from(PlanningEntry.class);
+        criteria.select(root).where(builder.equal(root.get("drone").get("id"), droneId));
+        TypedQuery<PlanningEntry> query = manager.createQuery(criteria);
+        try {
+            Optional<PlanningEntry> res = Optional.of(query.getSingleResult());
+            log.log(Level.INFO, "Delivery fetched : " + res.get().toString());
+            return res;
+        } catch (NoResultException nre){
+            return Optional.empty();
+        }
+    }
+
+    @Override
     public Set<PlanningEntry> findAllPlannedDeliveriesBeforeAfterNow() {
         try {
             Set<PlanningEntry> result = new HashSet<>();
@@ -285,15 +301,28 @@ public class DeliveryPlanningBean implements DeliveryFinder, DeliveryPlanner, Co
     }
 
     @Override
-    public boolean deletePlanningEntry(String trackingNumber) throws UnknownDeliveryException{
+    public boolean deletePlanningEntry(String trackingNumber) throws UnknownPlanningEntryException{
         Optional<PlanningEntry> toDelete = findPlanningEntryByTrackingId(trackingNumber);
         if(!toDelete.isPresent()) {
-            throw new UnknownDeliveryException(trackingNumber);
+            throw new UnknownPlanningEntryException(trackingNumber);
         }
 
         PlanningEntry deleted = manager.merge(toDelete.get());
         manager.remove(deleted);
         log.log(Level.INFO, "Planning entry deleted : " + trackingNumber);
+        return true;
+    }
+
+    @Override
+    public boolean deletePlanningEntry(int droneId) throws UnknownPlanningEntryException{
+        Optional<PlanningEntry> toDelete = findPlanningEntryByDroneId(droneId);
+        if(!toDelete.isPresent()) {
+            throw new UnknownPlanningEntryException(Integer.toString(droneId));
+        }
+
+        PlanningEntry deleted = manager.merge(toDelete.get());
+        manager.remove(deleted);
+        log.log(Level.INFO, "Planning entry deleted with drone id : " + droneId);
         return true;
     }
 

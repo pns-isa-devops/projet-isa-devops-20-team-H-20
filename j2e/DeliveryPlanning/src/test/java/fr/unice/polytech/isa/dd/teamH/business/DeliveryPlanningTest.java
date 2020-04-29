@@ -46,8 +46,10 @@ public class DeliveryPlanningTest extends AbstractDeliveryPlanningTest {
     private Package p;
     private Package p2;
     private Package p3;
+    private Package p4;
     private Supplier supplier;
     private Supplier supplier1;
+    private Supplier supplier2;
 
     private void initMock() throws Exception {
         // Mocking the external partner
@@ -56,6 +58,7 @@ public class DeliveryPlanningTest extends AbstractDeliveryPlanningTest {
         when(mocked.getDistanceTo(eq(p.getDestination()))).thenReturn(0.5f);
         when(mocked.getDistanceTo(eq(p2.getDestination()))).thenReturn(0.2f);
         when(mocked.getDistanceTo(eq(p3.getDestination()))).thenReturn(0.3f);
+        when(mocked.getDistanceTo(eq(p4.getDestination()))).thenReturn(0.3f);
     }
 
     @Before
@@ -64,9 +67,11 @@ public class DeliveryPlanningTest extends AbstractDeliveryPlanningTest {
         droneFleetManagement.addDrone(2, 15, 20.5f);
         supplier = supplierRegistration.register("Nozama", "0649715578");
         supplier1 = supplierRegistration.register("Le posta", "0649715588");
+        supplier2 = supplierRegistration.register("Xedef", "0645715588");
         p = packageRegistration.register("1a", supplier, 5.5f, "Midgard");
         p2 = packageRegistration.register("2a", supplier, 7.5f, "Asgard");
         p3 = packageRegistration.register("3a", supplier1, 7.5f, "Jotunheim");
+        p4 = packageRegistration.register("4a", supplier2, 12.5f, "Jotunheim");
         initMock();
     }
 
@@ -77,6 +82,14 @@ public class DeliveryPlanningTest extends AbstractDeliveryPlanningTest {
 
         planner.planDelivery(p2, "2020-06-20", "16:30");
         assertTrue(finder.findDeliveryById(p2.getTrackingNumber()).isPresent());
+    }
+
+    @Test
+    public void deletePlaningEntry() throws Exception{
+        planner.planDelivery(p4, "2020-05-20", "14:30");
+        assertTrue(finder.findPlanningEntryByTrackingId(p4.getTrackingNumber()).isPresent());
+        planner.deletePlanningEntry(2);
+        assertFalse(finder.findPlanningEntryByTrackingId(p4.getTrackingNumber()).isPresent());
     }
 
     @Test

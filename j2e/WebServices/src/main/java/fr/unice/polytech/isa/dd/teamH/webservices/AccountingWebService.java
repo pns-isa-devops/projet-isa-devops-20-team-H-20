@@ -50,7 +50,7 @@ public interface AccountingWebService {
     Set<Invoice> findInvoicesForSupplier(@WebParam(name="supplier") String supplier) throws UnknownSupplierException;
 
     @WebMethod
-    void generateInvoiceFor(@WebParam(name="supplier") String supplier) throws UnknownSupplierException;
+    Invoice generateInvoiceFor(@WebParam(name="supplier") String supplier) throws UnknownSupplierException;
 
     @WebMethod
     void generateInvoicesForAllSuppliers();

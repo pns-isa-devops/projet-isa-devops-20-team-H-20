@@ -4,6 +4,8 @@
   <xs:element name="deleteDelivery" type="tns:deleteDelivery"/>
   <xs:element name="deleteDeliveryResponse" type="tns:deleteDeliveryResponse"/>
   <xs:element name="deletePlanningEntry" type="tns:deletePlanningEntry"/>
+  <xs:element name="deletePlanningEntryByDroneId" type="tns:deletePlanningEntryByDroneId"/>
+  <xs:element name="deletePlanningEntryByDroneIdResponse" type="tns:deletePlanningEntryByDroneIdResponse"/>
   <xs:element name="deletePlanningEntryResponse" type="tns:deletePlanningEntryResponse"/>
   <xs:element name="editDeliveryStatus" type="tns:editDeliveryStatus"/>
   <xs:element name="editDeliveryStatusResponse" type="tns:editDeliveryStatusResponse"/>
@@ -64,19 +66,16 @@
     <xs:complexContent>
       <xs:extension base="tns:deliveryState">
         <xs:sequence>
-          <xs:element minOccurs="0" name="shippedAt" type="tns:localDateTime"/>
+          <xs:element minOccurs="0" name="shippedAt" type="xs:string"/>
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
-  </xs:complexType>
-  <xs:complexType final="extension restriction" name="localDateTime">
-    <xs:sequence/>
   </xs:complexType>
   <xs:complexType name="failedDeliveryState">
     <xs:complexContent>
       <xs:extension base="tns:deliveryState">
         <xs:sequence>
-          <xs:element minOccurs="0" name="localDateTime" type="tns:localDateTime"/>
+          <xs:element minOccurs="0" name="localDateTime" type="xs:string"/>
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
@@ -85,7 +84,7 @@
     <xs:complexContent>
       <xs:extension base="tns:deliveryState">
         <xs:sequence>
-          <xs:element minOccurs="0" name="shippedAt" type="tns:localDateTime"/>
+          <xs:element minOccurs="0" name="shippedAt" type="xs:string"/>
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
@@ -215,6 +214,16 @@
       <xs:element name="return_code" type="xs:boolean"/>
     </xs:sequence>
   </xs:complexType>
+  <xs:complexType name="deletePlanningEntryByDroneId">
+    <xs:sequence>
+      <xs:element name="drone-id" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="deletePlanningEntryByDroneIdResponse">
+    <xs:sequence>
+      <xs:element name="return_code" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
   <xs:element name="DeliveryPastTimeException" type="tns:DeliveryPastTimeException"/>
   <xs:complexType name="DeliveryPastTimeException">
     <xs:sequence>
@@ -253,6 +262,13 @@
       <xsd:element minOccurs="0" name="message" type="xsd:string"/>
     </xsd:sequence>
   </xsd:complexType>
+  <xsd:element name="UnknownPlanningEntryException" type="tns:UnknownPlanningEntryException"/>
+  <xsd:complexType name="UnknownPlanningEntryException">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="id" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="message" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
 </xsd:schema>
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/plannings" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dd/team-h/plannings">
   <xsd:element name="UnknownDeliveryStateException" type="tns:UnknownDeliveryStateException"/>
@@ -282,24 +298,8 @@
     <wsdl:part element="tns:findDeliveryByIdResponse" name="parameters">
     </wsdl:part>
   </wsdl:message>
-  <wsdl:message name="CorruptedPlanningException">
-    <wsdl:part element="tns:CorruptedPlanningException" name="CorruptedPlanningException">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="findDeliveryById">
-    <wsdl:part element="tns:findDeliveryById" name="parameters">
-    </wsdl:part>
-  </wsdl:message>
   <wsdl:message name="startDelivery">
     <wsdl:part element="tns:startDelivery" name="parameters">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="UnknownDeliveryException">
-    <wsdl:part element="ns1:UnknownDeliveryException" name="UnknownDeliveryException">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="getCompleteDeliveryPlanning">
-    <wsdl:part element="tns:getCompleteDeliveryPlanning" name="parameters">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="planDeliveryResponse">
@@ -308,10 +308,6 @@
   </wsdl:message>
   <wsdl:message name="editDeliveryStatusResponse">
     <wsdl:part element="tns:editDeliveryStatusResponse" name="parameters">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="startDeliveryResponse">
-    <wsdl:part element="tns:startDeliveryResponse" name="parameters">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="getCompleteDeliveryPlanningResponse">
@@ -326,16 +322,48 @@
     <wsdl:part element="tns:UnknownPackageException" name="UnknownPackageException">
     </wsdl:part>
   </wsdl:message>
-  <wsdl:message name="DeliveryDistanceException">
-    <wsdl:part element="ns3:DeliveryDistanceException" name="DeliveryDistanceException">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="findPlanningEntryByIdResponse">
-    <wsdl:part element="tns:findPlanningEntryByIdResponse" name="parameters">
+  <wsdl:message name="deletePlanningEntryByDroneIdResponse">
+    <wsdl:part element="tns:deletePlanningEntryByDroneIdResponse" name="parameters">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="deleteDelivery">
     <wsdl:part element="tns:deleteDelivery" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="NoReadyDroneException">
+    <wsdl:part element="tns:NoReadyDroneException" name="NoReadyDroneException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="CorruptedPlanningException">
+    <wsdl:part element="tns:CorruptedPlanningException" name="CorruptedPlanningException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findDeliveryById">
+    <wsdl:part element="tns:findDeliveryById" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="UnknownDeliveryException">
+    <wsdl:part element="ns1:UnknownDeliveryException" name="UnknownDeliveryException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getCompleteDeliveryPlanning">
+    <wsdl:part element="tns:getCompleteDeliveryPlanning" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="startDeliveryResponse">
+    <wsdl:part element="tns:startDeliveryResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="DeliveryDistanceException">
+    <wsdl:part element="ns3:DeliveryDistanceException" name="DeliveryDistanceException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deletePlanningEntryByDroneId">
+    <wsdl:part element="tns:deletePlanningEntryByDroneId" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findPlanningEntryByIdResponse">
+    <wsdl:part element="tns:findPlanningEntryByIdResponse" name="parameters">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="findPlanningEntryById">
@@ -354,12 +382,12 @@
     <wsdl:part element="tns:planDelivery" name="parameters">
     </wsdl:part>
   </wsdl:message>
-  <wsdl:message name="NoReadyDroneException">
-    <wsdl:part element="tns:NoReadyDroneException" name="NoReadyDroneException">
-    </wsdl:part>
-  </wsdl:message>
   <wsdl:message name="deletePlanningEntry">
     <wsdl:part element="tns:deletePlanningEntry" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="UnknownPlanningEntryException">
+    <wsdl:part element="ns1:UnknownPlanningEntryException" name="UnknownPlanningEntryException">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="deletePlanningEntryResponse">
@@ -428,7 +456,7 @@
     </wsdl:input>
       <wsdl:output message="tns:deletePlanningEntryResponse" name="deletePlanningEntryResponse">
     </wsdl:output>
-      <wsdl:fault message="tns:UnknownDeliveryException" name="UnknownDeliveryException">
+      <wsdl:fault message="tns:UnknownPlanningEntryException" name="UnknownPlanningEntryException">
     </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="editDeliveryStatus">
@@ -439,6 +467,14 @@
       <wsdl:fault message="tns:UnknownDeliveryStateException" name="UnknownDeliveryStateException">
     </wsdl:fault>
       <wsdl:fault message="tns:UnknownDeliveryException" name="UnknownDeliveryException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="deletePlanningEntryByDroneId">
+      <wsdl:input message="tns:deletePlanningEntryByDroneId" name="deletePlanningEntryByDroneId">
+    </wsdl:input>
+      <wsdl:output message="tns:deletePlanningEntryByDroneIdResponse" name="deletePlanningEntryByDroneIdResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:UnknownPlanningEntryException" name="UnknownPlanningEntryException">
     </wsdl:fault>
     </wsdl:operation>
   </wsdl:portType>
@@ -536,8 +572,8 @@
       <wsdl:output name="deletePlanningEntryResponse">
         <soap:body use="literal"/>
       </wsdl:output>
-      <wsdl:fault name="UnknownDeliveryException">
-        <soap:fault name="UnknownDeliveryException" use="literal"/>
+      <wsdl:fault name="UnknownPlanningEntryException">
+        <soap:fault name="UnknownPlanningEntryException" use="literal"/>
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="editDeliveryStatus">
@@ -553,6 +589,18 @@
       </wsdl:fault>
       <wsdl:fault name="UnknownDeliveryException">
         <soap:fault name="UnknownDeliveryException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="deletePlanningEntryByDroneId">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="deletePlanningEntryByDroneId">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="deletePlanningEntryByDroneIdResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="UnknownPlanningEntryException">
+        <soap:fault name="UnknownPlanningEntryException" use="literal"/>
       </wsdl:fault>
     </wsdl:operation>
   </wsdl:binding>

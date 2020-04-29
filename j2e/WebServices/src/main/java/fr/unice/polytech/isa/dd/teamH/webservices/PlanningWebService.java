@@ -32,7 +32,11 @@ public interface PlanningWebService {
 
     @WebMethod
     @WebResult(name = "return_code")
-    boolean deletePlanningEntry(@WebParam(name="tracking-number") String trackingNumber) throws UnknownDeliveryException;
+    boolean deletePlanningEntry(@WebParam(name="tracking-number") String trackingNumber) throws UnknownPlanningEntryException;
+
+    @WebMethod
+    @WebResult(name = "return_code")
+    boolean deletePlanningEntryByDroneId(@WebParam(name="drone-id") int droneId) throws UnknownPlanningEntryException;
 
     @WebMethod
     @WebResult(name = "delivery")
