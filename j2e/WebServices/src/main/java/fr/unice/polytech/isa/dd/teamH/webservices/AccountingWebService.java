@@ -5,6 +5,7 @@ import fr.unice.polytech.isa.dd.teamH.entities.Supplier;
 import fr.unice.polytech.isa.dd.teamH.exceptions.AlreadyExistingContactException;
 import fr.unice.polytech.isa.dd.teamH.exceptions.AlreadyExistingSupplierException;
 import fr.unice.polytech.isa.dd.teamH.exceptions.UnknownSupplierException;
+import fr.unice.polytech.isa.dd.teamH.exceptions.UnkownInvoiceException;
 
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
@@ -51,6 +52,9 @@ public interface AccountingWebService {
 
     @WebMethod
     Invoice generateInvoiceFor(@WebParam(name="supplier") String supplier) throws UnknownSupplierException;
+
+    @WebMethod
+    void setInvoicePaid(@WebParam(name="invoice") int invoiceId) throws UnkownInvoiceException;
 
     @WebMethod
     void generateInvoicesForAllSuppliers();

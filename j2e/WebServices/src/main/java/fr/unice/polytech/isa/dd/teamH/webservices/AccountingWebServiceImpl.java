@@ -5,6 +5,7 @@ import fr.unice.polytech.isa.dd.teamH.entities.Supplier;
 import fr.unice.polytech.isa.dd.teamH.exceptions.AlreadyExistingContactException;
 import fr.unice.polytech.isa.dd.teamH.exceptions.AlreadyExistingSupplierException;
 import fr.unice.polytech.isa.dd.teamH.exceptions.UnknownSupplierException;
+import fr.unice.polytech.isa.dd.teamH.exceptions.UnkownInvoiceException;
 import fr.unice.polytech.isa.dd.teamH.interfaces.InvoiceFinder;
 import fr.unice.polytech.isa.dd.teamH.interfaces.InvoiceGeneration;
 import fr.unice.polytech.isa.dd.teamH.interfaces.SupplierFinder;
@@ -86,7 +87,14 @@ public class AccountingWebServiceImpl implements AccountingWebService{
     }
 
     @Override
+    public void setInvoicePaid(int invoiceId) throws UnkownInvoiceException {
+        invoiceGeneration.setInvoicePaid(invoiceId);
+    }
+
+    @Override
     public void generateInvoicesForAllSuppliers() {
         invoiceGeneration.generateInvoicesForAllSuppliers();
     }
+
+
 }

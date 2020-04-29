@@ -1,13 +1,16 @@
 package cucumber;
 
 import api.DronePublicAPI;
+import fr.unice.polytech.si._4a.isa.dd.team_h.rating.Comment;
 import io.cucumber.java.After;
 import io.cucumber.java.en.*;
 import stubs.accounting.Invoice;
 import stubs.planning.*;
 import stubs.stats.DroneStatsEntry;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import static org.junit.Assert.*;
@@ -20,7 +23,7 @@ public class UserScenarioStepdefsTest {
     private Set<String> deliveriesToDelete = new HashSet<>();
     private Set<Integer> planningEntriesWithDroneToDelete = new HashSet<>();
     private Set<String> commentToDelete = new HashSet<>();
-    private int invoiceId;
+    private HashMap<String, Integer> invoicesSupplier = new HashMap<>();
     private Exception catchedException;
 
     DroneStatsEntry dse;
@@ -33,6 +36,7 @@ public class UserScenarioStepdefsTest {
         deliveriesToDelete = new HashSet<>();
         planningEntriesWithDroneToDelete = new HashSet<>();
         commentToDelete = new HashSet<>();
+        invoicesSupplier = new HashMap<>();
     }
 
     @When("^the garagiste adds the drone with id (\\d+) and (.*) kg capacity and (.*) km/h speed$")
@@ -107,16 +111,39 @@ public class UserScenarioStepdefsTest {
         commentToDelete.add(packageId);
     }
 
+    @Then("^there is a comment for the package (.*) with rate (\\d+) and comment \"(.*)\"$")
+    public void checkAddComment(String packageId, int rate, String comment) throws Exception{
+        Comment commentObject = dronePublicAPI.getRatingWebService().findCommentForPackage(packageId);
+        assertEquals(rate, commentObject.getRating());
+        assertEquals(comment, commentObject.getContent());
+    }
+
+    @And("^the rating statistics entry have (\\d+) as average$")
+    public void checkRatingStatistics(int rating){
+        assertEquals(rating, dronePublicAPI.getStatisticsWebService().getAverageCustomerSatisfaction(), 0.01);
+    }
+
     @And("^the boss generates the statistics for ratings$")
     public void generateStatsRating(){
         dronePublicAPI.getStatisticsWebService().generateStatsUsers();
     }
 
-//    @And("^the gestionnaire generates the invoice for (.*)$")
-//    public void generateInvoice(String supplier) throws Exception{
-//        Invoice invoice = dronePublicAPI.getAccountingWebService().generateInvoiceFor(supplier);
-//        invoiceId = invoice.getId();
-//    }
+    @And("^the gestionnaire generates the invoice for (.*)$")
+    public void generateInvoice(String supplier) throws Exception{
+        Invoice invoice = dronePublicAPI.getAccountingWebService().generateInvoiceFor(supplier);
+        invoicesSupplier.put(supplier, invoice.getId());
+    }
+
+    @And("^the supplier (.*) pay the invoice$")
+    public void payInvoice(String supplier) throws Exception {
+        dronePublicAPI.getAccountingWebService().setInvoicePaid(invoicesSupplier.get(supplier));
+    }
+
+    @And("^the invoice for (.*) is about (\\d+)€$")
+    public void checkGenerateInvoice(String supplier, int price) throws Exception{
+        List<Invoice> invoices = dronePublicAPI.getAccountingWebService().findInvoicesForSupplier(supplier);
+        assertEquals(price, invoices.stream().findFirst().get().getAmount(), 0.01);
+    }
 
     @After
     public void delete(){
@@ -150,6 +177,7 @@ public class UserScenarioStepdefsTest {
         }
         for(String entity : suppliersToDelete) {
             try {
+                dronePublicAPI.getAccountingWebService().deleteInvoicesForSupplier(entity);
                 dronePublicAPI.getAccountingWebService().deleteSupplier(entity);
             }catch (Exception e){
                 e.printStackTrace();

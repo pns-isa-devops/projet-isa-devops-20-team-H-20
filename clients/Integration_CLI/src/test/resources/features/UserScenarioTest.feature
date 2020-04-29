@@ -89,13 +89,13 @@ Feature: Testing the whole Drone Delivery system
     And the client adds a comment for the delivery 5FDP with rate 8 and comment ""
     And the client adds a comment for the delivery A7X with rate 2 and comment ""
     And the boss generates the statistics for ratings
-#    And the gestionnaire generates the invoice for Nozama
-#    And the gestionnaire generates the invoice for LePosta
-#    And the supplier Nozama pay the invoice
-#    Then there is a comment for the package SUM41 with rate 5 and comment "Not enough quality"
-#    And there is a comment for the package 5FDP with rate 8 and comment ""
-#    And there is a comment for the package A7X with rate 2 and comment ""
-#    And the rating statistics entry as 5 as average
-#    And the invoice for Nozama is about 3€
-#    And the invoice for LePosta is about 0€
-#
+    And the gestionnaire generates the invoice for Nozama
+    And the gestionnaire generates the invoice for LePosta
+    And the supplier Nozama pay the invoice
+    Then there is a comment for the package SUM41 with rate 5 and comment "Not enough quality"
+    And there is a comment for the package 5FDP with rate 8 and comment ""
+    And there is a comment for the package A7X with rate 2 and comment ""
+    And the rating statistics entry have 5 as average
+    And the invoice for Nozama is about 3€
+    And the invoice for LePosta is about 0€
+

@@ -15,6 +15,14 @@ public interface StatsWebService {
 
     @WebMethod
     @WebResult(name = "stats_users")
+    float getAverageCustomerSatisfaction();
+
+    @WebMethod
+    @WebResult(name = "stats_users")
+    float getAverageDroneUseRate();
+
+    @WebMethod
+    @WebResult(name = "stats_users")
     Set<CustomerSatisfactionStatsEntry> getStatsUsers();
 
     @WebMethod

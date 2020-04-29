@@ -19,6 +19,16 @@ public class StatsWebServiceImpl implements StatsWebService {
     private StatisticsGenerator statisticsGenerator;
 
     @Override
+    public float getAverageCustomerSatisfaction() {
+        return statisticsGenerator.getAverageCustomerSatisfaction();
+    }
+
+    @Override
+    public float getAverageDroneUseRate() {
+        return statisticsGenerator.getAverageDroneUseRate();
+    }
+
+    @Override
     public Set<CustomerSatisfactionStatsEntry> getStatsUsers() {
         return statisticsGenerator.getCustomerStatsEntries();
     }

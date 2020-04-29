@@ -21,6 +21,8 @@
   <xs:element name="generateInvoicesForAllSuppliersResponse" type="tns:generateInvoicesForAllSuppliersResponse"/>
   <xs:element name="registerSupplier" type="tns:registerSupplier"/>
   <xs:element name="registerSupplierResponse" type="tns:registerSupplierResponse"/>
+  <xs:element name="setInvoicePaid" type="tns:setInvoicePaid"/>
+  <xs:element name="setInvoicePaidResponse" type="tns:setInvoicePaidResponse"/>
   <xs:complexType name="findInvoicesForSupplier">
     <xs:sequence>
       <xs:element minOccurs="0" name="supplier" type="xs:string"/>
@@ -81,6 +83,14 @@
       <xs:element minOccurs="0" name="supplier" type="tns:supplier"/>
     </xs:sequence>
   </xs:complexType>
+  <xs:complexType name="setInvoicePaid">
+    <xs:sequence>
+      <xs:element name="invoice" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="setInvoicePaidResponse">
+    <xs:sequence/>
+  </xs:complexType>
   <xs:complexType name="generateInvoiceFor">
     <xs:sequence>
       <xs:element minOccurs="0" name="supplier" type="xs:string"/>
@@ -131,6 +141,13 @@
       <xs:element name="return_code" type="xs:boolean"/>
     </xs:sequence>
   </xs:complexType>
+  <xs:element name="UnkownInvoiceException" type="tns:UnkownInvoiceException"/>
+  <xs:complexType name="UnkownInvoiceException">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="id" type="xs:string"/>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
   <xs:element name="AlreadyExistingSupplierException" type="tns:AlreadyExistingSupplierException"/>
   <xs:complexType name="AlreadyExistingSupplierException">
     <xs:sequence>
@@ -159,10 +176,6 @@
   </xsd:complexType>
 </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="findAllSuppliersResponse">
-    <wsdl:part element="tns:findAllSuppliersResponse" name="parameters">
-    </wsdl:part>
-  </wsdl:message>
   <wsdl:message name="generateInvoiceForResponse">
     <wsdl:part element="tns:generateInvoiceForResponse" name="parameters">
     </wsdl:part>
@@ -171,8 +184,56 @@
     <wsdl:part element="tns:deleteInvoicesForSupplier" name="parameters">
     </wsdl:part>
   </wsdl:message>
+  <wsdl:message name="AlreadyExistingContactException">
+    <wsdl:part element="ns2:AlreadyExistingContactException" name="AlreadyExistingContactException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setInvoicePaidResponse">
+    <wsdl:part element="tns:setInvoicePaidResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="generateInvoicesForAllSuppliers">
+    <wsdl:part element="tns:generateInvoicesForAllSuppliers" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteInvoicesForSupplierResponse">
+    <wsdl:part element="tns:deleteInvoicesForSupplierResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findAllSuppliers">
+    <wsdl:part element="tns:findAllSuppliers" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="generateInvoiceFor">
+    <wsdl:part element="tns:generateInvoiceFor" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findSupplierByNameResponse">
+    <wsdl:part element="tns:findSupplierByNameResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addSupplierContact">
+    <wsdl:part element="tns:addSupplierContact" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="registerSupplierResponse">
+    <wsdl:part element="tns:registerSupplierResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteSupplier">
+    <wsdl:part element="tns:deleteSupplier" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findAllSuppliersResponse">
+    <wsdl:part element="tns:findAllSuppliersResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
   <wsdl:message name="findInvoicesForSupplierResponse">
     <wsdl:part element="tns:findInvoicesForSupplierResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="UnkownInvoiceException">
+    <wsdl:part element="tns:UnkownInvoiceException" name="UnkownInvoiceException">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="generateInvoicesForAllSuppliersResponse">
@@ -181,10 +242,6 @@
   </wsdl:message>
   <wsdl:message name="findSupplierByName">
     <wsdl:part element="tns:findSupplierByName" name="parameters">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="AlreadyExistingContactException">
-    <wsdl:part element="ns2:AlreadyExistingContactException" name="AlreadyExistingContactException">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="deleteSupplierResponse">
@@ -203,52 +260,24 @@
     <wsdl:part element="tns:findInvoicesForSupplier" name="parameters">
     </wsdl:part>
   </wsdl:message>
-  <wsdl:message name="generateInvoicesForAllSuppliers">
-    <wsdl:part element="tns:generateInvoicesForAllSuppliers" name="parameters">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="deleteInvoicesForSupplierResponse">
-    <wsdl:part element="tns:deleteInvoicesForSupplierResponse" name="parameters">
-    </wsdl:part>
-  </wsdl:message>
   <wsdl:message name="UnknownSupplierException">
     <wsdl:part element="ns1:UnknownSupplierException" name="UnknownSupplierException">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="findAllSuppliers">
-    <wsdl:part element="tns:findAllSuppliers" name="parameters">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="addSupplierContactResponse">
     <wsdl:part element="tns:addSupplierContactResponse" name="parameters">
     </wsdl:part>
   </wsdl:message>
+  <wsdl:message name="setInvoicePaid">
+    <wsdl:part element="tns:setInvoicePaid" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
   <wsdl:message name="AlreadyExistingSupplierException">
     <wsdl:part element="tns:AlreadyExistingSupplierException" name="AlreadyExistingSupplierException">
     </wsdl:part>
   </wsdl:message>
-  <wsdl:message name="generateInvoiceFor">
-    <wsdl:part element="tns:generateInvoiceFor" name="parameters">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="findSupplierByNameResponse">
-    <wsdl:part element="tns:findSupplierByNameResponse" name="parameters">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="addSupplierContact">
-    <wsdl:part element="tns:addSupplierContact" name="parameters">
-    </wsdl:part>
-  </wsdl:message>
   <wsdl:message name="findAllUnpaidInvoices">
     <wsdl:part element="tns:findAllUnpaidInvoices" name="parameters">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="registerSupplierResponse">
-    <wsdl:part element="tns:registerSupplierResponse" name="parameters">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="deleteSupplier">
-    <wsdl:part element="tns:deleteSupplier" name="parameters">
     </wsdl:part>
   </wsdl:message>
   <wsdl:portType name="AccountingWebService">
@@ -286,6 +315,14 @@
       <wsdl:output message="tns:findSupplierByNameResponse" name="findSupplierByNameResponse">
     </wsdl:output>
       <wsdl:fault message="tns:UnknownSupplierException" name="UnknownSupplierException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setInvoicePaid">
+      <wsdl:input message="tns:setInvoicePaid" name="setInvoicePaid">
+    </wsdl:input>
+      <wsdl:output message="tns:setInvoicePaidResponse" name="setInvoicePaidResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:UnkownInvoiceException" name="UnkownInvoiceException">
     </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="generateInvoiceFor">
@@ -383,6 +420,18 @@
       </wsdl:output>
       <wsdl:fault name="UnknownSupplierException">
         <soap:fault name="UnknownSupplierException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setInvoicePaid">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="setInvoicePaid">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="setInvoicePaidResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="UnkownInvoiceException">
+        <soap:fault name="UnkownInvoiceException" use="literal"/>
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="generateInvoiceFor">

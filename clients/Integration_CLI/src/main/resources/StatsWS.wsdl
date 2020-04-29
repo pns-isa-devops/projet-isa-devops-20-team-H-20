@@ -5,6 +5,10 @@
   <xs:element name="generateStatsDronesResponse" type="tns:generateStatsDronesResponse"/>
   <xs:element name="generateStatsUsers" type="tns:generateStatsUsers"/>
   <xs:element name="generateStatsUsersResponse" type="tns:generateStatsUsersResponse"/>
+  <xs:element name="getAverageCustomerSatisfaction" type="tns:getAverageCustomerSatisfaction"/>
+  <xs:element name="getAverageCustomerSatisfactionResponse" type="tns:getAverageCustomerSatisfactionResponse"/>
+  <xs:element name="getAverageDroneUseRate" type="tns:getAverageDroneUseRate"/>
+  <xs:element name="getAverageDroneUseRateResponse" type="tns:getAverageDroneUseRateResponse"/>
   <xs:element name="getStatsDrones" type="tns:getStatsDrones"/>
   <xs:element name="getStatsDronesFrom" type="tns:getStatsDronesFrom"/>
   <xs:element name="getStatsDronesFromResponse" type="tns:getStatsDronesFromResponse"/>
@@ -13,6 +17,14 @@
   <xs:element name="getStatsUsersFrom" type="tns:getStatsUsersFrom"/>
   <xs:element name="getStatsUsersFromResponse" type="tns:getStatsUsersFromResponse"/>
   <xs:element name="getStatsUsersResponse" type="tns:getStatsUsersResponse"/>
+  <xs:complexType name="getAverageDroneUseRate">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:complexType name="getAverageDroneUseRateResponse">
+    <xs:sequence>
+      <xs:element name="stats_users" type="xs:float"/>
+    </xs:sequence>
+  </xs:complexType>
   <xs:complexType name="generateStatsDrones">
     <xs:sequence/>
   </xs:complexType>
@@ -47,6 +59,14 @@
   <xs:complexType name="getStatsDronesResponse">
     <xs:sequence>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="stats_drones" type="tns:droneStatsEntry"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getAverageCustomerSatisfaction">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:complexType name="getAverageCustomerSatisfactionResponse">
+    <xs:sequence>
+      <xs:element name="stats_users" type="xs:float"/>
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="getStatsDronesFrom">
@@ -91,8 +111,16 @@
     <wsdl:part element="tns:generateStatsDrones" name="parameters">
     </wsdl:part>
   </wsdl:message>
+  <wsdl:message name="getAverageCustomerSatisfactionResponse">
+    <wsdl:part element="tns:getAverageCustomerSatisfactionResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
   <wsdl:message name="getStatsDrones">
     <wsdl:part element="tns:getStatsDrones" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAverageCustomerSatisfaction">
+    <wsdl:part element="tns:getAverageCustomerSatisfaction" name="parameters">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="getStatsDronesFrom">
@@ -101,6 +129,10 @@
   </wsdl:message>
   <wsdl:message name="getStatsUsersFromResponse">
     <wsdl:part element="tns:getStatsUsersFromResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAverageDroneUseRate">
+    <wsdl:part element="tns:getAverageDroneUseRate" name="parameters">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="generateStatsDronesResponse">
@@ -123,6 +155,10 @@
     <wsdl:part element="tns:getStatsDronesResponse" name="parameters">
     </wsdl:part>
   </wsdl:message>
+  <wsdl:message name="getAverageDroneUseRateResponse">
+    <wsdl:part element="tns:getAverageDroneUseRateResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
   <wsdl:message name="getStatsUsersFrom">
     <wsdl:part element="tns:getStatsUsersFrom" name="parameters">
     </wsdl:part>
@@ -140,6 +176,12 @@
     </wsdl:part>
   </wsdl:message>
   <wsdl:portType name="StatsWebService">
+    <wsdl:operation name="getAverageDroneUseRate">
+      <wsdl:input message="tns:getAverageDroneUseRate" name="getAverageDroneUseRate">
+    </wsdl:input>
+      <wsdl:output message="tns:getAverageDroneUseRateResponse" name="getAverageDroneUseRateResponse">
+    </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="generateStatsDrones">
       <wsdl:input message="tns:generateStatsDrones" name="generateStatsDrones">
     </wsdl:input>
@@ -156,6 +198,12 @@
       <wsdl:input message="tns:getStatsDrones" name="getStatsDrones">
     </wsdl:input>
       <wsdl:output message="tns:getStatsDronesResponse" name="getStatsDronesResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAverageCustomerSatisfaction">
+      <wsdl:input message="tns:getAverageCustomerSatisfaction" name="getAverageCustomerSatisfaction">
+    </wsdl:input>
+      <wsdl:output message="tns:getAverageCustomerSatisfactionResponse" name="getAverageCustomerSatisfactionResponse">
     </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="getStatsDronesFrom">
@@ -183,6 +231,15 @@
   </wsdl:portType>
   <wsdl:binding name="StatsWebServiceImplServiceSoapBinding" type="tns:StatsWebService">
     <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getAverageDroneUseRate">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getAverageDroneUseRate">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getAverageDroneUseRateResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="generateStatsDrones">
       <soap:operation soapAction="" style="document"/>
       <wsdl:input name="generateStatsDrones">
@@ -207,6 +264,15 @@
         <soap:body use="literal"/>
       </wsdl:input>
       <wsdl:output name="getStatsDronesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAverageCustomerSatisfaction">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getAverageCustomerSatisfaction">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getAverageCustomerSatisfactionResponse">
         <soap:body use="literal"/>
       </wsdl:output>
     </wsdl:operation>
