@@ -26,6 +26,8 @@ The internal implementation of the DD system will relies on the following assump
 
 [See the Dockerfile](dd/Dockerfile)
 
+Be sure to close mvn tomee:run and the mapping server
+
 #### In case of problem with start-dd.sh on windows or when runing container problem with file not found exception 
 
 Open the file with intellij, and change the file content to LF instead CRLF (bottom right)
@@ -38,7 +40,7 @@ This image relies on an OpenJDK implementation (Java 8), and executes the JAR cl
 
 See the Dockerfiles in every client directories
 
-To build the docker launch the following command `./build.sh` in the clients directory. It will launch the build in every clients.
+To build the docker launch the following command `./build.sh` in the clients directory. It will launch the build in every clients. You need to launch before the backend part and the external service to build the integration client.
 
 ## Composing the final system
 
