@@ -1,6 +1,6 @@
 #!/bin/bash
 
-clientName='integration__tests_cli'
+clientName='integration_tests_cli'
 
 #Preparing environment
 cd "../../../clients/$clientName"
