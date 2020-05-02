@@ -1,29 +1,29 @@
 #!/bin/bash
 
-cd boss
+cd boss_cli
 ./build.sh
 cd ..
 
-cd chargeur
+cd chargeur_cli
 ./build.sh
 cd ..
 
-cd garagiste
+cd garagiste_cli
 ./build.sh
 cd ..
 
-cd gestionnaire
+cd gestionnaire_cli
 ./build.sh
 cd ..
 
-cd manutentionnaire
+cd manutentionnaire_cli
 ./build.sh
 cd ..
 
-cd service_client
+cd service_client_cli
 ./build.sh
 cd ..
 
-cd integration_cli
+cd integration_tests_cli
 ./build.sh
 cd ..

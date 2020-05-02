@@ -26,8 +26,8 @@ services:
       - "9090:9090"
 
   # A simple java CLI
-  dd_client_boss:
-    image: livrair/dd-client-boss
+  dd_client_boss_cli:
+    image: livrair/dd-client-boss_cli
     container_name: dd_client_boss
     command: "dd_system 8080"
     volumes:
@@ -38,9 +38,9 @@ services:
     stdin_open: true
     tty: true
 
-  dd_client_chargeur:
-    image: livrair/dd-client-chargeur
-    container_name: dd_client_chargeur
+  dd_client_chargeur_cli:
+    image: livrair/dd-client-chargeur_cli
+    container_name: dd_client_chargeur_cli
     command: "dd_system 8080"
     volumes:
       - .:/host
@@ -50,9 +50,9 @@ services:
     stdin_open: true
     tty: true
 
-  dd_client_garagiste:
-    image: livrair/dd-client-garagiste
-    container_name: dd_client_garagiste
+  dd_client_garagiste_cli:
+    image: livrair/dd-client-garagiste_cli
+    container_name: dd_client_garagiste_cli
     command: "dd_system 8080"
     volumes:
       - .:/host
@@ -62,9 +62,9 @@ services:
     stdin_open: true
     tty: true
 
-  dd_client_gestionnaire:
-    image: livrair/dd-client-gestionnaire
-    container_name: dd_client_gestionnaire
+  dd_client_gestionnaire_cli:
+    image: livrair/dd-client-gestionnaire_cli
+    container_name: dd_client_gestionnaire_cli
     command: "dd_system 8080"
     volumes:
       - .:/host
@@ -74,9 +74,9 @@ services:
     stdin_open: true
     tty: true
 
-  dd_client_manutentionnaire:
-    image: livrair/dd-client-manutentionnaire
-    container_name: dd_client_manutentionnaire
+  dd_client_manutentionnaire_cli:
+    image: livrair/dd-client-manutentionnaire_cli
+    container_name: dd_client_manutentionnaire_cli
     command: "dd_system 8080"
     volumes:
       - .:/host
@@ -86,9 +86,9 @@ services:
     stdin_open: true
     tty: true
 
-  dd_client_service_client:
-    image: livrair/dd-client-service_client
-    container_name: dd_client_service_client
+  dd_client_service_client_cli:
+    image: livrair/dd-client-service_client_cli
+    container_name: dd_client_service_client_cli
     command: "dd_system 8080"
     volumes:
       - .:/host
@@ -98,9 +98,9 @@ services:
     stdin_open: true
     tty: true
 
-  dd_client_integration_cli:
-    image: livrair/dd-client-integration_cli
-    container_name: dd_client_integration_cli
+  dd_client_integration_tests_cli:
+    image: livrair/dd-client-integration_tests_cli
+    container_name: dd_client_integration_tests_cli
     command: "dd_system 8080"
     volumes:
       - .:/host
