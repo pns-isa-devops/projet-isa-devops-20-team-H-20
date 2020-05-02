@@ -28,7 +28,7 @@ services:
   # A simple java CLI
   dd_client_boss_cli:
     image: livrair/dd-client-boss_cli
-    container_name: dd_client_boss
+    container_name: dd_client_boss_cli
     command: "dd_system 8080"
     volumes:
       - .:/host

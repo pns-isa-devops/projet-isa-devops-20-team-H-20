@@ -51,16 +51,20 @@ To perform operations related to the artifactory by using `mvn` command. i.e:
 To install Jenkins you need docker. Run the following commands :
 
 - `docker pull jenkins/jenkins`
-- `docker run --name my-jenkins -p 8080:8080 -p 50000:50000 jenkins/jenkins`
+- `docker run -v jenkins:/var/jenkins_home/ --name my-tomee-jenkins -p 8083:8080 -p 50000:50000 jenkins/jenkins`
 
-- Then go to localhost:8080 (or ip if under docker toolbox). 
+- Then go to localhost:8083 (or ip if under docker toolbox). 
 - Enter the password given in the comand prompt. 
+- Install default plugins
+- Crate user, example :
+  - Damien
+  - password
 - Go to Jenkins main page > Administrer Jenkins > Configuration globale des outils
   - Under Maven click "Ajouter Maven", maven 3.6.3 in name and install from Apache
   - Save
 - If repository is private :
   - Return to the command prompt
-  - `docker exec -it my-jenkins /bin/bash`
+  - `docker exec -it my-tomee-jenkins /bin/bash`
   - `ssh-keygen -t rsa -C "your_email@example.com"` then enter then enter then enter
   - `cat /var/jenkins_home/.ssh/id_rsa.pub`
   - copy the key
@@ -106,7 +110,9 @@ Expose artifactory
 
 `./ngrok http 8082`
 
-- Get to Jenkins > Configuration 
+- Get to Jenkins > Plugins
+- Install artifactory
+- Get to Administrer jenkins -> configuration 
 - Under Artifactory click "Add Artifactory Server"
 - set the id and the url like `http://dockerIpBecauseLocalhostNotWorks:8082/artifactory`
 - set the credentials then test and if ok save
