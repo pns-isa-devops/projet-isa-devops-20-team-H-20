@@ -48,14 +48,16 @@ To perform operations related to the artifactory by using `mvn` command. i.e:
 
 ### Jenkins installation
 
-To install Jenkins you need docker. Run the following commands :
+To install Jenkins you need docker. Then run the following command
 
 - `docker pull jenkins/jenkins`
-- `docker run -v jenkins:/var/jenkins_home/ --name my-tomee-jenkins -p 8083:8080 -p 50000:50000 jenkins/jenkins`
+
+Then go to the docker/jenkins folder an launch the build.sh then the run.sh
 
 - Then go to localhost:8083 (or ip if under docker toolbox). 
 - Enter the password given in the comand prompt. 
 - Install default plugins
+- Admin password : d805a2fe32264051a13d0d7150e4343a
 - Crate user, example :
   - Damien
   - password
@@ -83,12 +85,14 @@ To install Jenkins you need docker. Run the following commands :
 
 ### Jenkins build when git push
 
-- You need to run Jekins on a server, for example IBM cloud
+- You need to run Jenkins on a server, for example IBM cloud
 - Get an IBM id and connect you
 - Get to [this page](https://cloud.ibm.com/kubernetes/clusters)
 - This can not be done because we can't add cluster with student account
 
-So wen can use ngrok to simulate a distant server on a team member machine
+- We also tried to put Jenkins on Azur but without success
+
+So we can use ngrok to simulate a distant server on a team member machine
 - See [ngrok.com](https://ngrok.com/)
 - See the tutorial [here](https://k6.io/blog/bootstrap-your-ci-with-jenkins-and-github)
 - Cliquez sur votre projet > Configurer > Ce qui déclencle le build
@@ -102,13 +106,9 @@ So wen can use ngrok to simulate a distant server on a team member machine
 
 Expose jenkins
 
-`./ngrok http 8080`
+`./ngrok http 8083`
 
 ### Link Artifactory Jenkins
-
-Expose artifactory
-
-`./ngrok http 8082`
 
 - Get to Jenkins > Plugins
 - Install artifactory
@@ -125,5 +125,4 @@ Expose artifactory
   - Root POM : $workspace/j2e/pom.xml
   - Goals and options: clean package
   - And voila Artifactory is linked to jenkins
-
 
