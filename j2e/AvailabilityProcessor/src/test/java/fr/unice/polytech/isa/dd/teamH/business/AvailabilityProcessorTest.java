@@ -30,6 +30,7 @@ import java.util.Set;
 
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertTrue;
+import static org.junit.Assert.fail;
 
 @RunWith(Arquillian.class)
 @Transactional(TransactionMode.ROLLBACK)
@@ -76,7 +77,7 @@ public class AvailabilityProcessorTest extends AbstractAvailabilityProcessorTest
 //        Optional<Customer> toDispose = finder.findByName(john.getName());
 //        toDispose.ifPresent(cust -> { Customer c = entityManager.merge(cust); entityManager.delete(c); });
 //        utx.commit();
-
+/*
         try {
             supplierRegistration.delete(s.getName());
         } catch (UnknownSupplierException e) {
@@ -95,15 +96,13 @@ public class AvailabilityProcessorTest extends AbstractAvailabilityProcessorTest
             } catch (UnknownDroneException e) {
                 e.printStackTrace();
             }
-        });
+        });*/
     }
 
     @Test
     public void algorithmIsWorking() throws Exception {
         Optional<Drone> drone = availableDroneFinder.getAvailableDroneAtTime(new HashSet<PlanningEntry>(), LocalDateTime.now(), 1, 5);
 
-        System.out.println("OMEGA TEST" + drones);
-        System.out.println("OMEGA TEST2" + droneFinder.findAllDrones());
         assertTrue("Algorithm isn't working properly", drone.isPresent());
     }
 
@@ -117,11 +116,8 @@ public class AvailabilityProcessorTest extends AbstractAvailabilityProcessorTest
 
     @Test
     public void simpleAlgorithmWork2() throws CorruptedPlanningException, UnknownDroneException, AlreadyExistingPackageException, UnknownDeliveryStateException {
-
-        System.out.println("OMEGA TEST 0 "+droneFinder.findAllDrones());
         editDrone(0, 10, 20);
         editDrone(1, 10, 20);
-        System.out.println("OMEGA TEST 0 "+droneFinder.findAllDrones());
         Package p = createPackage("masaka", s, 1, "Biot");
         createDelivery(p, "2020-10-10", "10:10", 10, 10);
 
@@ -130,19 +126,50 @@ public class AvailabilityProcessorTest extends AbstractAvailabilityProcessorTest
         assertEquals("Wrong drone was found to carry the delivery", 2, drone.get().getId());
     }
 
-    //TODO
-    /*
     @Test(expected = CorruptedPlanningException.class)
-    public void corruptedAlgorithm() {
+    public void corruptedAlgorithmNotEnoughBattery() throws AlreadyExistingPackageException, UnknownDeliveryStateException, CorruptedPlanningException {
+        Package p1 = createPackage("masaka", s, 1, "Biot");
+        Package p2 = createPackage("bakana", s, 1, "Biot");
+        for (Drone crashedDrone: drones) {
+            Delivery d = createDelivery(p1, "2020-10-10", "10:10", 10, 46);
+            updatePlanningEntry(d, getPlanningEntryForDrone(planningEntries, crashedDrone), crashedDrone, planningEntries);
+        }
 
+        Optional<Drone> drone = availableDroneFinder.getAvailableDroneAtTime(planningEntries, LocalDateTime.parse("2020-10-10T12:00:00"), 1, 10);
     }
-    */
+
+    /* TODO
+    @Test(expected = CorruptedPlanningException.class)
+    public void corruptedAlgorithmNotEnoughChargingTime() throws AlreadyExistingPackageException, UnknownDeliveryStateException, CorruptedPlanningException {
+        Package p1 = createPackage("masaka", s, 1, "Biot");
+        Package p2 = createPackage("bakana", s, 1, "Biot");
+        for (Drone crashedDrone: drones) {
+            Delivery d1 = createDelivery(p1, "2020-10-10", "10:10", 10, 44);
+            Delivery d2 = createDelivery(p2, "2020-10-10", "10:10", 10, 44);
+            Delivery d3 = createDelivery(p1, "2020-10-10", "10:55", 10, 44);
+            Delivery d4 = createDelivery(p2, "2020-10-10", "10:55", 10, 44);
+            updatePlanningEntry(d1, getPlanningEntryForDrone(planningEntries, crashedDrone), crashedDrone, planningEntries);
+            updatePlanningEntry(d2, getPlanningEntryForDrone(planningEntries, crashedDrone), crashedDrone, planningEntries);
+            updatePlanningEntry(d3, getPlanningEntryForDrone(planningEntries, crashedDrone), crashedDrone, planningEntries);
+            updatePlanningEntry(d4, getPlanningEntryForDrone(planningEntries, crashedDrone), crashedDrone, planningEntries);
+        }
+
+        Optional<Drone> drone = availableDroneFinder.getAvailableDroneAtTime(planningEntries, LocalDateTime.parse("2020-10-10T12:00:00"), 1, 10);
+    }*/
 
     private void editDrone(int idDrone, int battery, float flightTime) throws UnknownDroneException {
         Drone drone = droneFinder.findDroneById(idDrone).get();
         drones.remove(drone);
         drone = droneFleetManagement.editDrone(idDrone, battery, flightTime);
         drones.add(drone);
+    }
+
+    public static Optional<PlanningEntry> getPlanningEntryForDrone(Set<PlanningEntry> planningEntries, Drone d){
+        for(PlanningEntry pe : planningEntries){
+            if(pe.getDrone().equals(d))
+                return Optional.of(pe);
+        }
+        return Optional.empty();
     }
 
     public static void updateDrone(Delivery delivery, Drone drone, Set<Drone> drones, DroneFleetManagement droneFleetManagement) throws UnknownDroneException {
