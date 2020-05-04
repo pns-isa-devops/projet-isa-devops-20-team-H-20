@@ -58,14 +58,14 @@ To run the system, one can ask`docker-compose` to start in detached mode:
 
 The client is started inside the assembly, and already running. Thus, one can attach and then detach the current context to the container. To attach the current context to a container, the `docker attach` command do the job. When attached, one can detach using the `^P ^Q` key combination.
 
-`docker attach dd_client_boss`
+`docker attach dd_client_boss_cli`
 
-`docker attach dd_client_chargeur`
+`docker attach dd_client_chargeur_cli`
 
-`docker attach dd_client_garagiste`
+`docker attach dd_client_garagiste_cli`
 
-`docker attach dd_client_gestionnaire`
+`docker attach dd_client_gestionnaire_cli`
 
-`docker attach dd_client_manutentionnaire`
+`docker attach dd_client_manutentionnaire_cli`
 
-`docker attach dd_client_service_client`
+`docker attach dd_client_service_client_cli`

@@ -65,7 +65,7 @@ Then go to the docker/jenkins folder an launch the build.sh then run `docker-com
   - Save
 - If repository is private :
   - Return to the command prompt
-  - `docker exec -it my-jenkins /bin/bash`
+  - `docker exec -it dd_jenkins /bin/bash`
   - `ssh-keygen -t rsa` then enter then enter then enter
   - `cat /root/.ssh/id_rsa.pub`
   - copy the key
