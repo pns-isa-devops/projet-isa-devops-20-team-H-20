@@ -27,6 +27,7 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
+import static fr.unice.polytech.isa.dd.teamH.business.AvailabilityProcessorTest.getPlanningEntryForDrone;
 import static fr.unice.polytech.isa.dd.teamH.business.AvailabilityProcessorTest.updateDrone;
 import static fr.unice.polytech.isa.dd.teamH.business.AvailabilityProcessorTest.updatePlanningEntry;
 import static org.junit.Assert.*;
@@ -93,7 +94,7 @@ public class AvailabilityProcessorStepDefsTest extends AbstractAvailabilityProce
 
         Optional<Drone> drone = droneFinder.findDroneById(idDrone);
 
-        Optional<PlanningEntry> ope = getPlanningEntryForDrone(drone.get());
+        Optional<PlanningEntry> ope = getPlanningEntryForDrone(planningEntriesToDelete, drone.get());
 
         updatePlanningEntry(delivery, ope, drone.get(), planningEntriesToDelete);
         //updatePlanningEntry(delivery, ope, lastDroneFound.get());
@@ -132,7 +133,7 @@ public class AvailabilityProcessorStepDefsTest extends AbstractAvailabilityProce
         }
 
         if(lastDroneFound.isPresent()) {
-            Optional<PlanningEntry> ope = getPlanningEntryForDrone(lastDroneFound.get());
+            Optional<PlanningEntry> ope = getPlanningEntryForDrone(planningEntriesToDelete, lastDroneFound.get());
 
             updatePlanningEntry(delivery, ope, lastDroneFound.get(), planningEntriesToDelete);
 
@@ -193,14 +194,6 @@ public class AvailabilityProcessorStepDefsTest extends AbstractAvailabilityProce
             }
         });
         exception = null;
-    }
-
-    private Optional<PlanningEntry> getPlanningEntryForDrone(Drone d){
-        for(PlanningEntry pe : planningEntriesToDelete){
-            if(pe.getDrone().equals(d))
-                return Optional.of(pe);
-        }
-        return Optional.empty();
     }
 
     /*private void updatePlanningEntry(Delivery delivery, Optional<PlanningEntry> ope, Drone drone) {
