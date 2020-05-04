@@ -1,0 +1,27 @@
+version: '3.5'
+
+services:
+    jenkins:
+      image: livrair/jenkins
+      container_name: dd_jenkins
+      expose:
+          - "8083"
+      ports:
+        - "8083:8080"
+        - "50000:50000"
+      volumes:
+        - ./jenkins/:/var/jenkins_home/
+        - /var/run/docker.sock:/var/run/docker.sock
+
+    artifactory:
+      image: docker.bintray.io/jfrog/artifactory-oss
+      container_name: dd_artifactory
+      expose:
+          - "8082"
+      ports:
+        - "8081:8081"
+        - "8082:8082"
+      volumes:
+        - ./artifactory/:/var/opt/jfrog/artifactory
+      depends_on:
+        - jenkins

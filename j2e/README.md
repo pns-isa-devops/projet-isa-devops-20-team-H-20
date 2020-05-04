@@ -39,7 +39,6 @@ After the first installation :
   - Set me up
   - copy the settings to the pom.xml under `<!-- Artifactory configuration parameters -->`
   - edit the settings.xml with your address
-  - François docker toolbox path: `192.168.99.101`
   - Docker path: `localhost`
 
 To perform operations related to the artifactory by using `mvn` command. i.e:
@@ -52,12 +51,12 @@ To install Jenkins you need docker. Then run the following command
 
 - `docker pull jenkins/jenkins`
 
-Then go to the docker/jenkins folder an launch the build.sh then the run.sh
+Then go to the docker/jenkins folder an launch the build.sh then run `docker-compose up -d`
 
 - Then go to localhost:8083 (or ip if under docker toolbox). 
+- Type `docker exec -it my-jenkins /bin/bash` in a terminal then do `cat /var/jenkins_home/secrets/initialAdminPassword`
 - Enter the password given in the comand prompt. 
 - Install default plugins
-- Admin password : d805a2fe32264051a13d0d7150e4343a
 - Crate user, example :
   - Damien
   - password
@@ -66,9 +65,9 @@ Then go to the docker/jenkins folder an launch the build.sh then the run.sh
   - Save
 - If repository is private :
   - Return to the command prompt
-  - `docker exec -it my-tomee-jenkins /bin/bash`
-  - `ssh-keygen -t rsa -C "your_email@example.com"` then enter then enter then enter
-  - `cat /var/jenkins_home/.ssh/id_rsa.pub`
+  - `docker exec -it my-jenkins /bin/bash`
+  - `ssh-keygen -t rsa` then enter then enter then enter
+  - `cat /root/.ssh/id_rsa.pub`
   - copy the key
   - go to your github project > settings > deploy key > add your key
   - In the left menu in jenkins click on Identifiants > System > Identifiants globaux > Ajouter des identifiants

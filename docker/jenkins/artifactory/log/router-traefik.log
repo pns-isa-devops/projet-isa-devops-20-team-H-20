@@ -1,0 +1,140 @@
+2020-05-04T19:02:05.222Z [jfrou] [INFO ] [                ] [server.go:568                 ] [main                ] - Preparing server external &{Address::8082 TLS:<nil> Redirect:<nil> Auth:<nil> WhitelistSourceRange:[] WhiteList:<nil> Compress:false ProxyProtocol:<nil> ForwardedHeaders:0xc0001f3640} with readTimeout=0s writeTimeout=0s idleTimeout=3m0s
+2020-05-04T19:02:05.252Z [jfrou] [INFO ] [                ] [server.go:568                 ] [main                ] - Preparing server internal &{Address:localhost:8046 TLS:<nil> Redirect:<nil> Auth:<nil> WhitelistSourceRange:[] WhiteList:<nil> Compress:false ProxyProtocol:<nil> ForwardedHeaders:0xc0001f3600} with readTimeout=0s writeTimeout=0s idleTimeout=3m0s
+2020-05-04T19:02:05.253Z [jfrou] [INFO ] [                ] [server.go:524                 ] [main                ] - Starting server on :8082
+2020-05-04T19:02:05.255Z [jfrou] [INFO ] [                ] [server.go:568                 ] [main                ] - Preparing server api &{Address:localhost:8049 TLS:<nil> Redirect:<nil> Auth:<nil> WhitelistSourceRange:[] WhiteList:<nil> Compress:false ProxyProtocol:<nil> ForwardedHeaders:0xc0001f3620} with readTimeout=0s writeTimeout=0s idleTimeout=3m0s
+2020-05-04T19:02:05.255Z [jfrou] [INFO ] [                ] [server.go:524                 ] [main                ] - Starting server on localhost:8046
+2020-05-04T19:02:05.277Z [jfrou] [INFO ] [                ] [server.go:524                 ] [main                ] - Starting server on localhost:8049
+2020-05-04T19:02:05.281Z [jfrou] [INFO ] [                ] [server.go:420                 ] [main                ] - Starting provider configuration.ProviderAggregator {}
+2020-05-04T19:02:05.300Z [jfrou] [INFO ] [                ] [provider_aggregator.go:103    ] [main                ] - Starting provider *file.Provider {"Watch":true,"Filename":"","Constraints":null,"Trace":false,"TemplateVersion":0,"DebugLogGeneratedTemplate":false,"Directory":"/opt/jfrog/artifactory/var/data/router/traefik/routes","TraefikFile":""}
+2020-05-04T19:02:05.344Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on :8082
+2020-05-04T19:02:05.344Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on localhost:8046
+2020-05-04T19:02:05.348Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on localhost:8049
+2020-05-04T19:02:07.324Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on :8082
+2020-05-04T19:02:07.327Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on localhost:8046
+2020-05-04T19:02:07.328Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on localhost:8049
+2020-05-04T19:02:11.424Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on :8082
+2020-05-04T19:02:11.425Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on localhost:8046
+2020-05-04T19:02:11.426Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on localhost:8049
+2020-05-04T19:02:11.456Z [jfrou] [INFO ] [                ] [server_configuration.go:319   ] [main                ] - Skipping same configuration for provider file
+2020-05-04T19:02:11.497Z [jfrou] [INFO ] [                ] [server_configuration.go:319   ] [main                ] - Skipping same configuration for provider file
+2020-05-04T19:02:13.423Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on :8082
+2020-05-04T19:02:13.431Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on localhost:8046
+2020-05-04T19:02:13.435Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on localhost:8049
+2020-05-04T19:02:13.556Z [jfrou] [INFO ] [                ] [server_configuration.go:319   ] [main                ] - Skipping same configuration for provider file
+2020-05-04T19:02:13.726Z [jfrou] [INFO ] [                ] [server_configuration.go:319   ] [main                ] - Skipping same configuration for provider file
+2020-05-04T19:02:15.964Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on :8082
+2020-05-04T19:02:15.965Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on localhost:8046
+2020-05-04T19:02:15.967Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on localhost:8049
+2020-05-04T19:02:16.003Z [jfrou] [INFO ] [                ] [server_configuration.go:319   ] [main                ] - Skipping same configuration for provider file
+2020-05-04T19:02:16.060Z [jfrou] [INFO ] [                ] [server_configuration.go:319   ] [main                ] - Skipping same configuration for provider file
+2020-05-04T19:08:01.714Z [jfrou] [INFO ] [                ] [server.go:568                 ] [main                ] - Preparing server api &{Address:localhost:8049 TLS:<nil> Redirect:<nil> Auth:<nil> WhitelistSourceRange:[] WhiteList:<nil> Compress:false ProxyProtocol:<nil> ForwardedHeaders:0xc00063fba0} with readTimeout=0s writeTimeout=0s idleTimeout=3m0s
+2020-05-04T19:08:01.723Z [jfrou] [INFO ] [                ] [server.go:568                 ] [main                ] - Preparing server external &{Address::8082 TLS:<nil> Redirect:<nil> Auth:<nil> WhitelistSourceRange:[] WhiteList:<nil> Compress:false ProxyProtocol:<nil> ForwardedHeaders:0xc00063fb20} with readTimeout=0s writeTimeout=0s idleTimeout=3m0s
+2020-05-04T19:08:01.723Z [jfrou] [INFO ] [                ] [server.go:524                 ] [main                ] - Starting server on localhost:8049
+2020-05-04T19:08:01.724Z [jfrou] [INFO ] [                ] [server.go:568                 ] [main                ] - Preparing server internal &{Address:localhost:8046 TLS:<nil> Redirect:<nil> Auth:<nil> WhitelistSourceRange:[] WhiteList:<nil> Compress:false ProxyProtocol:<nil> ForwardedHeaders:0xc00063fb80} with readTimeout=0s writeTimeout=0s idleTimeout=3m0s
+2020-05-04T19:08:01.724Z [jfrou] [INFO ] [                ] [server.go:524                 ] [main                ] - Starting server on :8082
+2020-05-04T19:08:01.727Z [jfrou] [INFO ] [                ] [server.go:420                 ] [main                ] - Starting provider configuration.ProviderAggregator {}
+2020-05-04T19:08:01.727Z [jfrou] [INFO ] [                ] [server.go:524                 ] [main                ] - Starting server on localhost:8046
+2020-05-04T19:08:01.730Z [jfrou] [INFO ] [                ] [provider_aggregator.go:103    ] [main                ] - Starting provider *file.Provider {"Watch":true,"Filename":"","Constraints":null,"Trace":false,"TemplateVersion":0,"DebugLogGeneratedTemplate":false,"Directory":"/opt/jfrog/artifactory/var/data/router/traefik/routes","TraefikFile":""}
+2020-05-04T19:08:01.760Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on :8082
+2020-05-04T19:08:01.763Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on localhost:8046
+2020-05-04T19:08:01.764Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on localhost:8049
+2020-05-04T19:08:03.760Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on :8082
+2020-05-04T19:08:03.767Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on localhost:8046
+2020-05-04T19:08:03.768Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on localhost:8049
+2020-05-04T19:08:05.760Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on localhost:8049
+2020-05-04T19:08:05.761Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on :8082
+2020-05-04T19:08:05.762Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on localhost:8046
+2020-05-04T19:08:07.760Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on :8082
+2020-05-04T19:08:07.761Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on localhost:8046
+2020-05-04T19:08:07.761Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on localhost:8049
+2020-05-04T19:08:09.762Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on localhost:8046
+2020-05-04T19:08:09.762Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on localhost:8049
+2020-05-04T19:08:09.763Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on :8082
+2020-05-04T19:08:19.819Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on localhost:8049
+2020-05-04T19:08:19.820Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on :8082
+2020-05-04T19:08:19.820Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on localhost:8046
+2020-05-04T19:08:19.852Z [jfrou] [INFO ] [                ] [server_configuration.go:319   ] [main                ] - Skipping same configuration for provider file
+2020-05-04T19:08:19.879Z [jfrou] [INFO ] [                ] [server_configuration.go:319   ] [main                ] - Skipping same configuration for provider file
+2020-05-04T19:08:26.843Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on localhost:8046
+2020-05-04T19:08:26.845Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on localhost:8049
+2020-05-04T19:08:26.846Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on :8082
+2020-05-04T19:08:26.868Z [jfrou] [INFO ] [                ] [server_configuration.go:319   ] [main                ] - Skipping same configuration for provider file
+2020-05-04T19:08:26.891Z [jfrou] [INFO ] [                ] [server_configuration.go:319   ] [main                ] - Skipping same configuration for provider file
+2020-05-04T19:08:28.891Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on localhost:8049
+2020-05-04T19:08:28.896Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on :8082
+2020-05-04T19:08:28.900Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on localhost:8046
+2020-05-04T19:08:28.914Z [jfrou] [INFO ] [                ] [server_configuration.go:319   ] [main                ] - Skipping same configuration for provider file
+2020-05-04T19:09:47.908Z [jfrou] [INFO ] [                ] [server.go:568                 ] [main                ] - Preparing server internal &{Address:localhost:8046 TLS:<nil> Redirect:<nil> Auth:<nil> WhitelistSourceRange:[] WhiteList:<nil> Compress:false ProxyProtocol:<nil> ForwardedHeaders:0xc0002edb80} with readTimeout=0s writeTimeout=0s idleTimeout=3m0s
+2020-05-04T19:09:47.912Z [jfrou] [INFO ] [                ] [server.go:568                 ] [main                ] - Preparing server api &{Address:localhost:8049 TLS:<nil> Redirect:<nil> Auth:<nil> WhitelistSourceRange:[] WhiteList:<nil> Compress:false ProxyProtocol:<nil> ForwardedHeaders:0xc0002edba0} with readTimeout=0s writeTimeout=0s idleTimeout=3m0s
+2020-05-04T19:09:47.912Z [jfrou] [INFO ] [                ] [server.go:524                 ] [main                ] - Starting server on localhost:8046
+2020-05-04T19:09:47.913Z [jfrou] [INFO ] [                ] [server.go:568                 ] [main                ] - Preparing server external &{Address::8082 TLS:<nil> Redirect:<nil> Auth:<nil> WhitelistSourceRange:[] WhiteList:<nil> Compress:false ProxyProtocol:<nil> ForwardedHeaders:0xc0002edbc0} with readTimeout=0s writeTimeout=0s idleTimeout=3m0s
+2020-05-04T19:09:47.913Z [jfrou] [INFO ] [                ] [server.go:524                 ] [main                ] - Starting server on localhost:8049
+2020-05-04T19:09:47.914Z [jfrou] [INFO ] [                ] [server.go:420                 ] [main                ] - Starting provider configuration.ProviderAggregator {}
+2020-05-04T19:09:47.914Z [jfrou] [INFO ] [                ] [server.go:524                 ] [main                ] - Starting server on :8082
+2020-05-04T19:09:47.919Z [jfrou] [INFO ] [                ] [provider_aggregator.go:103    ] [main                ] - Starting provider *file.Provider {"Watch":true,"Filename":"","Constraints":null,"Trace":false,"TemplateVersion":0,"DebugLogGeneratedTemplate":false,"Directory":"/opt/jfrog/artifactory/var/data/router/traefik/routes","TraefikFile":""}
+2020-05-04T19:09:47.940Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on localhost:8046
+2020-05-04T19:09:47.941Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on localhost:8049
+2020-05-04T19:09:47.942Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on :8082
+2020-05-04T19:09:49.940Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on localhost:8046
+2020-05-04T19:09:49.941Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on localhost:8049
+2020-05-04T19:09:49.942Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on :8082
+2020-05-04T19:09:51.941Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on localhost:8049
+2020-05-04T19:09:51.942Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on :8082
+2020-05-04T19:09:51.942Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on localhost:8046
+2020-05-04T19:09:53.941Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on localhost:8046
+2020-05-04T19:09:53.942Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on localhost:8049
+2020-05-04T19:09:53.942Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on :8082
+2020-05-04T19:09:55.941Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on :8082
+2020-05-04T19:09:55.943Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on localhost:8046
+2020-05-04T19:09:55.945Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on localhost:8049
+2020-05-04T19:10:04.761Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on localhost:8046
+2020-05-04T19:10:04.761Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on localhost:8049
+2020-05-04T19:10:04.763Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on :8082
+2020-05-04T19:10:04.827Z [jfrou] [INFO ] [                ] [server_configuration.go:319   ] [main                ] - Skipping same configuration for provider file
+2020-05-04T19:10:04.884Z [jfrou] [INFO ] [                ] [server_configuration.go:319   ] [main                ] - Skipping same configuration for provider file
+2020-05-04T19:10:13.015Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on :8082
+2020-05-04T19:10:13.017Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on localhost:8046
+2020-05-04T19:10:13.019Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on localhost:8049
+2020-05-04T19:10:13.039Z [jfrou] [INFO ] [                ] [server_configuration.go:319   ] [main                ] - Skipping same configuration for provider file
+2020-05-04T19:10:13.058Z [jfrou] [INFO ] [                ] [server_configuration.go:319   ] [main                ] - Skipping same configuration for provider file
+2020-05-04T19:10:15.017Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on localhost:8046
+2020-05-04T19:10:15.018Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on localhost:8049
+2020-05-04T19:10:15.020Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on :8082
+2020-05-04T19:10:15.033Z [jfrou] [INFO ] [                ] [server_configuration.go:319   ] [main                ] - Skipping same configuration for provider file
+2020-05-04T19:12:17.279Z [jfrou] [INFO ] [                ] [server.go:568                 ] [main                ] - Preparing server internal &{Address:localhost:8046 TLS:<nil> Redirect:<nil> Auth:<nil> WhitelistSourceRange:[] WhiteList:<nil> Compress:false ProxyProtocol:<nil> ForwardedHeaders:0xc0008f3960} with readTimeout=0s writeTimeout=0s idleTimeout=3m0s
+2020-05-04T19:12:17.284Z [jfrou] [INFO ] [                ] [server.go:568                 ] [main                ] - Preparing server api &{Address:localhost:8049 TLS:<nil> Redirect:<nil> Auth:<nil> WhitelistSourceRange:[] WhiteList:<nil> Compress:false ProxyProtocol:<nil> ForwardedHeaders:0xc0008f3980} with readTimeout=0s writeTimeout=0s idleTimeout=3m0s
+2020-05-04T19:12:17.284Z [jfrou] [INFO ] [                ] [server.go:524                 ] [main                ] - Starting server on localhost:8046
+2020-05-04T19:12:17.286Z [jfrou] [INFO ] [                ] [server.go:568                 ] [main                ] - Preparing server external &{Address::8082 TLS:<nil> Redirect:<nil> Auth:<nil> WhitelistSourceRange:[] WhiteList:<nil> Compress:false ProxyProtocol:<nil> ForwardedHeaders:0xc0008f39a0} with readTimeout=0s writeTimeout=0s idleTimeout=3m0s
+2020-05-04T19:12:17.286Z [jfrou] [INFO ] [                ] [server.go:524                 ] [main                ] - Starting server on localhost:8049
+2020-05-04T19:12:17.294Z [jfrou] [INFO ] [                ] [server.go:420                 ] [main                ] - Starting provider configuration.ProviderAggregator {}
+2020-05-04T19:12:17.294Z [jfrou] [INFO ] [                ] [server.go:524                 ] [main                ] - Starting server on :8082
+2020-05-04T19:12:17.298Z [jfrou] [INFO ] [                ] [provider_aggregator.go:103    ] [main                ] - Starting provider *file.Provider {"Watch":true,"Filename":"","Constraints":null,"Trace":false,"TemplateVersion":0,"DebugLogGeneratedTemplate":false,"Directory":"/opt/jfrog/artifactory/var/data/router/traefik/routes","TraefikFile":""}
+2020-05-04T19:12:17.321Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on localhost:8046
+2020-05-04T19:12:17.324Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on localhost:8049
+2020-05-04T19:12:17.325Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on :8082
+2020-05-04T19:12:19.321Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on localhost:8049
+2020-05-04T19:12:19.327Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on :8082
+2020-05-04T19:12:19.329Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on localhost:8046
+2020-05-04T19:12:21.322Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on :8082
+2020-05-04T19:12:21.328Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on localhost:8046
+2020-05-04T19:12:21.330Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on localhost:8049
+2020-05-04T19:12:23.323Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on :8082
+2020-05-04T19:12:23.325Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on localhost:8046
+2020-05-04T19:12:23.326Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on localhost:8049
+2020-05-04T19:12:25.323Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on localhost:8049
+2020-05-04T19:12:25.325Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on :8082
+2020-05-04T19:12:25.332Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on localhost:8046
+2020-05-04T19:12:35.497Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on :8082
+2020-05-04T19:12:35.499Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on localhost:8046
+2020-05-04T19:12:35.508Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on localhost:8049
+2020-05-04T19:12:35.621Z [jfrou] [INFO ] [                ] [server_configuration.go:319   ] [main                ] - Skipping same configuration for provider file
+2020-05-04T19:12:35.690Z [jfrou] [INFO ] [                ] [server_configuration.go:319   ] [main                ] - Skipping same configuration for provider file
+2020-05-04T19:12:42.381Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on localhost:8046
+2020-05-04T19:12:42.383Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on localhost:8049
+2020-05-04T19:12:42.385Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on :8082
+2020-05-04T19:12:42.406Z [jfrou] [INFO ] [                ] [server_configuration.go:319   ] [main                ] - Skipping same configuration for provider file
+2020-05-04T19:12:42.429Z [jfrou] [INFO ] [                ] [server_configuration.go:319   ] [main                ] - Skipping same configuration for provider file
+2020-05-04T19:12:44.422Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on localhost:8049
+2020-05-04T19:12:44.425Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on :8082
+2020-05-04T19:12:44.428Z [jfrou] [INFO ] [                ] [server_configuration.go:61    ] [main                ] - Server configuration reloaded on localhost:8046
+2020-05-04T19:12:44.454Z [jfrou] [INFO ] [                ] [server_configuration.go:319   ] [main                ] - Skipping same configuration for provider file

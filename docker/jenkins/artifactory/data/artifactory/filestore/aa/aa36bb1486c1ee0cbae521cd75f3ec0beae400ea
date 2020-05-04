@@ -1,0 +1,45 @@
+<project>
+
+    <parent>
+        <groupId>fr.polytech.team.h</groupId>
+        <artifactId>drone-delivery-backend</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>Accounting</artifactId>
+    <packaging>jar</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <name>Drone Delivery :: Accounting Module</name>
+
+    <dependencies>
+        <dependency>
+            <groupId>fr.polytech.team.h</groupId>
+            <artifactId>PackageRegistry</artifactId>
+            <version>${project.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>fr.polytech.team.h</groupId>
+            <artifactId>Core</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>fr.polytech.team.h</groupId>
+            <artifactId>DeliveryPlanning</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>fr.polytech.team.h</groupId>
+            <artifactId>SupplierRegistry</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <sourceDirectory>src/main/java</sourceDirectory>
+        <testSourceDirectory>src/test/java</testSourceDirectory>
+        <finalName>dd-accounting</finalName>
+    </build>
+</project>

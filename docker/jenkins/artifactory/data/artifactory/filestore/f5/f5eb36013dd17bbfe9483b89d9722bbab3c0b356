@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata modelVersion="1.1.0">
+  <groupId>fr.polytech.team.h</groupId>
+  <artifactId>AvailabilityProcessor</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <versioning>
+    <snapshot>
+      <timestamp>20200504.193157</timestamp>
+      <buildNumber>1</buildNumber>
+    </snapshot>
+    <lastUpdated>20200504193157</lastUpdated>
+    <snapshotVersions>
+      <snapshotVersion>
+        <extension>jar</extension>
+        <value>1.0-20200504.193157-1</value>
+        <updated>20200504193157</updated>
+      </snapshotVersion>
+      <snapshotVersion>
+        <extension>pom</extension>
+        <value>1.0-20200504.193157-1</value>
+        <updated>20200504193157</updated>
+      </snapshotVersion>
+    </snapshotVersions>
+  </versioning>
+</metadata>
