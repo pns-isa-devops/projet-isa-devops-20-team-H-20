@@ -1,2 +1,468 @@
 2020-05-04T19:08:20.349Z [7efb079724d1da96] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
 2020-05-04T19:10:05.549Z [a74f6b47cb3810d ] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:12:36.069Z [45215f9bd7911f17] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:13:01.675Z [6616a718ff8b5563] [ACCEPTED LOGIN]   for client : anonymous / 172.21.0.1.
+2020-05-04T19:13:01.789Z [6616a718ff8b5563] [ACCEPTED LOGIN]   for client : anonymous / 172.21.0.1.
+2020-05-04T19:13:02.120Z [7b8697b52847b74c] [ACCEPTED LOGIN]   for client : anonymous / 172.21.0.1.
+2020-05-04T19:13:03.526Z [40c0b5f2499b284a] [ACCEPTED LOGIN]   for client : anonymous / 172.21.0.1.
+2020-05-04T19:13:04.231Z [30963f4ce1ec0f72] [ACCEPTED LOGIN]   for client : anonymous / 172.21.0.1.
+2020-05-04T19:13:04.247Z [30963f4ce1ec0f72] [ACCEPTED LOGIN]   for client : anonymous / 172.21.0.1.
+2020-05-04T19:13:06.271Z [5c19a667377a69ed] [ACCEPTED LOGIN]   for client : anonymous / 172.21.0.1.
+2020-05-04T19:13:08.422Z [48f98bfa3204d6a6] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:13:08.431Z [7dd797835b092999] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:13:08.445Z [47c3c3f41837fab6] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:13:08.506Z [bc04c7663439995 ] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:13:38.427Z [47d8a9e3024d245 ] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:13:38.449Z [7699892a891cffb5] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:13:38.449Z [40b93622752400bd] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:13:38.459Z [2763ed4397a88658] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:14:08.399Z [64e697ef4c4977d6] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:14:08.399Z [262b515cf4d21b16] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:14:08.413Z [4ad2d99aaf548b64] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:14:08.414Z [3b630b1e9bda2afa] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:14:38.393Z [7720feb2efc42ae4] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:14:38.395Z [5088a812fd56b21b] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:14:38.445Z [2f1e56f8cac6c0d4] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:14:38.445Z [14c643ad3c0db4d3] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:15:08.391Z [659f95e39823f5f7] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:15:08.400Z [3b3206411376dab6] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:15:08.407Z [234489224e25e51 ] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:15:08.410Z [682d08813b6fbe50] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:15:38.370Z [9d9c21d9811af9c ] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:15:38.377Z [2a0c86f3f23e6ba3] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:15:38.377Z [68c2f43028b7aa36] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:15:38.372Z [264ff0cbcc431d37] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:16:08.373Z [4342345ebf0c6532] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:16:08.377Z [3c692a0fa8d127ea] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:16:08.378Z [566d9ff46048a041] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:16:08.377Z [1600822a1f23f138] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:16:38.387Z [72dc6005130ff6bc] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:16:38.389Z [30492a031ab589da] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:16:38.394Z [52bd3f4cde0e8ed7] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:16:38.401Z [38b835d26d83cc47] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:17:08.364Z [1d2139e9a42b16c0] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:17:08.373Z [45f3ea713bc276fe] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:17:08.378Z [21c67bd0ccada98c] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:17:08.388Z [4318186b06aae07c] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:17:38.394Z [6d5d3b69880693b ] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:17:38.407Z [3ca0ae2fd9660461] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:17:38.414Z [10128e82ddd8baa3] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:17:38.429Z [5d56dd135c8b0897] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:18:08.377Z [5f6dc11c7ba5ad99] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:18:08.395Z [3f6c9be7f4f3ec65] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:18:08.401Z [15d9f72a3b11423f] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:18:08.397Z [2ce4392c38f6534e] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:18:38.424Z [33dbbcad232a7d92] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:18:38.460Z [61800c04350a405 ] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:18:38.480Z [7cc16b4070d0ae6f] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:18:38.526Z [62e1ea06b0f54f30] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:19:08.434Z [57b1f80e1f422b02] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:19:08.447Z [46ba5badf2844c81] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:19:08.460Z [2543d1e129b2fa8e] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:19:08.462Z [37da9a4a41b9908c] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:19:28.012Z [7bc71f14d4994a6f] [DENIED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:19:36.605Z [4c6c75ec7ba08422] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:19:37.396Z [6b047e37a2509f0f] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:19:37.396Z [1befae55aa48cb55] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:19:38.461Z [688a8a309e906796] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:19:38.464Z [1cd0e29739c4d651] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:19:38.470Z [142152ca3d59fcdf] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:19:38.491Z [323d41c97289a2f ] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:19:55.775Z [492190ba8964f725] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:19:56.730Z [22f98410b83f3d77] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:19:56.745Z [4c7ea5316da708c6] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:20:08.378Z [5740feaed2077717] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:20:08.418Z [4ba6367f42caca91] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:20:08.436Z [60f50c6ee1aef93c] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:20:08.436Z [3ef3d6a76c3f77b5] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:20:18.316Z [670d12c24bfaaf0e] [ACCEPTED DELETE] example-repo-local:  for client : admin / 172.21.0.1.
+2020-05-04T19:20:19.005Z [670d12c24bfaaf0e] [ACCEPTED CONFIGURATION_CHANGE]   for client : admin / 172.21.0.1.
+2020-05-04T19:20:19.150Z [670d12c24bfaaf0e] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:20:35.423Z [98313f7a0a53ec2 ] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:20:35.427Z [5a0b351ee212efd6] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:20:38.469Z [66be7fadd6602e99] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:20:38.469Z [127f0bdb24f56daa] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:20:38.478Z [256865b83db64b21] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:20:38.507Z [58e10884ec34db62] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:20:52.169Z [3033225ee5a48209] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:21:08.395Z [5f1ef784630e126d] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:21:08.404Z [81fa8f33ece2dbc ] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:21:08.405Z [59652e776f09a911] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:21:08.415Z [59c49044d349b6b ] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:21:17.180Z [4804058cde638b4d] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:21:38.380Z [2201ab562ff56046] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:21:38.391Z [1145eba5c31d422e] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:21:38.394Z [7daf6ec1acbae00f] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:21:38.414Z [2fc6b60c3961490a] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:21:39.010Z [599592190501b868] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:22:06.678Z [70bb940dbaddf075] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:22:08.387Z [397106e66b1bc318] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:22:08.397Z [6a2700dd04df9c17] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:22:08.412Z [750f1f7ef06e2d95] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:22:08.432Z [70292d556c35dc0f] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:22:32.205Z [7a01408a9deba973] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:22:38.569Z [da66897adc20cd1 ] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:22:38.592Z [4369dafc708a3857] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:22:38.594Z [6f1a277a55097256] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:22:38.704Z [6a569eb50e8ebe06] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:22:51.466Z [6a1df5701b78180c] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:23:08.473Z [798f791a4b6ba47f] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:23:08.524Z [34cea64ac963298f] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:23:08.528Z [c83862a7d7fcd7  ] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:23:08.534Z [530fc7133764b39e] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:23:22.175Z [34b60e0723c3c114] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:23:38.398Z [1099dcdb825731d1] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:23:38.414Z [7ca63892e213090a] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:23:38.418Z [71f10eed6b6261bc] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:23:38.421Z [91f89ad861d6ba8 ] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:23:47.204Z [1f5fcf171683897b] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:24:08.389Z [e8eaa50607b6130 ] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:24:08.395Z [3c2d827b977ac916] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:24:08.395Z [1e8fb8d8997fb031] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:24:08.419Z [7e9b4ab44b41a05b] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:24:12.169Z [55fa2d5a4b60b0c0] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:24:37.175Z [163469d2490f74a6] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:24:38.412Z [649547040e889b93] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:24:38.438Z [5f84ebf5d69bf713] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:24:38.444Z [59729bfa193e17b ] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:24:38.449Z [347389e94754022d] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:25:02.577Z [2e6d24dc6f09fd82] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:25:08.416Z [781a0943a73ac851] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:25:08.426Z [432b0ca3926ea791] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:25:08.435Z [4cca1d1e01c1d9b2] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:25:08.436Z [4d4c833751d791f3] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:25:27.474Z [178e372caf00ad8a] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:25:38.489Z [1c3940ee7dd854bf] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:25:38.536Z [15ea7fee54e99d18] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:25:38.605Z [5c0619258d77e6c3] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:25:38.635Z [5faee88a35242725] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:25:53.799Z [bd395c94ab784da ] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:26:08.487Z [397cba76411cb7df] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:26:08.513Z [5342c2e7807f9f36] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:26:08.528Z [1a5e27011f76d0d9] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:26:08.568Z [2c65fdfc0199802d] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:26:17.582Z [7a6c60fc67c298d4] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:26:38.434Z [12902ec0a42113b8] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:26:38.448Z [139da2e9e931e0a ] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:26:38.453Z [2b28a6311001d45b] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:26:38.460Z [3a1f7d50356a94aa] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:26:42.225Z [2a5287d586840971] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:27:07.184Z [39e73aba0cb147a3] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:27:08.435Z [b5978cf109ef540 ] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:27:08.446Z [7025e02d38f96188] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:27:08.454Z [4aa00fe5599be135] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:27:08.465Z [5fe91a3b7730317 ] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:27:32.264Z [3af803c26fc33ce1] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:27:38.379Z [3a40de7e7fae09a0] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:27:38.388Z [3399e8723d2931c3] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:27:38.410Z [611526bde8b2eb60] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:27:38.426Z [1c8ef5255872f5e5] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:27:57.524Z [86ded0382c919b5 ] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:28:08.385Z [62f917434bfd659e] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:28:08.392Z [3bc2515286f28b58] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:28:08.403Z [26388472bcc64b8 ] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:28:08.427Z [4a1f530bd117dc89] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:28:22.375Z [f827a5a72fc6261 ] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:28:38.380Z [144aa8096af824fe] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:28:38.385Z [4d593b1ffe0e4632] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:28:38.398Z [212db2a9c731539a] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:28:38.416Z [7179a2429429437d] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:28:47.427Z [612924df52b3fcf6] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:29:08.441Z [7514915f2c8fe3b8] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:29:08.448Z [65bef86b8395ac17] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:29:08.442Z [253433144713df12] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:29:08.456Z [77cc03f3386cbcf4] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:29:12.387Z [28d7320989c4d5cf] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:29:37.411Z [10d13b82051d96a4] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:29:38.381Z [53e3ea3a736065f6] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:29:38.378Z [7d08b6bd16b5d95d] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:29:38.404Z [40024d0b7d819caa] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:29:38.409Z [5e45c4c49dd253a7] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:30:02.416Z [1ee903d19eb8c46d] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:30:08.383Z [5b45a8d0b70c1191] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:30:08.388Z [3ac9a3b06aa4025 ] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:30:08.395Z [6f10bc843cb60996] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:30:08.404Z [1e019f44b1ab162b] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:30:27.377Z [17e63588beb382e7] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:30:38.465Z [5787514e0e49141f] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:30:38.501Z [53cd83b51190e966] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:30:38.520Z [2a830b0308beb0dc] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:30:38.537Z [3908193d8967c115] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:30:42.129Z [24b3d38e7d6afd4d] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:30:42.705Z [c3f843c9ddeadea ] [ACCEPTED DEPLOY] libs-snapshot-local:fr/polytech/team/h/drone-delivery-backend/1.0-SNAPSHOT/maven-metadata.xml  for client : admin / 172.21.0.1.
+2020-05-04T19:30:42.719Z [c3f843c9ddeadea ] [ACCEPTED DEPLOY] libs-snapshot-local:fr/polytech/team/h/drone-delivery-backend/1.0-SNAPSHOT/drone-delivery-backend-1.0-20200504.193042-1.pom  for client : admin / 172.21.0.1.
+2020-05-04T19:30:43.042Z [7c91a4dd5945f6f3] [ACCEPTED DEPLOY] libs-snapshot-local:fr/polytech/team/h/drone-delivery-backend/maven-metadata.xml  for client : admin / .
+2020-05-04T19:30:43.101Z [9203a599fb967794] [ACCEPTED DEPLOY] libs-snapshot-local:fr/polytech/team/h/drone-delivery-backend/maven-metadata.xml  for client : admin / 172.21.0.1.
+2020-05-04T19:30:49.277Z [b970164f7cf87324] [ACCEPTED DEPLOY] libs-snapshot-local:fr/polytech/team/h/Core/1.0-SNAPSHOT/Core-1.0-20200504.193049-1.jar  for client : admin / 172.21.0.1.
+2020-05-04T19:30:49.579Z [d0cb20475a9cca3c] [ACCEPTED DEPLOY] libs-snapshot-local:fr/polytech/team/h/Core/1.0-SNAPSHOT/maven-metadata.xml  for client : admin / 172.21.0.1.
+2020-05-04T19:30:49.583Z [d0cb20475a9cca3c] [ACCEPTED DEPLOY] libs-snapshot-local:fr/polytech/team/h/Core/1.0-SNAPSHOT/Core-1.0-20200504.193049-1.pom  for client : admin / 172.21.0.1.
+2020-05-04T19:30:49.687Z [9441f94e6e4be021] [ACCEPTED DEPLOY] libs-snapshot-local:fr/polytech/team/h/Core/maven-metadata.xml  for client : admin / .
+2020-05-04T19:30:50.070Z [5d074e78062a3318] [ACCEPTED DEPLOY] libs-snapshot-local:fr/polytech/team/h/Core/maven-metadata.xml  for client : admin / 172.21.0.1.
+2020-05-04T19:30:54.569Z [1f09521d2e803908] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:31:08.444Z [22cce7441874ba19] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:31:08.460Z [48f10fa7a0a40da5] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:31:08.477Z [60f56d5c8400e7f7] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:31:08.472Z [1e6f729be4850ac1] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:31:08.884Z [e31d76a24a11da27] [ACCEPTED DEPLOY] libs-snapshot-local:fr/polytech/team/h/SupplierRegistry/1.0-SNAPSHOT/SupplierRegistry-1.0-20200504.193108-1.jar  for client : admin / 172.21.0.1.
+2020-05-04T19:31:09.232Z [8bacdbd508b9efe7] [ACCEPTED DEPLOY] libs-snapshot-local:fr/polytech/team/h/SupplierRegistry/1.0-SNAPSHOT/maven-metadata.xml  for client : admin / 172.21.0.1.
+2020-05-04T19:31:09.234Z [8bacdbd508b9efe7] [ACCEPTED DEPLOY] libs-snapshot-local:fr/polytech/team/h/SupplierRegistry/1.0-SNAPSHOT/SupplierRegistry-1.0-20200504.193108-1.pom  for client : admin / 172.21.0.1.
+2020-05-04T19:31:09.305Z [76cec74fb4e4fba8] [ACCEPTED DEPLOY] libs-snapshot-local:fr/polytech/team/h/SupplierRegistry/maven-metadata.xml  for client : admin / .
+2020-05-04T19:31:09.409Z [e8f4732f07900b15] [ACCEPTED DOWNLOAD] libs-snapshot-local:fr/polytech/team/h/SupplierRegistry/maven-metadata.xml  for client : admin / 172.21.0.1.
+2020-05-04T19:31:09.479Z [8a9b785ffcde752a] [ACCEPTED DOWNLOAD] libs-snapshot-local:fr/polytech/team/h/SupplierRegistry/maven-metadata.xml.sha1  for client : admin / 172.21.0.1.
+2020-05-04T19:31:09.617Z [24ff2439f70f8e2b] [ACCEPTED DEPLOY] libs-snapshot-local:fr/polytech/team/h/SupplierRegistry/maven-metadata.xml  for client : admin / 172.21.0.1.
+2020-05-04T19:31:17.561Z [56b621b655ae38f0] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:31:24.804Z [2d191061dccd0191] [ACCEPTED DEPLOY] libs-snapshot-local:fr/polytech/team/h/PackageRegistry/1.0-SNAPSHOT/PackageRegistry-1.0-20200504.193124-1.jar  for client : admin / 172.21.0.1.
+2020-05-04T19:31:24.934Z [8ee613836a752cf7] [ACCEPTED DEPLOY] libs-snapshot-local:fr/polytech/team/h/PackageRegistry/1.0-SNAPSHOT/maven-metadata.xml  for client : admin / 172.21.0.1.
+2020-05-04T19:31:24.942Z [8ee613836a752cf7] [ACCEPTED DEPLOY] libs-snapshot-local:fr/polytech/team/h/PackageRegistry/1.0-SNAPSHOT/PackageRegistry-1.0-20200504.193124-1.pom  for client : admin / 172.21.0.1.
+2020-05-04T19:31:24.997Z [d1c4926c7253d848] [ACCEPTED DEPLOY] libs-snapshot-local:fr/polytech/team/h/PackageRegistry/maven-metadata.xml  for client : admin / .
+2020-05-04T19:31:25.023Z [c0d39e69ae39c698] [ACCEPTED DOWNLOAD] libs-snapshot-local:fr/polytech/team/h/PackageRegistry/maven-metadata.xml  for client : admin / 172.21.0.1.
+2020-05-04T19:31:25.033Z [6e879481e565455f] [ACCEPTED DOWNLOAD] libs-snapshot-local:fr/polytech/team/h/PackageRegistry/maven-metadata.xml.sha1  for client : admin / 172.21.0.1.
+2020-05-04T19:31:25.154Z [8a9d09f8753799a7] [ACCEPTED DEPLOY] libs-snapshot-local:fr/polytech/team/h/PackageRegistry/maven-metadata.xml  for client : admin / 172.21.0.1.
+2020-05-04T19:31:38.393Z [49fc6cb28aa814fa] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:31:38.395Z [1eff3b5f8a2ec899] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:31:38.430Z [7b4fa830f51de860] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:31:38.430Z [2e0ad0ace0f472b5] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:31:41.046Z [5997b4c9809fc774] [ACCEPTED DEPLOY] libs-snapshot-local:fr/polytech/team/h/DroneFleet/1.0-SNAPSHOT/DroneFleet-1.0-20200504.193140-1.jar  for client : admin / 172.21.0.1.
+2020-05-04T19:31:41.271Z [51d494aabe70c4c7] [ACCEPTED DEPLOY] libs-snapshot-local:fr/polytech/team/h/DroneFleet/1.0-SNAPSHOT/maven-metadata.xml  for client : admin / 172.21.0.1.
+2020-05-04T19:31:41.276Z [51d494aabe70c4c7] [ACCEPTED DEPLOY] libs-snapshot-local:fr/polytech/team/h/DroneFleet/1.0-SNAPSHOT/DroneFleet-1.0-20200504.193140-1.pom  for client : admin / 172.21.0.1.
+2020-05-04T19:31:41.372Z [8e29ae65ca0fa297] [ACCEPTED DEPLOY] libs-snapshot-local:fr/polytech/team/h/DroneFleet/maven-metadata.xml  for client : admin / .
+2020-05-04T19:31:41.466Z [2a5760dce25ddb4 ] [ACCEPTED DEPLOY] libs-snapshot-local:fr/polytech/team/h/DroneFleet/maven-metadata.xml  for client : admin / 172.21.0.1.
+2020-05-04T19:31:42.612Z [16e029fefeceba3d] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:31:57.351Z [557d11c5d3893ad4] [ACCEPTED DEPLOY] libs-snapshot-local:fr/polytech/team/h/AvailabilityProcessor/1.0-SNAPSHOT/AvailabilityProcessor-1.0-20200504.193157-1.jar  for client : admin / 172.21.0.1.
+2020-05-04T19:31:57.512Z [4a790364e49bf906] [ACCEPTED DEPLOY] libs-snapshot-local:fr/polytech/team/h/AvailabilityProcessor/1.0-SNAPSHOT/maven-metadata.xml  for client : admin / 172.21.0.1.
+2020-05-04T19:31:57.515Z [4a790364e49bf906] [ACCEPTED DEPLOY] libs-snapshot-local:fr/polytech/team/h/AvailabilityProcessor/1.0-SNAPSHOT/AvailabilityProcessor-1.0-20200504.193157-1.pom  for client : admin / 172.21.0.1.
+2020-05-04T19:31:57.546Z [94c98fd0fa866d0d] [ACCEPTED DEPLOY] libs-snapshot-local:fr/polytech/team/h/AvailabilityProcessor/maven-metadata.xml  for client : admin / .
+2020-05-04T19:31:57.590Z [f052f703160e8731] [ACCEPTED DOWNLOAD] libs-snapshot-local:fr/polytech/team/h/AvailabilityProcessor/maven-metadata.xml  for client : admin / 172.21.0.1.
+2020-05-04T19:31:57.605Z [52fd8d6ab6c2993c] [ACCEPTED DOWNLOAD] libs-snapshot-local:fr/polytech/team/h/AvailabilityProcessor/maven-metadata.xml.sha1  for client : admin / 172.21.0.1.
+2020-05-04T19:31:57.717Z [8a6c65b0dde740c3] [ACCEPTED DEPLOY] libs-snapshot-local:fr/polytech/team/h/AvailabilityProcessor/maven-metadata.xml  for client : admin / 172.21.0.1.
+2020-05-04T19:32:07.586Z [1fdac09201457746] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:32:08.480Z [289f7afad11d006 ] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:32:08.520Z [6f4021e0e907aabb] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:32:08.473Z [6802fcb451b222d3] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:32:08.523Z [61974ca6bfeef4fa] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:32:15.848Z [876cd5aace7f8423] [ACCEPTED DEPLOY] libs-snapshot-local:fr/polytech/team/h/DeliveryPlanning/1.0-SNAPSHOT/DeliveryPlanning-1.0-20200504.193215-1.jar  for client : admin / 172.21.0.1.
+2020-05-04T19:32:16.008Z [8b6da42de2c4d010] [ACCEPTED DEPLOY] libs-snapshot-local:fr/polytech/team/h/DeliveryPlanning/1.0-SNAPSHOT/maven-metadata.xml  for client : admin / 172.21.0.1.
+2020-05-04T19:32:16.010Z [8b6da42de2c4d010] [ACCEPTED DEPLOY] libs-snapshot-local:fr/polytech/team/h/DeliveryPlanning/1.0-SNAPSHOT/DeliveryPlanning-1.0-20200504.193215-1.pom  for client : admin / 172.21.0.1.
+2020-05-04T19:32:16.056Z [2b9a9bf68ab4320e] [ACCEPTED DEPLOY] libs-snapshot-local:fr/polytech/team/h/DeliveryPlanning/maven-metadata.xml  for client : admin / .
+2020-05-04T19:32:16.162Z [a00acbc110ce437f] [ACCEPTED DEPLOY] libs-snapshot-local:fr/polytech/team/h/DeliveryPlanning/maven-metadata.xml  for client : admin / 172.21.0.1.
+2020-05-04T19:32:32.875Z [37167062eacbcc2b] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:32:33.147Z [b901a87a3d0dbf49] [ACCEPTED DEPLOY] libs-snapshot-local:fr/polytech/team/h/Accounting/1.0-SNAPSHOT/Accounting-1.0-20200504.193233-1.jar  for client : admin / 172.21.0.1.
+2020-05-04T19:32:33.331Z [a4eef80d235eac0c] [ACCEPTED DEPLOY] libs-snapshot-local:fr/polytech/team/h/Accounting/1.0-SNAPSHOT/maven-metadata.xml  for client : admin / 172.21.0.1.
+2020-05-04T19:32:33.334Z [a4eef80d235eac0c] [ACCEPTED DEPLOY] libs-snapshot-local:fr/polytech/team/h/Accounting/1.0-SNAPSHOT/Accounting-1.0-20200504.193233-1.pom  for client : admin / 172.21.0.1.
+2020-05-04T19:32:33.424Z [d8540e9ca9b2b8ff] [ACCEPTED DEPLOY] libs-snapshot-local:fr/polytech/team/h/Accounting/maven-metadata.xml  for client : admin / .
+2020-05-04T19:32:33.531Z [312b613b171de69a] [ACCEPTED DEPLOY] libs-snapshot-local:fr/polytech/team/h/Accounting/maven-metadata.xml  for client : admin / 172.21.0.1.
+2020-05-04T19:32:38.577Z [2ff3541781bb41fe] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:32:38.620Z [3e05a106cd33f15d] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:32:38.718Z [15186ee760da04b3] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:32:38.741Z [3d02cc85e15fa343] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:32:49.776Z [2fd81209119e598d] [ACCEPTED DEPLOY] libs-snapshot-local:fr/polytech/team/h/CommentBoard/1.0-SNAPSHOT/CommentBoard-1.0-20200504.193249-1.jar  for client : admin / 172.21.0.1.
+2020-05-04T19:32:49.917Z [cee7b6ff411d500d] [ACCEPTED DEPLOY] libs-snapshot-local:fr/polytech/team/h/CommentBoard/1.0-SNAPSHOT/maven-metadata.xml  for client : admin / 172.21.0.1.
+2020-05-04T19:32:49.919Z [cee7b6ff411d500d] [ACCEPTED DEPLOY] libs-snapshot-local:fr/polytech/team/h/CommentBoard/1.0-SNAPSHOT/CommentBoard-1.0-20200504.193249-1.pom  for client : admin / 172.21.0.1.
+2020-05-04T19:32:49.998Z [ad2390464c744ea7] [ACCEPTED DEPLOY] libs-snapshot-local:fr/polytech/team/h/CommentBoard/maven-metadata.xml  for client : admin / .
+2020-05-04T19:32:50.111Z [48f6c21403a313e7] [ACCEPTED DEPLOY] libs-snapshot-local:fr/polytech/team/h/CommentBoard/maven-metadata.xml  for client : admin / 172.21.0.1.
+2020-05-04T19:32:59.001Z [627873b5be0ec2d3] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:33:06.228Z [fe93b5c894bf1b5f] [ACCEPTED DEPLOY] libs-snapshot-local:fr/polytech/team/h/Statistics/1.0-SNAPSHOT/Statistics-1.0-20200504.193306-1.jar  for client : admin / 172.21.0.1.
+2020-05-04T19:33:06.479Z [4ccbab9821da52de] [ACCEPTED DEPLOY] libs-snapshot-local:fr/polytech/team/h/Statistics/1.0-SNAPSHOT/maven-metadata.xml  for client : admin / 172.21.0.1.
+2020-05-04T19:33:06.482Z [4ccbab9821da52de] [ACCEPTED DEPLOY] libs-snapshot-local:fr/polytech/team/h/Statistics/1.0-SNAPSHOT/Statistics-1.0-20200504.193306-1.pom  for client : admin / 172.21.0.1.
+2020-05-04T19:33:06.569Z [5b1c53f6c43db42e] [ACCEPTED DEPLOY] libs-snapshot-local:fr/polytech/team/h/Statistics/maven-metadata.xml  for client : admin / .
+2020-05-04T19:33:06.667Z [407ccf66b5f9a44e] [ACCEPTED DEPLOY] libs-snapshot-local:fr/polytech/team/h/Statistics/maven-metadata.xml  for client : admin / 172.21.0.1.
+2020-05-04T19:33:08.513Z [3589f82beb0e2065] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:33:08.538Z [4964e76661ca61  ] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:33:08.546Z [577ec99320f52e67] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:33:08.573Z [7d6c4f31a18c14d1] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:33:21.218Z [5648735998682a9e] [ACCEPTED DEPLOY] libs-snapshot-local:fr/polytech/team/h/WebServices/1.0-SNAPSHOT/WebServices-1.0-20200504.193321-1.war  for client : admin / 172.21.0.1.
+2020-05-04T19:33:21.472Z [366652f3bf076136] [ACCEPTED DEPLOY] libs-snapshot-local:fr/polytech/team/h/WebServices/1.0-SNAPSHOT/maven-metadata.xml  for client : admin / 172.21.0.1.
+2020-05-04T19:33:21.487Z [366652f3bf076136] [ACCEPTED DEPLOY] libs-snapshot-local:fr/polytech/team/h/WebServices/1.0-SNAPSHOT/WebServices-1.0-20200504.193321-1.pom  for client : admin / 172.21.0.1.
+2020-05-04T19:33:21.603Z [c432eadc0751aad8] [ACCEPTED DEPLOY] libs-snapshot-local:fr/polytech/team/h/WebServices/maven-metadata.xml  for client : admin / .
+2020-05-04T19:33:21.688Z [fb7924d41e1da55f] [ACCEPTED DEPLOY] libs-snapshot-local:fr/polytech/team/h/WebServices/maven-metadata.xml  for client : admin / 172.21.0.1.
+2020-05-04T19:33:22.416Z [497d87a64beaba7e] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:33:31.346Z [6bf2d3f0d071f305] [ACCEPTED LOGIN]   for client : jffe@000 / 172.21.0.1.
+2020-05-04T19:33:47.171Z [601caed5f867f612] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:34:08.372Z [5e5acbdb33020850] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:34:08.380Z [31fb8f1eac907ba5] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:34:08.377Z [3fef455183821259] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:34:08.402Z [29487597b112decd] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:34:12.393Z [54f80170fdbeceb6] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:34:37.430Z [c9f352293db7b31 ] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:34:38.384Z [6762c1d733b9d278] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:34:38.402Z [7ac1b975319e0015] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:34:38.411Z [61e5229b904d2fbd] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:34:38.417Z [384dc1f13a2c3c5c] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:35:02.381Z [6a7180d925184399] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:35:08.423Z [44bf8673d45dff7a] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:35:08.462Z [8a4d26f47d494ad ] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:35:08.493Z [76720cc526d59948] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:35:08.496Z [571adda894da1bcb] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:35:27.388Z [2a609d1c0ee5ef3a] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:35:38.389Z [2d5dec3cbc395433] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:35:38.409Z [750b1b2fce33ba3d] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:35:38.409Z [72c3138b9c0a7ad8] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:35:38.414Z [5b8f7414cbe9a3c1] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:35:52.407Z [33a20e2f3d51612d] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:36:08.389Z [4544c6bdf6c32233] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:36:08.421Z [e8d82179308d805 ] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:36:08.426Z [704ec42567ae71b6] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:36:08.428Z [d61b8b89ecdc023 ] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:36:17.388Z [3b798f6f95b6471f] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:36:38.379Z [475c8cd2f899376d] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:36:38.382Z [50034fe5d74eefd2] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:36:38.384Z [74e2dd6a0af391db] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:36:38.387Z [75631492982f622e] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:36:42.408Z [4943c7c924c3d6f6] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:37:07.404Z [5f0e3e43b8a0206a] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:37:08.391Z [426ba50b7a7f6878] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:37:08.391Z [7a00531686d2483f] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:37:08.391Z [479e36967a60acfd] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:37:08.402Z [9b8ebbf1deaf226 ] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:37:32.385Z [1b9abc523a11266d] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:37:38.386Z [733ba58e637b3941] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:37:38.410Z [36d3bccaf8b5d8be] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:37:38.416Z [7b341ed09724522d] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:37:38.416Z [58c10d5ace7d3a82] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:37:57.395Z [3e95980b07611bbb] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:38:08.396Z [7e891226dc245986] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:38:08.397Z [6162388ac676be32] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:38:08.396Z [6c3675e764a5084e] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:38:08.406Z [1fd5e6d66c89045f] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:38:22.390Z [4039e1c438f8a0e5] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:38:38.385Z [331256f72838293d] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:38:38.402Z [74c308c3ded05910] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:38:38.404Z [4cd830fb792faec8] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:38:38.402Z [c9f7274ca67529e ] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:38:47.381Z [75be16e87a2a796f] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:39:08.385Z [1111df2e0284a24f] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:39:08.385Z [1df094ed0e38afeb] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:39:08.398Z [710db867d4d823ea] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:39:08.408Z [2f8d20912683e718] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:39:12.396Z [3c4facae8fa2cea7] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:39:37.589Z [26c106000460af33] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:39:38.371Z [5120e0a72bc110f ] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:39:38.380Z [56becb51e4e6222 ] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:39:38.397Z [6f29e04b05999bc0] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:39:38.397Z [51c23138f2ed628e] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:40:02.373Z [29b004a9c704f6be] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:40:08.380Z [7bf3f896090fb2c6] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:40:08.401Z [169b185cd2d54732] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:40:08.404Z [7c3efca9f0f37623] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:40:08.410Z [7c2d7eb2eadcd22f] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:40:27.212Z [663ec681767d3e5 ] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:40:38.396Z [4dbdfd83e592ea23] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:40:38.397Z [77c0c1325a5a790c] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:40:38.399Z [6c47f9c4001a99d5] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:40:38.412Z [7a78cc787d637d3 ] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:40:52.389Z [414112682ccdcab2] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:41:08.373Z [1394de63f79f321d] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:41:08.382Z [26a984578dffe063] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:41:08.389Z [2ad362d244e27deb] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:41:08.393Z [454c13cdbc0a3b28] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:41:17.409Z [4e04f6bd2358449a] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:41:29.871Z [6200826029552d6a] [ACCEPTED LOGIN]   for client : admin / 172.21.0.2.
+2020-05-04T19:41:38.374Z [6068c6b1efca366a] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:41:38.380Z [1d28d5ad7b447b81] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:41:38.383Z [58e287149958ba19] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:41:38.410Z [5f52c65e51929e48] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:41:42.391Z [67b9e93cae3de48d] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:42:07.411Z [64a84e27dfaf6281] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:42:08.394Z [7699f64ddc90baee] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:42:08.401Z [4d3496a6c28beaac] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:42:08.401Z [2afac43b63e43e0b] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:42:08.415Z [4ebbec6dba2ff66e] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:42:32.427Z [38fd6207066c5ece] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:42:38.447Z [430cafffc5075ed5] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:42:38.448Z [3e4fd5b42c18f193] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:42:38.485Z [76fe7ea41954e25 ] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:42:38.489Z [17b73cbf62d8044d] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:42:57.387Z [84da5dc782b6940 ] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:43:08.406Z [7822855ecf55ab5 ] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:43:08.412Z [6c33c671507fabca] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:43:08.415Z [5b9652593127d250] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:43:08.412Z [2944154268632fa6] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:43:22.400Z [79afc4eb8c185485] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:43:38.399Z [7742c97f254248b7] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:43:38.410Z [6a3d1861c5c797b9] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:43:38.418Z [2ff98b4726119251] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:43:38.424Z [2ac1a0e48e083d4b] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:43:47.402Z [31a7ff0388e5a6c9] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:44:08.399Z [1eca6b77ebe7a13b] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:44:08.400Z [606684db0c9f5b84] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:44:08.402Z [56c9ce1bfc1ce07b] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:44:08.409Z [4400f3a5854eb5e0] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:44:12.406Z [53370b26001184f ] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:44:37.419Z [78b1985b4923fcfe] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:44:38.387Z [63ca614cbff9ef89] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:44:38.400Z [3503215ecf6fef3e] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:44:38.404Z [1fd072a955ad25da] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:44:38.408Z [2174ab71ab80f3fc] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:45:02.397Z [117e0c0db622850b] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:45:08.403Z [77e2593d12243a2 ] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:45:08.408Z [1a0cfeea7e084a45] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:45:08.404Z [87ce98d98a5da9b ] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:45:08.417Z [2b34afb1c22cf3fe] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:45:27.405Z [12618bf9efc55c87] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:45:38.410Z [1ccfe3338d76ba7c] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:45:38.424Z [63b10baabfcb0697] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:45:38.419Z [73e77b703d89585f] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:45:38.440Z [5c16575646d32a45] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:45:52.428Z [ffdb1f6acb66a81 ] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:46:08.422Z [78bdf3957ab8ac2e] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:46:08.424Z [7bd515ac7ed15c31] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:46:08.417Z [154e24bdab5d1f73] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:46:08.432Z [2dde30789b208295] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:46:17.524Z [7220c529661e3097] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:46:38.403Z [14968b436e8539c6] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:46:38.406Z [1df342c5f1451e97] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:46:38.419Z [48b2f197b6de6063] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:46:38.421Z [5af9ba9579308ecd] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:46:42.426Z [63e8ff20eccad904] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:47:07.395Z [78fdd4149ac99bc4] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:47:08.397Z [7df2ec23fb6ce373] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:47:08.403Z [20c9e4c1db67b514] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:47:08.410Z [322a89140dd9392 ] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:47:08.413Z [1f831482d7287170] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:47:32.407Z [11f032307eb97e4c] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:47:38.412Z [824f1b674735184 ] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:47:38.423Z [7bee952cb4c3202f] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:47:38.417Z [64aa5d92daa96e2c] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:47:38.416Z [60d7e539c1f28f13] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:47:57.433Z [6c98a44cebdf76c6] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:48:08.411Z [27f1ea5cb03d42be] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:48:08.422Z [342c271913f7ec94] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:48:08.422Z [fc9f85ef4cca0ee ] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:48:08.431Z [4d119c88cb72249f] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:48:22.439Z [262af22dc193ae4d] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:48:38.390Z [5a61c79c660a801 ] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:48:38.386Z [7c4e53b9bc42194c] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:48:38.407Z [7a5d32f5b8e721ef] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:48:38.407Z [7587e1985c841438] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:48:47.410Z [5730c25d6ec9c9a2] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:49:08.415Z [7628e2f667924c87] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:49:08.428Z [43f8c7b1fda4d6c9] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:49:08.433Z [5e0a820c6656b81e] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:49:08.447Z [33051838bf835e67] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:49:12.402Z [1ca71f3752c0300e] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:49:37.631Z [7849f7100aabfb9c] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:49:38.427Z [62e05a0374ab33cc] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:49:38.428Z [3853af2ebbb5213c] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:49:38.449Z [115463e71c81fa7 ] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:49:38.459Z [7ce1f1593c50d512] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:50:02.383Z [ab8b1b725cc14e4 ] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:50:08.381Z [3c2f89808cb2c79f] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:50:08.381Z [14cd70fe88c6f009] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:50:08.389Z [5b136dfbb4fe1559] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:50:08.396Z [74f66e06a689cc16] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:50:27.377Z [7d5326764dee4001] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:50:38.414Z [550203561c6a1a5b] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:50:38.427Z [3f76a3c61ee6af0d] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:50:38.431Z [e783f0440711ee4 ] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:50:38.432Z [60f63ea61754989f] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:50:52.400Z [8aca856f064738c ] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:51:08.404Z [3f132e817d2c45ef] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:51:08.407Z [21b17f47f3711d49] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:51:08.408Z [7db2cc685d4ea324] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:51:08.412Z [45df98626e8b16f ] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:51:17.391Z [254be5c518c09c1e] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.
+2020-05-04T19:51:38.380Z [29aea184b96ee319] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:51:38.399Z [685a132d543f0d64] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:51:38.417Z [26fbe8c866c90bab] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:51:38.420Z [733004ede9cacd9a] [ACCEPTED LOGIN]   for client : jffe@000 / 127.0.0.1.
+2020-05-04T19:51:42.461Z [36c3a738f0009635] [ACCEPTED LOGIN]   for client : admin / 172.21.0.1.

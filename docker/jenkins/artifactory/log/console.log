@@ -1179,3 +1179,5 @@ Node ID: '8c82f15967bb'
 2020-05-04T19:34:10.746Z [1;32m[jfrt ][0;39m [34m[INFO ][0;39m [8a5946fda0e4066f] [o.a.s.a.ArchiveIndexerImpl:146] [art-exec-7          ] - Indexing archive: libs-snapshot-local:fr/polytech/team/h/WebServices/1.0-SNAPSHOT/WebServices-1.0-20200504.193321-1.war
 2020-05-04T19:37:23.784Z [1;33m[jfac ][0;39m [34m[INFO ][0;39m [e728d7b7f266a89 ] [.r.s.RpcPermissionResource:196] [jf-access-task1     ] - server identified client canceled subscription
 2020-05-04T19:42:24.795Z [1;33m[jfac ][0;39m [34m[INFO ][0;39m [17d4c93eb5ece90e] [.r.s.RpcPermissionResource:196] [jf-access-task1     ] - server identified client canceled subscription
+2020-05-04T19:47:25.666Z [1;33m[jfac ][0;39m [34m[INFO ][0;39m [95c0aa4b3b1d0b28] [.r.s.RpcPermissionResource:196] [jf-access-task1     ] - server identified client canceled subscription
+2020-05-04T19:52:26.470Z [1;33m[jfac ][0;39m [34m[INFO ][0;39m [cd0a063a69da664e] [.r.s.RpcPermissionResource:196] [jf-access-task1     ] - server identified client canceled subscription
