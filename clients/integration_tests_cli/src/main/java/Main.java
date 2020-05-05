@@ -49,6 +49,7 @@ public class Main extends Shell<DronePublicAPI> {
     }
 
     public static void main(String[] args) {
+        System.out.println("testou");
         String host = ( args.length == 0 ? "localhost" : args[0] );
         String port = ( args.length < 2  ? "8080"      : args[1] );
         System.out.println("Starting DroneDelivery by Livrair");

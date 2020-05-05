@@ -15,8 +15,6 @@ services:
       - "8080:8080"
     depends_on:
       - external_partners
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
 
   # The external partners, implemented as .Net services
   external_partners:
@@ -26,17 +24,12 @@ services:
         - "9090"
     ports:
       - "9090:9090"
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
 
   # A simple java CLI
   dd_client_boss_cli:
     image: livrair/dd-client-boss_cli
     container_name: dd_client_boss_cli
     command: "dd_system 8080"
-    volumes:
-      - .:/host
-      - /var/run/docker.sock:/var/run/docker.sock
     depends_on:
       dd_system:
         condition: service_healthy
@@ -47,9 +40,6 @@ services:
     image: livrair/dd-client-chargeur_cli
     container_name: dd_client_chargeur_cli
     command: "dd_system 8080"
-    volumes:
-      - .:/host
-      - /var/run/docker.sock:/var/run/docker.sock
     depends_on:
       dd_system:
         condition: service_healthy
@@ -60,9 +50,6 @@ services:
     image: livrair/dd-client-garagiste_cli
     container_name: dd_client_garagiste_cli
     command: "dd_system 8080"
-    volumes:
-      - .:/host
-      - /var/run/docker.sock:/var/run/docker.sock
     depends_on:
       dd_system:
         condition: service_healthy
@@ -73,9 +60,6 @@ services:
     image: livrair/dd-client-gestionnaire_cli
     container_name: dd_client_gestionnaire_cli
     command: "dd_system 8080"
-    volumes:
-      - .:/host
-      - /var/run/docker.sock:/var/run/docker.sock
     depends_on:
       dd_system:
         condition: service_healthy
@@ -86,9 +70,6 @@ services:
     image: livrair/dd-client-manutentionnaire_cli
     container_name: dd_client_manutentionnaire_cli
     command: "dd_system 8080"
-    volumes:
-      - .:/host
-      - /var/run/docker.sock:/var/run/docker.sock
     depends_on:
       dd_system:
         condition: service_healthy
@@ -99,9 +80,6 @@ services:
     image: livrair/dd-client-service_client_cli
     container_name: dd_client_service_client_cli
     command: "dd_system 8080"
-    volumes:
-      - .:/host
-      - /var/run/docker.sock:/var/run/docker.sock
     depends_on:
       dd_system:
         condition: service_healthy
@@ -112,9 +90,6 @@ services:
     image: livrair/dd-client-integration_tests_cli
     container_name: dd_client_integration_tests_cli
     command: "dd_system 8080"
-    volumes:
-      - .:/host
-      - /var/run/docker.sock:/var/run/docker.sock
     depends_on:
       dd_system:
         condition: service_healthy
