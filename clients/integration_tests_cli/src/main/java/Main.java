@@ -2,11 +2,16 @@ import api.DronePublicAPI;
 import cli.commands.*;
 import cli.framework.Shell;
 
+import java.util.Properties;
+
 /**
  * Main class that interacts with a Drone Delivery instance
  * Use -Dexec.args="IP_ADDRESS PORT_NUMBER" to change host/port parameters
  */
 public class Main extends Shell<DronePublicAPI> {
+    static String host = "localhost";
+    static String port = "8080";
+
     public Main(String host, String port) {
         this.system  = new DronePublicAPI(host, port);
         this.invite  = "DD";
@@ -49,14 +54,20 @@ public class Main extends Shell<DronePublicAPI> {
     }
 
     public static void main(String[] args) {
-        System.out.println("testou");
-        String host = ( args.length == 0 ? "localhost" : args[0] );
-        String port = ( args.length < 2  ? "8080"      : args[1] );
-        System.out.println("Starting DroneDelivery by Livrair");
-        System.out.println("  - Remote server: " + host);
-        System.out.println("  - Port number:   " + port);
-        Main main = new Main(host, port);
-        main.run();
-        System.out.println("Exiting DroneDelivery by Livrair\n");
+        try {
+            Properties prop = new Properties();
+            prop.load(Main.class.getResourceAsStream("/server.properties"));
+            host = (args.length == 0 ? prop.getProperty("serverHostName") : args[0]);
+            port = (args.length < 2 ? prop.getProperty("serverPortNumber") : args[1]);
+            System.out.println("Starting DroneDelivery by Livrair");
+            System.out.println("  - Remote server: " + host);
+            System.out.println("  - Port number:   " + port);
+            Main main = new Main(host, port);
+            main.run();
+            System.out.println("Exiting DroneDelivery by Livrair\n");
+        }catch(Exception e){
+            System.out.println("Cannot read server.properties file");
+            e.printStackTrace();
+        }
     }
 }
