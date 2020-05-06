@@ -94,6 +94,7 @@ public class DronePublicAPI {
     }
 
     public DronePublicAPI(String host, String port) {
+        System.out.println("Connection on " + host + " with port " + port);
         initAccounting(host, port);
         initDroneFleet(host, port);
         initPackageRegistration(host, port);

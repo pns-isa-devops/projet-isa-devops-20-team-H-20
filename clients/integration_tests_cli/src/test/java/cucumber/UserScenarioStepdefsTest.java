@@ -8,15 +8,12 @@ import stubs.accounting.Invoice;
 import stubs.planning.*;
 import stubs.stats.DroneStatsEntry;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import static org.junit.Assert.*;
 
 public class UserScenarioStepdefsTest {
-    private DronePublicAPI dronePublicAPI = new DronePublicAPI("localhost", "8080");
+    private DronePublicAPI dronePublicAPI;
     private Set<Integer> dronesToDelete = new HashSet<>();
     private Set<String> suppliersToDelete = new HashSet<>();
     private Set<String> packagesToDelete = new HashSet<>();
@@ -30,6 +27,13 @@ public class UserScenarioStepdefsTest {
 
     @Given("^some lists to remove things$")
     public void given(){
+        try {
+            Properties prop = new Properties();
+            prop.load(UserScenarioStepdefsTest.class.getResourceAsStream("/server.properties"));
+            dronePublicAPI = new DronePublicAPI (prop.getProperty("serverHostName"), prop.getProperty("serverPortNumber"));
+        }catch(Exception e){
+            e.printStackTrace();
+        }
         dronesToDelete = new HashSet<>();
         suppliersToDelete = new HashSet<>();
         packagesToDelete = new HashSet<>();
