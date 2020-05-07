@@ -32,6 +32,6 @@ public class EditDeliveryStatus extends Command<DronePublicAPI> {
 
     @Override
     public String describe() {
-        return identifier() + " (status)";
+        return identifier() + " (packageId status)";
     }
 }

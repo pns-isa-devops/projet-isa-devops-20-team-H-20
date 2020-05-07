@@ -5,33 +5,31 @@ import cli.framework.Command;
 
 import java.util.List;
 
-public class EditDeliveryStatus extends Command<DronePublicAPI> {
+public class RemoveComment extends Command<DronePublicAPI> {
     private String trackingId;
-    private String status;
 
     @Override
     public String identifier() {
-        return "edit-delivery-status";
+        return "remove-comment";
     }
 
     @Override
     public void load(List<String> args) {
         trackingId = args.get(0);
-        status = args.get(1);
     }
 
     @Override
     public void execute() throws Exception {
-        boolean res = shell.system.getPlanningWebService().editDeliveryStatus(trackingId, status);
+        boolean res = shell.system.getRatingWebService().deleteComment(trackingId);
         if(res){
-            System.out.println("Delivery edited");
+            System.out.println("Comment removed");
         }else{
-            System.out.println("Error delivery not edited");
+            System.out.println("Error comment not removed");
         }
     }
 
     @Override
     public String describe() {
-        return identifier() + " (packageId status)";
+        return identifier() + " (trackingId)";
     }
 }

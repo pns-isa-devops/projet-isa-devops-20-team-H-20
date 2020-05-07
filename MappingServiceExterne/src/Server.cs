@@ -20,13 +20,13 @@ public class Server
    */
   public void start() {
     Console.WriteLine("Starting a WCF self-hosted .Net server... ");
-    string url = "http://localhost" + ":" + Port;
+    string url = "http://" + "localhost" + ":" + Port;
 
     WebHttpBinding b = new WebHttpBinding();
-    Host = new WebServiceHost(typeof(MappingService), new Uri (url));
+    Host = new WebServiceHost(typeof(PaymentService), new Uri (url));
 
     // Adding the service to the host
-    Host.AddServiceEndpoint(typeof(IMappingService), b, "");
+    Host.AddServiceEndpoint(typeof(IPaymentService), b, "");
 
     // Staring the Host server
     Host.Open();

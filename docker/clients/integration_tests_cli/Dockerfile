@@ -2,22 +2,13 @@ FROM openjdk:8
 MAINTAINER Livrair
 
 # Loading the executable server inside the image
-COPY integration_tests_cli ./integration_tests_cli
+COPY ./drone-delivery-client-integration_tests_cli-1.0-SNAPSHOT-jar-with-dependencies.jar ./drone-delivery-client-integration_tests_cli.jar
 
 # Mounting a local directory to support file loading in the shell
 VOLUME /host
 
-# Configure the link to the external partners
-ENV server_host=dd_system
-ENV server_port=8080
+# Running the client using the starting shell script
+ENTRYPOINT ["java", "-jar", "./drone-delivery-client-integration_tests_cli.jar"]
 
-# Copy the startup script
-COPY ./resources/start-dd.sh .
-RUN ["chmod", "u+x", "./start-dd.sh"]
-
-# Starting the script to launch tests
-ENTRYPOINT ["./start-dd.sh"]
-
-USER root
-RUN apt-get update
-RUN apt-get -y --no-install-recommends install maven
+# Default arguments to be forwarded to the entry point
+CMD ["localhost", "8080"]
