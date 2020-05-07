@@ -1,0 +1,12 @@
+commit 974b1a6a52acae99b159331f2f56d66ab39bb514
+tree 2b80659fd39b56c62895034ed8915d84d1951e41
+parent 4f03c5336f2d4983fbef90bcacc6dd404b5ab56f
+author Damien Montoya <daminor26@gmail.com> 2020-05-04 23:23:53 +0200
+committer Damien Montoya <daminor26@gmail.com> 2020-05-04 23:23:53 +0200
+
+    docker done injenkins #44
+
+
+:100644 100644 2ab6c7925a1045877202e1528023f56d5fb97b30 5430d72137ad47296c286ebc0c59ecfc63b2374e M	MappingServiceExterne/server.exe
+:100644 100644 b7931e405722167a82df062efd5d7e88ff6f2515 e4a0abdaa122917c136f5ebf2079c0c70c77523a M	docker/build.sh
+:100644 100644 94fc71c2fc373eaa403a296550f8f94ba940b835 69815d19508d692c462cc4b4b4dc9b0b949ec7cc M	docker/clients/build.sh

@@ -1,0 +1,12 @@
+commit 0d182ea9bf0de6ca02bae1efe4f5bec1116ba327
+tree 1499f0acedb4269e6fd1b63f4a269cf96b488268
+parent 974b1a6a52acae99b159331f2f56d66ab39bb514
+author Damien Montoya <daminor26@gmail.com> 2020-05-05 00:15:34 +0200
+committer Damien Montoya <daminor26@gmail.com> 2020-05-05 00:15:34 +0200
+
+    docker done in jenkins + integrations tests not works #44
+
+
+:100644 100644 e7992185b61908f122e2386d69c547cd61a03d7b 8b1c151c1c5333c307cb4ad0bb9ad989614607cd M	docker/README.md
+:100644 100644 a8bccbc5a4c5432a095f973770481fa5f5cb90df 10e276c4402978be7f84e75232bcb234f92b5c9c M	docker/docker-compose.yml
+:100644 100644 d892300579371cae544dfb22d01515807b5bb624 b9b489c9301cff1f4640d3d28932f76e0e7f573d M	j2e/README.md

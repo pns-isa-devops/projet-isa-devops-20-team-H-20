@@ -1,0 +1,570 @@
+Started by upstream project "[8mha:////4II7y41o2XfcFwR7bxUoJTBrOEw2zGRXKvjcMwvtpyMNAAAAox+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAyhEgYJ/az8JP2Uovy8VF2gMzPLUosqdbOMUvUBCHT0Os0AAAA=[0mdrone-delivery-j2e" build number [8mha:////4L1jd1CRU92h7P54Lxy+k7gtzNen43E07P6nYj2ForIbAAAAox+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLQIwSBkn9rPwk/ZSi/LxUXaAzM8tSiyp1s4xS9c0BOnaDoM4AAAA=[0m7
+originally caused by:
+ Started by user [8mha:////4Lnx69JL3IAAqkgQK3MRmKCYHPbxCXMSwwtbo/JDP06eAAAAmB+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAy+EgYe/dLi1CL9lMTczNQ8AC9LU1nBAAAA[0mDamien Montoya
+Running as SYSTEM
+Building in workspace /var/jenkins_home/workspace/drone-delivery-dockerization
+[drone-delivery-dockerization] $ /bin/sh -xe /tmp/jenkins102012356490680619.sh
++ export M2_HOME=/var/jenkins_home/tools/hudson.tasks.Maven_MavenInstallation/maven-3.6.3
++ export PATH=/usr/local/openjdk-8/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/var/jenkins_home/tools/hudson.tasks.Maven_MavenInstallation/maven-3.6.3/bin
++ cd /var/jenkins_home/workspace/drone-delivery-j2e/docker/
++ chmod 777 build.sh
++ chmod 777 dd/build.sh
++ chmod 777 clients/build.sh
++ chmod 777 clients/boss_cli/build.sh
++ chmod 777 clients/chargeur_cli/build.sh
++ chmod 777 clients/garagiste_cli/build.sh
++ chmod 777 clients/gestionnaire_cli/build.sh
++ chmod 777 clients/integration_tests_cli/build.sh
++ chmod 777 clients/manutentionnaire_cli/build.sh
++ chmod 777 clients/service_client_cli/build.sh
++ chmod 777 partners/build.sh
++ chmod 777 ../MappingServiceExterne/compile.sh
++ ./build.sh
+Compiling the Drone Delivery client boss_cli system
+Done
+Sending build context to Docker daemon  40.45kB
+Step 1/6 : FROM openjdk:8
+ ---> cdf26cc71b50
+Step 2/6 : MAINTAINER Livrair
+ ---> Using cache
+ ---> c36a36d499f6
+Step 3/6 : COPY ./drone-delivery-client-boss_cli-1.0-SNAPSHOT-jar-with-dependencies.jar ./drone-delivery-client-boss_cli.jar
+ ---> ca7fd2d570f4
+Step 4/6 : VOLUME /host
+ ---> Running in bf6d8fcc9642
+Removing intermediate container bf6d8fcc9642
+ ---> 52c98673254a
+Step 5/6 : ENTRYPOINT ["java", "-jar", "./drone-delivery-client-boss_cli.jar"]
+ ---> Running in ab590d164515
+Removing intermediate container ab590d164515
+ ---> 403eb6942fc6
+Step 6/6 : CMD ["localhost", "8080"]
+ ---> Running in 1b4b9ffd08cc
+Removing intermediate container 1b4b9ffd08cc
+ ---> 8206af3a6a06
+Successfully built 8206af3a6a06
+Successfully tagged livrair/dd-client-boss_cli:latest
+Compiling the Drone Delivery client chargeur_cli system
+Done
+Sending build context to Docker daemon   38.4kB
+Step 1/6 : FROM openjdk:8
+ ---> cdf26cc71b50
+Step 2/6 : MAINTAINER Livrair
+ ---> Using cache
+ ---> c36a36d499f6
+Step 3/6 : COPY ./drone-delivery-client-chargeur_cli-1.0-SNAPSHOT-jar-with-dependencies.jar ./drone-delivery-client-chargeur_cli.jar
+ ---> 9ac9b959b76f
+Step 4/6 : VOLUME /host
+ ---> Running in af19a70700a0
+Removing intermediate container af19a70700a0
+ ---> eb507d93913b
+Step 5/6 : ENTRYPOINT ["java", "-jar", "./drone-delivery-client-chargeur_cli.jar"]
+ ---> Running in 30142466698a
+Removing intermediate container 30142466698a
+ ---> 590c44296c26
+Step 6/6 : CMD ["localhost", "8080"]
+ ---> Running in 29e494208254
+Removing intermediate container 29e494208254
+ ---> 20b21f804e7a
+Successfully built 20b21f804e7a
+Successfully tagged livrair/dd-client-chargeur_cli:latest
+Compiling the Drone Delivery client garagiste_cli system
+Done
+Sending build context to Docker daemon  40.45kB
+Step 1/6 : FROM openjdk:8
+ ---> cdf26cc71b50
+Step 2/6 : MAINTAINER Livrair
+ ---> Using cache
+ ---> c36a36d499f6
+Step 3/6 : COPY ./drone-delivery-client-garagiste_cli-1.0-SNAPSHOT-jar-with-dependencies.jar ./drone-delivery-client-garagiste_cli.jar
+ ---> df6533cfbbd0
+Step 4/6 : VOLUME /host
+ ---> Running in 660bee54fb69
+Removing intermediate container 660bee54fb69
+ ---> 670528cad6d7
+Step 5/6 : ENTRYPOINT ["java", "-jar", "./drone-delivery-client-garagiste_cli.jar"]
+ ---> Running in 56301c39af28
+Removing intermediate container 56301c39af28
+ ---> 5899fa10727c
+Step 6/6 : CMD ["localhost", "8080"]
+ ---> Running in 94fc6d356c91
+Removing intermediate container 94fc6d356c91
+ ---> 0d4543d1f599
+Successfully built 0d4543d1f599
+Successfully tagged livrair/dd-client-garagiste_cli:latest
+Compiling the Drone Delivery client gestionnaire_cli system
+Done
+Sending build context to Docker daemon  58.37kB
+Step 1/6 : FROM openjdk:8
+ ---> cdf26cc71b50
+Step 2/6 : MAINTAINER Livrair
+ ---> Using cache
+ ---> c36a36d499f6
+Step 3/6 : COPY ./drone-delivery-client-gestionnaire_cli-1.0-SNAPSHOT-jar-with-dependencies.jar ./drone-delivery-client-gestionnaire_cli.jar
+ ---> 8837a8753264
+Step 4/6 : VOLUME /host
+ ---> Running in 73416e556aaa
+Removing intermediate container 73416e556aaa
+ ---> d0efadf24ead
+Step 5/6 : ENTRYPOINT ["java", "-jar", "./drone-delivery-client-gestionnaire_cli.jar"]
+ ---> Running in 7b5968819f2a
+Removing intermediate container 7b5968819f2a
+ ---> 5a6e38da8b33
+Step 6/6 : CMD ["localhost", "8080"]
+ ---> Running in e0590687c84c
+Removing intermediate container e0590687c84c
+ ---> 4451487765aa
+Successfully built 4451487765aa
+Successfully tagged livrair/dd-client-gestionnaire_cli:latest
+Compiling the Drone Delivery client manutentionnaire_cli system
+Done
+Sending build context to Docker daemon  101.9kB
+Step 1/6 : FROM openjdk:8
+ ---> cdf26cc71b50
+Step 2/6 : MAINTAINER Livrair
+ ---> Using cache
+ ---> c36a36d499f6
+Step 3/6 : COPY ./drone-delivery-client-manutentionnaire_cli-1.0-SNAPSHOT-jar-with-dependencies.jar ./drone-delivery-client-manutentionnaire_cli.jar
+ ---> 5fecfa3bf970
+Step 4/6 : VOLUME /host
+ ---> Running in 2c436134f033
+Removing intermediate container 2c436134f033
+ ---> 2d9535a57e85
+Step 5/6 : ENTRYPOINT ["java", "-jar", "./drone-delivery-client-manutentionnaire_cli.jar"]
+ ---> Running in 8d34df620fc2
+Removing intermediate container 8d34df620fc2
+ ---> d383257c427b
+Step 6/6 : CMD ["localhost", "8080"]
+ ---> Running in 20aaa16e662c
+Removing intermediate container 20aaa16e662c
+ ---> 16f8e4cc84b2
+Successfully built 16f8e4cc84b2
+Successfully tagged livrair/dd-client-manutentionnaire_cli:latest
+Compiling the Drone Delivery client service_client_cli system
+Done
+Sending build context to Docker daemon  67.58kB
+Step 1/6 : FROM openjdk:8
+ ---> cdf26cc71b50
+Step 2/6 : MAINTAINER Livrair
+ ---> Using cache
+ ---> c36a36d499f6
+Step 3/6 : COPY ./drone-delivery-client-service_client_cli-1.0-SNAPSHOT-jar-with-dependencies.jar ./drone-delivery-client-service_client_cli.jar
+ ---> ed105a9f241c
+Step 4/6 : VOLUME /host
+ ---> Running in f303532a721c
+Removing intermediate container f303532a721c
+ ---> 055762d93143
+Step 5/6 : ENTRYPOINT ["java", "-jar", "./drone-delivery-client-service_client_cli.jar"]
+ ---> Running in 565cd33c450a
+Removing intermediate container 565cd33c450a
+ ---> 241e02a4b60c
+Step 6/6 : CMD ["localhost", "8080"]
+ ---> Running in cdda29868763
+Removing intermediate container cdda29868763
+ ---> 107e811aea4d
+Successfully built 107e811aea4d
+Successfully tagged livrair/dd-client-service_client_cli:latest
+Compiling the Drone Delivery client integration_tests_cli system
+Done
+Sending build context to Docker daemon  229.4kB
+Step 1/6 : FROM openjdk:8
+ ---> cdf26cc71b50
+Step 2/6 : MAINTAINER Livrair
+ ---> Using cache
+ ---> c36a36d499f6
+Step 3/6 : COPY ./drone-delivery-client-integration_tests_cli-1.0-SNAPSHOT-jar-with-dependencies.jar ./drone-delivery-client-integration_tests_cli.jar
+ ---> 1511e326db54
+Step 4/6 : VOLUME /host
+ ---> Running in 4e29baacb8b6
+Removing intermediate container 4e29baacb8b6
+ ---> e7f3950c7cc6
+Step 5/6 : ENTRYPOINT ["java", "-jar", "./drone-delivery-client-integration_tests_cli.jar"]
+ ---> Running in fe661ec6ea5f
+Removing intermediate container fe661ec6ea5f
+ ---> f1115ef0c2d9
+Step 6/6 : CMD ["localhost", "8080"]
+ ---> Running in c5dc50f5d534
+Removing intermediate container c5dc50f5d534
+ ---> 8a24e2cb0adb
+Successfully built 8a24e2cb0adb
+Successfully tagged livrair/dd-client-integration_tests_cli:latest
+Compiling the DD system
+337  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "class fr.unice.polytech.isa.dd.teamH.entities.deliveryplanning.PlanningEntry".
+608  dd_core_persistence_unit  WARN   [main] openjpa.Enhance - Detected the following possible violations of the restrictions placed on property access persistent types:
+"fr.unice.polytech.isa.dd.teamH.entities.deliveryplanning.PlanningEntry" uses property access, but its field "deliveries" is accessed directly in method "addDelivery" defined in "fr.unice.polytech.isa.dd.teamH.entities.deliveryplanning.PlanningEntry".
+Bytecode analysis of the setter and getter methods for persistent property "fr.unice.polytech.isa.dd.teamH.entities.deliveryplanning.PlanningEntry.deliveries" indicates that the two methods might be acting on different backing fields.  The setter method assigns to field "deliveries", while the getter method returns field "null".
+"fr.unice.polytech.isa.dd.teamH.entities.deliveryplanning.PlanningEntry" uses property access, but its field "drone" is accessed directly in method "toString" defined in "fr.unice.polytech.isa.dd.teamH.entities.deliveryplanning.PlanningEntry".
+"fr.unice.polytech.isa.dd.teamH.entities.deliveryplanning.PlanningEntry" uses property access, but its field "deliveries" is accessed directly in method "getDeliveries" defined in "fr.unice.polytech.isa.dd.teamH.entities.deliveryplanning.PlanningEntry".
+"fr.unice.polytech.isa.dd.teamH.entities.deliveryplanning.PlanningEntry" uses property access, but its field "deliveries" is accessed directly in method "addDelivery" defined in "fr.unice.polytech.isa.dd.teamH.entities.deliveryplanning.PlanningEntry".
+"fr.unice.polytech.isa.dd.teamH.entities.deliveryplanning.PlanningEntry" uses property access, but its field "deliveries" is accessed directly in method "toString" defined in "fr.unice.polytech.isa.dd.teamH.entities.deliveryplanning.PlanningEntry".
+812  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "class fr.unice.polytech.isa.dd.teamH.entities.drone.DroneState".
+824  dd_core_persistence_unit  WARN   [main] openjpa.Enhance - Detected the following possible violations of the restrictions placed on property access persistent types:
+"fr.unice.polytech.isa.dd.teamH.entities.drone.DroneState" uses property access, but its field "name" is accessed directly in method "is" defined in "fr.unice.polytech.isa.dd.teamH.entities.drone.DroneState".
+"fr.unice.polytech.isa.dd.teamH.entities.drone.DroneState" uses property access, but its field "name" is accessed directly in method "hashCode" defined in "fr.unice.polytech.isa.dd.teamH.entities.drone.DroneState".
+857  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "class fr.unice.polytech.isa.dd.teamH.entities.Comment".
+892  dd_core_persistence_unit  WARN   [main] openjpa.Enhance - Detected the following possible violations of the restrictions placed on property access persistent types:
+"fr.unice.polytech.isa.dd.teamH.entities.Comment" uses property access, but its field "delivery" is accessed directly in method "toString" defined in "fr.unice.polytech.isa.dd.teamH.entities.Comment".
+"fr.unice.polytech.isa.dd.teamH.entities.Comment" uses property access, but its field "rating" is accessed directly in method "toString" defined in "fr.unice.polytech.isa.dd.teamH.entities.Comment".
+"fr.unice.polytech.isa.dd.teamH.entities.Comment" uses property access, but its field "content" is accessed directly in method "toString" defined in "fr.unice.polytech.isa.dd.teamH.entities.Comment".
+931  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "class fr.unice.polytech.isa.dd.teamH.entities.delivery.FailedDeliveryState".
+1035  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "class fr.unice.polytech.isa.dd.teamH.entities.Invoice".
+1065  dd_core_persistence_unit  WARN   [main] openjpa.Enhance - Detected the following possible violations of the restrictions placed on property access persistent types:
+"fr.unice.polytech.isa.dd.teamH.entities.Invoice" uses property access, but its field "paid" is accessed directly in method "hashCode" defined in "fr.unice.polytech.isa.dd.teamH.entities.Invoice".
+"fr.unice.polytech.isa.dd.teamH.entities.Invoice" uses property access, but its field "supplier" is accessed directly in method "hashCode" defined in "fr.unice.polytech.isa.dd.teamH.entities.Invoice".
+"fr.unice.polytech.isa.dd.teamH.entities.Invoice" uses property access, but its field "paymentDate" is accessed directly in method "getRemainingDays" defined in "fr.unice.polytech.isa.dd.teamH.entities.Invoice".
+"fr.unice.polytech.isa.dd.teamH.entities.Invoice" uses property access, but its field "supplier" is accessed directly in method "equals" defined in "fr.unice.polytech.isa.dd.teamH.entities.Invoice".
+"fr.unice.polytech.isa.dd.teamH.entities.Invoice" uses property access, but its field "creationDate" is accessed directly in method "getRemainingDays" defined in "fr.unice.polytech.isa.dd.teamH.entities.Invoice".
+"fr.unice.polytech.isa.dd.teamH.entities.Invoice" uses property access, but its field "creationDate" is accessed directly in method "hashCode" defined in "fr.unice.polytech.isa.dd.teamH.entities.Invoice".
+"fr.unice.polytech.isa.dd.teamH.entities.Invoice" uses property access, but its field "paymentDate" is accessed directly in method "hashCode" defined in "fr.unice.polytech.isa.dd.teamH.entities.Invoice".
+"fr.unice.polytech.isa.dd.teamH.entities.Invoice" uses property access, but its field "supplier" is accessed directly in method "equals" defined in "fr.unice.polytech.isa.dd.teamH.entities.Invoice".
+"fr.unice.polytech.isa.dd.teamH.entities.Invoice" uses property access, but its field "paid" is accessed directly in method "pay" defined in "fr.unice.polytech.isa.dd.teamH.entities.Invoice".
+"fr.unice.polytech.isa.dd.teamH.entities.Invoice" uses property access, but its field "paymentDate" is accessed directly in method "pay" defined in "fr.unice.polytech.isa.dd.teamH.entities.Invoice".
+"fr.unice.polytech.isa.dd.teamH.entities.Invoice" uses property access, but its field "creationDate" is accessed directly in method "getRemainingDays" defined in "fr.unice.polytech.isa.dd.teamH.entities.Invoice".
+"fr.unice.polytech.isa.dd.teamH.entities.Invoice" uses property access, but its field "amount" is accessed directly in method "hashCode" defined in "fr.unice.polytech.isa.dd.teamH.entities.Invoice".
+1101  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "class fr.unice.polytech.isa.dd.teamH.entities.Package".
+1126  dd_core_persistence_unit  WARN   [main] openjpa.Enhance - Detected the following possible violations of the restrictions placed on property access persistent types:
+"fr.unice.polytech.isa.dd.teamH.entities.Package" uses property access, but its field "supplier" is accessed directly in method "toString" defined in "fr.unice.polytech.isa.dd.teamH.entities.Package".
+"fr.unice.polytech.isa.dd.teamH.entities.Package" uses property access, but its field "weight" is accessed directly in method "toString" defined in "fr.unice.polytech.isa.dd.teamH.entities.Package".
+"fr.unice.polytech.isa.dd.teamH.entities.Package" uses property access, but its field "trackingNumber" is accessed directly in method "toString" defined in "fr.unice.polytech.isa.dd.teamH.entities.Package".
+"fr.unice.polytech.isa.dd.teamH.entities.Package" uses property access, but its field "destination" is accessed directly in method "toString" defined in "fr.unice.polytech.isa.dd.teamH.entities.Package".
+1158  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "class fr.unice.polytech.isa.dd.teamH.entities.stats.CustomerSatisfactionStatsEntry".
+1189  dd_core_persistence_unit  WARN   [main] openjpa.Enhance - Detected the following possible violations of the restrictions placed on property access persistent types:
+"fr.unice.polytech.isa.dd.teamH.entities.stats.CustomerSatisfactionStatsEntry" uses property access, but its field "entryTime" is accessed directly in method "toString" defined in "fr.unice.polytech.isa.dd.teamH.entities.stats.CustomerSatisfactionStatsEntry".
+"fr.unice.polytech.isa.dd.teamH.entities.stats.CustomerSatisfactionStatsEntry" uses property access, but its field "customerSatisfactionRate" is accessed directly in method "toString" defined in "fr.unice.polytech.isa.dd.teamH.entities.stats.CustomerSatisfactionStatsEntry".
+1210  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "class fr.unice.polytech.isa.dd.teamH.entities.drone.InMaintenanceDroneState".
+1242  dd_core_persistence_unit  WARN   [main] openjpa.Runtime - Found no persistent property in "fr.unice.polytech.isa.dd.teamH.entities.drone.InMaintenanceDroneState"
+1258  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "class fr.unice.polytech.isa.dd.teamH.entities.utils.Utils".
+1280  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "class fr.unice.polytech.isa.dd.teamH.entities.drone.ReadyDroneState".
+1293  dd_core_persistence_unit  WARN   [main] openjpa.Runtime - Found no persistent property in "fr.unice.polytech.isa.dd.teamH.entities.drone.ReadyDroneState"
+1307  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "class fr.unice.polytech.isa.dd.teamH.entities.drone.DroneStateFactory".
+1336  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "class fr.unice.polytech.isa.dd.teamH.entities.stats.DroneStatsEntry".
+1358  dd_core_persistence_unit  WARN   [main] openjpa.Enhance - Detected the following possible violations of the restrictions placed on property access persistent types:
+"fr.unice.polytech.isa.dd.teamH.entities.stats.DroneStatsEntry" uses property access, but its field "entryTime" is accessed directly in method "toString" defined in "fr.unice.polytech.isa.dd.teamH.entities.stats.DroneStatsEntry".
+"fr.unice.polytech.isa.dd.teamH.entities.stats.DroneStatsEntry" uses property access, but its field "dronesUseRate" is accessed directly in method "toString" defined in "fr.unice.polytech.isa.dd.teamH.entities.stats.DroneStatsEntry".
+1383  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "class fr.unice.polytech.isa.dd.teamH.entities.delivery.CompletedDeliveryState".
+1433  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "class fr.unice.polytech.isa.dd.teamH.entities.delivery.DeliveryState".
+1441  dd_core_persistence_unit  WARN   [main] openjpa.Enhance - Detected the following possible violations of the restrictions placed on property access persistent types:
+"fr.unice.polytech.isa.dd.teamH.entities.delivery.DeliveryState" uses property access, but its field "name" is accessed directly in method "is" defined in "fr.unice.polytech.isa.dd.teamH.entities.delivery.DeliveryState".
+"fr.unice.polytech.isa.dd.teamH.entities.delivery.DeliveryState" uses property access, but its field "name" is accessed directly in method "hashCode" defined in "fr.unice.polytech.isa.dd.teamH.entities.delivery.DeliveryState".
+1461  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "class fr.unice.polytech.isa.dd.teamH.entities.delivery.NotSentDeliveryState".
+1472  dd_core_persistence_unit  WARN   [main] openjpa.Runtime - Found no persistent property in "fr.unice.polytech.isa.dd.teamH.entities.delivery.NotSentDeliveryState"
+1482  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "class fr.unice.polytech.isa.dd.teamH.entities.delivery.DeliveryStateFactory".
+1514  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "class fr.unice.polytech.isa.dd.teamH.entities.Supplier".
+1544  dd_core_persistence_unit  WARN   [main] openjpa.Enhance - Detected the following possible violations of the restrictions placed on property access persistent types:
+"fr.unice.polytech.isa.dd.teamH.entities.Supplier" uses property access, but its field "contacts" is accessed directly in method "addContact" defined in "fr.unice.polytech.isa.dd.teamH.entities.Supplier".
+"fr.unice.polytech.isa.dd.teamH.entities.Supplier" uses property access, but its field "contacts" is accessed directly in method "toString" defined in "fr.unice.polytech.isa.dd.teamH.entities.Supplier".
+"fr.unice.polytech.isa.dd.teamH.entities.Supplier" uses property access, but its field "name" is accessed directly in method "toString" defined in "fr.unice.polytech.isa.dd.teamH.entities.Supplier".
+1567  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "class fr.unice.polytech.isa.dd.teamH.entities.delivery.Delivery".
+1595  dd_core_persistence_unit  WARN   [main] openjpa.Enhance - Detected the following possible violations of the restrictions placed on property access persistent types:
+"fr.unice.polytech.isa.dd.teamH.entities.delivery.Delivery" uses property access, but its field "state" is accessed directly in method "isCompleted" defined in "fr.unice.polytech.isa.dd.teamH.entities.delivery.Delivery".
+"fr.unice.polytech.isa.dd.teamH.entities.delivery.Delivery" uses property access, but its field "date" is accessed directly in method "dateTimeToShip" defined in "fr.unice.polytech.isa.dd.teamH.entities.delivery.Delivery".
+"fr.unice.polytech.isa.dd.teamH.entities.delivery.Delivery" uses property access, but its field "time" is accessed directly in method "dateTimeToShip" defined in "fr.unice.polytech.isa.dd.teamH.entities.delivery.Delivery".
+"fr.unice.polytech.isa.dd.teamH.entities.delivery.Delivery" uses property access, but its field "state" is accessed directly in method "toString" defined in "fr.unice.polytech.isa.dd.teamH.entities.delivery.Delivery".
+"fr.unice.polytech.isa.dd.teamH.entities.delivery.Delivery" uses property access, but its field "date" is accessed directly in method "toString" defined in "fr.unice.polytech.isa.dd.teamH.entities.delivery.Delivery".
+"fr.unice.polytech.isa.dd.teamH.entities.delivery.Delivery" uses property access, but its field "flightTime" is accessed directly in method "toString" defined in "fr.unice.polytech.isa.dd.teamH.entities.delivery.Delivery".
+"fr.unice.polytech.isa.dd.teamH.entities.delivery.Delivery" uses property access, but its field "distance" is accessed directly in method "toString" defined in "fr.unice.polytech.isa.dd.teamH.entities.delivery.Delivery".
+"fr.unice.polytech.isa.dd.teamH.entities.delivery.Delivery" uses property access, but its field "aPackage" is accessed directly in method "toString" defined in "fr.unice.polytech.isa.dd.teamH.entities.delivery.Delivery".
+"fr.unice.polytech.isa.dd.teamH.entities.delivery.Delivery" uses property access, but its field "time" is accessed directly in method "toString" defined in "fr.unice.polytech.isa.dd.teamH.entities.delivery.Delivery".
+1622  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "class fr.unice.polytech.isa.dd.teamH.entities.delivery.InFlightDeliveryState".
+1686  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "class fr.unice.polytech.isa.dd.teamH.entities.drone.Drone".
+1735  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "class fr.unice.polytech.isa.dd.teamH.entities.drone.InFlightDroneState".
+1747  dd_core_persistence_unit  WARN   [main] openjpa.Runtime - Found no persistent property in "fr.unice.polytech.isa.dd.teamH.entities.drone.InFlightDroneState"
+1758  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "class fr.unice.polytech.isa.dd.teamH.entities.drone.InChargeDroneState".
+1772  dd_core_persistence_unit  WARN   [main] openjpa.Runtime - Found no persistent property in "fr.unice.polytech.isa.dd.teamH.entities.drone.InChargeDroneState"
+1785  dd_core_persistence_unit  INFO   [main] openjpa.Tool - No metadata was found for 3 classes; they have been enhanced as persistence-aware. If you intended for any of these classes to be persistence-capable, then this means that OpenJPA could not find any metadata for those classes. This can happen if the directory containing your metadata is not in your CLASSPATH, or if your metadata files are not named properly. See the documentation on metadata placement for more information. Persistence-aware classes: [class fr.unice.polytech.isa.dd.teamH.entities.delivery.DeliveryStateFactory, class fr.unice.polytech.isa.dd.teamH.entities.utils.Utils, class fr.unice.polytech.isa.dd.teamH.entities.drone.DroneStateFactory]
+76  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.Package".
+115  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.drone.InChargeDroneState".
+162  dd_core_persistence_unit  WARN   [main] openjpa.Runtime - Found no persistent property in "fr.unice.polytech.isa.dd.teamH.entities.drone.InChargeDroneState"
+177  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.delivery.DeliveryState".
+245  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.Supplier".
+257  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.delivery.NotSentDeliveryState".
+267  dd_core_persistence_unit  WARN   [main] openjpa.Runtime - Found no persistent property in "fr.unice.polytech.isa.dd.teamH.entities.delivery.NotSentDeliveryState"
+281  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.delivery.CompletedDeliveryState".
+294  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.deliveryplanning.PlanningEntry".
+363  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.drone.ReadyDroneState".
+375  dd_core_persistence_unit  WARN   [main] openjpa.Runtime - Found no persistent property in "fr.unice.polytech.isa.dd.teamH.entities.drone.ReadyDroneState"
+389  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.delivery.InFlightDeliveryState".
+417  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.drone.Drone".
+435  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.drone.DroneState".
+450  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.drone.InFlightDroneState".
+459  dd_core_persistence_unit  WARN   [main] openjpa.Runtime - Found no persistent property in "fr.unice.polytech.isa.dd.teamH.entities.drone.InFlightDroneState"
+467  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.Invoice".
+528  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.stats.DroneStatsEntry".
+567  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.Comment".
+601  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.delivery.Delivery".
+614  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.stats.CustomerSatisfactionStatsEntry".
+639  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.drone.InMaintenanceDroneState".
+647  dd_core_persistence_unit  WARN   [main] openjpa.Runtime - Found no persistent property in "fr.unice.polytech.isa.dd.teamH.entities.drone.InMaintenanceDroneState"
+661  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.delivery.FailedDeliveryState".
+47  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.Package".
+106  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.drone.InChargeDroneState".
+144  dd_core_persistence_unit  WARN   [main] openjpa.Runtime - Found no persistent property in "fr.unice.polytech.isa.dd.teamH.entities.drone.InChargeDroneState"
+150  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.delivery.DeliveryState".
+187  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.Supplier".
+198  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.delivery.NotSentDeliveryState".
+209  dd_core_persistence_unit  WARN   [main] openjpa.Runtime - Found no persistent property in "fr.unice.polytech.isa.dd.teamH.entities.delivery.NotSentDeliveryState"
+215  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.delivery.CompletedDeliveryState".
+232  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.deliveryplanning.PlanningEntry".
+288  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.drone.ReadyDroneState".
+316  dd_core_persistence_unit  WARN   [main] openjpa.Runtime - Found no persistent property in "fr.unice.polytech.isa.dd.teamH.entities.drone.ReadyDroneState"
+332  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.delivery.InFlightDeliveryState".
+349  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.drone.Drone".
+366  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.drone.DroneState".
+385  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.drone.InFlightDroneState".
+404  dd_core_persistence_unit  WARN   [main] openjpa.Runtime - Found no persistent property in "fr.unice.polytech.isa.dd.teamH.entities.drone.InFlightDroneState"
+409  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.Invoice".
+450  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.stats.DroneStatsEntry".
+491  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.Comment".
+524  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.delivery.Delivery".
+545  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.stats.CustomerSatisfactionStatsEntry".
+583  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.drone.InMaintenanceDroneState".
+595  dd_core_persistence_unit  WARN   [main] openjpa.Runtime - Found no persistent property in "fr.unice.polytech.isa.dd.teamH.entities.drone.InMaintenanceDroneState"
+615  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.delivery.FailedDeliveryState".
+47  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.Package".
+95  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.drone.InChargeDroneState".
+123  dd_core_persistence_unit  WARN   [main] openjpa.Runtime - Found no persistent property in "fr.unice.polytech.isa.dd.teamH.entities.drone.InChargeDroneState"
+130  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.delivery.DeliveryState".
+156  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.Supplier".
+169  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.delivery.NotSentDeliveryState".
+177  dd_core_persistence_unit  WARN   [main] openjpa.Runtime - Found no persistent property in "fr.unice.polytech.isa.dd.teamH.entities.delivery.NotSentDeliveryState"
+181  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.delivery.CompletedDeliveryState".
+194  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.deliveryplanning.PlanningEntry".
+237  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.drone.ReadyDroneState".
+249  dd_core_persistence_unit  WARN   [main] openjpa.Runtime - Found no persistent property in "fr.unice.polytech.isa.dd.teamH.entities.drone.ReadyDroneState"
+256  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.delivery.InFlightDeliveryState".
+273  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.drone.Drone".
+293  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.drone.DroneState".
+306  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.drone.InFlightDroneState".
+314  dd_core_persistence_unit  WARN   [main] openjpa.Runtime - Found no persistent property in "fr.unice.polytech.isa.dd.teamH.entities.drone.InFlightDroneState"
+319  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.Invoice".
+352  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.stats.DroneStatsEntry".
+396  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.Comment".
+422  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.delivery.Delivery".
+436  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.stats.CustomerSatisfactionStatsEntry".
+464  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.drone.InMaintenanceDroneState".
+471  dd_core_persistence_unit  WARN   [main] openjpa.Runtime - Found no persistent property in "fr.unice.polytech.isa.dd.teamH.entities.drone.InMaintenanceDroneState"
+482  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.delivery.FailedDeliveryState".
+34  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.Package".
+97  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.drone.InChargeDroneState".
+131  dd_core_persistence_unit  WARN   [main] openjpa.Runtime - Found no persistent property in "fr.unice.polytech.isa.dd.teamH.entities.drone.InChargeDroneState"
+136  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.delivery.DeliveryState".
+156  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.Supplier".
+163  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.delivery.NotSentDeliveryState".
+167  dd_core_persistence_unit  WARN   [main] openjpa.Runtime - Found no persistent property in "fr.unice.polytech.isa.dd.teamH.entities.delivery.NotSentDeliveryState"
+171  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.delivery.CompletedDeliveryState".
+183  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.deliveryplanning.PlanningEntry".
+225  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.drone.ReadyDroneState".
+229  dd_core_persistence_unit  WARN   [main] openjpa.Runtime - Found no persistent property in "fr.unice.polytech.isa.dd.teamH.entities.drone.ReadyDroneState"
+233  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.delivery.InFlightDeliveryState".
+241  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.drone.Drone".
+252  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.drone.DroneState".
+258  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.drone.InFlightDroneState".
+262  dd_core_persistence_unit  WARN   [main] openjpa.Runtime - Found no persistent property in "fr.unice.polytech.isa.dd.teamH.entities.drone.InFlightDroneState"
+268  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.Invoice".
+285  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.stats.DroneStatsEntry".
+299  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.Comment".
+316  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.delivery.Delivery".
+325  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.stats.CustomerSatisfactionStatsEntry".
+342  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.drone.InMaintenanceDroneState".
+347  dd_core_persistence_unit  WARN   [main] openjpa.Runtime - Found no persistent property in "fr.unice.polytech.isa.dd.teamH.entities.drone.InMaintenanceDroneState"
+353  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.delivery.FailedDeliveryState".
+49  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.Package".
+96  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.drone.InChargeDroneState".
+124  dd_core_persistence_unit  WARN   [main] openjpa.Runtime - Found no persistent property in "fr.unice.polytech.isa.dd.teamH.entities.drone.InChargeDroneState"
+128  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.delivery.DeliveryState".
+154  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.Supplier".
+165  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.delivery.NotSentDeliveryState".
+174  dd_core_persistence_unit  WARN   [main] openjpa.Runtime - Found no persistent property in "fr.unice.polytech.isa.dd.teamH.entities.delivery.NotSentDeliveryState"
+179  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.delivery.CompletedDeliveryState".
+194  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.deliveryplanning.PlanningEntry".
+235  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.drone.ReadyDroneState".
+240  dd_core_persistence_unit  WARN   [main] openjpa.Runtime - Found no persistent property in "fr.unice.polytech.isa.dd.teamH.entities.drone.ReadyDroneState"
+259  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.delivery.InFlightDeliveryState".
+271  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.drone.Drone".
+285  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.drone.DroneState".
+291  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.drone.InFlightDroneState".
+297  dd_core_persistence_unit  WARN   [main] openjpa.Runtime - Found no persistent property in "fr.unice.polytech.isa.dd.teamH.entities.drone.InFlightDroneState"
+304  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.Invoice".
+329  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.stats.DroneStatsEntry".
+353  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.Comment".
+378  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.delivery.Delivery".
+400  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.stats.CustomerSatisfactionStatsEntry".
+418  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.drone.InMaintenanceDroneState".
+428  dd_core_persistence_unit  WARN   [main] openjpa.Runtime - Found no persistent property in "fr.unice.polytech.isa.dd.teamH.entities.drone.InMaintenanceDroneState"
+442  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.delivery.FailedDeliveryState".
+28  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.Package".
+73  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.drone.InChargeDroneState".
+94  dd_core_persistence_unit  WARN   [main] openjpa.Runtime - Found no persistent property in "fr.unice.polytech.isa.dd.teamH.entities.drone.InChargeDroneState"
+99  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.delivery.DeliveryState".
+130  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.Supplier".
+145  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.delivery.NotSentDeliveryState".
+152  dd_core_persistence_unit  WARN   [main] openjpa.Runtime - Found no persistent property in "fr.unice.polytech.isa.dd.teamH.entities.delivery.NotSentDeliveryState"
+157  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.delivery.CompletedDeliveryState".
+173  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.deliveryplanning.PlanningEntry".
+220  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.drone.ReadyDroneState".
+231  dd_core_persistence_unit  WARN   [main] openjpa.Runtime - Found no persistent property in "fr.unice.polytech.isa.dd.teamH.entities.drone.ReadyDroneState"
+236  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.delivery.InFlightDeliveryState".
+248  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.drone.Drone".
+261  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.drone.DroneState".
+272  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.drone.InFlightDroneState".
+277  dd_core_persistence_unit  WARN   [main] openjpa.Runtime - Found no persistent property in "fr.unice.polytech.isa.dd.teamH.entities.drone.InFlightDroneState"
+283  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.Invoice".
+306  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.stats.DroneStatsEntry".
+327  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.Comment".
+349  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.delivery.Delivery".
+359  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.stats.CustomerSatisfactionStatsEntry".
+371  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.drone.InMaintenanceDroneState".
+376  dd_core_persistence_unit  WARN   [main] openjpa.Runtime - Found no persistent property in "fr.unice.polytech.isa.dd.teamH.entities.drone.InMaintenanceDroneState"
+382  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.delivery.FailedDeliveryState".
+38  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.Package".
+79  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.drone.InChargeDroneState".
+108  dd_core_persistence_unit  WARN   [main] openjpa.Runtime - Found no persistent property in "fr.unice.polytech.isa.dd.teamH.entities.drone.InChargeDroneState"
+116  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.delivery.DeliveryState".
+148  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.Supplier".
+156  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.delivery.NotSentDeliveryState".
+160  dd_core_persistence_unit  WARN   [main] openjpa.Runtime - Found no persistent property in "fr.unice.polytech.isa.dd.teamH.entities.delivery.NotSentDeliveryState"
+166  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.delivery.CompletedDeliveryState".
+181  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.deliveryplanning.PlanningEntry".
+229  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.drone.ReadyDroneState".
+234  dd_core_persistence_unit  WARN   [main] openjpa.Runtime - Found no persistent property in "fr.unice.polytech.isa.dd.teamH.entities.drone.ReadyDroneState"
+242  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.delivery.InFlightDeliveryState".
+259  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.drone.Drone".
+273  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.drone.DroneState".
+295  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.drone.InFlightDroneState".
+298  dd_core_persistence_unit  WARN   [main] openjpa.Runtime - Found no persistent property in "fr.unice.polytech.isa.dd.teamH.entities.drone.InFlightDroneState"
+322  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.Invoice".
+353  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.stats.DroneStatsEntry".
+382  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.Comment".
+413  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.delivery.Delivery".
+430  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.stats.CustomerSatisfactionStatsEntry".
+458  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.drone.InMaintenanceDroneState".
+463  dd_core_persistence_unit  WARN   [main] openjpa.Runtime - Found no persistent property in "fr.unice.polytech.isa.dd.teamH.entities.drone.InMaintenanceDroneState"
+470  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.delivery.FailedDeliveryState".
+50  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.Package".
+74  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.drone.InChargeDroneState".
+99  dd_core_persistence_unit  WARN   [main] openjpa.Runtime - Found no persistent property in "fr.unice.polytech.isa.dd.teamH.entities.drone.InChargeDroneState"
+102  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.delivery.DeliveryState".
+126  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.Supplier".
+132  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.delivery.NotSentDeliveryState".
+138  dd_core_persistence_unit  WARN   [main] openjpa.Runtime - Found no persistent property in "fr.unice.polytech.isa.dd.teamH.entities.delivery.NotSentDeliveryState"
+141  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.delivery.CompletedDeliveryState".
+153  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.deliveryplanning.PlanningEntry".
+203  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.drone.ReadyDroneState".
+208  dd_core_persistence_unit  WARN   [main] openjpa.Runtime - Found no persistent property in "fr.unice.polytech.isa.dd.teamH.entities.drone.ReadyDroneState"
+213  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.delivery.InFlightDeliveryState".
+239  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.drone.Drone".
+253  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.drone.DroneState".
+259  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.drone.InFlightDroneState".
+272  dd_core_persistence_unit  WARN   [main] openjpa.Runtime - Found no persistent property in "fr.unice.polytech.isa.dd.teamH.entities.drone.InFlightDroneState"
+275  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.Invoice".
+294  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.stats.DroneStatsEntry".
+313  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.Comment".
+334  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.delivery.Delivery".
+347  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.stats.CustomerSatisfactionStatsEntry".
+368  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.drone.InMaintenanceDroneState".
+374  dd_core_persistence_unit  WARN   [main] openjpa.Runtime - Found no persistent property in "fr.unice.polytech.isa.dd.teamH.entities.drone.InMaintenanceDroneState"
+377  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.delivery.FailedDeliveryState".
+35  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.Package".
+62  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.drone.InChargeDroneState".
+80  dd_core_persistence_unit  WARN   [main] openjpa.Runtime - Found no persistent property in "fr.unice.polytech.isa.dd.teamH.entities.drone.InChargeDroneState"
+96  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.delivery.DeliveryState".
+123  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.Supplier".
+131  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.delivery.NotSentDeliveryState".
+138  dd_core_persistence_unit  WARN   [main] openjpa.Runtime - Found no persistent property in "fr.unice.polytech.isa.dd.teamH.entities.delivery.NotSentDeliveryState"
+145  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.delivery.CompletedDeliveryState".
+157  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.deliveryplanning.PlanningEntry".
+195  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.drone.ReadyDroneState".
+199  dd_core_persistence_unit  WARN   [main] openjpa.Runtime - Found no persistent property in "fr.unice.polytech.isa.dd.teamH.entities.drone.ReadyDroneState"
+203  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.delivery.InFlightDeliveryState".
+212  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.drone.Drone".
+221  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.drone.DroneState".
+226  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.drone.InFlightDroneState".
+232  dd_core_persistence_unit  WARN   [main] openjpa.Runtime - Found no persistent property in "fr.unice.polytech.isa.dd.teamH.entities.drone.InFlightDroneState"
+237  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.Invoice".
+262  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.stats.DroneStatsEntry".
+279  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.Comment".
+300  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.delivery.Delivery".
+309  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.stats.CustomerSatisfactionStatsEntry".
+337  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.drone.InMaintenanceDroneState".
+344  dd_core_persistence_unit  WARN   [main] openjpa.Runtime - Found no persistent property in "fr.unice.polytech.isa.dd.teamH.entities.drone.InMaintenanceDroneState"
+348  dd_core_persistence_unit  INFO   [main] openjpa.Tool - Enhancer running on type "fr.unice.polytech.isa.dd.teamH.entities.delivery.FailedDeliveryState".
+Done
+Sending build context to Docker daemon  219.6kB
+Step 1/13 : FROM tomee:8-jdk-7.0.1-plus
+ ---> e452dbca47d5
+Step 2/13 : MAINTAINER Livrair team
+ ---> Using cache
+ ---> 10ee2d73e31b
+Step 3/13 : WORKDIR /usr/local/tomee/
+ ---> Using cache
+ ---> 07fdc541ae33
+Step 4/13 : COPY ./drone-delivery-backend.war ./webapps/.
+ ---> d50ccdd0af71
+Step 5/13 : COPY ./resources/tomcat-user.xml ./conf/tomcat-users.xml
+ ---> 904b9eed1f38
+Step 6/13 : COPY ./resources/manager-context.xml ./webapps/manager/META-INF/context.xml
+ ---> 22ae646f615d
+Step 7/13 : ENV map_host=localhost
+ ---> Running in 5a33c3777e23
+Removing intermediate container 5a33c3777e23
+ ---> 9e51e8bd5851
+Step 8/13 : ENV map_port=9090
+ ---> Running in 1a156dc2e1c3
+Removing intermediate container 1a156dc2e1c3
+ ---> 1e1bae37b459
+Step 9/13 : COPY ./resources/start-dd.sh .
+ ---> e51afa47d8c1
+Step 10/13 : RUN ["chmod", "u+x", "./start-dd.sh"]
+ ---> Running in 6cf90fe20e8b
+Removing intermediate container 6cf90fe20e8b
+ ---> 4dd084098715
+Step 11/13 : HEALTHCHECK --interval=5s CMD curl --fail http://localhost:8080/ || exit 1
+ ---> Running in fe803a483c6b
+Removing intermediate container fe803a483c6b
+ ---> 121004d2d746
+Step 12/13 : EXPOSE 8080
+ ---> Running in 11ed9da7d125
+Removing intermediate container 11ed9da7d125
+ ---> 334d9aea37e7
+Step 13/13 : ENTRYPOINT ["./start-dd.sh"]
+ ---> Running in 095d5f3b5fca
+Removing intermediate container 095d5f3b5fca
+ ---> c821d8258116
+Successfully built c821d8258116
+Successfully tagged livrair/dd-int:latest
+src/Server.cs(26,38): error CS0246: The type or namespace name `PaymentService' could not be found. Are you missing an assembly reference?
+src/Server.cs(29,36): error CS0246: The type or namespace name `IPaymentService' could not be found. Are you missing an assembly reference?
+Compilation failed: 2 error(s), 0 warnings
+Sending build context to Docker daemon  13.82kB
+Step 1/6 : FROM mono:3.10
+ ---> ac2088dc9106
+Step 2/6 : MAINTAINER Livrair
+ ---> Using cache
+ ---> a8c09d20fb7f
+Step 3/6 : COPY ./server.exe ./server.exe
+ ---> Using cache
+ ---> 03d725a892c0
+Step 4/6 : EXPOSE 9090
+ ---> Using cache
+ ---> 5a3794e1eb14
+Step 5/6 : ENTRYPOINT ["mono", "./server.exe"]
+ ---> Using cache
+ ---> 6a9afe1ae4ae
+Step 6/6 : CMD ["/standalone"]
+ ---> Using cache
+ ---> 08981fe97a24
+Successfully built 08981fe97a24
+Successfully tagged livrair/dd-ext:latest
++ docker-compose up -d
+Creating network "docker_default" with the default driver
+Creating ddpartners ... 
+[1A[2KCreating ddpartners ... [32mdone[0m[1BCreating dd_system  ... 
+[1A[2KCreating dd_system  ... [32mdone[0m[1BCreating dd_client_service_client_cli ... 
+Creating dd_client_chargeur_cli       ... 
+Creating dd_client_gestionnaire_cli   ... 
+Creating dd_client_integration_tests_cli ... 
+Creating dd_client_boss_cli              ... 
+Creating dd_client_manutentionnaire_cli  ... 
+Creating dd_client_garagiste_cli         ... 
+[5A[2KCreating dd_client_gestionnaire_cli      ... [32mdone[0m[5B[3A[2KCreating dd_client_boss_cli              ... [32mdone[0m[3B[6A[2KCreating dd_client_chargeur_cli          ... [32mdone[0m[6B[1A[2KCreating dd_client_garagiste_cli         ... [32mdone[0m[1B[4A[2KCreating dd_client_integration_tests_cli ... [32mdone[0m[4B[7A[2KCreating dd_client_service_client_cli    ... [32mdone[0m[7B[2A[2KCreating dd_client_manutentionnaire_cli  ... [32mdone[0m[2BTriggering a new build of [8mha:////4BMNc9INYCPYW0OAOy7doRy+Vy0zfl3met4CNOhf9HaGAAAAsR+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAyFEgY1/az8JP2Uovy8VF2gMzPLUosqdTPzSlLTixJLMvPzdEtSi0uK9QG1c4sX2wAAAA==[0mdrone-delivery-integration-tests
+Finished: SUCCESS

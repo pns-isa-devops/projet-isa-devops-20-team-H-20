@@ -1,0 +1,1934 @@
+{
+  "version" : "1.0.1",
+  "name" : "drone-delivery-j2e",
+  "number" : "5",
+  "type" : "MAVEN",
+  "buildAgent" : {
+    "name" : "Maven",
+    "version" : "3.6.3"
+  },
+  "agent" : {
+    "name" : "Jenkins",
+    "version" : "2.222.3"
+  },
+  "started" : "2020-05-04T22:19:39.294+0000",
+  "durationMillis" : 44798,
+  "principal" : "damien",
+  "artifactoryPrincipal" : "admin",
+  "artifactoryPluginVersion" : "3.6.2",
+  "url" : "http://localhost:8083/job/drone-delivery-j2e/5/",
+  "vcs" : [ {
+    "revision" : "0d182ea9bf0de6ca02bae1efe4f5bec1116ba327",
+    "url" : "git@github.com:pns-isa-devops/projet-isa-devops-20-team-H-20.git"
+  } ],
+  "vcsRevision" : "0d182ea9bf0de6ca02bae1efe4f5bec1116ba327",
+  "vcsUrl" : "git@github.com:pns-isa-devops/projet-isa-devops-20-team-H-20.git",
+  "licenseControl" : {
+    "runChecks" : false,
+    "includePublishedArtifacts" : false,
+    "autoDiscover" : false,
+    "licenseViolationsRecipientsList" : "",
+    "scopesList" : ""
+  },
+  "modules" : [ {
+    "properties" : {
+      "artifactory.releases.name" : "8c82f15967bb-releases",
+      "versions.myface" : "2.2.10",
+      "versions.shrinkwrap" : "2.2.6",
+      "versions.mockito" : "1.10.19",
+      "artifactory.repository.url" : "http://localhost:8081/artifactory",
+      "versions.openejb" : "7.0.2",
+      "versions.tomee" : "7.0.2",
+      "artifactory.snapshots.name" : "8c82f15967bb-snapshots",
+      "versions.arquilian.jta" : "1.0.3.Final",
+      "artifactory.snapshots.id" : "snapshots",
+      "versions.junit" : "4.12",
+      "versions.json" : "20160810",
+      "artifactory.releases.id" : "central",
+      "versions.openjpa" : "2.4.1",
+      "versions.cukespace" : "1.6.5",
+      "project.build.sourceEncoding" : "UTF-8",
+      "versions.javaee" : "7.0-1",
+      "versions.maven-compiler" : "3.8.0",
+      "versions.java" : "1.8",
+      "versions.arquillian.junit" : "1.1.12.Final"
+    },
+    "id" : "fr.polytech.team.h:DeliveryPlanning:1.0-SNAPSHOT",
+    "artifacts" : [ {
+      "type" : "jar",
+      "sha1" : "be508602b4466bfa453432949292baa14d1b2a1b",
+      "sha256" : "5f147568f08fec36555ab40816283d93c49f574e086c93ed73dbb4c118fab7d6",
+      "md5" : "3012423f188b9407b947dc922d97c119",
+      "name" : "DeliveryPlanning-1.0-SNAPSHOT.jar"
+    }, {
+      "type" : "pom",
+      "sha1" : "2cb8614e0f4bc033b28fd1bbbb433645b21e69f9",
+      "sha256" : "95a429ad097fa23dd1e285dcb078ed99fe9f274442f7fb472dff299ceb831cfe",
+      "md5" : "b17b4d6b99606b1867ec2df0e91fc52a",
+      "name" : "DeliveryPlanning-1.0-SNAPSHOT.pom"
+    } ],
+    "dependencies" : [ {
+      "type" : "jar",
+      "sha1" : "305e9c98165a801b3b17fa833d325e360e9227c5",
+      "sha256" : "db4232f626d40346028cb96efc138a937b3f3d2a8ebafc91c30a73c66fb53cee",
+      "md5" : "91f71e99b4ef1333212b726177105eb3",
+      "id" : "org.metatype.sxc:sxc-runtime:0.8",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "2784eb8f63fee0c945f4450df90205736b40067e",
+      "sha256" : "92dc40cf42bbeb22395e93195bef0d74f3a3a1ca8e6377c0b50ff2e1ce71205f",
+      "md5" : "70d90781a78eb097a6adeb4ee36ba7ac",
+      "id" : "org.jboss.shrinkwrap.resolver:shrinkwrap-resolver-spi-maven-archive:2.2.6",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "51e31f7b8ff18d157a64a8a69b66c6ceb144fa55",
+      "sha256" : "5b7c1243d0b63176ecb47f165dc17ca5847a6ba4874de7de53e1d2750bfeb8b8",
+      "md5" : "0e73324e89b4c74ffe87a17f9748005d",
+      "id" : "org.apache.tomee:tomee-embedded:7.0.2",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "81e12a1d6cf896f1181b0d00c6e0b41be9767358",
+      "sha256" : "07577c8fc7c3024a0b957bc98db7ca1080ed4c94782577a26c31f01b69db7148",
+      "md5" : "6847b8aa1b8f28bcf10f813f595c93e8",
+      "id" : "org.apache.maven.wagon:wagon-http-shared:2.6",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "858f71d9adbf9de8edbbc1ca0da0df86c96e7103",
+      "sha256" : "3ce103459108015f2643ce183f2f49b1e670a5d85b1a4945f987bdcc11146da8",
+      "md5" : "f83eca5f6558d2476ef1f49d1dfe19d1",
+      "id" : "org.jboss.arquillian.config:arquillian-config-impl-base:1.1.12.Final",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "d91d16c326ad38118bdfbe4c6bc01ed7fcd97f30",
+      "sha256" : "11bb6180b99abecefc6771b0ef32a90020178cfe3f0b5b9cc11c4f42de0cd111",
+      "md5" : "f92200b4fa9e33b6a5a5503039e0dfe2",
+      "id" : "org.apache.tomee:arquillian-common:7.0.2",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "79ea1566eb8bf711dd28453b63223001e24a8c52",
+      "sha256" : "fcf3e5927708af2a81351fdafb30bda384e9ec448962a6653b0f26334c0f9cde",
+      "md5" : "4bc6208eb1da47eebc5864b9da576d01",
+      "id" : "org.apache.bval:bval-core:1.1.2",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "ffcc1daa75e1862978e9eaf209f62de75e100745",
+      "sha256" : "9b7c0692979b841780d44c3c14c73101c255d140b878b8544f8e0311370c73a0",
+      "md5" : "4d91a09946236be14dbd1ea97fc4988e",
+      "id" : "org.apache.xbean:xbean-reflect:4.5",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "767ade7bc7b9c312a824564bfb93bd3d56b9b41a",
+      "sha256" : "82b27467e6952c63ec39e22132edfddaf85913ae0017b47320205a696b108f35",
+      "md5" : "05a15073dcaf1fe361db03de7ce4ad44",
+      "id" : "org.apache.xbean:xbean-finder-shaded:4.5",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "fe91c9ef19fd3f61652ea67067199d376f493f8b",
+      "sha256" : "63dca5520d3e89bb88a4bb6f9a72ad50469a4910cc7f6988242a0e4f4d1b762f",
+      "md5" : "c2a61bccbcac328caf1ef75e09c2bd5f",
+      "id" : "org.apache.tomcat:tomcat-servlet-api:8.5.6",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "8c0a808961d3b04c54f2ef29eb09575ede516932",
+      "sha256" : "6783753580152e298874b69b012d687ffdd6981d7871bf6761248fb5eb7537e7",
+      "md5" : "b74f794f14141a9d6b53326a20b33891",
+      "id" : "org.apache.myfaces.core:myfaces-api:2.2.10",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "168ee1e516a458bd80fb23caf2e512ed41e1e865",
+      "sha256" : "2c369503c911bf9ac7c5f4813bc1f8f95866e2e029fae203a02712f5671f5e4a",
+      "md5" : "7bfa838bdb3229b908b59dbdf59a97ec",
+      "id" : "org.slf4j:slf4j-jdk14:1.7.21",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "3150bf300ed67a3e8ff18a3667cc4c13daf41571",
+      "sha256" : "a299e687135aa6f4d4be62837a12df73f9cc3125360b3529fdb9e385365318a8",
+      "md5" : "0bb93c9349604150227ddb9d583253d0",
+      "id" : "org.jboss.shrinkwrap.resolver:shrinkwrap-resolver-impl-maven-archive:2.2.6",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "fe337743dc5c6d2983543a0fc428771ba7c8c783",
+      "sha256" : "66de043293bf217173fbc5eaa3cde6cdcb7815924b07eba8cf84a9f45ae84b6b",
+      "md5" : "0bb266ba8f384fd8afe6e1712e3be005",
+      "id" : "org.apache.tomcat:tomcat-coyote:8.5.6",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "2c0611174c554ad1181d98b6b96ea3716a67be61",
+      "sha256" : "13dff70b54200b9b1cfc4165e15608d1e09d97d48adb047cd7ef61d773276c3e",
+      "md5" : "62df69d487024636bc4d3157f2be9fb4",
+      "id" : "fr.polytech.team.h:DroneFleet:1.0-SNAPSHOT",
+      "scopes" : [ "compile" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "9e5e0625a4eaa52d40c3ddd1025b1cfdca87facf",
+      "sha256" : "937fb784b1fe6c03017bea6928f5a7e3e5b4fc38cad4088688f2bfe77a09a1b3",
+      "md5" : "aab5bbada159fb263c716f906ea256d2",
+      "id" : "org.opensaml:opensaml-security-api:3.1.1",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "5043bfebc3db072ed80fbd362e7caf00e885d8ae",
+      "sha256" : "ce6f913cad1f0db3aad70186d65c5bc7ffcc9a99e3fe8e0b137312819f7c362f",
+      "md5" : "ed448347fc0104034aa14c8189bf37de",
+      "id" : "commons-logging:commons-logging:1.1.1",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "65fd012581ded67bc20945d85c32b4598c3a9cf1",
+      "sha256" : "abeaf34795a4de70f72aed6de5966d2955ec7eb348eeb813324f23c999575473",
+      "md5" : "80adb5b301ed840a4b6db97abc02a8b0",
+      "id" : "org.jsoup:jsoup:1.8.3",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "be68e917f454dcd841865ad7cf9b7615b26a51f7",
+      "sha256" : "84b98521684ab22f9528470fa6d8ab68a230e1b211623c989ba7016c306eb773",
+      "md5" : "b05ef5410dad83a4e9ba50e08e0dbbf4",
+      "id" : "org.eclipse.aether:aether-api:1.0.0.v20140518",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "62b7402a095707caa4c36de834321d695b57328b",
+      "sha256" : "9bd7d5e8306ee64c85a4446435c418f7482874fc0bec25488070a484d78e29ea",
+      "md5" : "e0221d160b298cd6d52a3b45e5705bec",
+      "id" : "org.jboss.arquillian.extension:arquillian-transaction-impl-base:1.0.1.Final",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "5fad2be537981e047436b4e7d98b56f0e2c04a22",
+      "sha256" : "c5171670285037e971c6968a9af1c10d11417b2c9286c4fc873d6a961dab2876",
+      "md5" : "cd3ad79977a83dc75be77a5e99458746",
+      "id" : "org.metatype.sxc:sxc-jaxb-core:0.8",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "f02619b1c2c90ca37153aac8bad46a6c19e49973",
+      "sha256" : "0db186fee88ac9a22a537ac53247a14c3f692101a8bd416778e0fee4aeab4c39",
+      "md5" : "09dc03e6646a1aad0e6b13a4f25c82a0",
+      "id" : "org.apache.cxf:cxf-rt-rs-security-cors:3.1.8",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "ff034a76f69419c074c0ca4100596f2a1e84436f",
+      "sha256" : "b53eb26d5f462570a44cb54d914683c4c14e981eae7d498331abad8960a311ce",
+      "md5" : "6ae609e322d2e070d2dbdc50dcade538",
+      "id" : "org.apache.cxf:cxf-rt-rs-extension-providers:3.1.8",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "a288dca07330a2faee3905498fe143c63994dd55",
+      "sha256" : "17d568f4fe0b178b8af5cc494b529b0fb00b6c2854e71e0b06cd34baabf626e1",
+      "md5" : "b272eb8d9286099d0380c1ddb449553d",
+      "id" : "org.codehaus.plexus:plexus-compiler-api:2.3",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "9ab8afcc2842d5ef06eb775a0a2b12783b99aa80",
+      "sha256" : "8748f0ec73895f7f18c1a9c13cf754fddddf0451cf472463ef02f93c3e7a7de7",
+      "md5" : "b202b2dde200e0d1b714f6e867e29ee4",
+      "id" : "org.bouncycastle:bcprov-jdk15on:1.51",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "017138631fa20fd0e44a13e50d6b7be59cee1a94",
+      "sha256" : "0a5ebc0506ab1e4a08af1ca150f797304ff53b953c5b1f6fcf1f81551d964aad",
+      "md5" : "4f9d2052404a4dd642714c345e389f64",
+      "id" : "info.cukes:gherkin:2.12.2",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "2452ff461b93f99c5e971d6e14c99f277c353919",
+      "sha256" : "593fc0ef6e620b99d152386e1c3999db73799f37cd43feaee8117c7a4271af6f",
+      "md5" : "dca42ed30aaf893f49f97d9c9e711973",
+      "id" : "org.apache.cxf:cxf-rt-transports-http:3.1.8",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "93e301bd10c4b75a59200bb241184ba485ccb5ef",
+      "sha256" : "82841d0f6804a1207923a48f8afd367f61aa19c5cc97b4951b4cc0753d224330",
+      "md5" : "878ca0f222f377fce35203600c198de7",
+      "id" : "org.jboss.shrinkwrap.resolver:shrinkwrap-resolver-api-maven:2.2.6",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "a58499638e478c1ea26713351c3bebc7b0e9f7da",
+      "sha256" : "980b69f5c4a89cc95834523de78f4d23e3fb7e07b30851d9e90bcff714ac00a7",
+      "md5" : "4d436853a8a1b20e1432fe0cf44057f7",
+      "id" : "org.apache.cxf:cxf-rt-frontend-jaxrs:3.1.8",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "f7db9cafde9ed71f453d194d907369de0da07423",
+      "sha256" : "439564a72331c9b42e3caed30ae9dca05c2e1f32c7c5ef8bc8ea08fd45b2466f",
+      "md5" : "bc5fdbacba7d886af3448738e2222531",
+      "id" : "org.apache.tomcat:tomcat-util-scan:8.5.6",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "38cc1d53e6b3809d37d09d6eea30e653b1c4f209",
+      "sha256" : "d05bf3dc1b7b5d25b5fd43d869b97208d6a9441444a986099d35c6853f649607",
+      "md5" : "e0c40a3fbe4d291392d237ae069be924",
+      "id" : "org.apache.activemq:activemq-jdbc-store:5.14.1",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "49e5d935534e4061f6382dc25acd28158208e76f",
+      "sha256" : "457e04469b669e33df956d0cbfed9fef4af6da1f4e5bd7d4be539f5d8aac19c3",
+      "md5" : "c836f17502da73602325d8a7de5d4a11",
+      "id" : "org.apache.tomee:arquillian-tomee-common:7.0.2",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "ce3185026130bfcaca24774e2169738a4b778d2a",
+      "sha256" : "930f815002da758652646552d0bfc34d15aba200542aa2d195d57989cea1909b",
+      "md5" : "c1420c1473d90602b24fded9af0f2aaf",
+      "id" : "org.apache.cxf:cxf-rt-rs-extension-search:3.1.8",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "e8cccc5295e03bade76c1726fcf6e70670b4e781",
+      "sha256" : "26a3025b67fed777d95450b62dc4800cf550eefb1cd5d46a586ebdca3cdceb3b",
+      "md5" : "9db4b46081af8420262a0841b10cd9a4",
+      "id" : "org.apache.activemq:activemq-ra:5.14.1",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "b218d0ca248852091ca7cb7aa23815fbc3065128",
+      "sha256" : "443a6fcc5a3d9feeb36d17ee37e5c4c67bd3cf65547b924429c7d65971e88671",
+      "md5" : "be62f0518b655fefa073a45101dda165",
+      "id" : "org.apache.tomcat:tomcat-util:8.5.6",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "5dd889c7c3fa83f24ab7435d94da2cfe0a16dedd",
+      "sha256" : "35b545ead7e5513ec8c4974a984659ec68738e6761bb7c08a9876a2e901d38ae",
+      "md5" : "9e78927be6eb0437c2c9e805e7dc7a79",
+      "id" : "org.eclipse.sisu:org.eclipse.sisu.plexus:0.3.0.M1",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "aa8a2c08c1955c78e845a997ccfe450fe1d3a2af",
+      "sha256" : "5005688a88b2721649c5447cc47bfdd5b8c81bc463b47e5d1cec726905c16146",
+      "md5" : "5e175b7441b856a7fd786af4693c1928",
+      "id" : "org.apache.tomcat:tomcat-dbcp:8.5.6",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "0ce1edb914c94ebc388f086c6827e8bdeec71ac2",
+      "sha256" : "50f11b09f877c294d56f24463f47d28f929cf5044f648661c0f0cfbae9a2f49c",
+      "md5" : "4d5c1693079575b362edf41500630bbd",
+      "id" : "commons-lang:commons-lang:2.6",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "a8ff150c4c035785c408df5b25f133a6a003e946",
+      "sha256" : "6b81c2ed08305f0ba4e5dc04574884407c9a17c6a164a80f94ac5414643f01e4",
+      "md5" : "00264e719b0c01987bd2614afc8ef7b8",
+      "id" : "org.apache.geronimo.specs:geronimo-atinject_1.0_spec:1.0",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "c37875ff66127d93e5f672708cb2dcc14c8232ab",
+      "sha256" : "7a47be42e41328a6fc0d4a77983eb587c5e3d74156fa7c0fa93f817bcd199fc3",
+      "md5" : "b04f954ff7a76091cd6a303ebba8c67d",
+      "id" : "com.fasterxml.jackson.core:jackson-databind:2.5.3",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "fe8cac7c007a61886d98d613f9bd2c2efdfaf4a7",
+      "sha256" : "044be9059399ece9fe879c8a046baf318679c0337e737d0169befbd965e67fd1",
+      "md5" : "1a69232d669819d8453c8d6b64afcb8a",
+      "id" : "org.apache.johnzon:johnzon-jaxrs:0.9.5",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "c3a120dfdfc481bd27b13d5f4be12202ca276c83",
+      "sha256" : "89cf713c5fdc3a625cf8aca4f7799ea93343f580542d0c12783cc7e18ec4d5ba",
+      "md5" : "9d6004718f95bad30eb172f390fb4076",
+      "id" : "org.apache.wss4j:wss4j-ws-security-common:2.1.7",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "62da5193bb8ccca0c0bcba0868d702e22f26b33a",
+      "sha256" : "9409b047e7e9f4f10f2482e16e13a67abd2712145d791bccc677c465256f5c23",
+      "md5" : "d945d0fe9a48b23c914a588c97f2a903",
+      "id" : "org.apache.maven.wagon:wagon-provider-api:2.6",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "139535a69a4239db087de9bab0bee568bf8e0b70",
+      "sha256" : "1d5aeb6bd98b0fdd151269eae941c05f6468a791ea0f1e68d8e7fe518af3e7df",
+      "md5" : "c9be56284a92dcb2576679282eff80bf",
+      "id" : "org.slf4j:slf4j-api:1.7.21",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "9b5f0fa267070945c20cf41e2ee0f1e3db669ff5",
+      "sha256" : "6870c6d20a1357b34261c134ddcc18cbbb3aedec384169ea4eab19d0f350c003",
+      "md5" : "d664b8b0862297fbd7030ef515e189c7",
+      "id" : "org.apache.tomcat:tomcat-websocket-api:8.5.6",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "dfddf469d20b877b184dda5d6e60f0c75f558a72",
+      "sha256" : "703944b922d5351aad53b842f7dd38439b7213425f13c6c7f034b8b699b7d578",
+      "md5" : "5b6cc79c8c8abc3c92ae7d57c4cbb078",
+      "id" : "org.apache.maven:maven-aether-provider:3.2.5",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "7df5ba98ce8b78985d75fdd8c2981fe69234ef85",
+      "sha256" : "aff0951639837c4e3a4699a421fa79f410032f603f5c6a5bba435e98531f3984",
+      "md5" : "08495ee7ecf90f0b528e7d65471532af",
+      "id" : "org.eclipse.aether:aether-util:1.0.0.v20140518",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "d473ebe19001ba4f28dff338961321a9682959cb",
+      "sha256" : "a5f862550cd1963fb7853a5063cca604262f5f98a43712c7afe4f495eb9bc2f0",
+      "md5" : "b7ea92b12dc0c826a83198e7acb4afa0",
+      "id" : "org.apache.tomee:openejb-http:7.0.2",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "76ccfa94b225589e93b15857685285c32023c7af",
+      "sha256" : "a5dfbdc721c49fb3ee1bcc062cbf69d285ce37432ce613758b8f853a196c2794",
+      "md5" : "eb3af0f1f650b293ac98479c88919547",
+      "id" : "org.jboss.arquillian.container:arquillian-container-test-spi:1.1.12.Final",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "47d2ef6b0f8aa60ad88a9b1c71e58db808d7d5b1",
+      "sha256" : "0217227069e38e2821dc4c7e0d803d14fb14d01dc55285f9ce5e15966f9eff8d",
+      "md5" : "bb05a7ecb3097486a4afd076789e3c62",
+      "id" : "org.jboss.arquillian.container:arquillian-container-test-impl-base:1.1.12.Final",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "4826b8d852d37d872bdae6baaab7b331551cdd92",
+      "sha256" : "4ad3068f870f30d0c125c741814d2592480f90e2c87ef6722eadb4cf8453ac9e",
+      "md5" : "b0dba2ecaacfa44910045914c35e6a0a",
+      "id" : "org.apache.tomee:tomee-loader:7.0.2",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "a51895cd0af5c85def2ed3bd1a9c29e487e86a2b",
+      "sha256" : "74d803233322d346dedb5fa98f7fb0df73d97f3833b1e2b15c0aed84222a323f",
+      "md5" : "db5600ea5805c90f2b974ab1b315fcde",
+      "id" : "org.jvnet.mimepull:mimepull:1.7",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "a93be8060a1f22b05141418d74e527e487bd228a",
+      "sha256" : "a09b463721968776f220c594ed87497ce0aa96ce96fa3ac589e0bbac9bd42fd6",
+      "md5" : "652b50a327105e599debef7fd903265d",
+      "id" : "fr.polytech.team.h:PackageRegistry:1.0-SNAPSHOT",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "26682eb801f70563511f7c424dc10e8b3e66340e",
+      "sha256" : "8323444e48a1920afe37b5f24b6dc139f35793e8a87fa178f6d9c8f92a6f39d1",
+      "md5" : "38add15a7775073053fe3aa81979336c",
+      "id" : "org.apache.activemq.protobuf:activemq-protobuf:1.1",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "cf39aedd48034bc12a077bddaf04a153898ca771",
+      "sha256" : "92def643eaff7469eb4e6b1e233e362839b10540c81ff9d8765986f1d5deb737",
+      "md5" : "9bc5d3bf5ead246d4147f0611315b890",
+      "id" : "org.apache.wss4j:wss4j-ws-security-dom:2.1.7",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "e48c8fc306e69c9138fea36afc09b68630c5ad2e",
+      "sha256" : "6a1c5e694dd9b2ad1171fe2dcb9de188e3c200829a0d1a0b76393406b4b2e384",
+      "md5" : "3213c920cbb8cdc730b0885786bff554",
+      "id" : "org.jboss.arquillian.extension:arquillian-transaction-spi:1.0.1.Final",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "3efb356c3cf3c64a891ea465b2045b6c762859f9",
+      "sha256" : "a03bafd5403750b3da1c27e665361af5d5b19497ada54c6d9b04528d0350035a",
+      "md5" : "a9dd96a05ccdfccc2e6baea74aaeae2e",
+      "id" : "org.apache.bval:bval-jsr:1.1.2",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "49178b35cf7ad9527805cb83020c72c07f17f1a9",
+      "sha256" : "7ddc8143d21d8cc7006dbacb6e57042bcb0bb006d75cdb833cbecef43fe0992b",
+      "md5" : "82130ab2b417059f0485ddf152b6e382",
+      "id" : "org.apache.openejb.patch:openejb-jstl:1.2",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "516c03b21d50a644d538de0f0369c620989cd8f0",
+      "sha256" : "1e7f53fa5b8b5c807e986ba335665da03f18d660802d8bf061823089d1bee468",
+      "md5" : "144c0767e2aaf0c21a935908d0e52c68",
+      "id" : "com.google.code.findbugs:jsr305:2.0.1",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "f61787dc9a0dd1a03a999a46f350148e5554cf44",
+      "sha256" : "5e28a2594ab423d8fd99a630e5f4909901638405f549e67956d03244be5dcad7",
+      "md5" : "8945a98a3c0cc86e6604d3540d38e28a",
+      "id" : "org.apache.cxf:cxf-rt-rs-security-jose-jaxrs:3.1.8",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "b0d5a52db3b08e247dad16f76dbaa0fcb6e2874d",
+      "sha256" : "e2a79cbc6e85e78527a9e9add16ae7ab6c50b863540fb07fb242f4c313f59cc1",
+      "md5" : "ecb5c62d5f648fc745bd3bdd9d948f65",
+      "id" : "org.apache.maven.wagon:wagon-file:2.6",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "42b3791a481f66cf449d2c9510c884e93dcb7f2c",
+      "sha256" : "4cbae1de9f05910b6b886eb9660a268dceb3c4ee72d78369015742e260f4394b",
+      "md5" : "68586d8c9d68ba7607ea9e67206b5dee",
+      "id" : "org.opensaml:opensaml-xacml-saml-api:3.1.1",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "baa1ce87416fcf775996c9b04cf81823a53d8000",
+      "sha256" : "6aaca4e0dfd54fe9cbd3496f86f923a33171d74731ae20fa553a921373eccf88",
+      "md5" : "fc1d8ec2327e487319bb386224becc80",
+      "id" : "org.apache.cxf:cxf-rt-ws-addr:3.1.8",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "a56b0f5ccc0f2d8a29e1d2b02a014aa7271b67a6",
+      "sha256" : "04c7da583c274d401519e388792db876e61100d51ef26567f64ebd683982118a",
+      "md5" : "f21585d7037e374b5d673d2954c53133",
+      "id" : "org.apache.tomcat:tomcat-catalina:8.5.6",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "722c00573f08f809a900816a8d0bad47452b7a6e",
+      "sha256" : "b5a3f59959a256e1cf4b8e26a52e2de8bf447a2181f74514e25f1ceaacc7088c",
+      "md5" : "20e75753321aa46c0189720cba7b640a",
+      "id" : "org.jboss.arquillian.test:arquillian-test-impl-base:1.1.12.Final",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "c83f3ee0c535f904669ff982876e6f5ad20b57e6",
+      "sha256" : "63062ba8cfc3d5dea573e2a5503a01d45698577905e9abb736b3332f1bfa144a",
+      "md5" : "91f6e45b7a9619ddcb49de11832ca144",
+      "id" : "org.apache.maven.wagon:wagon-http-lightweight:2.6",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "332acab8b56759e1076379279bc4dca73946dbeb",
+      "sha256" : "20ed1423106c04730cef7d94bf52b4cde1f9bab84c77ebc194d0fd86c127066f",
+      "md5" : "6882694e48befb598261a29aa757eb63",
+      "id" : "org.apache.cxf:cxf-rt-frontend-simple:3.1.8",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "083f423f7d055037737197c2c1cdb8ae3b8c4875",
+      "sha256" : "c29d4b5b4dbdb332e9b477d8d17e0519821cfd41f32e7561a6e7569a6238f2b2",
+      "md5" : "60bd56539bc2b23d09b7c33deac8a542",
+      "id" : "org.opensaml:opensaml-saml-api:3.1.1",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "cbfc984df46fe321ce884aa62f7a6fb35100ec02",
+      "sha256" : "5ded9aab7d955a488929290f92b165e61117a49ac3c621ea368bd9327a32a443",
+      "md5" : "1388107c7f61409a6ec501ad09494c94",
+      "id" : "org.asciidoctor:asciidoctorj-pdf:1.5.0-alpha.11",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "6ecb054441a07715ac57621eedee3626524ffc52",
+      "sha256" : "581dea1b66012abdd8e65efb2ee7a525d22b5f70c85d7302effccdbe4cc76ceb",
+      "md5" : "1042fc07f08a40d62e2569040724d577",
+      "id" : "org.jboss.shrinkwrap.descriptors:shrinkwrap-descriptors-spi:2.0.0-alpha-10",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "c72f2660d0cbed24246ddb55d7fdc4f7374d2078",
+      "sha256" : "4df7a6a7be64b35bbccf60b5c115697f9ea3421d22674ae67135dde375fcca1f",
+      "md5" : "ef37dcdb84030422db428b63c4354e5b",
+      "id" : "org.codehaus.plexus:plexus-component-annotations:1.5.5",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "14cb5b4468fb77e3af4780fafc1978469c6eaf98",
+      "sha256" : "318c419519be9619ab09dca048161e92412e1cbc05996d8adf39804cfe8e4d14",
+      "md5" : "6d8f2f8a28970d877a3554bc16ba141f",
+      "id" : "org.apache.openwebbeans:openwebbeans-ee:1.7.0",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "17049c63ce63654c112eeb82797edee49f8a4601",
+      "sha256" : "62b517b77f24edebdee0e382ecddb44bb6632b7c08c528d625aed7d2980df12b",
+      "md5" : "bda12e2d6070d417a6118c6ba769fd4f",
+      "id" : "org.apache.maven:maven-repository-metadata:3.2.5",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "390f9cb698f4fb7ae24d39845644fd5f47fa3f49",
+      "sha256" : "696eb4974ff512408296bf0cb6ee31a86c652568a8212655f8ef84223c4a542a",
+      "md5" : "22ca41ca32acc0180d755aa1cfc88ba9",
+      "id" : "org.apache.tomee:tomee-util:7.0.2",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "e772df38cf732f4255644626a8661d793a27a6b7",
+      "sha256" : "9665d56ef67f78fec7758ccd1fb88ef4caadcf95170802e2860c2dee6aaa0c35",
+      "md5" : "b569a8286e5e9b6dca756a972b321c58",
+      "id" : "org.jboss.arquillian.config:arquillian-config-api:1.1.12.Final",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "91eee489a389faba9fc57bfee75c87c615c19cd7",
+      "sha256" : "32f8755847f3fce72de4aa16480ed8fe23b51d0f4aea7eab9e167126bb1ba048",
+      "md5" : "92a13d215927d3d5fccb5487c1b13ba2",
+      "id" : "org.jasypt:jasypt:1.9.2",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "2f5f82d975335e64793684452604d9e8edb433ae",
+      "sha256" : "c0e674c1461e18cfa3c24789fb4420476962e2f0e379d1b4bfe8f72bc99d1348",
+      "md5" : "de56903edf6c0a6ea49646d330012894",
+      "id" : "org.jboss.shrinkwrap:shrinkwrap-spi:1.2.6",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "f7ddfb2bbed2f8da3f9ad0d1a5514f04b4274a5a",
+      "sha256" : "56c5a651d6b6811f93b49aab5f916437f01ea9fc80c4a72c9349904bebe9a400",
+      "md5" : "d104392c3c480b0d34767096db50eaa4",
+      "id" : "org.asciidoctor:asciidoctorj:1.5.4.1",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "abe9a57f626a5a64e4359fe2fb24f8cf71294671",
+      "sha256" : "ccc1206a0fc93b9fb3d62fa326f5f055209d724ad231f41e9532a3f5c1b570f3",
+      "md5" : "e5d8495060ff3532fd4321a52335ea0e",
+      "id" : "org.apache.cxf:cxf-rt-frontend-jaxws:3.1.8",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "d1914899300c0885e193fd0b8d46dfa87e9cd4ae",
+      "sha256" : "3dc91214ba69b064278514bf3f79f3e5c4254d9da9d235a930292e1ba2268e1c",
+      "md5" : "2e961eda0ae5800928c332f527cdaf9a",
+      "id" : "org.objectweb.howl:howl:1.0.1-1",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "da7641ec0b778ae84eea0757c9092fa6c7da2c58",
+      "sha256" : "c6d7136ef847e916292b45f1e9862ef143b4b799154b51e33f6c7796f298ef50",
+      "md5" : "2193325ce62f93d11c83d6183479f3eb",
+      "id" : "org.codehaus.swizzle:swizzle-stream:1.6.2",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "624a0c986088e32910336dd77aee5191c04a8201",
+      "sha256" : "79880ba60bfb52ef848c4bf6ebf1073af132ada8b0794d4c72d897e8fe25050b",
+      "md5" : "d46fd8733b8aa147f0e5bb37d2e1d5b8",
+      "id" : "info.cukes:cucumber-html:0.2.3",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "702dd8cdca70b89f16073e3de062035d8ce2486c",
+      "sha256" : "3a878482877e66337ab8461e7f55ab9d701f8090f889ad8938cceefa33193fe4",
+      "md5" : "d88b78f38061925165409f2af670142e",
+      "id" : "org.eclipse.sisu:org.eclipse.sisu.inject:0.3.0.M1",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "4161a4716299dbde0470ad616e7353b8522764fe",
+      "sha256" : "47a2b9972bfceaabab8edb243e6188879fe489492c36df3868033b62a54f95a9",
+      "md5" : "78ae461e8d58c2e469baebda1273218f",
+      "id" : "org.apache.activemq:activemq-broker:5.14.1",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "3b10ddda7184fc143c36679834505dd6b57ae055",
+      "sha256" : "16cd96cc4bc9ff95ff74b2d6fcc9ea02aa79b695e0401cb30a3ab7db6a295168",
+      "md5" : "5ba2f4d2b0b5dc870c66f04ce9017754",
+      "id" : "org.apache.tomee:openejb-webservices:7.0.2",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "5915bd0655098de765d80edd0fc399a4e4059233",
+      "sha256" : "2a94d5ffbecbdcb500936e60eecd85475397412d4858d501046c5a69e615e31d",
+      "md5" : "cf26b6655de68aa00319a8f46de6e051",
+      "id" : "net.masterthought:cucumber-reporting:1.2.0",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "83e72b3206dff417b8368179ed51808af38d4483",
+      "sha256" : "71213998d03001f1c2e1936dca3a049362ccbf8a8a17e4cfca60d73ebed09641",
+      "md5" : "66b5e44329424927373b6f7b33a92645",
+      "id" : "com.github.cukespace:cukespace-core:1.6.5",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "acc63029ed98a6f87ea4583bdd52ecfd23089103",
+      "sha256" : "bd5234ffefa3bf0633e01740191c0a4372f7fdb6f2b045c91bdb19ec7e23e521",
+      "md5" : "1e29c9ec9c05281d32d19817e99df371",
+      "id" : "org.apache.cxf:cxf-rt-rs-service-description:3.1.8",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "eec7886c99f6cfc2eb93426b4e9c9096bab4c362",
+      "sha256" : "bcc77409da296a0724ba836e9c95df50304f670d1c8cbc510204739e17d89889",
+      "md5" : "16e9c9c5ddf1b27af3852e38744768fc",
+      "id" : "fr.polytech.team.h:SupplierRegistry:1.0-SNAPSHOT",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "ee4ce7041b155667bd920ba19bcf861755814695",
+      "sha256" : "5f8015398e957d24ccb5a347045dd67f1e3856d46c94b034d8fe69aaa5c86408",
+      "md5" : "59f70d0e72a9af8200cac8a44ae20a8a",
+      "id" : "org.apache.cxf:cxf-core:3.1.8",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "3386de88494f2453715e5f5868108a454fe848c1",
+      "sha256" : "b974da8022c6fcd3c7c9d37ae232bc132fd5b5304fa8fde878fca473d71fa9a4",
+      "md5" : "2b240376b7f208ac8e7a05e4edb006ae",
+      "id" : "org.apache.cxf:cxf-rt-bindings-soap:3.1.8",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "7428e64e9b658d34dceaa4f3a4f39e17fdc3f41d",
+      "sha256" : "e8ed1cbe46b0ffb40d01a83978a4e74e3f7af5cda88835283e87ae160b4604ef",
+      "md5" : "521b53aaf916bee9987d675440d071d2",
+      "id" : "org.apache.cxf:cxf-rt-security-saml:3.1.8",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "0f8a5cd4eab05b98052fa286cccf87fdc12a478d",
+      "sha256" : "317bc6cd408630ef5c495ac7218a59ad7af05c09806b2c7b4f173920b259ddfb",
+      "md5" : "4082f6998afa5bfd31cbe522f8abfad6",
+      "id" : "org.jboss.shrinkwrap.descriptors:shrinkwrap-descriptors-api-base:2.0.0-alpha-7",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "dc6a73fdbd1fa3f0944e8497c6c872fa21dca37e",
+      "sha256" : "05662373044f3dff112567b7bb5dfa1174e91e074c0c727b4412788013f49d56",
+      "md5" : "cf89c593f0378e9509a06fce7030aeba",
+      "id" : "commons-digester:commons-digester:1.8",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "1f5c4ed78c1f432926f37c8d40c958550fce53d5",
+      "sha256" : "c7f2072dcf34b7d48e5e3035861ce15b36144cbc26a1f9d351ab8f35215fb1a4",
+      "md5" : "24c4231b426028f8a83cd7d230e21db2",
+      "id" : "org.apache.cxf:cxf-rt-rs-security-jose:3.1.8",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "2e3aaa01cf524d00c5ab0a7bddd5d2352f3b5dd8",
+      "sha256" : "f3854251548ce8c8d5d1c6975732fbf7b5a5f2dfb7a78d3c1138351e1f362378",
+      "md5" : "56fb085d5b98c10c5eaa87bc0c4070ce",
+      "id" : "org.apache.johnzon:johnzon-core:0.9.5",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "bd7d7ee0921672ed30159c1cfd233d275fb166fe",
+      "sha256" : "dc47e8434a26599ba3be6ddd8d1f871487c47b92512b91b0c488104ffc7afc8a",
+      "md5" : "967f0ca2cd03ae6db67f0ab5415348c0",
+      "id" : "org.jboss.arquillian.core:arquillian-core-impl-base:1.1.12.Final",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "e7fd981408caba8a0c0fb276413562468d260160",
+      "sha256" : "9452e85177f69535ca093cbe2df3e8604344d58f729db70fb9e3009e80684251",
+      "md5" : "b006c549ee3d523388aa4df022324830",
+      "id" : "org.apache.logging.log4j:log4j-api:2.5",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "19be874c32183409ed76fcd3ecc05b28f3e06e62",
+      "sha256" : "8fdb5182b9e05c50b457a1e8fad423538be50164f52743429c04cfb183b4f1c5",
+      "md5" : "2c81fe94b2c3c901719629cac7b79b69",
+      "id" : "org.eclipse.aether:aether-transport-wagon:1.0.0.v20140518",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "4f2aac3df4c8c6e5a043064a1f3caa47215f288e",
+      "sha256" : "54b6fd0e58929711e46c113bdb09062e053609f3d0fbee3687fd827ad425e23d",
+      "md5" : "1c5568522576741c949981280785f728",
+      "id" : "org.opensaml:opensaml-soap-api:3.1.1",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "457c0d1d3a4d2ab76c0bab8891319af3fb218824",
+      "sha256" : "402fdbb755f20d7bbdb869e0d1e934725095cd1ac66e5c27e0397a17d17a8b51",
+      "md5" : "d0253f2c6337bdb382b4f4d0246bf4a4",
+      "id" : "org.jboss.shrinkwrap:shrinkwrap-api:1.2.0",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "tomcat-jar",
+      "sha1" : "c8e6c3b6decd6865e604ca2dcdd7efc21965e177",
+      "sha256" : "b3a47b0c2015c345995c7139b3085c8cb5737e621057d45e0bc5c9f19575d807",
+      "md5" : "7ff6d02176f3b7b4a7d024bbcd075362",
+      "id" : "org.apache.tomee:javaee-api:7.0-1",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "9c57fa0cb249aacd26f58417f9869bb8008382b1",
+      "sha256" : "56c33504cff9aae06ada746bf099545a9725d30c4e1746c3c76495bb0fe6eb78",
+      "md5" : "3cbb9abee930d3fde135c811c0530fab",
+      "id" : "org.opensaml:opensaml-xacml-impl:3.1.1",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "583eeb52a47e577f2bbfbd6f70b849f5e34bf250",
+      "sha256" : "7fb8ee3f1c775399c1efc1e6956f243d0aecc1a925cc6887b4ba124959286c6e",
+      "md5" : "7af78378cb2d9a2f58455e67de0e3c35",
+      "id" : "org.apache.tomee:openejb-javaagent:7.0.2",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "2bf96b7aa8b611c177d329452af1dc933e14501c",
+      "sha256" : "e7cd8951956d349b568b7ccfd4f5b2529a8c113e67c32b028f52ffda371259d9",
+      "md5" : "bfdcae1ff93f0c07d733f03bdce28c9e",
+      "id" : "commons-cli:commons-cli:1.2",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "f1ef56a80ed3dfef39663a290d21992edacee0fb",
+      "sha256" : "95f556c321de35ad8f731cff31b0edc1456f68fa0159b9209ab1100193297e4d",
+      "md5" : "97094625fab73a80313837838df9f27f",
+      "id" : "org.apache.tomee:openejb-core:7.0.2",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "87c0ea803b69252868d09308b4618f766f135a96",
+      "sha256" : "c74330cc6b806c804fd37e74487b4fe5d7c2750c5e15fbc6efa13bdee1bdef80",
+      "md5" : "32ccb1d20a42b5aaaceb90c9082a2efa",
+      "id" : "org.objenesis:objenesis:2.1",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "e913f7ae01aa3bd7310a1d5c4768e74458b9cde1",
+      "sha256" : "2f7ee64c1a740923ef8f6272cc2931c3a67478786f86c4f1be8519097a93394f",
+      "md5" : "3fd972d9de14dd78267660aaab60c477",
+      "id" : "org.apache.tomee:openejb-cxf-rs:7.0.2",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "a8b8a6dfc8a17890e4c7ff8aed810763d265b68b",
+      "sha256" : "c9a900c30c702d371be2d3714938dfa6de616599c8eb39f8e3cf7aedd62dfd32",
+      "md5" : "5763215f9054614336ffa55d46a69e15",
+      "id" : "com.fasterxml.jackson.core:jackson-core:2.5.3",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "74c8cf22d85389c0573f9a7a07d068d3f35b8d5c",
+      "sha256" : "4e724c59d20488f4f4bc618d3b1ec3978daf97f6a0cfe832dc2aa3b96121b0e9",
+      "md5" : "5d9fb2bb965c4669e3d4a8b60abfb0eb",
+      "id" : "org.apache.tomee:tomee-common:7.0.2",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "ea933af2a3e5e0144273342e2149d0d6502e9a2e",
+      "sha256" : "eb02d8c9ea807621159492704e0367f5a00c235e290470c4b942ab3abbf59d65",
+      "md5" : "d3582b0f4ace8995f9649ba20ce714f8",
+      "id" : "org.apache.tomee:openejb-jee-accessors:7.0.2",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "8ad72fe39fa8c91eaaf12aadb21e0c3661fe26d5",
+      "sha256" : "eeeae917917144a68a741d4c0dff66aa5c5c5fd85593ff217bced3fc8ca783b8",
+      "md5" : "f54a8510f834a1a57166970bfc982e94",
+      "id" : "commons-collections:commons-collections:3.2.2",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "8eb234259ec88edc05eedab05655f458a84bfcab",
+      "sha256" : "94521e6004092e59c298802d2144f062cbc9c1dcb347de12057acf623032a1b8",
+      "md5" : "25d2c3aea8cad2ccd0d6f30f5e69a6c1",
+      "id" : "org.jruby:jruby-complete:1.7.25",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "95d4eab4b67874f452a69fe84e89f2952c6c27f6",
+      "sha256" : "1cc9c694a72fa82db1c147bd8854d891765b4f8d4dea4b1b844215ec39228203",
+      "md5" : "b24defcf09144cbb5c82985d711c558f",
+      "id" : "org.apache.commons:commons-dbcp2:2.1",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "7255a9d8e0c3b0f9e3cd80503c91c2b088b3d9b5",
+      "sha256" : "684f0f9b029a8cd28048bb2b95fc124fd325e21172be375193680943f5ea2aeb",
+      "md5" : "a551e06068996e08b3a85e06ff911628",
+      "id" : "info.cukes:cucumber-core:1.2.5",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "970fd7b8f635e2c19305160459649569655b843c",
+      "sha256" : "e743f27f9e846bf66fec2e26d574dc11f7d1a16530aed8bf687fe1786a7c2ec6",
+      "md5" : "c4cd9109348152a367192818f4e4fc11",
+      "id" : "org.hsqldb:hsqldb:2.3.2",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "508777a125e7685598531d05562ad56948650333",
+      "sha256" : "67bf185b0271b1d25a36b80729e8be2015f1c3f1cd9eb8a17eb8a347c09e9c0d",
+      "md5" : "0acec2d5644afbcdf92e586f0c64e544",
+      "id" : "org.jboss.shrinkwrap.descriptors:shrinkwrap-descriptors-api-javaee:2.0.0-alpha-7",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "24c02b8c8f491dc431e30a690df827323c630399",
+      "sha256" : "2dd685afd064c5218ef659763f4688a08d18ca62c958364933a55d326f0b2058",
+      "md5" : "e98dda1ce935aed9994c3931f24e6268",
+      "id" : "org.apache.tomee:openejb-jpa-integration:7.0.2",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "f6849b7c8c4a2cba9d61a76dfac15fbb72f1b572",
+      "sha256" : "812d42823e2c52785b52b7fe78a70685c8b7aec6366c947a291bbcd3a81c9fcc",
+      "md5" : "d7e94e5225d4d77acd5bdedc498e0fe1",
+      "id" : "org.jboss.shrinkwrap.resolver:shrinkwrap-resolver-spi-maven:2.2.6",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "b7470881159fafa78552b6cbb155d64a2b141590",
+      "sha256" : "7db515bc17b1a1d6f8525e2055dd352eeffa4a26a853e0757097750cc03638e4",
+      "md5" : "dcd5a8b8d9ef65d2d97d9ed680c5d023",
+      "id" : "org.apache.tomcat:tomcat-jasper:8.5.6",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "3d0f97750b3a03e0971831566067754ba4bfd68c",
+      "sha256" : "47dcde8986019314ef78ae7280a94973a21d2ed95075a40a000b42da956429e1",
+      "md5" : "706c533146c1f4ee46b66659ea14583a",
+      "id" : "xml-resolver:xml-resolver:1.2",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "0d0939eabd1762108122c05fe92ebe5748a3c1e6",
+      "sha256" : "97301c94ad34d8d6e708fab6ee818284e1a501fa0d2697ac6081bd9ccdd3b5f6",
+      "md5" : "5144c2f675f2368ccc549e5b6eaef2ff",
+      "id" : "org.apache.tomcat:tomcat-api:8.5.6",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "32d8e75e44bb3b811e7cfa6016beeec3389c3fcf",
+      "sha256" : "e4b034e84755fdd5b24c2a379b27e434f94d6f9bd7f31302d34f4d10216114ca",
+      "md5" : "03f8a6f218a56514c7d8f78f98f29acf",
+      "id" : "org.apache.tomee:tomee-myfaces:7.0.2",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "4e1f4d507030a00959f4c0c7fcc60b3565617d08",
+      "sha256" : "0736bd626e343ee4c5837fb64f8ac4a4dcb06afba811dbfaf2d8aa5fcad850f3",
+      "md5" : "2ef7ed8b728186558b5d587c38900b84",
+      "id" : "velocity-tools:velocity-tools:1.4",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "0922c4f6538ce59432ed00f26278a62735a3a41d",
+      "sha256" : "d649973e606175ac89682c2cb5c960902cec3538d2a8bf41f22d7ae55afc4a7b",
+      "md5" : "880903872fc8c8bae508c1e7f4641be3",
+      "id" : "net.sourceforge.serp:serp:1.15.1",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "7380a42d4ef28f98f73657b0d0cbe59a8eba605b",
+      "sha256" : "9c14646a3324df14dedaec88e1f86aec5058e4143b92adde28b4057a3c7c43e9",
+      "md5" : "f211d742e92abc5715ccaf060b955cb0",
+      "id" : "net.shibboleth.utilities:java-support:7.1.1",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "fb9dfb4460959ce2ca2aa1d781df2465a2372d83",
+      "sha256" : "f8d3061b2cc92c8f67d8e0952d05a9945e94ccb4266f5bd4556c14e847397202",
+      "md5" : "f2a0b16b90c82134349aa2ba07523e23",
+      "id" : "org.opensaml:opensaml-xacml-saml-impl:3.1.1",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "985a9a12b904fb3bafd4dc6b49f6a084845703a1",
+      "sha256" : "a3266d127a4e9f4aa9c4fa0986e31eec784e866f79112e1840d1667e17c10fb2",
+      "md5" : "51c5870c01f48af3231ce6499464827a",
+      "id" : "org.eclipse.aether:aether-spi:1.0.0.v20140518",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "ee56d528143fcfb2804f97fd303b27bc7c930c11",
+      "sha256" : "927fa6e5f90c16f43198d589c11689890489422dbffa238c86683b88e14188dc",
+      "md5" : "52445ac47ec718a2187ddd4480720410",
+      "id" : "org.jboss.arquillian.container:arquillian-container-test-api:1.1.12.Final",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "b02249496f36563eebab681b0288818a71b89d86",
+      "sha256" : "1e4f880b773e991f728b1165b57b6bc888b530a9e593333bd81dadf09d632a81",
+      "md5" : "2e8c2abc83bc57e291757374ab56c509",
+      "id" : "org.apache.geronimo.components:geronimo-connector:3.1.3",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "b0f10086fb128ed01fdd6a507216d9e1b9add489",
+      "sha256" : "c8d0312d62bec24e034f8bc7152de83a9c836077dd3d94e4c397d4a310243bc4",
+      "md5" : "6eebbbf02e3662eb4a46a0a72dd40040",
+      "id" : "org.opensaml:opensaml-xacml-api:3.1.1",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "e8546f5bef4e061d8dd73895b4e8f40e3fe6effe",
+      "sha256" : "d5831ee4f71055800821a34a3051cf1ed5b3702f295ffebd50f65fb5d81a71b8",
+      "md5" : "c1967f0a515c4b8155f62478ec823464",
+      "id" : "org.mockito:mockito-core:1.10.19",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "7fd98de76398a3ff5c1d9a7b85f26cb65a862578",
+      "sha256" : "9c5a014ceb8abb55e997dcc41d17bbe0ae145db574be6b7186e75950c241269f",
+      "md5" : "c48b8a83cd03a5672f07b559ca1a5307",
+      "id" : "org.apache.maven:maven-settings-builder:3.2.5",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "47592e181b0bdbbeb63029e08c5e74f6803c4edd",
+      "sha256" : "019c12fec1ce5c02cbabb150f6ac8a86d92a0ecc9c89a549e5537283e863000c",
+      "md5" : "90216444fab67357c5bdf3293b47107e",
+      "id" : "com.beust:jcommander:1.35",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "a0595082d913e181b2972d3b9bfb42d7b5dcb544",
+      "sha256" : "c6bceb6ebb927897825c47e46d4a4083407bbeaf0a895d662730a5402a839c9c",
+      "md5" : "11becc0a26f2fa7612eed541940ec08b",
+      "id" : "org.apache.tomee:openejb-jee:7.0.2",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "96f0b9bbafc7fc9ba86ea13b6ca258d38fa5e5dc",
+      "sha256" : "4a5436f645fc2fe697d850e7164d724d77e1b4fc2565a7198a16e3b58c58ea95",
+      "md5" : "6fff9988a25d4109569ca6a2de967532",
+      "id" : "org.jboss.arquillian.junit:arquillian-junit-core:1.1.12.Final",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "6e720d31004fe279cb91d04f2cc0444508ced63a",
+      "sha256" : "38929542065a5585929f424822419ebd814cad3b262a64aa4666b5143b323322",
+      "md5" : "76714efb42c0039dc0f123deb2d369c5",
+      "id" : "org.apache.wss4j:wss4j-bindings:2.1.7",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "fd563f66fc1b6b908934639f87b4e0a0f43809c3",
+      "sha256" : "aa69ea1e3cf17d60082b016257f8f6580d5cabff6bb58cf2edef8386632c6a52",
+      "md5" : "2552e6bfbe3e16819fc5ab8d2644e05c",
+      "id" : "org.eclipse.aether:aether-connector-basic:1.0.0.v20140518",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "c7d3ed07c61bd872131b66777767f417a3aa0469",
+      "sha256" : "9279c38085c91f27e8841ff03f052197155a35cf560c2b4a0d2a519735032967",
+      "md5" : "223b32a48428ac6ae6ff7d3fd8324e7d",
+      "id" : "org.apache.tomee:tomee-webservices:7.0.2",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "44c453f60909dfc223552ace63e05c694215156b",
+      "sha256" : "1f10b2204cc77c919301f20ff90461c3df1b6e6cb148be1c2d22107f4851d423",
+      "md5" : "462c0959f0322016495f4598243bc0f2",
+      "id" : "javax.enterprise:cdi-api:1.0",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "b768bc52d046b8c3ef16946ef02d7fb6dc5f82db",
+      "sha256" : "979e627bffa7f817005e43c18b579567fc506a6db59d046cac9113aea019deb1",
+      "md5" : "67ee5ceb0af0894e82026971e1c3bd87",
+      "id" : "org.apache.activemq:activemq-kahadb-store:5.14.1",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "cbae8f3cc6768aadf5acf80b45b3d0f3bd3455d4",
+      "sha256" : "62d09e0b940b4722bce7fdaa03022ec8bce6022da0233a82c2a89d4c5591d3ed",
+      "md5" : "fbea9cd11e4696da090038b5cbdd4522",
+      "id" : "org.jboss.arquillian.junit:arquillian-junit-container:1.1.12.Final",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "c47596033b5cd5733400d952c81584c1af643e3e",
+      "sha256" : "d4b046b45797af999b8617f24300d085f1f7cfb3a1ee2d97ef712b028e93c601",
+      "md5" : "a7d870b4e5eb0565a79cf381c333c782",
+      "id" : "org.apache.tomee:mbean-annotation-api:7.0.2",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "df849db7e81b9e2d207699c6557d775f5d7d049c",
+      "sha256" : "000873c414f09f9bc29ef82369b7a75b5ddd34242f82c0bdf19a17a15247bcf9",
+      "md5" : "f92a2c8c0a4bd3077325a300ec8dfd69",
+      "id" : "org.codehaus.plexus:plexus-compiler-javac:2.3",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "5025422767732a1ab45d93abfea846513d742dcf",
+      "sha256" : "a1a922d0d9b6d183ed3800dfac01d1e1eb159f0e8c6f94736931c1def54a941f",
+      "md5" : "4cd56b2e4977e541186de69f5126b4a6",
+      "id" : "javax.annotation:jsr250-api:1.0",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "b1b6ea3b7e4aa4f492509a4952029cd8e48019ad",
+      "sha256" : "cc6a41dc3eaacc9e440a6bd0d2890b20d36b4ee408fe2d67122f328bb6e01581",
+      "md5" : "7f97854dc04c119d461fed14f5d8bb96",
+      "id" : "commons-io:commons-io:2.4",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "6e09905b4b5fc31e9b17135f734383207bcb7acf",
+      "sha256" : "f76cd6b1433ab0590bbf64bc0ed3135a538696d84ab6f6d4c8fec9f117650d1d",
+      "md5" : "aac9092505de02be03d7b3ae5deb408d",
+      "id" : "org.jboss.arquillian.core:arquillian-core-api:1.1.12.Final",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "2633717c33f048da0a3e379c967a283008248035",
+      "sha256" : "0d9ab1f48931ef3c9bcb0d1a6bcd6b19993b6c8ba45e4ffeaffb22fd761e1684",
+      "md5" : "7ab8f8a0344882580c212ac52baab0ff",
+      "id" : "org.apache.wss4j:wss4j-ws-security-policy-stax:2.1.7",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "0bb54d60c04c0beeebfc80a7a512c9d3934c19d3",
+      "sha256" : "0d336328de3906504abd453af85e5f6af1fa1302586b339795ceeb8e838b514c",
+      "md5" : "c83e779ef7c0ebe49344cc255169aba6",
+      "id" : "org.apache.openwebbeans:openwebbeans-web:1.7.0",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "6c6c702c89bfff3cd9e80b04d668c5e190d588c6",
+      "sha256" : "8ac96fc686512d777fca85e144f196cd7cfe0c0aec23127229497d1a38ff651c",
+      "md5" : "780b5a8b72eebe6d0dbff1c11b5658fa",
+      "id" : "org.apache.commons:commons-lang3:3.5",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "3d4dab450d382f462ef69d4f5590da134630f160",
+      "sha256" : "1b7c59188dc212548c529d41532568a5883c94a82544ee4d9a704e591a39488b",
+      "md5" : "1e33eee8195497044fe4443c20d89ae3",
+      "id" : "org.apache.tomcat:tomcat-jsp-api:8.5.6",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "8f0e50ad8bea37b84b698ec40cce09e47714a63e",
+      "sha256" : "c6b45db967f3b2b3e28fd2f0724b1730a89d3f5aa9eef3664de29caba219593e",
+      "md5" : "a80061bd945ca0f13072861777ff27b1",
+      "id" : "org.fusesource.hawtbuf:hawtbuf:1.11",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "fd2a7b0b421c679f3718976ec032d74ccbb9f7f2",
+      "sha256" : "b577c60190e77d5231e1f5073552e1b283436aed73dfa5de13b74b4174ab7099",
+      "md5" : "4f86b7064081ecdb09d5907eeb5ef69b",
+      "id" : "org.apache.tomcat:tomcat-jni:8.5.6",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "a7dd8234498f8425c25e983b4d3451d7accb0b5b",
+      "sha256" : "f11440bae75647c59ca9dceac32d5bc00844d5b6b9b992818eedf604e731742d",
+      "md5" : "d367ffe90d0aeeaaae4e5cf6908e01df",
+      "id" : "org.cryptacular:cryptacular:1.0",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "14aab3d3a9ec4583cd8f51bba1d311e33eceeb61",
+      "sha256" : "01d4dbdf472f924d6868b43faef4a83b22d76172f158856d8e9ff407b4275487",
+      "md5" : "7308dff6357dd3b0a1511b8de66da0df",
+      "id" : "org.apache.activemq:activemq-client:5.14.1",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "e22e126aa874d9b24009feb5ddddba3f3781cf8d",
+      "sha256" : "04a21a541aad2f726ff63b47d173abc17ed1aedbb32a0f455143f9141121ca83",
+      "md5" : "0f8acb7b2aac8ea91ad69b84abae526a",
+      "id" : "org.apache.cxf:cxf-rt-wsdl:3.1.8",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "6e547bcb101c9de2a5c467c5bd9da6402b7ca96b",
+      "sha256" : "cf8972f52ab21e19fad13ffed95f5ea9b6119f0fca1c7e2d3af5da741ef6d80f",
+      "md5" : "7cb2f2f2dc38c8038b0a349210773d9f",
+      "id" : "org.apache.openjpa:openjpa:2.4.1",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "62028eccf91b406edba491af979bbb123036d246",
+      "sha256" : "4ec5e3c296059d06294d5bf9e2aa4ef30cb460c1d72431bb8bca3c7554f640b7",
+      "md5" : "db2d8e2681b95ef7da0c3649a4d88f0c",
+      "id" : "org.jboss.shrinkwrap.descriptors:shrinkwrap-descriptors-impl-base:2.0.0-alpha-7",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "686c608d1805b6d4d425ec4459e88164ffc85870",
+      "sha256" : "e2a149efcfee7685f3a35a7505cf9aee18ffe22ee3273eb8a2e72a7bf951dd19",
+      "md5" : "929d94512e63f6ee2efd8cb57048f310",
+      "id" : "com.google.code.gson:gson:2.5",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "50ade46f23bb38cd984b4ec560c46223432aac38",
+      "sha256" : "5a15fdba22669e0fdd06e10dcce6320879e1f7398fbc910cd0677b50672a78c4",
+      "md5" : "7b2d6fcf0d5800d5b1ce09d98d98dcaf",
+      "id" : "org.sonatype.plexus:plexus-cipher:1.4",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "a2a55a3375bc1cef830ca426d68d2ea22961190e",
+      "sha256" : "0ca408c24202a7626ec8b861e99d85eca5e38b73311dd6dd12e3e9deecc3fe94",
+      "md5" : "db2a8e900965c9618cac9abec038e3de",
+      "id" : "com.fasterxml.jackson.core:jackson-annotations:2.5.0",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "57afddfbf71669ffa6c224736e4ec272ccda85dd",
+      "sha256" : "390a8a709d0ba8d07b537f1a67319c8e75ac375009c3089233471783df9558b9",
+      "md5" : "b0ef1f9cf23f7931d0293f7034f143ce",
+      "id" : "org.jboss.arquillian.test:arquillian-test-api:1.1.12.Final",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "4d4d48e9f358f3feae6e528ff95229542542ab1f",
+      "sha256" : "9d66efa5a920769cb5cd0f4dc8710472c351d9a5e1d8db32a201fd517f7e412d",
+      "md5" : "42347c360f7393d77fab6b61cf81b6d9",
+      "id" : "org.jboss.arquillian.container:arquillian-container-impl-base:1.1.12.Final",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "7dc890c111645369071d1276107f78ce141edde8",
+      "sha256" : "acc252200e7586822a1f10d4c6c9d219f13fbba51d27d95c16a4db93c103b5be",
+      "md5" : "e528409771185fb29b4089c4676b37cc",
+      "id" : "org.jboss.arquillian.extension:arquillian-transaction-api:1.0.1.Final",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "b0d54dd79f76deeb68820909ea5a802157d4e13c",
+      "sha256" : "546cd560fe879c3edc214ec42dbb183606cf15e612bad2c6828284b0f26d330f",
+      "md5" : "d2fdc59fcc08a703ae0ec7eae069a7c7",
+      "id" : "org.apache.openwebbeans:openwebbeans-impl:1.7.0",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "pom",
+      "sha1" : "4118752ead9b45faf7a0ef6c19a77b7d8b1f825b",
+      "sha256" : "b6b239d0d30646a007f55e455c994ecc5e5d7821570bf4253deff2952f55bae0",
+      "md5" : "a4bace338ddb4f2fd7dbf7d8bad56d55",
+      "id" : "org.jboss.shrinkwrap.resolver:shrinkwrap-resolver-depchain:2.2.6",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "7e508135639b0413b3afe61b9f6a274bc76fc4a9",
+      "sha256" : "a8709a43f87758216786fbee8ef99a8a012f2d1f840ec50fd0f7cfaa7b79caf3",
+      "md5" : "9ed67596dd0efc10183c483fae86251f",
+      "id" : "org.apache.tomee:openejb-ejbd:7.0.2",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "1fedb2335c826a649e6869670eefe54ad39b4ae7",
+      "sha256" : "34edd70f70f6377123c45e22aa6e472dd133388af27515400372b99dd2e7d180",
+      "md5" : "3dad5e2347a94728c0889458902429d0",
+      "id" : "org.apache.xbean:xbean-naming:4.5",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "7794cadfc9a126fc99cc5a0aa953076f3ab31a13",
+      "sha256" : "b4796a3fa8d784192e1fdd4a8a96bbcdadfb06ff2651d267dd0450bfb384d7e2",
+      "md5" : "606c4c91db6ffcd8e724d27b5a7b5f7e",
+      "id" : "org.jboss.shrinkwrap.resolver:shrinkwrap-resolver-spi:2.2.6",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "98000858c6cb47dcab2c189d0550fd32b5cc2ac5",
+      "sha256" : "68d3c35b95a2d769c110355b01c05c02f20db74782e9a0b51b5865644b129efe",
+      "md5" : "d861be4681709e93c1362db45b44afe6",
+      "id" : "org.jboss.shrinkwrap.resolver:shrinkwrap-resolver-impl-maven:2.2.6",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "3814f5c4b506494af92db369cef781ac32d130a5",
+      "sha256" : "dcc86eaea98e5e1d603f9402babce879ed75ff6b03a6a036419486a549e008de",
+      "md5" : "30ddf72f1aea0276705f93e1f0582b66",
+      "id" : "org.apache.openwebbeans:openwebbeans-ee-common:1.7.0",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "e8092245db7a8fbbb326baac5954ed4b89fd059c",
+      "sha256" : "83ce52ac0fb6b933cd85a931b5d7e1137d61152143d309b74838677bcc277874",
+      "md5" : "7c7fb6837a9731e5794f35c0091ae831",
+      "id" : "org.jboss.arquillian.container:arquillian-container-spi:1.1.11.Final",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "5f672d54217f9a757263a9b1ac1739ce2bbc6463",
+      "sha256" : "1ed32ff65a70dd50a493e647d1a9e1a9d21affdc3a2e3c5aaec7083ca1198d4f",
+      "md5" : "33510e723f351b134037b9d318fb6f2d",
+      "id" : "org.opensaml:opensaml-xmlsec-api:3.1.1",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "80bb7ae4ba6ba2720b70cda2ed599349e72ce36d",
+      "sha256" : "15859dd0c53b090f2dcbb588de356a74196f86f704f2f33d03be2ff82cca1951",
+      "md5" : "aedf47b4477bc595da2c8b3c331f61b0",
+      "id" : "org.apache.openejb.shade:quartz-openejb-shade:2.2.1",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "3d2d6921dab21ef444f460a972e468d0cf31a96a",
+      "sha256" : "dab0c200cc21ae81507189378336ecb1e84b893682c07f6b27bb5e61d6e5e51e",
+      "md5" : "a65412fa25215cd2ede4e0e24d71f4ae",
+      "id" : "org.apache.tomee:tomee-jdbc:7.0.2",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "c62cddd3a5bcc04243aa9b978a4848be882af473",
+      "sha256" : "2ee5ce913530620ed34860b2a98c5484ed081ec2da5db9d58230d25c5f12ff53",
+      "md5" : "2adda13196b78689c39747dc16cb5850",
+      "id" : "org.opensaml:opensaml-xmlsec-impl:3.1.1",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "b6acfde85e6e22b662054ee23de59635b8d7be51",
+      "sha256" : "31c9971db86923cd44ed845be4a900d679c4752b613749aa5541f5a356faa0f5",
+      "md5" : "a27b8779276aca329af11cdb2e6e9315",
+      "id" : "org.apache.cxf:cxf-rt-ws-security:3.1.8",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "69ed0efe4b81f05da3c0bdc7281cbdc43f5ceb26",
+      "sha256" : "2a4e84a51defe9108579b3c0a86bb41e54f04e9042e83adf4348a974dcf1dee6",
+      "md5" : "70e82952895639a7eb4b0e3df72189e8",
+      "id" : "info.cukes:cucumber-jvm-deps:1.0.5",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "ad8a42acf8404b9dbdfb586a011a34cc353c2818",
+      "sha256" : "7b92757d599d4f21efd70182981efdc193d66b03312a5d293ed6ab10de646ae2",
+      "md5" : "bb03bc1f98cd217ac2965a9ceb4ff56e",
+      "id" : "org.jboss.shrinkwrap:shrinkwrap-impl-base:1.2.6",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "49b534056834a0761cc36c78073ad0bbbac0e490",
+      "sha256" : "b3c4162db35c5b3955d4332cd72d6cfdf0c726f6407ec96bfdb8192103c62c3f",
+      "md5" : "4d00ed9bf454586b89d7e60c133bf9ff",
+      "id" : "org.apache.tomcat:tomcat-el-api:8.5.6",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "d3f27fc38e0f497a199997d24864d773873b540d",
+      "sha256" : "c1c7aaf27683dba8e3736fd1d0074e7a59a4766dfc201b641bd2f2327ebcc2cf",
+      "md5" : "6f58b57f3bceded4b357310b6b223722",
+      "id" : "org.apache.tomee:javaee-api:7.0-1",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "6d106a6845a3d3477a1560008479312888e94f2f",
+      "sha256" : "740f448e6b3bc110e02f4a1e56fb57672e732d2ecaf29ae15835051ae8af4725",
+      "md5" : "cfc28d89625c5e88589aec7a9aee0208",
+      "id" : "wsdl4j:wsdl4j:1.6.3",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "4b95f4897fa13f2cd904aee711aeafc0c5295cd8",
+      "sha256" : "4241dfa94e711d435f29a4604a3e2de5c4aa3c165e23bd066be6fc1fc4309569",
+      "md5" : "353cf6a2bdba09595ccfa073b78c7fcb",
+      "id" : "commons-codec:commons-codec:1.10",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "2cca31d4b61ecd0237978ae4c08b9872aa2590f8",
+      "sha256" : "fb4035c3b66e0680f14878dac4a1bd6231fed26a7df02c4cc54521db3794f5df",
+      "md5" : "495e362ac6debaa8e6208fd4fba3336b",
+      "id" : "org.opensaml:opensaml-profile-api:3.1.1",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "3d696ea02fcc00bd9e6cc0496ea6e58f7a82c529",
+      "sha256" : "723373c06d500e27e321d374d04ee201df884703f1e622c61acf95387a06f378",
+      "md5" : "7d05f560c215ef1545bad61e1992d472",
+      "id" : "org.apache.tomee:openejb-api:7.0.2",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "4ba84e98ee017b74cb52f45962f929a221f3074c",
+      "sha256" : "c67098d430c574311432728ebd4c7c45672f9ccf5c64702eb6afb8816c22ad08",
+      "md5" : "67577b0541256ea89d15e0edb6d2a7b8",
+      "id" : "net.lingala.zip4j:zip4j:1.3.2",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "02197dfa9cd7899ddce136a356994ac21f438f80",
+      "sha256" : "cf21bc8033e4c53d6d71e018c28fb91f1461b573b8683ff45e428c5e06ec0009",
+      "md5" : "80d2fa0c69445a2f9965ebbb09bab7b9",
+      "id" : "info.cukes:cucumber-java:1.2.5",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "7ac95a0b6b44df535c34d808c12306ca61a5aa8c",
+      "sha256" : "267116b8eb5a30bd5186b91e03be324dc4b6b44d14e137ba8263c9fd8cfcb7a9",
+      "md5" : "76d3965007d85b0e44a67dd0ed213cfc",
+      "id" : "org.apache.xbean:xbean-asm5-shaded:4.5",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "f121151ffe8bdd267aad6634dc3774e5d7cba962",
+      "sha256" : "34badb023f8cf83ee9ebca7ca557d5076f31dbf32b3ec79fe1bc0abdf605ac23",
+      "md5" : "9f76861717d6b0c99e225ab7f158284b",
+      "id" : "org.jboss.shrinkwrap.resolver:shrinkwrap-resolver-api-maven-archive:2.2.6",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "6975da39a7040257bd51d21a231b76c915872d38",
+      "sha256" : "91c77044a50c481636c32d916fd89c9118a72195390452c81065080f957de7ff",
+      "md5" : "289075e48b909e9e74e6c915b3631d2e",
+      "id" : "javax.inject:javax.inject:1",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "83d2d1e3362ecca504f3bf8ed1bc4cc451754d24",
+      "sha256" : "19917538c72e629ee5d2deac33b54e27d20945fa874c5ae7c0761ca64d0b7568",
+      "md5" : "4af0462995eef10f93d0e7fb3e55d3ee",
+      "id" : "org.apache.tomcat:tomcat-juli:8.5.6",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "686ef3410bcf4ab8ce7fd0b899e832aaba5facf7",
+      "sha256" : "e1407b81d8138fb9c1fc731b87b5e0068ddccabfbc65dee59cdb378a90c5e81a",
+      "md5" : "b45be74134796c89db7126083129532f",
+      "id" : "commons-beanutils:commons-beanutils:1.8.3",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "ee37a38bbf9f355ee88ba554a85c9220b75ba500",
+      "sha256" : "f45144260c7baee820bd9315c0c11a772ae4412cd0fd309cc149d7dd549ca03f",
+      "md5" : "8a81813a03e2899ccd31f0e92f6cc691",
+      "id" : "org.apache.neethi:neethi:3.0.3",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "d6337b0de8b25e53e81b922352fbea9f9f57ba0b",
+      "sha256" : "e8c70ebd76f982c9582a82ef82cf6ce14a7d58a4a4dca5cb7b7fc988c80089b7",
+      "md5" : "7d18b63063580284c3f5734081fdc99f",
+      "id" : "javax.xml.stream:stax-api:1.0-2",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "cce0823396aa693798f8882e64213b1772032b09",
+      "sha256" : "d664fbfc03d2e5ce9cab2a44fb01f1d0bf9dfebeccc1a473b1f9ea31f79f6f99",
+      "md5" : "947641f6bb535b1d942d1bc387c45290",
+      "id" : "com.google.guava:guava:18.0",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "52179da78893ed7afea98d980c55e658fb04d9b4",
+      "sha256" : "1874d4ee660b935675a60bdb2ef63e0ff5a81769f4fc04a035fa9d4c4e238224",
+      "md5" : "9f78e75d76e2f92c08cbbc859bf6e272",
+      "id" : "org.apache.maven:maven-settings:3.2.5",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "5592374f834645c4ae250f4c9fbb314c9369d698",
+      "sha256" : "e00ccdad5df7eb43fdee44232ef64602bf63807c2d133a7be83ba09fd49af26e",
+      "md5" : "42e940d5d2d822f4dc04c65053e630ab",
+      "id" : "oro:oro:2.0.8",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "0466eab062e9d1a3ce2c4631b6d09b5e5c0cbd1b",
+      "sha256" : "850bbbbaaa1e7ecc4ebecdb8a283ff36d1f2451c6797b0175bc40ae2ad9b31c4",
+      "md5" : "40d088c7b8b3f6759a40db54ce1f30e5",
+      "id" : "org.codehaus.woodstox:stax2-api:3.1.1",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "ee673d59dcd9789801414ed385a2f9a86ba56550",
+      "sha256" : "8cce316a6b4125d50ff414ec712aa086aa1a34cc90631bc539ae2f52a33137b0",
+      "md5" : "c7a5a5fdb730d62bdde8f17a37a8417d",
+      "id" : "com.github.cukedoctor:cukedoctor-converter:0.4.0",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "195b97a9cfaaee7440f79e358bd225252a9e4fd2",
+      "sha256" : "d96b3b1ff1baab6956838d141148b3a24feb295d2a1779f3c285c650a483b520",
+      "md5" : "787229d42b9aa1f3cdf37258a377115c",
+      "id" : "org.jboss.shrinkwrap.descriptors:shrinkwrap-descriptors-impl-javaee:2.0.0-alpha-7",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "2d2ad57af6123af47df93b38f449b5cb19e374f2",
+      "sha256" : "cf56abfecdb7165417d8bc6810b479958cc366f4fc023a22ec4de6b62156d420",
+      "md5" : "3cd5da680b1252857ba43a98f2984cc5",
+      "id" : "org.opensaml:opensaml-saml-impl:3.1.1",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "afe781e5b9d033f149970dca250aaf69cb638d8d",
+      "sha256" : "236f1a085a1f9f102136aaa7d42bc890c12a43efbda37e8464f9713166b4d052",
+      "md5" : "8a8e4695760e6dfd103286563d580932",
+      "id" : "org.apache.activemq:activemq-openwire-legacy:5.14.1",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "d0937c170a30d8ee324d5ce5599e71771268eb91",
+      "sha256" : "81604386374f8946eec38507fc19297bda316f964055ab2b4633b2755d96e347",
+      "md5" : "d060249424119d14ac44ee02af753ba3",
+      "id" : "org.apache.tomcat:tomcat-jasper-el:8.5.6",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "fd6b6b54feed9e2b5fe37b87640eecacb508fac7",
+      "sha256" : "1c77743d6c8928cbd84a984e77c58235fbfae1ad4567e1e94c7792186881eb74",
+      "md5" : "d834bcd1eda0c1ac263a67f08e537bb0",
+      "id" : "org.apache.tomee:openejb-cxf:7.0.2",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "8d49360908f11efb39f4c60eff685b3c3ded153d",
+      "sha256" : "b084acb2a4c0def1f12ac17811811cbd88bec858e723cd3935320ff61cd57a06",
+      "md5" : "867e22e06527d630bba12ff9fdcf07d2",
+      "id" : "org.apache.cxf:cxf-rt-rs-json-basic:3.1.8",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "a5ee67be2c99dfb95ad61235d749c92ae09c926e",
+      "sha256" : "9a9b60e685385225f08e662cb9f60d96610b0987f0f47bbf3f0c92df8a897d00",
+      "md5" : "819d1c095629b2bd9ed0980395c91b7d",
+      "id" : "org.eclipse.aether:aether-impl:1.0.0.v20140518",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "59093433f495bd18fe14c67a6317aceeb2fb9a0f",
+      "sha256" : "6f03cf03ea081133952b4c71647ab26b726686e7f5e07de4da4daed9e49e2309",
+      "md5" : "e606233e03be8144cd6b5ffd297cc3cf",
+      "id" : "org.apache.openwebbeans:openwebbeans-el22:1.7.0",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "3c7226db63fad4c0fbee8bda7f6f4b402bd2f948",
+      "sha256" : "8e31507e1f366e4c487f53d573fb729cb6433b50c213fc72404452709cb32bfd",
+      "md5" : "1965ea4cf20f29cdf57679a89ea72c7d",
+      "id" : "org.apache.geronimo.javamail:geronimo-javamail_1.4_mail:1.9.0-alpha-2",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "da9eb8355af82bc1a816574ce32bdb4445460b24",
+      "sha256" : "bb1b34475a6b9dd3c00221f53af09c9dc992064ba7329d74454e1ea4d5694c42",
+      "md5" : "1258d0ae9a692c98b7d6f7c4275e77ee",
+      "id" : "org.apache.cxf:cxf-rt-bindings-xml:3.1.8",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "374e25b74721642d1779650c2423018bc6891a9d",
+      "sha256" : "973664bad7056caa26e7197acd0143ecd688f89c8a0b80a7bc3e381ffef2bdc7",
+      "md5" : "fedae8d914322724c267d89a3d61426b",
+      "id" : "org.apache.myfaces.core:myfaces-impl:2.2.11",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "7a32f3966fab463df9cdae95fd6df8c2e561e3ae",
+      "sha256" : "cc5321269d080ad6694458f53186be5391a21c488ab3a7d6dd73123c7681879d",
+      "md5" : "a216c67dae851a4cedb4b431a674eba2",
+      "id" : "org.apache.maven:maven-model-builder:3.2.5",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "62a559a025fd890c30364296ece14643ba9c8c5b",
+      "sha256" : "3e794e75be78f63cc31b6676697e45f07085903a1039169459132513d85c62ae",
+      "md5" : "9f406b4acc111aa8070db5a899149e70",
+      "id" : "org.apache.commons:commons-pool2:2.3",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "77bb9872ed8467ba2e048ef1a79f5b88b355e66d",
+      "sha256" : "206f0681270bbd8aad874f223f00c4f33bb85943d7bbc8625b122f215db931fb",
+      "md5" : "d7fbe67d10001e9a250ef71659401c5d",
+      "id" : "org.apache.cxf:cxf-rt-ws-policy:3.1.8",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "6f9db63ec2bc36f19a424890523ce39aede4cc81",
+      "sha256" : "7f0ffd5868c93b9a111a93b63049f3f328c8c94fb1332ee9f6ffbf22e5e1becf",
+      "md5" : "94285f195e5eb9173bc162089c82d126",
+      "id" : "org.apache.cxf:cxf-rt-rs-client:3.1.8",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "7ed845de1dfe070d43511fab321784e6c4118398",
+      "sha256" : "4f53e4d52efcccdc446017426c15001bb0fe444c7a6cdc9966f8741cf210d997",
+      "md5" : "dd0e3e0b404083ec69618aabb50b8ac0",
+      "id" : "org.apache.logging.log4j:log4j-core:2.5",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "9c6946f1332e7e6cfd20942d888211e0d059670c",
+      "sha256" : "7166b986c40a3dd8d06f229172d566a7a57494b9d66a8200c62d7a09af9c23d6",
+      "md5" : "539f178c18e8420b582c316c54cfa653",
+      "id" : "org.apache.tomee:openejb-server:7.0.2",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "556f3541f1181407f11930959645e4c1f81556dc",
+      "sha256" : "695fd854c2da35aa10e00f64afcfcf7c4ab9dc60a577b6ff5a8899845ea47615",
+      "md5" : "20b1285178ae2f459c7742b6fa4ca9f0",
+      "id" : "org.apache.tomcat:tomcat-tribes:8.5.6",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "5599707a3eaad13e889f691b3af78c8c03842195",
+      "sha256" : "f0f5720b333cd62b2b4f6164b1a0cde0a582f497798e8eea033f5d25f9d6f590",
+      "md5" : "4f29e832878694d7096249c5c32f8fe9",
+      "id" : "joda-time:joda-time:2.7",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "7a3784c65cfa5c0553f31d000b43346feb1f4ee3",
+      "sha256" : "5ccb662b21ed218aaf06fc0a46f8b78338bc4992a236b62b471fa3f2671ed0ae",
+      "md5" : "ac7e73fcf52654c0642afdfccc7d9f57",
+      "id" : "org.codehaus.woodstox:woodstox-core-asl:4.2.0",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "58f340ddee6c7796ba0d8b0b359ccbeffe8d965d",
+      "sha256" : "79dbbc12c2448d00a630aabcc67bcd6937bcb6659099bc5d5c45a1e4433eeb35",
+      "md5" : "6105e54dd419b20ee397458974340240",
+      "id" : "org.apache.santuario:xmlsec:2.0.7",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "473a664022f240a2ff6094ee31ca18ace40db081",
+      "sha256" : "20251a5c94a508152e681322628f0ede2fa8f94b6df3574f044b1082ca24257e",
+      "md5" : "b71c128b73467ac0536411c98778692c",
+      "id" : "org.apache.openwebbeans:openwebbeans-spi:1.7.0",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "ced305476a43e8a042a59e94ef38b3291d9ce1e7",
+      "sha256" : "8d439cc1661349dab1c69eed0f831336d187e162cc6d68aa4deefcff57ee0624",
+      "md5" : "16ceccebac412654c427dcd66df4f6f9",
+      "id" : "org.apache.maven:maven-model:3.2.5",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "8a7b0e6f7157d529defada73892ac2b2cd2a9f8a",
+      "sha256" : "6b0aade2f6c9659d458964e16bcebb6313ab45a6c8bd6433804d127863560bdc",
+      "md5" : "32038423aa9dcfa8d1b1f2c0c706596e",
+      "id" : "org.apache.tomee:openejb-loader:7.0.2",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "271576f7faa820db9b13c6bf22ebbae8c777e810",
+      "sha256" : "01284f3b8dbc7c3ce8d6e71480badc06a36edf7d7e17f144b11cb99e57b760ed",
+      "md5" : "7eb599a235b69ca9446b7574b79d7423",
+      "id" : "org.apache.tomee:tomee-jaxrs:7.0.2",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "42a25dc3219429f0e5d060061f71acb49bf010a0",
+      "sha256" : "66fdef91e9739348df7a096aa384a5685f4e875584cce89386a7a47251c4d8e9",
+      "md5" : "6393363b47ddcbba82321110c3e07519",
+      "id" : "org.hamcrest:hamcrest-core:1.3",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "aca5eb39e2a12fddd6c472b240afe9ebea3a6733",
+      "sha256" : "bf51c9013128cb15201225e51476f60ad9116813729040655a238d2829aef8b8",
+      "md5" : "2f7f899f0766e65017744a4c4fc14d46",
+      "id" : "org.json:json:20160810",
+      "scopes" : [ "compile" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "09b422b54cd91d980b92d5abfd3779effba9738b",
+      "sha256" : "8434ff4bd6958489660da7097db4cf274ad93bdbc20bf9c06931d059f8f0780a",
+      "md5" : "d08a66c60dbe697c0e26d4866d97a775",
+      "id" : "org.apache.wss4j:wss4j-ws-security-stax:2.1.7",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "db233417d4ddee45e4a564f0abacbdb15469ee0e",
+      "sha256" : "0a924a146c8736f6a2c179ff4bd88aefe5e304b07950b4dd58d4fc2aa801c53b",
+      "md5" : "b591175f68dad48b6b92c4dd5c11ccd5",
+      "id" : "org.apache.openwebbeans:openwebbeans-ejb:1.7.0",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "e121ed37af8ee3928952f6d8a303de24e019aab0",
+      "sha256" : "8f3a655545fc5b4cbf12b5eb8a154fccb0c1144423a1450511f44005a3d574a2",
+      "md5" : "938c786f2aca49b44b0cbfd39db51c5a",
+      "id" : "org.codehaus.plexus:plexus-utils:3.0.20",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "ca719ecc7a8ed01b04370c684488d8d1ff4204b8",
+      "sha256" : "36a63db9693b8ea7342b8191174f280f562af538c51400c90cf5b86e340a5940",
+      "md5" : "71059951d263457974dcf46f86495975",
+      "id" : "org.apache.cxf:cxf-rt-rs-security-oauth2:3.1.8",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "f92de59d295f16868001644acc21720f3ec9eb15",
+      "sha256" : "aba7980581027ad5fc74a27ee4d64aad74932fdb32694967242d03fc50290d1f",
+      "md5" : "6629656495f4e5eac4f244fe3b252ea1",
+      "id" : "org.codehaus.plexus:plexus-interpolation:1.21",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "092ac6e6d721437417c63783f0f58a00223bb37c",
+      "sha256" : "3a9dfd1735f0de4ad5018fc98ecedd6d25ffce31c4cad2a8107ed2e02a2cbfc6",
+      "md5" : "11962a07493320b36efc61c166bf9688",
+      "id" : "org.jboss.shrinkwrap.resolver:shrinkwrap-resolver-api:2.2.6",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "33051c9eb09a4dee2a992d306f65706a9fce5a9a",
+      "sha256" : "de289039e694473d70df589268c943f558ee5466f32f6aaacb27d62305e40388",
+      "md5" : "e6ee1ee92d630ec3c523c43a4c3e1d71",
+      "id" : "org.apache.tomee:arquillian-openejb-transaction-provider:7.0.2",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "c7e5b6fdb7518069ffd0f960beeeb846d31249a8",
+      "sha256" : "e6b5b839c3ce14c7af18088f42a3b3045b4e93d848d473495c921bafcd079b68",
+      "md5" : "68542a9422290f4795d5d186e3a61ba0",
+      "id" : "org.apache.cxf:cxf-rt-databinding-jaxb:3.1.8",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "f1be2a9d9c44fb9c100a68ffe0f78faae61779fc",
+      "sha256" : "abd2208c5f3dd31b74a88696ab12e5013056751e459f010795578ade1c103abf",
+      "md5" : "445daee2ed42ecb024ecd16f750cd29d",
+      "id" : "org.apache.tomee:openejb-client:7.0.2",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "2861b9d04fe2bf4e18aba883a54ca51fb9eff0ea",
+      "sha256" : "89d8234071421979cd848ff21e55fa0b2965fb447f4df1dcba11fc67a0f279a7",
+      "md5" : "e50028b4fc19572105cc87ebe2978c9a",
+      "id" : "org.apache.cxf:cxf-rt-management:3.1.8",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "9a435acf5c1c14f50ec96d2269a3532197b26e3d",
+      "sha256" : "14a00078967677543bcea8c55e50f1986d18a67bb8ef41f4ef209960187c34c1",
+      "md5" : "62f088ed8fe5a9da7567a42bcf605e73",
+      "id" : "org.apache.tomee:tomee-juli:7.0.2",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "c213f55641a67e12a93c970057a4b98fa430d0b0",
+      "sha256" : "93db2675bc9c67d295ac1b73230fc5b27ec50c16328d0f685f88d13256eb8d92",
+      "md5" : "38668de46d1bec538c878eb57dce2a2d",
+      "id" : "org.apache.tomee:openejb-cxf-transport:7.0.2",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "b72f6b92bdff0fe6b590a46f7a8958c84c654729",
+      "sha256" : "63d6ed0503e5fc10ff168c5da367417e8fad68bebf8c0f7c2aa51fcf30ed6798",
+      "md5" : "a4db42271fef9173b0c0268e42572a0e",
+      "id" : "org.opensaml:opensaml-core:3.1.1",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "79e07aba752897266797680518c662f9abd4c6f1",
+      "sha256" : "d83b487868ef7aa9aa8d57137491cb52a0cda76e7dd276de6a1cdf872d762573",
+      "md5" : "3e7f235968b8c1ca636ecde180ab78d4",
+      "id" : "org.apache.tomee:arquillian-tomee-embedded:7.0.2",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "44233190197207a01c2524f30ab3ce9a9c35e76a",
+      "sha256" : "d49fb1ae10f4da6ae75d81a0d5b2fdb9be3c4e7a071668832e43430e224879da",
+      "md5" : "58c163d7c3d097a6271d0b11225bbb99",
+      "id" : "org.apache.tomee:tomee-catalina:7.0.2",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "fcc58693dd8fc83d714fba149789be37cc19b66d",
+      "sha256" : "fa0fdabd3d042b9c04293f86996d62f707ad3041281611b67b4b3eaa8a24cf59",
+      "md5" : "42b142f1dcb5c76fec987c73c7ea119f",
+      "id" : "org.apache.velocity:velocity:1.6.4",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "c06e5e1d61e2a8890c854124ecc0dc690c6d9f7c",
+      "sha256" : "87017e38d9d5baa07ccfe018764ab6103ea98fe964907f7d913d3a56f26884b4",
+      "md5" : "f712bf3cd5263d670c1224040e83bf99",
+      "id" : "org.apache.xbean:xbean-bundleutils:4.5",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "73f22a87c9d7315c99174965bd4a97674fde4dcb",
+      "sha256" : "c6646a7ad59b7b3378cde2a6e3ec4e8be633ff57e06b07898f0a4c781059d2c6",
+      "md5" : "1c54b583be294021649412fa0dfd7d68",
+      "id" : "org.jboss.arquillian.core:arquillian-core-spi:1.1.12.Final",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "a1a1cb635415af603ffba27987ffcd3422fb7801",
+      "sha256" : "633ab94004fb3085e6fa1ad742a0ea704f6c564af7a327d5ddd3fe0ba056b275",
+      "md5" : "f4add9eb4ff4b8c4d7591852e6d04e5f",
+      "id" : "org.apache.geronimo.specs:geronimo-j2ee-connector_1.6_spec:1.0",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "de2333ee3661d5b5891fa720c4958fd8983da464",
+      "sha256" : "0530b8018190af3fe12a12a7d145b698c89d511c947dc085528aeff219875180",
+      "md5" : "c3721fb048d39ddb64e0cdbdc6679196",
+      "id" : "org.apache.tomee:openejb-rest:7.0.2",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "a31591e3a3a88ef0b2246c051753b909ca8b4edb",
+      "sha256" : "df0b8d9e218ee0496621624204f195af6eddcc307db5c1aa272b3bbab83a539c",
+      "md5" : "7145fc2ea85466629797500b4276d000",
+      "id" : "org.apache.cxf:cxf-rt-security:3.1.8",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "02eff1f3776590d4c51cc735eab2143c497329f2",
+      "sha256" : "a2c7a43319c213eea338ac0d84cc1aa1dc37cd458886d618703e8bd91bb51993",
+      "md5" : "bab3d98961f361b5e66dbcdadaad1ecf",
+      "id" : "org.apache.ws.xmlschema:xmlschema-core:2.2.1",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "b5cdad5650ab6dcaedebd47447895ba5628ef66f",
+      "sha256" : "ee8dc8f9460aabeb8ebf5f00767049f9f50262eb2d8f5464fbda3dd5204ce8bf",
+      "md5" : "0824c908a92a4157a09f6a691341812b",
+      "id" : "org.apache.tomcat:tomcat-websocket:8.5.6",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "d69c79c410e30788588ce5d9d7cbadac49346617",
+      "sha256" : "7e79cc6ee5bce1e135f17855e6cb4b30aa70a58392f5a0ab1b86e94eac8c5899",
+      "md5" : "8e5cacf5e12e7b2df2490db386be6e78",
+      "id" : "org.jboss.arquillian.test:arquillian-test-spi:1.1.12.Final",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "dedc02034fb8fcd7615d66593228cb71709134b4",
+      "sha256" : "3b0559bb8432f28937efe6ca193ef54a8506d0075d73fd7406b9b116c6a11063",
+      "md5" : "53160199f5667de3fca69b723173639b",
+      "id" : "org.sonatype.plexus:plexus-sec-dispatcher:1.3",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "fe0a961ce7cca03dd3c9b3775c0133229e8231a6",
+      "sha256" : "16164b0402e14b09419bfb276fe94c650f439675f98db329b8f9427a05d2febc",
+      "md5" : "b49191c5255a8f6178259f757bf07b89",
+      "id" : "org.eclipse.jdt.core.compiler:ecj:4.4",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "5d0318c2fb21599c3b752aa8ec93ef7b8ececb63",
+      "sha256" : "3e24adb90b218e36df4023b5c0f87fa0de3dccfd64afbc112aff973a70468455",
+      "md5" : "f8f1fe14ed5927fc958ddece166ca7e7",
+      "id" : "org.apache.wss4j:wss4j-policy:2.1.7",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "441d47fa9b4cf54368a40a3a57c9a2106b9732d6",
+      "sha256" : "9ae5623075658205fcb34c72834334d33c2994127d308f2886bd3f3bc864fd44",
+      "md5" : "a4802cfddc4166427a5b7592c704ea3b",
+      "id" : "org.apache.johnzon:johnzon-mapper:0.9.5",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "7cedd85f2e6b4f2fa1091c921f509275c60e7500",
+      "sha256" : "68a700057376c38a6595de2d4d84b39ff357377f7a75b480f40f188bdec15190",
+      "md5" : "4a7d3cf9674b1c2b9f27ac29ca944dbe",
+      "id" : "info.cukes:cucumber-junit:1.2.5",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "d975687304ec99bf31e41fe6b07700958f6e6332",
+      "sha256" : "65a90b16f1e421939562eb7381ea1362128f51abddd001fe428e8e7012bd44ba",
+      "md5" : "dfbb0a2126a39a70906456351adb2a97",
+      "id" : "org.apache.tomcat:tomcat-catalina-ha:8.5.6",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "353ec287fade0062410e10d788350bdfb0f9c13b",
+      "sha256" : "14df35aac8d8af6001f4b242123c8060974da0a7944bd667701a181bb34abfa8",
+      "md5" : "f186aa0b47a906de9f475f254cc8fd05",
+      "id" : "com.sun.xml.messaging.saaj:saaj-impl:1.3.18",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "63066a6db7366485e1869c72af9f11699f830b05",
+      "sha256" : "c7e50ef831e6a1aec8f4b25e2dd2ca1d52569b322070365af14fb509c17aef57",
+      "md5" : "80171382972e87be221dd5ced29f3858",
+      "id" : "org.apache.openwebbeans:openwebbeans-jsf:1.7.0",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "110e40459c769148495fddbf1f4b9dd3f5afeafb",
+      "sha256" : "279224013932833cc36b3c05e389edacb7b92b4665373f0487f3ae600cd435d4",
+      "md5" : "94f029bf6982978d3048960c65fbd497",
+      "id" : "org.opensaml:opensaml-security-impl:3.1.1",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "2973d150c0dc1fefe998f834810d68f278ea58ec",
+      "sha256" : "59721f0805e223d84b90677887d9ff567dc534d7c502ca903c0c2b17f05c116a",
+      "md5" : "5b38c40c97fbd0adee29f91e60405584",
+      "id" : "junit:junit:4.12",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "d131acf4243154478f23d80f4e46e2d1469b8c3f",
+      "md5" : "03aa4f1fb89498954ceef304f4c0f39f",
+      "id" : "fr.polytech.team.h:Core:1.0-SNAPSHOT",
+      "scopes" : [ "compile" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "feb10a9e22f70565c7556f327b0481dba8587bbc",
+      "sha256" : "2a021c0a51765e0d9b6a55c187b2001e772c04f7dc2a3435cf4cffc727b2ac8b",
+      "md5" : "0a1a72b773ffd6ae43b4fd3b5842930e",
+      "id" : "org.apache.tomcat:tomcat-jdbc:8.5.6",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "3e57c6565fb364b344c09a737b63a55ecd195366",
+      "sha256" : "c41e7e4eebc199313ec65bf02f96a1218d2c68087141ba41562b504fc78ba0d6",
+      "md5" : "089f060f7a15de4032718db3c4867df9",
+      "id" : "org.apache.geronimo.components:geronimo-transaction:3.1.3",
+      "scopes" : [ "provided" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "0704e679088765e7df5e1ef3eef400c4a061c9ef",
+      "sha256" : "728ab424aeebd468d8f3b974e7255e500cc80eaaac7cce2166e282596dead601",
+      "md5" : "96ba4884a1c007e9c88cbc300fdada45",
+      "id" : "org.apache.maven.shared:maven-shared-utils:0.7",
+      "scopes" : [ "test" ]
+    }, {
+      "type" : "jar",
+      "sha1" : "2b62cf71c95b66c852e285e6c54b63f411099850",
+      "sha256" : "3654e9084ba9239d854ac289f860796bc053e8aa30a7e97cbc9d0c51acc065f8",
+      "md5" : "de2380ac801ef45a98782bee77df390e",
+      "id" : "fr.polytech.team.h:AvailabilityProcessor:1.0-SNAPSHOT",
+      "scopes" : [ "compile" ]
+    } ]
+  } ],
+  "governance" : {
+    "blackDuckProperties" : {
+      "runChecks" : false,
+      "includePublishedArtifacts" : false,
+      "autoCreateMissingComponentRequests" : false,
+      "autoDiscardStaleComponentRequests" : false
+    }
+  }
+}

@@ -1,0 +1,529 @@
+Started by upstream project "[8mha:////4OMv9rdmxg28pOIuVvvcOAsMYp4JXA0QhmyvDObVVnZTAAAArR+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAyZEgYl/az8JP2Uovy8VF2gMzPLUosqdVPyk7NTizKrEksy8/P0ASLs0aDXAAAA[0mdrone-delivery-dockerization" build number [8mha:////4PTBPNJHuqmua26OJpwZxiHa5cXFjW6sjPCN7xEIHNt0AAAArR+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLQIwSBmX9rPwk/ZSi/LxUXaAzM8tSiyp1U/KTs1OLMqsSSzLz8/TNAc7Vvq/YAAAA[0m7
+originally caused by:
+ Started by user [8mha:////4Lnx69JL3IAAqkgQK3MRmKCYHPbxCXMSwwtbo/JDP06eAAAAmB+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAy+EgYe/dLi1CL9lMTczNQ8AC9LU1nBAAAA[0mDamien Montoya
+Running as SYSTEM
+Building in workspace /var/jenkins_home/workspace/drone-delivery-integration-tests
+[drone-delivery-integration-tests] $ /bin/sh -xe /tmp/jenkins991703350834266456.sh
++ docker start dd_system
+dd_system
++ export M2_HOME=/var/jenkins_home/tools/hudson.tasks.Maven_MavenInstallation/maven-3.6.3
++ export PATH=/usr/local/openjdk-8/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/var/jenkins_home/tools/hudson.tasks.Maven_MavenInstallation/maven-3.6.3/bin
++ cd /var/jenkins_home/workspace/drone-delivery-j2e/clients/integration_tests_cli
++ mvn -Dexec.args=dd_system 8080 test
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ---< fr.polytech.team.h:drone-delivery-client-integration_tests_cli >---
+[INFO] Building Drone Delivery :: Remote Client For Integration 1.0-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- cxf-codegen-plugin:3.1.10:wsdl2java (generate-sources) @ drone-delivery-client-integration_tests_cli ---
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ drone-delivery-client-integration_tests_cli ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 6 resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.8.1:compile (default-compile) @ drone-delivery-client-integration_tests_cli ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ drone-delivery-client-integration_tests_cli ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 1 resource
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.8.1:testCompile (default-testCompile) @ drone-delivery-client-integration_tests_cli ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.22.2:test (default-test) @ drone-delivery-client-integration_tests_cli ---
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+May 05, 2020 8:35:02 PM io.cucumber.junit.Cucumber <init>
+WARNING: By default Cucumber is running in --non-strict mode.
+This default will change to --strict and --non-strict will be removed.
+You can use --strict or @CucumberOptions(strict = true) to suppress this warning
+May 05, 2020 8:35:04 PM io.cucumber.junit.Cucumber <init>
+WARNING: By default Cucumber is running in --non-strict mode.
+This default will change to --strict and --non-strict will be removed.
+You can use --strict or @CucumberOptions(strict = true) to suppress this warning
+[INFO] Running cucumber.RunCucumberTest
+
+Scenario: Planning two deliveries with one drone not at same time                                                                                 # src/test/resources/features/UserScenarioTest.feature:7
+  Given some lists to remove things                                                                                                               # cucumber.UserScenarioStepdefsTest.given()
+  When the garagiste adds the drone with id 1 and 10.0 kg capacity and 60.0 km/h speed                                                            # cucumber.UserScenarioStepdefsTest.addDrone(int,float,float)
+      com.sun.xml.internal.ws.client.ClientTransportException: The server sent HTTP status code 403: Forbidden
+	at com.sun.xml.internal.ws.transport.http.client.HttpTransportPipe.checkStatusCode(HttpTransportPipe.java:310)
+	at com.sun.xml.internal.ws.transport.http.client.HttpTransportPipe.createResponsePacket(HttpTransportPipe.java:259)
+	at com.sun.xml.internal.ws.transport.http.client.HttpTransportPipe.process(HttpTransportPipe.java:217)
+	at com.sun.xml.internal.ws.transport.http.client.HttpTransportPipe.processRequest(HttpTransportPipe.java:130)
+	at com.sun.xml.internal.ws.transport.DeferredTransportPipe.processRequest(DeferredTransportPipe.java:124)
+	at com.sun.xml.internal.ws.api.pipe.Fiber.__doRun(Fiber.java:1121)
+	at com.sun.xml.internal.ws.api.pipe.Fiber._doRun(Fiber.java:1035)
+	at com.sun.xml.internal.ws.api.pipe.Fiber.doRun(Fiber.java:1004)
+	at com.sun.xml.internal.ws.api.pipe.Fiber.runSync(Fiber.java:862)
+	at com.sun.xml.internal.ws.client.Stub.process(Stub.java:448)
+	at com.sun.xml.internal.ws.client.sei.SEIStub.doProcess(SEIStub.java:178)
+	at com.sun.xml.internal.ws.client.sei.SyncMethodHandler.invoke(SyncMethodHandler.java:93)
+	at com.sun.xml.internal.ws.client.sei.SyncMethodHandler.invoke(SyncMethodHandler.java:77)
+	at com.sun.xml.internal.ws.client.sei.SEIStub.invoke(SEIStub.java:147)
+	at com.sun.proxy.$Proxy49.addDrone(Unknown Source)
+	at cucumber.UserScenarioStepdefsTest.addDrone(UserScenarioStepdefsTest.java:44)
+	at ✽.the garagiste adds the drone with id 1 and 10.0 kg capacity and 60.0 km/h speed(file:///var/jenkins_home/workspace/drone-delivery-j2e/clients/integration_tests_cli/src/test/resources/features/UserScenarioTest.feature:8)
+
+  And the gestionnaire adds a supplier with name Nozama and contact adressebidon@truc.ouaideouf                                                   # cucumber.UserScenarioStepdefsTest.addSupplier(java.lang.String,java.lang.String)
+  And the manutentionnaire adds a package with tracking number A7X and with weight 5.0 and with destination Wakanda and with Nozama as supplier   # cucumber.UserScenarioStepdefsTest.addPackage1(java.lang.String,float,java.lang.String,java.lang.String)
+  And the manutentionnaire adds a package with tracking number SUM41 and with weight 5.0 and with destination Wakanda and with Nozama as supplier # cucumber.UserScenarioStepdefsTest.addPackage1(java.lang.String,float,java.lang.String,java.lang.String)
+  And the service client plan a delivery for package A7X date 2020-10-10 at 10:10                                                                 # cucumber.UserScenarioStepdefsTest.planDelivery(java.lang.String,java.lang.String,java.lang.String)
+  And the service client plan a delivery for package SUM41 date 2020-10-10 at 15:15                                                               # cucumber.UserScenarioStepdefsTest.planDelivery(java.lang.String,java.lang.String,java.lang.String)
+  Then the delivery with package A7X have 1 as drone id                                                                                           # cucumber.UserScenarioStepdefsTest.testPackageDrone(java.lang.String,int)
+  And the delivery with package SUM41 have 1 as drone id                                                                                          # cucumber.UserScenarioStepdefsTest.testPackageDrone(java.lang.String,int)
+
+Scenario: Planning two deliveries with one drone at almost same time                                                                              # src/test/resources/features/UserScenarioTest.feature:17
+  Given some lists to remove things                                                                                                               # cucumber.UserScenarioStepdefsTest.given()
+  When the garagiste adds the drone with id 1 and 10.0 kg capacity and 60.0 km/h speed                                                            # cucumber.UserScenarioStepdefsTest.addDrone(int,float,float)
+      com.sun.xml.internal.ws.client.ClientTransportException: The server sent HTTP status code 403: Forbidden
+	at com.sun.xml.internal.ws.transport.http.client.HttpTransportPipe.checkStatusCode(HttpTransportPipe.java:310)
+	at com.sun.xml.internal.ws.transport.http.client.HttpTransportPipe.createResponsePacket(HttpTransportPipe.java:259)
+	at com.sun.xml.internal.ws.transport.http.client.HttpTransportPipe.process(HttpTransportPipe.java:217)
+	at com.sun.xml.internal.ws.transport.http.client.HttpTransportPipe.processRequest(HttpTransportPipe.java:130)
+	at com.sun.xml.internal.ws.transport.DeferredTransportPipe.processRequest(DeferredTransportPipe.java:124)
+	at com.sun.xml.internal.ws.api.pipe.Fiber.__doRun(Fiber.java:1121)
+	at com.sun.xml.internal.ws.api.pipe.Fiber._doRun(Fiber.java:1035)
+	at com.sun.xml.internal.ws.api.pipe.Fiber.doRun(Fiber.java:1004)
+	at com.sun.xml.internal.ws.api.pipe.Fiber.runSync(Fiber.java:862)
+	at com.sun.xml.internal.ws.client.Stub.process(Stub.java:448)
+	at com.sun.xml.internal.ws.client.sei.SEIStub.doProcess(SEIStub.java:178)
+	at com.sun.xml.internal.ws.client.sei.SyncMethodHandler.invoke(SyncMethodHandler.java:93)
+	at com.sun.xml.internal.ws.client.sei.SyncMethodHandler.invoke(SyncMethodHandler.java:77)
+	at com.sun.xml.internal.ws.client.sei.SEIStub.invoke(SEIStub.java:147)
+	at com.sun.proxy.$Proxy49.addDrone(Unknown Source)
+	at cucumber.UserScenarioStepdefsTest.addDrone(UserScenarioStepdefsTest.java:44)
+	at ✽.the garagiste adds the drone with id 1 and 10.0 kg capacity and 60.0 km/h speed(file:///var/jenkins_home/workspace/drone-delivery-j2e/clients/integration_tests_cli/src/test/resources/features/UserScenarioTest.feature:18)
+
+  And the gestionnaire adds a supplier with name Nozama and contact adressebidon@truc.ouaideouf                                                   # cucumber.UserScenarioStepdefsTest.addSupplier(java.lang.String,java.lang.String)
+  And the manutentionnaire adds a package with tracking number A7X and with weight 5.0 and with destination Wakanda and with Nozama as supplier   # cucumber.UserScenarioStepdefsTest.addPackage1(java.lang.String,float,java.lang.String,java.lang.String)
+  And the manutentionnaire adds a package with tracking number SUM41 and with weight 5.0 and with destination Wakanda and with Nozama as supplier # cucumber.UserScenarioStepdefsTest.addPackage1(java.lang.String,float,java.lang.String,java.lang.String)
+  And the service client plan a delivery for package A7X date 2020-10-10 at 10:10                                                                 # cucumber.UserScenarioStepdefsTest.planDelivery(java.lang.String,java.lang.String,java.lang.String)
+  And the service client tries to plan a delivery for package SUM41 date 2020-10-10 at 10:10                                                      # cucumber.UserScenarioStepdefsTest.planDelivery2(java.lang.String,java.lang.String,java.lang.String)
+  Then the delivery with package A7X have 1 as drone id                                                                                           # cucumber.UserScenarioStepdefsTest.testPackageDrone(java.lang.String,int)
+  But the delivery with package SUM41 has not been planned because there was no ready drone                                                       # cucumber.UserScenarioStepdefsTest.deliveryNotPlanned(java.lang.String)
+
+Scenario: Planning three deliveries with two drones at almost same time                                                                           # src/test/resources/features/UserScenarioTest.feature:28
+  Given some lists to remove things                                                                                                               # cucumber.UserScenarioStepdefsTest.given()
+  When the garagiste adds the drone with id 1 and 10.0 kg capacity and 60.0 km/h speed                                                            # cucumber.UserScenarioStepdefsTest.addDrone(int,float,float)
+      com.sun.xml.internal.ws.client.ClientTransportException: The server sent HTTP status code 403: Forbidden
+	at com.sun.xml.internal.ws.transport.http.client.HttpTransportPipe.checkStatusCode(HttpTransportPipe.java:310)
+	at com.sun.xml.internal.ws.transport.http.client.HttpTransportPipe.createResponsePacket(HttpTransportPipe.java:259)
+	at com.sun.xml.internal.ws.transport.http.client.HttpTransportPipe.process(HttpTransportPipe.java:217)
+	at com.sun.xml.internal.ws.transport.http.client.HttpTransportPipe.processRequest(HttpTransportPipe.java:130)
+	at com.sun.xml.internal.ws.transport.DeferredTransportPipe.processRequest(DeferredTransportPipe.java:124)
+	at com.sun.xml.internal.ws.api.pipe.Fiber.__doRun(Fiber.java:1121)
+	at com.sun.xml.internal.ws.api.pipe.Fiber._doRun(Fiber.java:1035)
+	at com.sun.xml.internal.ws.api.pipe.Fiber.doRun(Fiber.java:1004)
+	at com.sun.xml.internal.ws.api.pipe.Fiber.runSync(Fiber.java:862)
+	at com.sun.xml.internal.ws.client.Stub.process(Stub.java:448)
+	at com.sun.xml.internal.ws.client.sei.SEIStub.doProcess(SEIStub.java:178)
+	at com.sun.xml.internal.ws.client.sei.SyncMethodHandler.invoke(SyncMethodHandler.java:93)
+	at com.sun.xml.internal.ws.client.sei.SyncMethodHandler.invoke(SyncMethodHandler.java:77)
+	at com.sun.xml.internal.ws.client.sei.SEIStub.invoke(SEIStub.java:147)
+	at com.sun.proxy.$Proxy49.addDrone(Unknown Source)
+	at cucumber.UserScenarioStepdefsTest.addDrone(UserScenarioStepdefsTest.java:44)
+	at ✽.the garagiste adds the drone with id 1 and 10.0 kg capacity and 60.0 km/h speed(file:///var/jenkins_home/workspace/drone-delivery-j2e/clients/integration_tests_cli/src/test/resources/features/UserScenarioTest.feature:29)
+
+  And the gestionnaire adds a supplier with name Nozama and contact adressebidon@truc.ouaideouf                                                   # cucumber.UserScenarioStepdefsTest.addSupplier(java.lang.String,java.lang.String)
+  And the manutentionnaire adds a package with tracking number A7X and with weight 5.0 and with destination Wakanda and with Nozama as supplier   # cucumber.UserScenarioStepdefsTest.addPackage1(java.lang.String,float,java.lang.String,java.lang.String)
+  And the manutentionnaire adds a package with tracking number SUM41 and with weight 5.0 and with destination Wakanda and with Nozama as supplier # cucumber.UserScenarioStepdefsTest.addPackage1(java.lang.String,float,java.lang.String,java.lang.String)
+  And the manutentionnaire adds a package with tracking number 5FDP and with weight 1.0 and with destination Wakanda and with Nozama as supplier  # cucumber.UserScenarioStepdefsTest.addPackage1(java.lang.String,float,java.lang.String,java.lang.String)
+  And the service client plan a delivery for package A7X date 2020-10-10 at 10:10                                                                 # cucumber.UserScenarioStepdefsTest.planDelivery(java.lang.String,java.lang.String,java.lang.String)
+  And the garagiste adds the drone with id 2 and 9.0 kg capacity and 60.0 km/h speed                                                              # cucumber.UserScenarioStepdefsTest.addDrone(int,float,float)
+  And the service client plan a delivery for package SUM41 date 2020-10-10 at 10:10                                                               # cucumber.UserScenarioStepdefsTest.planDelivery(java.lang.String,java.lang.String,java.lang.String)
+  And the service client plan a delivery for package 5FDP date 2020-10-11 at 10:55                                                                # cucumber.UserScenarioStepdefsTest.planDelivery(java.lang.String,java.lang.String,java.lang.String)
+  Then the delivery with package A7X have 1 as drone id                                                                                           # cucumber.UserScenarioStepdefsTest.testPackageDrone(java.lang.String,int)
+  And the delivery with package SUM41 have 2 as drone id                                                                                          # cucumber.UserScenarioStepdefsTest.testPackageDrone(java.lang.String,int)
+  And the delivery with package 5FDP have 2 as drone id                                                                                           # cucumber.UserScenarioStepdefsTest.testPackageDrone(java.lang.String,int)
+
+Scenario: Planning two deliveries with two drone but one is too weak                                                                              # src/test/resources/features/UserScenarioTest.feature:42
+  Given some lists to remove things                                                                                                               # cucumber.UserScenarioStepdefsTest.given()
+  When the garagiste adds the drone with id 1 and 10.0 kg capacity and 60.0 km/h speed                                                            # cucumber.UserScenarioStepdefsTest.addDrone(int,float,float)
+      com.sun.xml.internal.ws.client.ClientTransportException: The server sent HTTP status code 403: Forbidden
+	at com.sun.xml.internal.ws.transport.http.client.HttpTransportPipe.checkStatusCode(HttpTransportPipe.java:310)
+	at com.sun.xml.internal.ws.transport.http.client.HttpTransportPipe.createResponsePacket(HttpTransportPipe.java:259)
+	at com.sun.xml.internal.ws.transport.http.client.HttpTransportPipe.process(HttpTransportPipe.java:217)
+	at com.sun.xml.internal.ws.transport.http.client.HttpTransportPipe.processRequest(HttpTransportPipe.java:130)
+	at com.sun.xml.internal.ws.transport.DeferredTransportPipe.processRequest(DeferredTransportPipe.java:124)
+	at com.sun.xml.internal.ws.api.pipe.Fiber.__doRun(Fiber.java:1121)
+	at com.sun.xml.internal.ws.api.pipe.Fiber._doRun(Fiber.java:1035)
+	at com.sun.xml.internal.ws.api.pipe.Fiber.doRun(Fiber.java:1004)
+	at com.sun.xml.internal.ws.api.pipe.Fiber.runSync(Fiber.java:862)
+	at com.sun.xml.internal.ws.client.Stub.process(Stub.java:448)
+	at com.sun.xml.internal.ws.client.sei.SEIStub.doProcess(SEIStub.java:178)
+	at com.sun.xml.internal.ws.client.sei.SyncMethodHandler.invoke(SyncMethodHandler.java:93)
+	at com.sun.xml.internal.ws.client.sei.SyncMethodHandler.invoke(SyncMethodHandler.java:77)
+	at com.sun.xml.internal.ws.client.sei.SEIStub.invoke(SEIStub.java:147)
+	at com.sun.proxy.$Proxy49.addDrone(Unknown Source)
+	at cucumber.UserScenarioStepdefsTest.addDrone(UserScenarioStepdefsTest.java:44)
+	at ✽.the garagiste adds the drone with id 1 and 10.0 kg capacity and 60.0 km/h speed(file:///var/jenkins_home/workspace/drone-delivery-j2e/clients/integration_tests_cli/src/test/resources/features/UserScenarioTest.feature:43)
+
+  And the garagiste adds the drone with id 2 and 2.0 kg capacity and 60.0 km/h speed                                                              # cucumber.UserScenarioStepdefsTest.addDrone(int,float,float)
+  And the gestionnaire adds a supplier with name Nozama and contact adressebidon@truc.ouaideouf                                                   # cucumber.UserScenarioStepdefsTest.addSupplier(java.lang.String,java.lang.String)
+  And the manutentionnaire adds a package with tracking number A7X and with weight 5.0 and with destination Wakanda and with Nozama as supplier   # cucumber.UserScenarioStepdefsTest.addPackage1(java.lang.String,float,java.lang.String,java.lang.String)
+  And the manutentionnaire adds a package with tracking number SUM41 and with weight 5.0 and with destination Wakanda and with Nozama as supplier # cucumber.UserScenarioStepdefsTest.addPackage1(java.lang.String,float,java.lang.String,java.lang.String)
+  And the service client plan a delivery for package A7X date 2020-10-10 at 10:10                                                                 # cucumber.UserScenarioStepdefsTest.planDelivery(java.lang.String,java.lang.String,java.lang.String)
+  And the service client tries to plan a delivery for package SUM41 date 2020-10-10 at 10:10                                                      # cucumber.UserScenarioStepdefsTest.planDelivery2(java.lang.String,java.lang.String,java.lang.String)
+  Then the delivery with package A7X have 1 as drone id                                                                                           # cucumber.UserScenarioStepdefsTest.testPackageDrone(java.lang.String,int)
+  But the delivery with package SUM41 has not been planned because there was no ready drone                                                       # cucumber.UserScenarioStepdefsTest.deliveryNotPlanned(java.lang.String)
+
+Scenario: Planning one delivery without drone                                                                                                     # src/test/resources/features/UserScenarioTest.feature:53
+  Given some lists to remove things                                                                                                               # cucumber.UserScenarioStepdefsTest.given()
+  When the gestionnaire adds a supplier with name Nozama and contact adressebidon@truc.ouaideouf                                                  # cucumber.UserScenarioStepdefsTest.addSupplier(java.lang.String,java.lang.String)
+      com.sun.xml.internal.ws.client.ClientTransportException: The server sent HTTP status code 403: Forbidden
+	at com.sun.xml.internal.ws.transport.http.client.HttpTransportPipe.checkStatusCode(HttpTransportPipe.java:310)
+	at com.sun.xml.internal.ws.transport.http.client.HttpTransportPipe.createResponsePacket(HttpTransportPipe.java:259)
+	at com.sun.xml.internal.ws.transport.http.client.HttpTransportPipe.process(HttpTransportPipe.java:217)
+	at com.sun.xml.internal.ws.transport.http.client.HttpTransportPipe.processRequest(HttpTransportPipe.java:130)
+	at com.sun.xml.internal.ws.transport.DeferredTransportPipe.processRequest(DeferredTransportPipe.java:124)
+	at com.sun.xml.internal.ws.api.pipe.Fiber.__doRun(Fiber.java:1121)
+	at com.sun.xml.internal.ws.api.pipe.Fiber._doRun(Fiber.java:1035)
+	at com.sun.xml.internal.ws.api.pipe.Fiber.doRun(Fiber.java:1004)
+	at com.sun.xml.internal.ws.api.pipe.Fiber.runSync(Fiber.java:862)
+	at com.sun.xml.internal.ws.client.Stub.process(Stub.java:448)
+	at com.sun.xml.internal.ws.client.sei.SEIStub.doProcess(SEIStub.java:178)
+	at com.sun.xml.internal.ws.client.sei.SyncMethodHandler.invoke(SyncMethodHandler.java:93)
+	at com.sun.xml.internal.ws.client.sei.SyncMethodHandler.invoke(SyncMethodHandler.java:77)
+	at com.sun.xml.internal.ws.client.sei.SEIStub.invoke(SEIStub.java:147)
+	at com.sun.proxy.$Proxy47.registerSupplier(Unknown Source)
+	at cucumber.UserScenarioStepdefsTest.addSupplier(UserScenarioStepdefsTest.java:50)
+	at ✽.the gestionnaire adds a supplier with name Nozama and contact adressebidon@truc.ouaideouf(file:///var/jenkins_home/workspace/drone-delivery-j2e/clients/integration_tests_cli/src/test/resources/features/UserScenarioTest.feature:54)
+
+  And the manutentionnaire adds a package with tracking number A7X and with weight 5.0 and with destination Wakanda and with Nozama as supplier   # cucumber.UserScenarioStepdefsTest.addPackage1(java.lang.String,float,java.lang.String,java.lang.String)
+  And the manutentionnaire adds a package with tracking number SUM41 and with weight 5.0 and with destination Wakanda and with Nozama as supplier # cucumber.UserScenarioStepdefsTest.addPackage1(java.lang.String,float,java.lang.String,java.lang.String)
+  And the service client tries to plan a delivery for package A7X date 2020-10-10 at 10:15                                                        # cucumber.UserScenarioStepdefsTest.planDelivery2(java.lang.String,java.lang.String,java.lang.String)
+  But the delivery with package A7X has not been planned because there was no ready drone                                                         # cucumber.UserScenarioStepdefsTest.deliveryNotPlanned(java.lang.String)
+
+Scenario: Set drone in flight to verify statistics                                     # src/test/resources/features/UserScenarioTest.feature:60
+  Given some lists to remove things                                                    # cucumber.UserScenarioStepdefsTest.given()
+  When the garagiste adds the drone with id 1 and 10.0 kg capacity and 60.0 km/h speed # cucumber.UserScenarioStepdefsTest.addDrone(int,float,float)
+      com.sun.xml.internal.ws.client.ClientTransportException: The server sent HTTP status code 403: Forbidden
+	at com.sun.xml.internal.ws.transport.http.client.HttpTransportPipe.checkStatusCode(HttpTransportPipe.java:310)
+	at com.sun.xml.internal.ws.transport.http.client.HttpTransportPipe.createResponsePacket(HttpTransportPipe.java:259)
+	at com.sun.xml.internal.ws.transport.http.client.HttpTransportPipe.process(HttpTransportPipe.java:217)
+	at com.sun.xml.internal.ws.transport.http.client.HttpTransportPipe.processRequest(HttpTransportPipe.java:130)
+	at com.sun.xml.internal.ws.transport.DeferredTransportPipe.processRequest(DeferredTransportPipe.java:124)
+	at com.sun.xml.internal.ws.api.pipe.Fiber.__doRun(Fiber.java:1121)
+	at com.sun.xml.internal.ws.api.pipe.Fiber._doRun(Fiber.java:1035)
+	at com.sun.xml.internal.ws.api.pipe.Fiber.doRun(Fiber.java:1004)
+	at com.sun.xml.internal.ws.api.pipe.Fiber.runSync(Fiber.java:862)
+	at com.sun.xml.internal.ws.client.Stub.process(Stub.java:448)
+	at com.sun.xml.internal.ws.client.sei.SEIStub.doProcess(SEIStub.java:178)
+	at com.sun.xml.internal.ws.client.sei.SyncMethodHandler.invoke(SyncMethodHandler.java:93)
+	at com.sun.xml.internal.ws.client.sei.SyncMethodHandler.invoke(SyncMethodHandler.java:77)
+	at com.sun.xml.internal.ws.client.sei.SEIStub.invoke(SEIStub.java:147)
+	at com.sun.proxy.$Proxy49.addDrone(Unknown Source)
+	at cucumber.UserScenarioStepdefsTest.addDrone(UserScenarioStepdefsTest.java:44)
+	at ✽.the garagiste adds the drone with id 1 and 10.0 kg capacity and 60.0 km/h speed(file:///var/jenkins_home/workspace/drone-delivery-j2e/clients/integration_tests_cli/src/test/resources/features/UserScenarioTest.feature:61)
+
+  And the garagiste edits the drone with id 1 and set the status to flight             # cucumber.UserScenarioStepdefsTest.setDroneStatus(int,java.lang.String)
+  And the boss generates the statistics for drones                                     # cucumber.UserScenarioStepdefsTest.generateDroneStats()
+  Then the drone statistics entry has a use rate 1.0                                   # cucumber.UserScenarioStepdefsTest.testDroneStatsValue(float)
+
+Scenario: Set one drone in flight to verify statistics                                 # src/test/resources/features/UserScenarioTest.feature:66
+  Given some lists to remove things                                                    # cucumber.UserScenarioStepdefsTest.given()
+  When the garagiste adds the drone with id 1 and 10.0 kg capacity and 60.0 km/h speed # cucumber.UserScenarioStepdefsTest.addDrone(int,float,float)
+      com.sun.xml.internal.ws.client.ClientTransportException: The server sent HTTP status code 403: Forbidden
+	at com.sun.xml.internal.ws.transport.http.client.HttpTransportPipe.checkStatusCode(HttpTransportPipe.java:310)
+	at com.sun.xml.internal.ws.transport.http.client.HttpTransportPipe.createResponsePacket(HttpTransportPipe.java:259)
+	at com.sun.xml.internal.ws.transport.http.client.HttpTransportPipe.process(HttpTransportPipe.java:217)
+	at com.sun.xml.internal.ws.transport.http.client.HttpTransportPipe.processRequest(HttpTransportPipe.java:130)
+	at com.sun.xml.internal.ws.transport.DeferredTransportPipe.processRequest(DeferredTransportPipe.java:124)
+	at com.sun.xml.internal.ws.api.pipe.Fiber.__doRun(Fiber.java:1121)
+	at com.sun.xml.internal.ws.api.pipe.Fiber._doRun(Fiber.java:1035)
+	at com.sun.xml.internal.ws.api.pipe.Fiber.doRun(Fiber.java:1004)
+	at com.sun.xml.internal.ws.api.pipe.Fiber.runSync(Fiber.java:862)
+	at com.sun.xml.internal.ws.client.Stub.process(Stub.java:448)
+	at com.sun.xml.internal.ws.client.sei.SEIStub.doProcess(SEIStub.java:178)
+	at com.sun.xml.internal.ws.client.sei.SyncMethodHandler.invoke(SyncMethodHandler.java:93)
+	at com.sun.xml.internal.ws.client.sei.SyncMethodHandler.invoke(SyncMethodHandler.java:77)
+	at com.sun.xml.internal.ws.client.sei.SEIStub.invoke(SEIStub.java:147)
+	at com.sun.proxy.$Proxy49.addDrone(Unknown Source)
+	at cucumber.UserScenarioStepdefsTest.addDrone(UserScenarioStepdefsTest.java:44)
+	at ✽.the garagiste adds the drone with id 1 and 10.0 kg capacity and 60.0 km/h speed(file:///var/jenkins_home/workspace/drone-delivery-j2e/clients/integration_tests_cli/src/test/resources/features/UserScenarioTest.feature:67)
+
+  And the garagiste adds the drone with id 2 and 10.0 kg capacity and 60.0 km/h speed  # cucumber.UserScenarioStepdefsTest.addDrone(int,float,float)
+  And the garagiste edits the drone with id 1 and set the status to flight             # cucumber.UserScenarioStepdefsTest.setDroneStatus(int,java.lang.String)
+  And the boss generates the statistics for drones                                     # cucumber.UserScenarioStepdefsTest.generateDroneStats()
+  Then the drone statistics entry has a use rate 0.50                                  # cucumber.UserScenarioStepdefsTest.testDroneStatsValue(float)
+
+Scenario: A client post a comment                                                                                                                 # src/test/resources/features/UserScenarioTest.feature:74
+  Given some lists to remove things                                                                                                               # cucumber.UserScenarioStepdefsTest.given()
+  When the garagiste adds the drone with id 1 and 10.0 kg capacity and 60.0 km/h speed                                                            # cucumber.UserScenarioStepdefsTest.addDrone(int,float,float)
+      com.sun.xml.internal.ws.client.ClientTransportException: The server sent HTTP status code 403: Forbidden
+	at com.sun.xml.internal.ws.transport.http.client.HttpTransportPipe.checkStatusCode(HttpTransportPipe.java:310)
+	at com.sun.xml.internal.ws.transport.http.client.HttpTransportPipe.createResponsePacket(HttpTransportPipe.java:259)
+	at com.sun.xml.internal.ws.transport.http.client.HttpTransportPipe.process(HttpTransportPipe.java:217)
+	at com.sun.xml.internal.ws.transport.http.client.HttpTransportPipe.processRequest(HttpTransportPipe.java:130)
+	at com.sun.xml.internal.ws.transport.DeferredTransportPipe.processRequest(DeferredTransportPipe.java:124)
+	at com.sun.xml.internal.ws.api.pipe.Fiber.__doRun(Fiber.java:1121)
+	at com.sun.xml.internal.ws.api.pipe.Fiber._doRun(Fiber.java:1035)
+	at com.sun.xml.internal.ws.api.pipe.Fiber.doRun(Fiber.java:1004)
+	at com.sun.xml.internal.ws.api.pipe.Fiber.runSync(Fiber.java:862)
+	at com.sun.xml.internal.ws.client.Stub.process(Stub.java:448)
+	at com.sun.xml.internal.ws.client.sei.SEIStub.doProcess(SEIStub.java:178)
+	at com.sun.xml.internal.ws.client.sei.SyncMethodHandler.invoke(SyncMethodHandler.java:93)
+	at com.sun.xml.internal.ws.client.sei.SyncMethodHandler.invoke(SyncMethodHandler.java:77)
+	at com.sun.xml.internal.ws.client.sei.SEIStub.invoke(SEIStub.java:147)
+	at com.sun.proxy.$Proxy49.addDrone(Unknown Source)
+	at cucumber.UserScenarioStepdefsTest.addDrone(UserScenarioStepdefsTest.java:44)
+	at ✽.the garagiste adds the drone with id 1 and 10.0 kg capacity and 60.0 km/h speed(file:///var/jenkins_home/workspace/drone-delivery-j2e/clients/integration_tests_cli/src/test/resources/features/UserScenarioTest.feature:75)
+
+  And the gestionnaire adds a supplier with name Nozama and contact adressebidon@truc.ouaideouf                                                   # cucumber.UserScenarioStepdefsTest.addSupplier(java.lang.String,java.lang.String)
+  And the gestionnaire adds a supplier with name LePosta and contact leposta@mysupramail.com                                                      # cucumber.UserScenarioStepdefsTest.addSupplier(java.lang.String,java.lang.String)
+  And the manutentionnaire adds a package with tracking number A7X and with weight 5.0 and with destination Wakanda and with Nozama as supplier   # cucumber.UserScenarioStepdefsTest.addPackage1(java.lang.String,float,java.lang.String,java.lang.String)
+  And the manutentionnaire adds a package with tracking number SUM41 and with weight 5.0 and with destination Wakanda and with Nozama as supplier # cucumber.UserScenarioStepdefsTest.addPackage1(java.lang.String,float,java.lang.String,java.lang.String)
+  And the manutentionnaire adds a package with tracking number 5FDP and with weight 1.0 and with destination Wakanda and with Nozama as supplier  # cucumber.UserScenarioStepdefsTest.addPackage1(java.lang.String,float,java.lang.String,java.lang.String)
+  And the service client plan a delivery for package A7X date 2020-10-10 at 10:10                                                                 # cucumber.UserScenarioStepdefsTest.planDelivery(java.lang.String,java.lang.String,java.lang.String)
+  And the garagiste adds the drone with id 2 and 9.0 kg capacity and 60.0 km/h speed                                                              # cucumber.UserScenarioStepdefsTest.addDrone(int,float,float)
+  And the service client plan a delivery for package SUM41 date 2020-10-10 at 10:15                                                               # cucumber.UserScenarioStepdefsTest.planDelivery(java.lang.String,java.lang.String,java.lang.String)
+  And the service client plan a delivery for package 5FDP date 2020-10-11 at 10:55                                                                # cucumber.UserScenarioStepdefsTest.planDelivery(java.lang.String,java.lang.String,java.lang.String)
+  And the manutentionnaire edits the delivery status to completed for tracking id SUM41                                                           # cucumber.UserScenarioStepdefsTest.editsDeliveryStatus(java.lang.String,java.lang.String)
+  And the manutentionnaire edits the delivery status to completed for tracking id 5FDP                                                            # cucumber.UserScenarioStepdefsTest.editsDeliveryStatus(java.lang.String,java.lang.String)
+  And the manutentionnaire edits the delivery status to completed for tracking id A7X                                                             # cucumber.UserScenarioStepdefsTest.editsDeliveryStatus(java.lang.String,java.lang.String)
+  And the client adds a comment for the delivery SUM41 with rate 5 and comment "Not enough quality"                                               # cucumber.UserScenarioStepdefsTest.addComment(java.lang.String,int,java.lang.String)
+  And the client adds a comment for the delivery 5FDP with rate 8 and comment ""                                                                  # cucumber.UserScenarioStepdefsTest.addComment(java.lang.String,int,java.lang.String)
+  And the client adds a comment for the delivery A7X with rate 2 and comment ""                                                                   # cucumber.UserScenarioStepdefsTest.addComment(java.lang.String,int,java.lang.String)
+  And the boss generates the statistics for ratings                                                                                               # cucumber.UserScenarioStepdefsTest.generateStatsRating()
+  And the gestionnaire generates the invoice for Nozama                                                                                           # cucumber.UserScenarioStepdefsTest.generateInvoice(java.lang.String)
+  And the gestionnaire generates the invoice for LePosta                                                                                          # cucumber.UserScenarioStepdefsTest.generateInvoice(java.lang.String)
+  And the supplier Nozama pay the invoice                                                                                                         # cucumber.UserScenarioStepdefsTest.payInvoice(java.lang.String)
+  Then there is a comment for the package SUM41 with rate 5 and comment "Not enough quality"                                                      # cucumber.UserScenarioStepdefsTest.checkAddComment(java.lang.String,int,java.lang.String)
+  And there is a comment for the package 5FDP with rate 8 and comment ""                                                                          # cucumber.UserScenarioStepdefsTest.checkAddComment(java.lang.String,int,java.lang.String)
+  And there is a comment for the package A7X with rate 2 and comment ""                                                                           # cucumber.UserScenarioStepdefsTest.checkAddComment(java.lang.String,int,java.lang.String)
+  And the rating statistics entry have 5 as average                                                                                               # cucumber.UserScenarioStepdefsTest.checkRatingStatistics(int)
+  And the invoice for Nozama is about 3€                                                                                                          # cucumber.UserScenarioStepdefsTest.checkGenerateInvoice(java.lang.String,int)
+  And the invoice for LePosta is about 0€                                                                                                         # cucumber.UserScenarioStepdefsTest.checkGenerateInvoice(java.lang.String,int)
+
+Failed scenarios:
+file:///var/jenkins_home/workspace/drone-delivery-j2e/clients/integration_tests_cli/src/test/resources/features/UserScenarioTest.feature:7# Planning two deliveries with one drone not at same time
+file:///var/jenkins_home/workspace/drone-delivery-j2e/clients/integration_tests_cli/src/test/resources/features/UserScenarioTest.feature:17# Planning two deliveries with one drone at almost same time
+file:///var/jenkins_home/workspace/drone-delivery-j2e/clients/integration_tests_cli/src/test/resources/features/UserScenarioTest.feature:28# Planning three deliveries with two drones at almost same time
+file:///var/jenkins_home/workspace/drone-delivery-j2e/clients/integration_tests_cli/src/test/resources/features/UserScenarioTest.feature:42# Planning two deliveries with two drone but one is too weak
+file:///var/jenkins_home/workspace/drone-delivery-j2e/clients/integration_tests_cli/src/test/resources/features/UserScenarioTest.feature:53# Planning one delivery without drone
+file:///var/jenkins_home/workspace/drone-delivery-j2e/clients/integration_tests_cli/src/test/resources/features/UserScenarioTest.feature:60# Set drone in flight to verify statistics
+file:///var/jenkins_home/workspace/drone-delivery-j2e/clients/integration_tests_cli/src/test/resources/features/UserScenarioTest.feature:66# Set one drone in flight to verify statistics
+file:///var/jenkins_home/workspace/drone-delivery-j2e/clients/integration_tests_cli/src/test/resources/features/UserScenarioTest.feature:74# A client post a comment
+
+8 Scenarios (8 failed)
+85 Steps (8 failed, 69 skipped, 8 passed)
+0m12.918s
+
+
+com.sun.xml.internal.ws.client.ClientTransportException: The server sent HTTP status code 403: Forbidden
+	at com.sun.xml.internal.ws.transport.http.client.HttpTransportPipe.checkStatusCode(HttpTransportPipe.java:310)
+	at com.sun.xml.internal.ws.transport.http.client.HttpTransportPipe.createResponsePacket(HttpTransportPipe.java:259)
+	at com.sun.xml.internal.ws.transport.http.client.HttpTransportPipe.process(HttpTransportPipe.java:217)
+	at com.sun.xml.internal.ws.transport.http.client.HttpTransportPipe.processRequest(HttpTransportPipe.java:130)
+	at com.sun.xml.internal.ws.transport.DeferredTransportPipe.processRequest(DeferredTransportPipe.java:124)
+	at com.sun.xml.internal.ws.api.pipe.Fiber.__doRun(Fiber.java:1121)
+	at com.sun.xml.internal.ws.api.pipe.Fiber._doRun(Fiber.java:1035)
+	at com.sun.xml.internal.ws.api.pipe.Fiber.doRun(Fiber.java:1004)
+	at com.sun.xml.internal.ws.api.pipe.Fiber.runSync(Fiber.java:862)
+	at com.sun.xml.internal.ws.client.Stub.process(Stub.java:448)
+	at com.sun.xml.internal.ws.client.sei.SEIStub.doProcess(SEIStub.java:178)
+	at com.sun.xml.internal.ws.client.sei.SyncMethodHandler.invoke(SyncMethodHandler.java:93)
+	at com.sun.xml.internal.ws.client.sei.SyncMethodHandler.invoke(SyncMethodHandler.java:77)
+	at com.sun.xml.internal.ws.client.sei.SEIStub.invoke(SEIStub.java:147)
+	at com.sun.proxy.$Proxy49.addDrone(Unknown Source)
+	at cucumber.UserScenarioStepdefsTest.addDrone(UserScenarioStepdefsTest.java:44)
+	at ✽.the garagiste adds the drone with id 1 and 10.0 kg capacity and 60.0 km/h speed(file:///var/jenkins_home/workspace/drone-delivery-j2e/clients/integration_tests_cli/src/test/resources/features/UserScenarioTest.feature:8)
+
+com.sun.xml.internal.ws.client.ClientTransportException: The server sent HTTP status code 403: Forbidden
+	at com.sun.xml.internal.ws.transport.http.client.HttpTransportPipe.checkStatusCode(HttpTransportPipe.java:310)
+	at com.sun.xml.internal.ws.transport.http.client.HttpTransportPipe.createResponsePacket(HttpTransportPipe.java:259)
+	at com.sun.xml.internal.ws.transport.http.client.HttpTransportPipe.process(HttpTransportPipe.java:217)
+	at com.sun.xml.internal.ws.transport.http.client.HttpTransportPipe.processRequest(HttpTransportPipe.java:130)
+	at com.sun.xml.internal.ws.transport.DeferredTransportPipe.processRequest(DeferredTransportPipe.java:124)
+	at com.sun.xml.internal.ws.api.pipe.Fiber.__doRun(Fiber.java:1121)
+	at com.sun.xml.internal.ws.api.pipe.Fiber._doRun(Fiber.java:1035)
+	at com.sun.xml.internal.ws.api.pipe.Fiber.doRun(Fiber.java:1004)
+	at com.sun.xml.internal.ws.api.pipe.Fiber.runSync(Fiber.java:862)
+	at com.sun.xml.internal.ws.client.Stub.process(Stub.java:448)
+	at com.sun.xml.internal.ws.client.sei.SEIStub.doProcess(SEIStub.java:178)
+	at com.sun.xml.internal.ws.client.sei.SyncMethodHandler.invoke(SyncMethodHandler.java:93)
+	at com.sun.xml.internal.ws.client.sei.SyncMethodHandler.invoke(SyncMethodHandler.java:77)
+	at com.sun.xml.internal.ws.client.sei.SEIStub.invoke(SEIStub.java:147)
+	at com.sun.proxy.$Proxy49.addDrone(Unknown Source)
+	at cucumber.UserScenarioStepdefsTest.addDrone(UserScenarioStepdefsTest.java:44)
+	at ✽.the garagiste adds the drone with id 1 and 10.0 kg capacity and 60.0 km/h speed(file:///var/jenkins_home/workspace/drone-delivery-j2e/clients/integration_tests_cli/src/test/resources/features/UserScenarioTest.feature:18)
+
+com.sun.xml.internal.ws.client.ClientTransportException: The server sent HTTP status code 403: Forbidden
+	at com.sun.xml.internal.ws.transport.http.client.HttpTransportPipe.checkStatusCode(HttpTransportPipe.java:310)
+	at com.sun.xml.internal.ws.transport.http.client.HttpTransportPipe.createResponsePacket(HttpTransportPipe.java:259)
+	at com.sun.xml.internal.ws.transport.http.client.HttpTransportPipe.process(HttpTransportPipe.java:217)
+	at com.sun.xml.internal.ws.transport.http.client.HttpTransportPipe.processRequest(HttpTransportPipe.java:130)
+	at com.sun.xml.internal.ws.transport.DeferredTransportPipe.processRequest(DeferredTransportPipe.java:124)
+	at com.sun.xml.internal.ws.api.pipe.Fiber.__doRun(Fiber.java:1121)
+	at com.sun.xml.internal.ws.api.pipe.Fiber._doRun(Fiber.java:1035)
+	at com.sun.xml.internal.ws.api.pipe.Fiber.doRun(Fiber.java:1004)
+	at com.sun.xml.internal.ws.api.pipe.Fiber.runSync(Fiber.java:862)
+	at com.sun.xml.internal.ws.client.Stub.process(Stub.java:448)
+	at com.sun.xml.internal.ws.client.sei.SEIStub.doProcess(SEIStub.java:178)
+	at com.sun.xml.internal.ws.client.sei.SyncMethodHandler.invoke(SyncMethodHandler.java:93)
+	at com.sun.xml.internal.ws.client.sei.SyncMethodHandler.invoke(SyncMethodHandler.java:77)
+	at com.sun.xml.internal.ws.client.sei.SEIStub.invoke(SEIStub.java:147)
+	at com.sun.proxy.$Proxy49.addDrone(Unknown Source)
+	at cucumber.UserScenarioStepdefsTest.addDrone(UserScenarioStepdefsTest.java:44)
+	at ✽.the garagiste adds the drone with id 1 and 10.0 kg capacity and 60.0 km/h speed(file:///var/jenkins_home/workspace/drone-delivery-j2e/clients/integration_tests_cli/src/test/resources/features/UserScenarioTest.feature:29)
+
+com.sun.xml.internal.ws.client.ClientTransportException: The server sent HTTP status code 403: Forbidden
+	at com.sun.xml.internal.ws.transport.http.client.HttpTransportPipe.checkStatusCode(HttpTransportPipe.java:310)
+	at com.sun.xml.internal.ws.transport.http.client.HttpTransportPipe.createResponsePacket(HttpTransportPipe.java:259)
+	at com.sun.xml.internal.ws.transport.http.client.HttpTransportPipe.process(HttpTransportPipe.java:217)
+	at com.sun.xml.internal.ws.transport.http.client.HttpTransportPipe.processRequest(HttpTransportPipe.java:130)
+	at com.sun.xml.internal.ws.transport.DeferredTransportPipe.processRequest(DeferredTransportPipe.java:124)
+	at com.sun.xml.internal.ws.api.pipe.Fiber.__doRun(Fiber.java:1121)
+	at com.sun.xml.internal.ws.api.pipe.Fiber._doRun(Fiber.java:1035)
+	at com.sun.xml.internal.ws.api.pipe.Fiber.doRun(Fiber.java:1004)
+	at com.sun.xml.internal.ws.api.pipe.Fiber.runSync(Fiber.java:862)
+	at com.sun.xml.internal.ws.client.Stub.process(Stub.java:448)
+	at com.sun.xml.internal.ws.client.sei.SEIStub.doProcess(SEIStub.java:178)
+	at com.sun.xml.internal.ws.client.sei.SyncMethodHandler.invoke(SyncMethodHandler.java:93)
+	at com.sun.xml.internal.ws.client.sei.SyncMethodHandler.invoke(SyncMethodHandler.java:77)
+	at com.sun.xml.internal.ws.client.sei.SEIStub.invoke(SEIStub.java:147)
+	at com.sun.proxy.$Proxy49.addDrone(Unknown Source)
+	at cucumber.UserScenarioStepdefsTest.addDrone(UserScenarioStepdefsTest.java:44)
+	at ✽.the garagiste adds the drone with id 1 and 10.0 kg capacity and 60.0 km/h speed(file:///var/jenkins_home/workspace/drone-delivery-j2e/clients/integration_tests_cli/src/test/resources/features/UserScenarioTest.feature:43)
+
+com.sun.xml.internal.ws.client.ClientTransportException: The server sent HTTP status code 403: Forbidden
+	at com.sun.xml.internal.ws.transport.http.client.HttpTransportPipe.checkStatusCode(HttpTransportPipe.java:310)
+	at com.sun.xml.internal.ws.transport.http.client.HttpTransportPipe.createResponsePacket(HttpTransportPipe.java:259)
+	at com.sun.xml.internal.ws.transport.http.client.HttpTransportPipe.process(HttpTransportPipe.java:217)
+	at com.sun.xml.internal.ws.transport.http.client.HttpTransportPipe.processRequest(HttpTransportPipe.java:130)
+	at com.sun.xml.internal.ws.transport.DeferredTransportPipe.processRequest(DeferredTransportPipe.java:124)
+	at com.sun.xml.internal.ws.api.pipe.Fiber.__doRun(Fiber.java:1121)
+	at com.sun.xml.internal.ws.api.pipe.Fiber._doRun(Fiber.java:1035)
+	at com.sun.xml.internal.ws.api.pipe.Fiber.doRun(Fiber.java:1004)
+	at com.sun.xml.internal.ws.api.pipe.Fiber.runSync(Fiber.java:862)
+	at com.sun.xml.internal.ws.client.Stub.process(Stub.java:448)
+	at com.sun.xml.internal.ws.client.sei.SEIStub.doProcess(SEIStub.java:178)
+	at com.sun.xml.internal.ws.client.sei.SyncMethodHandler.invoke(SyncMethodHandler.java:93)
+	at com.sun.xml.internal.ws.client.sei.SyncMethodHandler.invoke(SyncMethodHandler.java:77)
+	at com.sun.xml.internal.ws.client.sei.SEIStub.invoke(SEIStub.java:147)
+	at com.sun.proxy.$Proxy47.registerSupplier(Unknown Source)
+	at cucumber.UserScenarioStepdefsTest.addSupplier(UserScenarioStepdefsTest.java:50)
+	at ✽.the gestionnaire adds a supplier with name Nozama and contact adressebidon@truc.ouaideouf(file:///var/jenkins_home/workspace/drone-delivery-j2e/clients/integration_tests_cli/src/test/resources/features/UserScenarioTest.feature:54)
+
+com.sun.xml.internal.ws.client.ClientTransportException: The server sent HTTP status code 403: Forbidden
+	at com.sun.xml.internal.ws.transport.http.client.HttpTransportPipe.checkStatusCode(HttpTransportPipe.java:310)
+	at com.sun.xml.internal.ws.transport.http.client.HttpTransportPipe.createResponsePacket(HttpTransportPipe.java:259)
+	at com.sun.xml.internal.ws.transport.http.client.HttpTransportPipe.process(HttpTransportPipe.java:217)
+	at com.sun.xml.internal.ws.transport.http.client.HttpTransportPipe.processRequest(HttpTransportPipe.java:130)
+	at com.sun.xml.internal.ws.transport.DeferredTransportPipe.processRequest(DeferredTransportPipe.java:124)
+	at com.sun.xml.internal.ws.api.pipe.Fiber.__doRun(Fiber.java:1121)
+	at com.sun.xml.internal.ws.api.pipe.Fiber._doRun(Fiber.java:1035)
+	at com.sun.xml.internal.ws.api.pipe.Fiber.doRun(Fiber.java:1004)
+	at com.sun.xml.internal.ws.api.pipe.Fiber.runSync(Fiber.java:862)
+	at com.sun.xml.internal.ws.client.Stub.process(Stub.java:448)
+	at com.sun.xml.internal.ws.client.sei.SEIStub.doProcess(SEIStub.java:178)
+	at com.sun.xml.internal.ws.client.sei.SyncMethodHandler.invoke(SyncMethodHandler.java:93)
+	at com.sun.xml.internal.ws.client.sei.SyncMethodHandler.invoke(SyncMethodHandler.java:77)
+	at com.sun.xml.internal.ws.client.sei.SEIStub.invoke(SEIStub.java:147)
+	at com.sun.proxy.$Proxy49.addDrone(Unknown Source)
+	at cucumber.UserScenarioStepdefsTest.addDrone(UserScenarioStepdefsTest.java:44)
+	at ✽.the garagiste adds the drone with id 1 and 10.0 kg capacity and 60.0 km/h speed(file:///var/jenkins_home/workspace/drone-delivery-j2e/clients/integration_tests_cli/src/test/resources/features/UserScenarioTest.feature:61)
+
+com.sun.xml.internal.ws.client.ClientTransportException: The server sent HTTP status code 403: Forbidden
+	at com.sun.xml.internal.ws.transport.http.client.HttpTransportPipe.checkStatusCode(HttpTransportPipe.java:310)
+	at com.sun.xml.internal.ws.transport.http.client.HttpTransportPipe.createResponsePacket(HttpTransportPipe.java:259)
+	at com.sun.xml.internal.ws.transport.http.client.HttpTransportPipe.process(HttpTransportPipe.java:217)
+	at com.sun.xml.internal.ws.transport.http.client.HttpTransportPipe.processRequest(HttpTransportPipe.java:130)
+	at com.sun.xml.internal.ws.transport.DeferredTransportPipe.processRequest(DeferredTransportPipe.java:124)
+	at com.sun.xml.internal.ws.api.pipe.Fiber.__doRun(Fiber.java:1121)
+	at com.sun.xml.internal.ws.api.pipe.Fiber._doRun(Fiber.java:1035)
+	at com.sun.xml.internal.ws.api.pipe.Fiber.doRun(Fiber.java:1004)
+	at com.sun.xml.internal.ws.api.pipe.Fiber.runSync(Fiber.java:862)
+	at com.sun.xml.internal.ws.client.Stub.process(Stub.java:448)
+	at com.sun.xml.internal.ws.client.sei.SEIStub.doProcess(SEIStub.java:178)
+	at com.sun.xml.internal.ws.client.sei.SyncMethodHandler.invoke(SyncMethodHandler.java:93)
+	at com.sun.xml.internal.ws.client.sei.SyncMethodHandler.invoke(SyncMethodHandler.java:77)
+	at com.sun.xml.internal.ws.client.sei.SEIStub.invoke(SEIStub.java:147)
+	at com.sun.proxy.$Proxy49.addDrone(Unknown Source)
+	at cucumber.UserScenarioStepdefsTest.addDrone(UserScenarioStepdefsTest.java:44)
+	at ✽.the garagiste adds the drone with id 1 and 10.0 kg capacity and 60.0 km/h speed(file:///var/jenkins_home/workspace/drone-delivery-j2e/clients/integration_tests_cli/src/test/resources/features/UserScenarioTest.feature:67)
+
+com.sun.xml.internal.ws.client.ClientTransportException: The server sent HTTP status code 403: Forbidden
+	at com.sun.xml.internal.ws.transport.http.client.HttpTransportPipe.checkStatusCode(HttpTransportPipe.java:310)
+	at com.sun.xml.internal.ws.transport.http.client.HttpTransportPipe.createResponsePacket(HttpTransportPipe.java:259)
+	at com.sun.xml.internal.ws.transport.http.client.HttpTransportPipe.process(HttpTransportPipe.java:217)
+	at com.sun.xml.internal.ws.transport.http.client.HttpTransportPipe.processRequest(HttpTransportPipe.java:130)
+	at com.sun.xml.internal.ws.transport.DeferredTransportPipe.processRequest(DeferredTransportPipe.java:124)
+	at com.sun.xml.internal.ws.api.pipe.Fiber.__doRun(Fiber.java:1121)
+	at com.sun.xml.internal.ws.api.pipe.Fiber._doRun(Fiber.java:1035)
+	at com.sun.xml.internal.ws.api.pipe.Fiber.doRun(Fiber.java:1004)
+	at com.sun.xml.internal.ws.api.pipe.Fiber.runSync(Fiber.java:862)
+	at com.sun.xml.internal.ws.client.Stub.process(Stub.java:448)
+	at com.sun.xml.internal.ws.client.sei.SEIStub.doProcess(SEIStub.java:178)
+	at com.sun.xml.internal.ws.client.sei.SyncMethodHandler.invoke(SyncMethodHandler.java:93)
+	at com.sun.xml.internal.ws.client.sei.SyncMethodHandler.invoke(SyncMethodHandler.java:77)
+	at com.sun.xml.internal.ws.client.sei.SEIStub.invoke(SEIStub.java:147)
+	at com.sun.proxy.$Proxy49.addDrone(Unknown Source)
+	at cucumber.UserScenarioStepdefsTest.addDrone(UserScenarioStepdefsTest.java:44)
+	at ✽.the garagiste adds the drone with id 1 and 10.0 kg capacity and 60.0 km/h speed(file:///var/jenkins_home/workspace/drone-delivery-j2e/clients/integration_tests_cli/src/test/resources/features/UserScenarioTest.feature:75)
+
+
+[ERROR] Tests run: 8, Failures: 0, Errors: 8, Skipped: 0, Time elapsed: 13.058 s <<< FAILURE! - in cucumber.RunCucumberTest
+[ERROR] Planning two deliveries with one drone not at same time  Time elapsed: 6.009 s  <<< ERROR!
+com.sun.xml.internal.ws.client.ClientTransportException: The server sent HTTP status code 403: Forbidden
+
+[ERROR] Planning two deliveries with one drone at almost same time  Time elapsed: 1.169 s  <<< ERROR!
+com.sun.xml.internal.ws.client.ClientTransportException: The server sent HTTP status code 403: Forbidden
+
+[ERROR] Planning three deliveries with two drones at almost same time  Time elapsed: 0.955 s  <<< ERROR!
+com.sun.xml.internal.ws.client.ClientTransportException: The server sent HTTP status code 403: Forbidden
+
+[ERROR] Planning two deliveries with two drone but one is too weak  Time elapsed: 0.936 s  <<< ERROR!
+com.sun.xml.internal.ws.client.ClientTransportException: The server sent HTTP status code 403: Forbidden
+
+[ERROR] Planning one delivery without drone  Time elapsed: 1.086 s  <<< ERROR!
+com.sun.xml.internal.ws.client.ClientTransportException: The server sent HTTP status code 403: Forbidden
+
+[ERROR] Set drone in flight to verify statistics  Time elapsed: 1.312 s  <<< ERROR!
+com.sun.xml.internal.ws.client.ClientTransportException: The server sent HTTP status code 403: Forbidden
+
+[ERROR] Set one drone in flight to verify statistics  Time elapsed: 0.79 s  <<< ERROR!
+com.sun.xml.internal.ws.client.ClientTransportException: The server sent HTTP status code 403: Forbidden
+
+[ERROR] A client post a comment  Time elapsed: 0.642 s  <<< ERROR!
+com.sun.xml.internal.ws.client.ClientTransportException: The server sent HTTP status code 403: Forbidden
+
+[INFO] 
+[INFO] Results:
+[INFO] 
+[ERROR] Errors: 
+[ERROR]   RunCucumberTest » ClientTransport The server sent HTTP status code 403: Forbid...
+[ERROR]   RunCucumberTest » ClientTransport The server sent HTTP status code 403: Forbid...
+[ERROR]   RunCucumberTest » ClientTransport The server sent HTTP status code 403: Forbid...
+[ERROR]   RunCucumberTest » ClientTransport The server sent HTTP status code 403: Forbid...
+[ERROR]   RunCucumberTest » ClientTransport The server sent HTTP status code 403: Forbid...
+[ERROR]   RunCucumberTest » ClientTransport The server sent HTTP status code 403: Forbid...
+[ERROR]   RunCucumberTest » ClientTransport The server sent HTTP status code 403: Forbid...
+[ERROR]   RunCucumberTest » ClientTransport The server sent HTTP status code 403: Forbid...
+[INFO] 
+[ERROR] Tests run: 8, Failures: 0, Errors: 8, Skipped: 0
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  35.799 s
+[INFO] Finished at: 2020-05-05T20:35:18Z
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:2.22.2:test (default-test) on project drone-delivery-client-integration_tests_cli: There are test failures.
+[ERROR] 
+[ERROR] Please refer to /var/jenkins_home/workspace/drone-delivery-j2e/clients/integration_tests_cli/target/surefire-reports for the individual test results.
+[ERROR] Please refer to dump files (if any exist) [date].dump, [date]-jvmRun[N].dump and [date].dumpstream.
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+Build step 'Execute shell' marked build as failure
+Finished: FAILURE

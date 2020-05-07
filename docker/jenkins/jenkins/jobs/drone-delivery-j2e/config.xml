@@ -1,0 +1,178 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <com.coravy.hudson.plugins.github.GithubProjectProperty plugin="github@1.29.5">
+      <projectUrl>https://github.com/pns-isa-devops/projet-isa-devops-20-team-H-20/projects/1/</projectUrl>
+      <displayName></displayName>
+    </com.coravy.hudson.plugins.github.GithubProjectProperty>
+  </properties>
+  <scm class="hudson.plugins.git.GitSCM" plugin="git@4.2.2">
+    <configVersion>2</configVersion>
+    <userRemoteConfigs>
+      <hudson.plugins.git.UserRemoteConfig>
+        <url>git@github.com:pns-isa-devops/projet-isa-devops-20-team-H-20.git</url>
+      </hudson.plugins.git.UserRemoteConfig>
+    </userRemoteConfigs>
+    <branches>
+      <hudson.plugins.git.BranchSpec>
+        <name>*/dev</name>
+      </hudson.plugins.git.BranchSpec>
+    </branches>
+    <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+    <submoduleCfg class="list"/>
+    <extensions/>
+  </scm>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers>
+    <com.cloudbees.jenkins.GitHubPushTrigger plugin="github@1.29.5">
+      <spec></spec>
+    </com.cloudbees.jenkins.GitHubPushTrigger>
+  </triggers>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <org.jfrog.hudson.maven3.Maven3Builder plugin="artifactory@3.6.2">
+      <mavenName>maven-3.6.3</mavenName>
+      <rootPom>$workspace/j2e/Core/pom.xml</rootPom>
+      <goals></goals>
+      <mavenOpts></mavenOpts>
+    </org.jfrog.hudson.maven3.Maven3Builder>
+    <org.jfrog.hudson.maven3.Maven3Builder plugin="artifactory@3.6.2">
+      <mavenName>maven-3.6.3</mavenName>
+      <rootPom>$workspace/j2e/SupplierRegistry/pom.xml</rootPom>
+      <goals>clean install</goals>
+      <mavenOpts></mavenOpts>
+    </org.jfrog.hudson.maven3.Maven3Builder>
+    <org.jfrog.hudson.maven3.Maven3Builder plugin="artifactory@3.6.2">
+      <mavenName>maven-3.6.3</mavenName>
+      <rootPom>$workspace/j2e/PackageRegistry/pom.xml</rootPom>
+      <goals>clean install</goals>
+      <mavenOpts></mavenOpts>
+    </org.jfrog.hudson.maven3.Maven3Builder>
+    <org.jfrog.hudson.maven3.Maven3Builder plugin="artifactory@3.6.2">
+      <mavenName>maven-3.6.3</mavenName>
+      <rootPom>$workspace/j2e/DroneFleet/pom.xml</rootPom>
+      <goals>clean install</goals>
+      <mavenOpts></mavenOpts>
+    </org.jfrog.hudson.maven3.Maven3Builder>
+    <org.jfrog.hudson.maven3.Maven3Builder plugin="artifactory@3.6.2">
+      <mavenName>maven-3.6.3</mavenName>
+      <rootPom>$workspace/j2e/AvailabilityProcessor/pom.xml</rootPom>
+      <goals>clean install</goals>
+      <mavenOpts></mavenOpts>
+    </org.jfrog.hudson.maven3.Maven3Builder>
+    <org.jfrog.hudson.maven3.Maven3Builder plugin="artifactory@3.6.2">
+      <mavenName>maven-3.6.3</mavenName>
+      <rootPom>$workspace/j2e/DeliveryPlanning/pom.xml</rootPom>
+      <goals>clean install</goals>
+      <mavenOpts></mavenOpts>
+    </org.jfrog.hudson.maven3.Maven3Builder>
+    <org.jfrog.hudson.maven3.Maven3Builder plugin="artifactory@3.6.2">
+      <mavenName>maven-3.6.3</mavenName>
+      <rootPom>$workspace/j2e/Accounting/pom.xml</rootPom>
+      <goals>clean install</goals>
+      <mavenOpts></mavenOpts>
+    </org.jfrog.hudson.maven3.Maven3Builder>
+    <org.jfrog.hudson.maven3.Maven3Builder plugin="artifactory@3.6.2">
+      <mavenName>maven-3.6.3</mavenName>
+      <rootPom>$workspace/j2e/CommentBoard/pom.xml</rootPom>
+      <goals>clean install</goals>
+      <mavenOpts></mavenOpts>
+    </org.jfrog.hudson.maven3.Maven3Builder>
+    <org.jfrog.hudson.maven3.Maven3Builder plugin="artifactory@3.6.2">
+      <mavenName>maven-3.6.3</mavenName>
+      <rootPom>$workspace/j2e/Statistics/pom.xml</rootPom>
+      <goals>clean install</goals>
+      <mavenOpts></mavenOpts>
+    </org.jfrog.hudson.maven3.Maven3Builder>
+    <org.jfrog.hudson.maven3.Maven3Builder plugin="artifactory@3.6.2">
+      <mavenName>maven-3.6.3</mavenName>
+      <rootPom>$workspace/j2e/WebServices/pom.xml</rootPom>
+      <goals>clean install</goals>
+      <mavenOpts></mavenOpts>
+    </org.jfrog.hudson.maven3.Maven3Builder>
+  </builders>
+  <publishers>
+    <hudson.tasks.BuildTrigger>
+      <childProjects>drone-delivery-dockerization</childProjects>
+      <threshold>
+        <name>SUCCESS</name>
+        <ordinal>0</ordinal>
+        <color>BLUE</color>
+        <completeBuild>true</completeBuild>
+      </threshold>
+    </hudson.tasks.BuildTrigger>
+  </publishers>
+  <buildWrappers>
+    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.11.3"/>
+    <org.jfrog.hudson.maven3.ArtifactoryMaven3Configurator plugin="artifactory@3.6.2">
+      <deployerDetails>
+        <artifactoryName>artifactory</artifactoryName>
+        <artifactoryUrl>http://172.21.0.3:8082/artifactory</artifactoryUrl>
+        <deployReleaseRepository>
+          <keyFromText></keyFromText>
+          <keyFromSelect>libs-release-local</keyFromSelect>
+          <dynamicMode>false</dynamicMode>
+        </deployReleaseRepository>
+        <deploySnapshotRepository>
+          <keyFromText></keyFromText>
+          <keyFromSelect>libs-snapshot-local</keyFromSelect>
+          <dynamicMode>false</dynamicMode>
+        </deploySnapshotRepository>
+        <stagingPlugin/>
+      </deployerDetails>
+      <resolverDetails>
+        <artifactoryName>artifactory</artifactoryName>
+        <artifactoryUrl>http://172.21.0.3:8082/artifactory</artifactoryUrl>
+        <resolveSnapshotRepository>
+          <keyFromText></keyFromText>
+          <keyFromSelect>libs-snapshot</keyFromSelect>
+          <dynamicMode>false</dynamicMode>
+        </resolveSnapshotRepository>
+        <resolveReleaseRepository>
+          <keyFromText></keyFromText>
+          <keyFromSelect>libs-release</keyFromSelect>
+          <dynamicMode>false</dynamicMode>
+        </resolveReleaseRepository>
+        <stagingPlugin/>
+      </resolverDetails>
+      <deployerCredentialsConfig>
+        <credentialsId></credentialsId>
+        <overridingCredentials>false</overridingCredentials>
+        <ignoreCredentialPluginDisabled>false</ignoreCredentialPluginDisabled>
+      </deployerCredentialsConfig>
+      <resolverCredentialsConfig>
+        <credentialsId></credentialsId>
+        <overridingCredentials>false</overridingCredentials>
+        <ignoreCredentialPluginDisabled>false</ignoreCredentialPluginDisabled>
+      </resolverCredentialsConfig>
+      <deployArtifacts>true</deployArtifacts>
+      <artifactDeploymentPatterns>
+        <includePatterns></includePatterns>
+        <excludePatterns></excludePatterns>
+      </artifactDeploymentPatterns>
+      <includeEnvVars>false</includeEnvVars>
+      <deployBuildInfo>true</deployBuildInfo>
+      <discardOldBuilds>false</discardOldBuilds>
+      <discardBuildArtifacts>true</discardBuildArtifacts>
+      <asyncBuildRetention>false</asyncBuildRetention>
+      <deploymentProperties></deploymentProperties>
+      <enableIssueTrackerIntegration>false</enableIssueTrackerIntegration>
+      <filterExcludedArtifactsFromBuild>false</filterExcludedArtifactsFromBuild>
+      <enableResolveArtifacts>true</enableResolveArtifacts>
+      <envVarsPatterns>
+        <includePatterns></includePatterns>
+        <excludePatterns>*password*,*psw*,*secret*,*key*,*token*</excludePatterns>
+      </envVarsPatterns>
+      <aggregateBuildIssues>false</aggregateBuildIssues>
+      <recordAllDependencies>false</recordAllDependencies>
+      <customBuildName></customBuildName>
+      <overrideBuildName>false</overrideBuildName>
+    </org.jfrog.hudson.maven3.ArtifactoryMaven3Configurator>
+  </buildWrappers>
+</project>

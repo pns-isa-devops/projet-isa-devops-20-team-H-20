@@ -1,0 +1,23 @@
+commit 63462d9ad51bc56c08845cc249be9b3c527cf8f6
+tree 8e05faaaf67873b956ea868e0c1fc4beccd6b1e3
+parent 0d10dac2352624325b88413f21dc126780687fb4
+author Francois Rigaut <francois.rigaut@etu.unice.fr> 2020-05-05 22:37:20 +0200
+committer Francois Rigaut <francois.rigaut@etu.unice.fr> 2020-05-05 22:37:20 +0200
+
+    added server.properties in integration client #44
+
+
+:100644 100644 45bd7ecd6da48d740cbfb09b0aa702c2baecd2b8 cc0e80e76641096ce6ea917f0c0a42f3be9d375d M	clients/integration_tests_cli/src/main/java/Main.java
+:000000 100644 0000000000000000000000000000000000000000 955d39053bdf3642fa57f9df93b0aee502a43bfc A	clients/integration_tests_cli/src/main/resources/server.properties
+:100644 100644 e66ec398997e0456859a3143b33ac5ba2767f306 5bb4d44f34604cdb640657471c0ad95c1ee0ef56 M	clients/integration_tests_cli/src/test/java/cucumber/UserScenarioStepdefsTest.java
+commit 0d10dac2352624325b88413f21dc126780687fb4
+tree 084a62add4a7e8f2753f5daf1a4559cb7d92ebe1
+parent 0d182ea9bf0de6ca02bae1efe4f5bec1116ba327
+author Damien Montoya <daminor26@gmail.com> 2020-05-05 17:45:05 +0200
+committer Damien Montoya <daminor26@gmail.com> 2020-05-05 17:45:05 +0200
+
+    docker compose edited #44
+
+
+:100644 100644 55fee39b88313a923b27a088ca533d2b9ae27ccb 45bd7ecd6da48d740cbfb09b0aa702c2baecd2b8 M	clients/integration_tests_cli/src/main/java/Main.java
+:100644 100644 10e276c4402978be7f84e75232bcb234f92b5c9c 89014b1e888a35fec917c0b8b746c6b777b72f47 M	docker/docker-compose.yml

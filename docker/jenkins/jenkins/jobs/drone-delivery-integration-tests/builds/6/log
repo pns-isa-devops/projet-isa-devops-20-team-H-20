@@ -1,0 +1,10 @@
+Started by user [8mha:////4Lnx69JL3IAAqkgQK3MRmKCYHPbxCXMSwwtbo/JDP06eAAAAmB+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAy+EgYe/dLi1CL9lMTczNQ8AC9LU1nBAAAA[0mDamien Montoya
+Running as SYSTEM
+Building in workspace /var/jenkins_home/workspace/drone-delivery-integration-tests
+[drone-delivery-integration-tests] $ /bin/sh -xe /tmp/jenkins3970522216470197111.sh
++ docker start dd_system
+dd_system
++ telnet localhost 8080
+/tmp/jenkins3970522216470197111.sh: 4: /tmp/jenkins3970522216470197111.sh: telnet: not found
+Build step 'Execute shell' marked build as failure
+Finished: FAILURE

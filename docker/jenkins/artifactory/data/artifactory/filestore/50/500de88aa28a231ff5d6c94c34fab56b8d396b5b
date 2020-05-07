@@ -1,0 +1,23 @@
+<project>
+
+    <parent>
+        <groupId>fr.polytech.team.h</groupId>
+        <artifactId>drone-delivery-backend</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <version>1.0-SNAPSHOT</version>
+    <artifactId>Core</artifactId>
+    <packaging>jar</packaging>
+    <name>Drone Delivery :: Core</name>
+
+    <dependencies>
+    </dependencies>
+
+    <build>
+        <sourceDirectory>src/main/java</sourceDirectory>
+        <testSourceDirectory>src/test/java</testSourceDirectory>
+        <finalName>dd-core</finalName>
+    </build>
+</project>

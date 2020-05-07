@@ -1,0 +1,57 @@
+Started by user [8mha:////4Lnx69JL3IAAqkgQK3MRmKCYHPbxCXMSwwtbo/JDP06eAAAAmB+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAy+EgYe/dLi1CL9lMTczNQ8AC9LU1nBAAAA[0mDamien Montoya
+Running as SYSTEM
+Building in workspace /var/jenkins_home/workspace/drone-delivery-dockerization
+[drone-delivery-dockerization] $ /bin/sh -xe /tmp/jenkins5186361406298168714.sh
++ export M2_HOME=/var/jenkins_home/tools/hudson.tasks.Maven_MavenInstallation/maven_3.6.3
++ export PATH=/usr/local/openjdk-8/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/var/jenkins_home/tools/hudson.tasks.Maven_MavenInstallation/maven_3.6.3/bin
++ cd /var/jenkins_home/workspace/drone-delivery-j2e/docker/
++ chmod 777 build.sh
++ chmod 777 dd/build.sh
++ chmod 777 clients/build.sh
++ chmod 777 clients/boss_cli/build.sh
++ chmod 777 clients/chargeur_cli/build.sh
++ chmod 777 clients/garagiste_cli/build.sh
++ chmod 777 clients/gestionnaire_cli/build.sh
++ chmod 777 clients/integration_tests_cli/build.sh
++ chmod 777 clients/manutentionnaire_cli/build.sh
++ chmod 777 clients/service_client_cli/build.sh
++ chmod 777 partners/build.sh
++ chmod 777 ../MappingServiceExterne/compile.sh
++ ./build.sh
+./clients/build.sh: line 3: ./boss_cli/build.sh: No such file or directory
+./clients/build.sh: line 4: ./chargeur_cli/build.sh: No such file or directory
+./clients/build.sh: line 5: ./garagiste_cli//build.sh: No such file or directory
+./clients/build.sh: line 6: ./gestionnaire_cli/build.sh: No such file or directory
+./clients/build.sh: line 7: ./manutentionnaire_cli/build.sh: No such file or directory
+./clients/build.sh: line 8: ./service_client_cli/build.sh: No such file or directory
+./clients/build.sh: line 9: ./integration_tests_cli/build.sh: No such file or directory
+./dd/build.sh: line 4: cd: ../../j2e: No such file or directory
+Compiling the DD system
+./dd/build.sh: line 6: mvn: command not found
+Done
+./dd/build.sh: line 8: cd: ./WebServices: No such file or directory
+cp: cannot stat './target/drone-delivery-backend.war': No such file or directory
+./dd/build.sh: line 12: cd: ../../docker/dd/: No such file or directory
+unable to prepare context: unable to evaluate symlinks in Dockerfile path: lstat /var/jenkins_home/workspace/drone-delivery-j2e/docker/Dockerfile: no such file or directory
+./partners/build.sh: line 4: cd: ../../MappingServiceExterne: No such file or directory
+./partners/build.sh: line 5: ./compile.sh: No such file or directory
+cp: cannot stat './server.exe': No such file or directory
+Sending build context to Docker daemon   5.12kB
+Step 1/6 : FROM mono:3.10
+ ---> ac2088dc9106
+Step 2/6 : MAINTAINER Livrair
+ ---> Using cache
+ ---> a8c09d20fb7f
+Step 3/6 : COPY ./server.exe ./server.exe
+COPY failed: stat /var/lib/docker/tmp/docker-builder435179164/server.exe: no such file or directory
++ docker-compose up -d
+Creating dd_partners ... 
+[1A[2KCreating dd_partners ... [32mdone[0m[1BCreating dd_system   ... 
+[1A[2KCreating dd_system   ... [32mdone[0m[1BCreating dd_client_boss_cli ... 
+Creating dd_client_garagiste_cli ... 
+Creating dd_client_integration_tests_cli ... 
+Creating dd_client_service_client_cli    ... 
+Creating dd_client_manutentionnaire_cli  ... 
+Creating dd_client_chargeur_cli          ... 
+Creating dd_client_gestionnaire_cli      ... 
+[6A[2KCreating dd_client_garagiste_cli         ... [32mdone[0m[6B[7A[2KCreating dd_client_boss_cli              ... [32mdone[0m[7B[2A[2KCreating dd_client_chargeur_cli          ... [32mdone[0m[2B[3A[2KCreating dd_client_manutentionnaire_cli  ... [32mdone[0m[3B[4A[2KCreating dd_client_service_client_cli    ... [32mdone[0m[4B[5A[2KCreating dd_client_integration_tests_cli ... [32mdone[0m[5B[1A[2KCreating dd_client_gestionnaire_cli      ... [32mdone[0m[1BFinished: SUCCESS

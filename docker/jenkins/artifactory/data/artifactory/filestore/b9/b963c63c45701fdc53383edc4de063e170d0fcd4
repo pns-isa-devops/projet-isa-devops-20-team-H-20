@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>fr.polytech.team.h</groupId>
+    <artifactId>drone-delivery-backend</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <name>Drone Delivery :: J2E Backend</name>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <versions.java>1.8</versions.java>
+        <versions.maven-compiler>3.8.0</versions.maven-compiler>
+        <versions.json>20160810</versions.json>
+        <!-- J2E 7.x technological stack -->
+        <versions.javaee>7.0-1</versions.javaee>
+        <versions.openejb>7.0.2</versions.openejb>
+        <versions.tomee>7.0.2</versions.tomee>
+        <versions.openjpa>2.4.1</versions.openjpa>
+        <versions.myface>2.2.10</versions.myface>
+        <!-- Testing dependencies -->
+        <versions.junit>4.12</versions.junit>
+        <versions.mockito>1.10.19</versions.mockito>
+        <versions.arquillian.junit>1.1.12.Final</versions.arquillian.junit>
+        <versions.arquilian.jta>1.0.3.Final</versions.arquilian.jta>
+        <versions.shrinkwrap>2.2.6</versions.shrinkwrap>
+        <versions.cukespace>1.6.5</versions.cukespace>
+    <!-- Artifactory configuration parameters -->
+        <artifactory.repository.url>http://localhost:8081/artifactory</artifactory.repository.url>
+        <artifactory.snapshots.id>snapshots</artifactory.snapshots.id>
+        <artifactory.releases.id>central</artifactory.releases.id>
+        <artifactory.snapshots.name>8c82f15967bb-snapshots</artifactory.snapshots.name>
+        <artifactory.releases.name>8c82f15967bb-releases</artifactory.releases.name>
+
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${versions.junit}</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- Dependencies for the OpenEJB framework (provided at runtime by the app server) -->
+        <dependency>
+            <groupId>org.apache.tomee</groupId>
+            <artifactId>javaee-api</artifactId>
+            <version>${versions.javaee}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomee</groupId>
+            <artifactId>openejb-core</artifactId>
+            <version>${versions.openejb}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomee</groupId>
+            <artifactId>tomee-embedded</artifactId>
+            <version>${versions.tomee}</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- Dependency to integrate REST clients (order matters for CXF) (provided) -->
+        <dependency>
+            <groupId>org.apache.tomee</groupId>
+            <artifactId>openejb-cxf</artifactId>
+            <version>${versions.openejb}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomee</groupId>
+            <artifactId>openejb-cxf-rs</artifactId>
+            <version>${versions.openejb}</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- Dependencies for the JSF framework (provided)-->
+        <dependency>
+            <groupId>org.apache.myfaces.core</groupId>
+            <artifactId>myfaces-api</artifactId>
+            <version>${versions.myface}</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- JSON dependency-->
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>${versions.json}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>${versions.mockito}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.github.cukespace</groupId>
+            <artifactId>cukespace-core</artifactId>
+            <version>${versions.cukespace}</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- Arquillian dependencies-->
+        <dependency>
+            <groupId>org.jboss.arquillian.junit</groupId>
+            <artifactId>arquillian-junit-container</artifactId>
+            <version>${versions.arquillian.junit}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.shrinkwrap.resolver</groupId>
+            <artifactId>shrinkwrap-resolver-depchain</artifactId>
+            <version>${versions.shrinkwrap}</version>
+            <type>pom</type>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomee</groupId>
+            <artifactId>arquillian-tomee-embedded</artifactId>
+            <version>${versions.tomee}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <distributionManagement>
+        <repository>
+            <id>${artifactory.snapshots.id}</id>
+            <name>${artifactory.snapshots.name}</name>
+            <url>${artifactory.repository.url}/libs-snapshot-local</url>
+        </repository>
+    </distributionManagement>
+
+    <build>
+        <finalName>drone-delivery-backend</finalName>
+        <defaultGoal>package</defaultGoal>
+        <plugins>
+            <plugin> <!-- used to define level language 8 to use LocalDateTime -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${versions.maven-compiler}</version>
+                <configuration>
+                    <source>${versions.java}</source>
+                    <target>${versions.java}</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.tomee.maven</groupId>
+                <artifactId>tomee-maven-plugin</artifactId>
+                <version>${versions.tomee}</version>
+                <configuration>
+                    <!-- From TomEE to TomEE+ to support the web services stack -->
+                    <tomeeClassifier>plus</tomeeClassifier>
+                    <args>-Xmx512m -XX:PermSize=256m</args>
+                    <deployOpenEjbApplication>true</deployOpenEjbApplication>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.openjpa</groupId>
+                <artifactId>openjpa-maven-plugin</artifactId>
+                <version>2.4.1</version>
+                <configuration>
+                    <includes>**/entities/**/*.class</includes>
+                    <addDefaultConstructor>true</addDefaultConstructor>
+                    <enforcePropertyRestrictions>true</enforcePropertyRestrictions>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>enhancer</id>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>enhance</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <modules>
+        <module>Accounting</module>
+        <module>AvailabilityProcessor</module>
+        <module>CommentBoard</module>
+        <module>Core</module>
+        <module>DeliveryPlanning</module>
+        <module>DroneFleet</module>
+        <module>PackageRegistry</module>
+        <module>Statistics</module>
+        <module>SupplierRegistry</module>
+        <module>WebServices</module>
+    </modules>
+</project>

@@ -1,0 +1,183 @@
+Started by user [8mha:////4Lnx69JL3IAAqkgQK3MRmKCYHPbxCXMSwwtbo/JDP06eAAAAmB+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAy+EgYe/dLi1CL9lMTczNQ8AC9LU1nBAAAA[0mDamien Montoya
+Running as SYSTEM
+Building in workspace /var/jenkins_home/workspace/drone-delivery-dockerization
+[drone-delivery-dockerization] $ /bin/sh -xe /tmp/jenkins691220246853789503.sh
++ export M2_HOME=/var/jenkins_home/tools/hudson.tasks.Maven_MavenInstallation/maven_3.6.3
++ export PATH=/usr/local/openjdk-8/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/var/jenkins_home/tools/hudson.tasks.Maven_MavenInstallation/maven_3.6.3/bin
++ cd /var/jenkins_home/workspace/drone-delivery-j2e/docker/
++ chmod 777 build.sh
++ chmod 777 dd/build.sh
++ chmod 777 clients/build.sh
++ chmod 777 clients/boss_cli/build.sh
++ chmod 777 clients/chargeur_cli/build.sh
++ chmod 777 clients/garagiste_cli/build.sh
++ chmod 777 clients/gestionnaire_cli/build.sh
++ chmod 777 clients/integration_tests_cli/build.sh
++ chmod 777 clients/manutentionnaire_cli/build.sh
++ chmod 777 clients/service_client_cli/build.sh
++ chmod 777 partners/build.sh
++ chmod 777 ../MappingServiceExterne/compile.sh
++ ./build.sh
+Compiling the Drone Delivery client boss_cli system
+./build.sh: line 8: mvn: command not found
+Done
+cp: cannot stat './target/drone-delivery-client-boss_cli-1.0-SNAPSHOT-jar-with-dependencies.jar': No such file or directory
+Sending build context to Docker daemon  5.632kB
+Step 1/6 : FROM openjdk:8
+ ---> cdf26cc71b50
+Step 2/6 : MAINTAINER Livrair
+ ---> Using cache
+ ---> c36a36d499f6
+Step 3/6 : COPY ./drone-delivery-client-boss_cli-1.0-SNAPSHOT-jar-with-dependencies.jar ./drone-delivery-client-boss_cli.jar
+COPY failed: stat /var/lib/docker/tmp/docker-builder385407626/drone-delivery-client-boss_cli-1.0-SNAPSHOT-jar-with-dependencies.jar: no such file or directory
+Compiling the Drone Delivery client chargeur_cli system
+./build.sh: line 8: mvn: command not found
+Done
+cp: cannot stat './target/drone-delivery-client-chargeur_cli-1.0-SNAPSHOT-jar-with-dependencies.jar': No such file or directory
+Sending build context to Docker daemon  5.632kB
+Step 1/6 : FROM openjdk:8
+ ---> cdf26cc71b50
+Step 2/6 : MAINTAINER Livrair
+ ---> Using cache
+ ---> c36a36d499f6
+Step 3/6 : COPY ./drone-delivery-client-chargeur_cli-1.0-SNAPSHOT-jar-with-dependencies.jar ./drone-delivery-client-chargeur_cli.jar
+COPY failed: stat /var/lib/docker/tmp/docker-builder391938145/drone-delivery-client-chargeur_cli-1.0-SNAPSHOT-jar-with-dependencies.jar: no such file or directory
+Compiling the Drone Delivery client garagiste_cli system
+./build.sh: line 8: mvn: command not found
+Done
+cp: cannot stat './target/drone-delivery-client-garagiste_cli-1.0-SNAPSHOT-jar-with-dependencies.jar': No such file or directory
+Sending build context to Docker daemon  5.632kB
+Step 1/6 : FROM openjdk:8
+ ---> cdf26cc71b50
+Step 2/6 : MAINTAINER Livrair
+ ---> Using cache
+ ---> c36a36d499f6
+Step 3/6 : COPY ./drone-delivery-client-garagiste_cli-1.0-SNAPSHOT-jar-with-dependencies.jar ./drone-delivery-client-garagiste_cli.jar
+COPY failed: stat /var/lib/docker/tmp/docker-builder041850444/drone-delivery-client-garagiste_cli-1.0-SNAPSHOT-jar-with-dependencies.jar: no such file or directory
+Compiling the Drone Delivery client gestionnaire_cli system
+./build.sh: line 8: mvn: command not found
+Done
+cp: cannot stat './target/drone-delivery-client-gestionnaire_cli-1.0-SNAPSHOT-jar-with-dependencies.jar': No such file or directory
+Sending build context to Docker daemon  5.632kB
+Step 1/6 : FROM openjdk:8
+ ---> cdf26cc71b50
+Step 2/6 : MAINTAINER Livrair
+ ---> Using cache
+ ---> c36a36d499f6
+Step 3/6 : COPY ./drone-delivery-client-gestionnaire_cli-1.0-SNAPSHOT-jar-with-dependencies.jar ./drone-delivery-client-gestionnaire_cli.jar
+COPY failed: stat /var/lib/docker/tmp/docker-builder884130107/drone-delivery-client-gestionnaire_cli-1.0-SNAPSHOT-jar-with-dependencies.jar: no such file or directory
+Compiling the Drone Delivery client manutentionnaire_cli system
+./build.sh: line 8: mvn: command not found
+Done
+cp: cannot stat './target/drone-delivery-client-manutentionnaire_cli-1.0-SNAPSHOT-jar-with-dependencies.jar': No such file or directory
+Sending build context to Docker daemon  6.144kB
+Step 1/6 : FROM openjdk:8
+ ---> cdf26cc71b50
+Step 2/6 : MAINTAINER Livrair
+ ---> Using cache
+ ---> c36a36d499f6
+Step 3/6 : COPY ./drone-delivery-client-manutentionnaire_cli-1.0-SNAPSHOT-jar-with-dependencies.jar ./drone-delivery-client-manutentionnaire_cli.jar
+COPY failed: stat /var/lib/docker/tmp/docker-builder229720414/drone-delivery-client-manutentionnaire_cli-1.0-SNAPSHOT-jar-with-dependencies.jar: no such file or directory
+Compiling the Drone Delivery client service_client_cli system
+./build.sh: line 8: mvn: command not found
+Done
+cp: cannot stat './target/drone-delivery-client-service_client_cli-1.0-SNAPSHOT-jar-with-dependencies.jar': No such file or directory
+Sending build context to Docker daemon  5.632kB
+Step 1/6 : FROM openjdk:8
+ ---> cdf26cc71b50
+Step 2/6 : MAINTAINER Livrair
+ ---> Using cache
+ ---> c36a36d499f6
+Step 3/6 : COPY ./drone-delivery-client-service_client_cli-1.0-SNAPSHOT-jar-with-dependencies.jar ./drone-delivery-client-service_client_cli.jar
+COPY failed: stat /var/lib/docker/tmp/docker-builder577122597/drone-delivery-client-service_client_cli-1.0-SNAPSHOT-jar-with-dependencies.jar: no such file or directory
+Compiling the Drone Delivery client integration_tests_cli system
+./build.sh: line 8: mvn: command not found
+Done
+cp: cannot stat './target/drone-delivery-client-integration_tests_cli-1.0-SNAPSHOT-jar-with-dependencies.jar': No such file or directory
+Sending build context to Docker daemon  6.144kB
+Step 1/6 : FROM openjdk:8
+ ---> cdf26cc71b50
+Step 2/6 : MAINTAINER Livrair
+ ---> Using cache
+ ---> c36a36d499f6
+Step 3/6 : COPY ./drone-delivery-client-integration_tests_cli-1.0-SNAPSHOT-jar-with-dependencies.jar ./drone-delivery-client-integration_tests_cli.jar
+COPY failed: stat /var/lib/docker/tmp/docker-builder978916416/drone-delivery-client-integration_tests_cli-1.0-SNAPSHOT-jar-with-dependencies.jar: no such file or directory
+Compiling the DD system
+./build.sh: line 6: mvn: command not found
+Done
+Sending build context to Docker daemon  219.6kB
+Step 1/13 : FROM tomee:8-jdk-7.0.1-plus
+ ---> e452dbca47d5
+Step 2/13 : MAINTAINER Livrair team
+ ---> Using cache
+ ---> 10ee2d73e31b
+Step 3/13 : WORKDIR /usr/local/tomee/
+ ---> Using cache
+ ---> 07fdc541ae33
+Step 4/13 : COPY ./drone-delivery-backend.war ./webapps/.
+ ---> 5af1decd0003
+Step 5/13 : COPY ./resources/tomcat-user.xml ./conf/tomcat-users.xml
+ ---> 4ec46bb3d3f8
+Step 6/13 : COPY ./resources/manager-context.xml ./webapps/manager/META-INF/context.xml
+ ---> cbe26e32048b
+Step 7/13 : ENV map_host=localhost
+ ---> Running in beba08291c3d
+Removing intermediate container beba08291c3d
+ ---> bf991bb60a58
+Step 8/13 : ENV map_port=9090
+ ---> Running in ea774f5476ee
+Removing intermediate container ea774f5476ee
+ ---> 0bff5651e2a4
+Step 9/13 : COPY ./resources/start-dd.sh .
+ ---> 7b5c1dce8d88
+Step 10/13 : RUN ["chmod", "u+x", "./start-dd.sh"]
+ ---> Running in 741dcf952f1b
+Removing intermediate container 741dcf952f1b
+ ---> 2b0979cc73ec
+Step 11/13 : HEALTHCHECK --interval=5s CMD curl --fail http://localhost:8080/ || exit 1
+ ---> Running in 7bf2b85ff0f2
+Removing intermediate container 7bf2b85ff0f2
+ ---> 235efacbd54f
+Step 12/13 : EXPOSE 8080
+ ---> Running in 3d1c36b6b4ed
+Removing intermediate container 3d1c36b6b4ed
+ ---> 35a668b8042c
+Step 13/13 : ENTRYPOINT ["./start-dd.sh"]
+ ---> Running in a7fb5a41b47c
+Removing intermediate container a7fb5a41b47c
+ ---> 77ff8a8a7f3c
+Successfully built 77ff8a8a7f3c
+Successfully tagged livrair/dd-int:latest
+Sending build context to Docker daemon  13.31kB
+Step 1/6 : FROM mono:3.10
+ ---> ac2088dc9106
+Step 2/6 : MAINTAINER Livrair
+ ---> Using cache
+ ---> a8c09d20fb7f
+Step 3/6 : COPY ./server.exe ./server.exe
+ ---> 1232259b1da3
+Step 4/6 : EXPOSE 9090
+ ---> Running in a203ebdaa6de
+Removing intermediate container a203ebdaa6de
+ ---> 78d2b5ac182a
+Step 5/6 : ENTRYPOINT ["mono", "./server.exe"]
+ ---> Running in 3dbeaad3fd0a
+Removing intermediate container 3dbeaad3fd0a
+ ---> f94260d60cc8
+Step 6/6 : CMD ["/standalone"]
+ ---> Running in 88b26a9b2c8a
+Removing intermediate container 88b26a9b2c8a
+ ---> 58f55ae1c723
+Successfully built 58f55ae1c723
+Successfully tagged livrair/dd-ext:latest
++ docker-compose up -d
+Creating dd_partners ... 
+[1A[2KCreating dd_partners ... [32mdone[0m[1BCreating dd_system   ... 
+[1A[2KCreating dd_system   ... [32mdone[0m[1BCreating dd_client_integration_tests_cli ... 
+Creating dd_client_manutentionnaire_cli  ... 
+Creating dd_client_garagiste_cli         ... 
+Creating dd_client_boss_cli              ... 
+Creating dd_client_gestionnaire_cli      ... 
+Creating dd_client_service_client_cli    ... 
+Creating dd_client_chargeur_cli          ... 
+[5A[2KCreating dd_client_garagiste_cli         ... [32mdone[0m[5B[1A[2KCreating dd_client_chargeur_cli          ... [32mdone[0m[1B[6A[2KCreating dd_client_manutentionnaire_cli  ... [32mdone[0m[6B[3A[2KCreating dd_client_gestionnaire_cli      ... [32mdone[0m[3B[4A[2KCreating dd_client_boss_cli              ... [32mdone[0m[4B[7A[2KCreating dd_client_integration_tests_cli ... [32mdone[0m[7B[2A[2KCreating dd_client_service_client_cli    ... [32mdone[0m[2BFinished: SUCCESS

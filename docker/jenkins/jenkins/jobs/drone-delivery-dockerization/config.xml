@@ -1,0 +1,39 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties/>
+  <scm class="hudson.scm.NullSCM"/>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.Shell>
+      <command>export M2_HOME=/var/jenkins_home/tools/hudson.tasks.Maven_MavenInstallation/maven-3.6.3
+export PATH=$PATH:$M2_HOME/bin
+
+cd /var/jenkins_home/workspace/drone-delivery-j2e/docker/
+chmod 777 build.sh
+chmod 777 dd/build.sh
+chmod 777 clients/build.sh
+chmod 777 clients/boss_cli/build.sh
+chmod 777 clients/chargeur_cli/build.sh
+chmod 777 clients/garagiste_cli/build.sh
+chmod 777 clients/gestionnaire_cli/build.sh
+chmod 777 clients/integration_tests_cli/build.sh
+chmod 777 clients/manutentionnaire_cli/build.sh
+chmod 777 clients/service_client_cli/build.sh
+chmod 777 partners/build.sh
+chmod 777 ../MappingServiceExterne/compile.sh
+./build.sh
+
+docker-compose up -d</command>
+    </hudson.tasks.Shell>
+  </builders>
+  <publishers/>
+  <buildWrappers/>
+</project>

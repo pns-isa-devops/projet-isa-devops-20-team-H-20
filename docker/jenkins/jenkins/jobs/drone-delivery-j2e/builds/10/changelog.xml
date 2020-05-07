@@ -1,0 +1,12 @@
+commit 74ff229c791d7fa5d7537e70debebeb64bc774f7
+tree 06073d494d4ff92c2a3e9af1e0bc50b553a93326
+parent 18e40371793bf5574949d906d90a4a054a3a5bad
+author Damien Montoya <daminor26@gmail.com> 2020-05-07 15:34:18 +0200
+committer Damien Montoya <daminor26@gmail.com> 2020-05-07 15:34:18 +0200
+
+    trying to launch mvn test in jenkins #44
+
+
+:100644 100644 a95242c3ea3fdf2cb24fa087333a26c98d88fe59 b5c3fe6384ca7f9c158e2874423f7383bef9d9ad M	clients/integration_tests_cli/src/main/java/Main.java
+:100644 100644 955d39053bdf3642fa57f9df93b0aee502a43bfc 33cc910742f0b82a4fd7a91c5e55d171c73d6e7f M	clients/integration_tests_cli/src/main/resources/server.properties
+:100644 100644 50dcd9a091c08c70087a9cfa7ee6a3a0a90da195 438490d8695c41531ec611dfd49ed7bebdff23f0 M	docker/docker-compose.yml
