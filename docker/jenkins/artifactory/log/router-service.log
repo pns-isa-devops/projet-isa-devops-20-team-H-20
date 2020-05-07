@@ -71,3 +71,17 @@ shared.security.joinKeyFile: file '/opt/jfrog/artifactory/var/etc/security/join.
 ###############################################################
 2020-05-07T15:15:26.070Z [jfrou] [ERROR] [5954163945cfb240] [external_topology.go:82       ] [main                ] - failed fetching external topology from Access: Get http://localhost:8040/access/api/v1/topology: read tcp 127.0.0.1:46064->127.0.0.1:8040: read: connection reset by peer
 2020-05-07T15:15:26.176Z [jfrou] [ERROR] [492db249ce398ef6] [external_topology.go:82       ] [main                ] - failed fetching external topology from Access: Get http://localhost:8040/access/api/v1/topology: dial tcp 127.0.0.1:8040: connect: connection refused
+2020-05-07T19:03:48.654Z [jfrou] [INFO ] [fe5634fdc6a9c6  ] [bootstrap.go:70               ] [main                ] - Router (jfrou) service initialization started. Version: 1.2.1 Revision: fe2dd4ed3212d39bdd665c92e17293e8071eb99d PID: 2742 Home: /opt/jfrog/artifactory
+2020-05-07T19:03:48.715Z [jfrou] [INFO ] [fe5634fdc6a9c6  ] [bootstrap.go:73               ] [main                ] - JFrog Router IP: 172.21.0.3
+2020-05-07T19:03:48.738Z [jfrou] [INFO ] [fe5634fdc6a9c6  ] [bootstrap.go:165              ] [main                ] - System configuration encryption report:
+shared.newrelic.licenseKey: does not exist in the config file
+shared.security.joinKeyFile: file '/opt/jfrog/artifactory/var/etc/security/join.key' - already encrypted
+2020-05-07T19:03:48.852Z [jfrou] [INFO ] [fe5634fdc6a9c6  ] [bootstrap.go:78               ] [main                ] - JFrog Router Service ID: jfrou@01e7gh1vnsmkrfkfs5bjywmka9
+2020-05-07T19:03:48.853Z [jfrou] [INFO ] [fe5634fdc6a9c6  ] [bootstrap.go:79               ] [main                ] - JFrog Router Node ID: 1b945ea6ae20
+2020-05-07T19:03:50.655Z [jfrou] [INFO ] [fe5634fdc6a9c6  ] [config_holder.go:107          ] [main                ] - configuration update detected
+2020-05-07T19:04:23.793Z [jfrou] [INFO ] [fe5634fdc6a9c6  ] [join_executor.go:181          ] [main                ] - Cluster join: Successfully joined the cluster
+2020-05-07T19:04:24.181Z [jfrou] [INFO ] [fe5634fdc6a9c6  ] [main.go:47                    ] [main                ] - Router (jfrou) service initialization completed in 35.660 seconds. Listening on port: 8082
+2020-05-07T19:04:49.219Z [jfrou] [INFO ] [2600a94ae105e357] [local_topology.go:213         ] [main                ] - 
+###############################################################
+###   All services started successfully in 60.698 seconds   ###
+###############################################################
