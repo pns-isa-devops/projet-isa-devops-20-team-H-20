@@ -9,7 +9,7 @@ import java.util.Properties;
  * Use -Dexec.args="IP_ADDRESS PORT_NUMBER" to change host/port parameters
  */
 public class Main extends Shell<DronePublicAPI> {
-    static String host = "localhost";
+    static String host = "ddsystem";
     static String port = "8080";
 
     public Main(String host, String port) {
