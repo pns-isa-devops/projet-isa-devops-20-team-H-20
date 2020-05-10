@@ -1,29 +1,40 @@
 #PS8 - Drone Delivery
 
-### Comment lancer les tests d'intégration
+### Jenkins.sh
 
-Malheureusement, nous ne sommes pas parvenus à lancer les tests d'intégration lorsque tout le système est dockerizé (lors de l'exécution de mvn test dans le container du client d'intégration, une erreur http 403 intervient et le client n'arrive pas à se connecter à tomee) cependant en version CLI la connexion fonctionne très bien. Pour les lancer vous pouvez lancer le serveur tomee puis le service externe et ensuite lancer les tests.
+The jenkins.sh script will take a moment because it needs to install lots of dependencies
 
-Pour lancer tomee :
+### client.sh
 
+On a windows computer please launch client.sh with powershell or cmd and not git bash because git bash seems not working with docker attach
+
+### Repository size
+
+We tried to strip the jenkins volume but it ended up with some failures. So we push the entire volume (without .groovy, .java;..). The repository is about 800 mo because there is also the artifactory volume
+
+### How to launch integration tests
+
+Unfortunately, we were not able to launch the integration tests when the whole system is dockerized (during the execution of the mvn test command in the integration CLI's container, a 403 http error is thrown and the CLI does not manage to connect successfully to the backend's container). However, they run fine outside of the containers. To run them in that way, you can run the tomee server in the backend (mvn tomee:run in the WebServices module), then the external service (mono server.exe), and them run the tests in the integration CLI.
+
+To launch tomee :
 `cd j2e`
 `mvn clean install`
 `cd WebServices`
 `mvn tomee:run`
 
-Pour lancer le service externe : 
+To launch exertnal service : 
 `cd MappingServiceExterne`
 `mono server.exe`
 
-Pour lancer les tests d'intégration :
+To launch integration tests:
 `cd clients/integration_tests_cli`
 `mvn clean package`
 
-### Comment lancer un plan de build
+### How to launch build plan
 
-Pour lancer un plan de build il faut configurer une clé SSH pour que votre compte github puisse so connecter au repository.
+To launch a build plan you need to configure an ssh key and link it to your githubg account
 
-- Ouvrir un terminal et écrire `docker exec -it dd_jenkins /bin/bash`
+- Oopen a terminal and type `docker exec -it dd_jenkins /bin/bash`
 - `ssh-keygen -t rsa` then enter then enter then enter
 - `cat /root/.ssh/id_rsa.pub`
 - Copy the key
@@ -37,7 +48,7 @@ Pour lancer un plan de build il faut configurer une clé SSH pour que votre comp
 - Set your GitHub username
 - Add the key
 - Click OK
-- Go to Jenkins > drone-delivery-j2e > Configurer
+- Go to Jenkins (http://localhost:8083) > drone-delivery-j2e > Configurer
 - Under Gestion de code source, under Credentials select the new credentials
 - It failed to connect because Jenkins seems to bug a this point, so choose "Aucun" again it works
 - Click on Save
